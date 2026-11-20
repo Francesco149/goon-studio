@@ -102,6 +102,18 @@ range, with a second reference image adding a second VAE encode (a second or two
 bottleneck). The Qwen edit graph is the same model and step cost as t2i; the reference encode adds
 very little.
 
+### Coverage of the remaining graphs
+
+| graph | measured / status |
+|---|---|
+| first+last (`wf_h3vid_i2v_fl.json`), 512x768 85 f, 6 steps | **122.9 s** (about 10% over plain i2v; the second image adds a VAE encode) |
+| t2v (`wf_h3vid_t2v.json`), 512x768 85 f, 6 steps | **109.3 s** (same as i2v; no keyframe encode) |
+| Qwen edit (`wf_qwen21_edit1.json`), 1024x1024, 12 steps | **55.7 s** cold (reference encode + model load; a 25-step edit is ~70 s) |
+| Ref2VA (`wf_h3vid_ref2va6.json`) | the Ref2VA transformer is not on cutestation; same attention class as FL2VA, so budget the i2v range and test it on ampere/24 GB |
+| Wan 2.1/2.2 | not installed and not viable on 16 GB (see `CUM-VIDEO.md`) |
+| Anima i2i restyle | closed by owner verdict; not re-benchmarked |
+| Krea Verite | superseded; its int8 UNet is not on cutestation |
+
 The first 5-second 512x768 clip after an engine start took 211.6 s; the same clip later took ~111 s
 for 85 frames and ~160-170 s extrapolated for 124 frames. Budget 3-6 minutes per final clip on this
 box.
@@ -113,6 +125,7 @@ box.
 | 1024x1024, 25 steps | 37.2 s cold | 7107 MB | default |
 | 1024x1024, 12 steps | 29.1 s | 7333 MB | moderate-quality keeper / preview |
 | 896x1344, 25 steps | 34.5 s | 7108 MB | portrait |
+| 1024x1024 edit, 12 steps | 55.7 s cold | 7306 MB | reference encode + model load; 25-step edit ~70 s |
 
 The `QwenImage21Cache` node already removes much of the step cost, so cutting steps saves less
 than on Krea.
