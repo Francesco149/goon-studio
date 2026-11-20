@@ -55,19 +55,6 @@ References are kept and organised but **never committed**: `gallery/refs/` (git-
 folder per source with a local `INDEX.md`. The author's own clips live outside the repo
 (`AGENTS.local.md`). Video follows the same rule.
 
-## 2b. The page
-
-- **Generate**: template, body type, framing, character/scene/prompt/negative, size/steps/cfg,
-  seed/count, reference picture. The reference slot takes a dropped/pasted picture, an uploaded
-  file, or **"Pick from my pictures"** (the gallery picker). "Just made" shows the last 12.
-- **Video**: video recipe dropdown (POV blowjob, side deepthroat, paizuri, cum shot, anime POV
-  bob), mode (i2v, i2v + act LoRA, first+last, ref2va, t2v), keyframe/last/second-reference slots
-  with the same picker/paste/drop, LoRA + strength, length, size, seed, prompt. "Recent videos"
-  sits next to it, and a clip's lightbox has **"Use as keyframe"** to chain the next one.
-- **My pictures**: filter all/private/shared, select several, share/lock, trash; the lightbox
-  has the rating buttons, share toggle, trash and "Use as keyframe".
-- **Trash**: restore or delete forever. **Rounds**: `my/rounds/*.json` with their pictures.
-
 ## 2. Two apps, two galleries
 
 | | Love Live Studio (`../lovelive-studio`) | NSFW Studio (here) |
@@ -83,6 +70,19 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 - Never write NSFW prompts, pictures or notes into `../lovelive-studio`. If a run needs an SFW
   reference, copy the file into this repo's `gallery/refs/` and use that copy.
 - The two apps use different ports: Love Live Studio 8190, this one 8191.
+
+## 2a. The page
+
+- **Generate**: template, body type, framing, character/scene/prompt/negative, size/steps/cfg,
+  seed/count, reference picture. The reference slot takes a dropped/pasted picture, an uploaded
+  file, or **"Pick from my pictures"** (the gallery picker). "Just made" shows the last 12.
+- **Video**: video recipe dropdown (POV blowjob, side deepthroat, paizuri, cum shot, anime POV
+  bob), mode (i2v, i2v + act LoRA, first+last, ref2va, t2v), keyframe/last/second-reference slots
+  with the same picker/paste/drop, LoRA + strength, length, size, seed, prompt. "Recent videos"
+  sits next to it, and a clip's lightbox has **"Use as keyframe"** to chain the next one.
+- **My pictures**: filter all/private/shared, select several, share/lock, trash; the lightbox
+  has the rating buttons, share toggle, trash and "Use as keyframe".
+- **Trash**: restore or delete forever. **Rounds**: `my/rounds/*.json` with their pictures.
 
 ## 3. Author-only notes
 
