@@ -1,60 +1,77 @@
 # NSFW Studio
 
-A local, private lab for explicit image and video generation: its own gallery, its own app, and
-its own recipes. It is the NSFW companion to [Love Live Studio](../lovelive-studio) - the SFW app
-stays SFW and this folder stays out of it.
+Make explicit pictures and clips on your own PC: your own characters, any body type, any scene.
+Everything runs on your computer, nothing is uploaded anywhere.
 
-- **Its own gallery.** Everything this app makes goes in `gallery/`, which is not in git. The SFW
-  app's pictures are never touched.
-- **Two models that matter.** Photoreal: Krea 2 Turbo NSFW v10. Anime: Pink Alchemy Anima v2.9.
-  Both are in `docs/EGIRL.md` and `docs/ANIME.md`, with the prompts that survived the owner's
-  review.
-- **Agent-first.** `AGENTS.md` is the guide for the agent that runs this repo. `AGENTS.local.md`
-  (git-ignored) holds notes that are only for the author, including the reference clips.
-- **Nothing leaves the PC.** The app talks to the local ComfyUI only.
+You don't need to know anything technical. **DeepSeek sets it up, keeps it working and helps you
+get the pictures and clips you want.**
 
-## Quick start
+This is the NSFW companion of Love Live Studio. The two are separate apps with separate
+galleries: Love Live Studio stays SFW, this one stays here. They never read each other's private
+pictures.
 
-1. Copy `my/settings.example.json` to `my/settings.json` and set `engine_dir` (the ComfyUI folder
-   with `python_embeded`) and `data_dir` (where the gallery should live).
-2. Double-click `NSFW Studio.cmd`, or run:
-   `powershell -ExecutionPolicy Bypass -File kit\start.ps1`
-3. The page opens at http://127.0.0.1:8191. Pick a template, edit the character/scene, press
-   **Make pictures**. Pictures can be rated and locked (private) from the gallery.
+## Getting started (about 10 minutes of your time, then DeepSeek works for a while)
 
-## The default
+1. Install the **DeepSeek Harness** desktop app from the official DeepSeek Harness page (the
+   project is [github.com/deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness))
+   and sign in.
+2. Open the app and start a **new session** with your **Documents** folder as the workspace.
+3. Paste this message and press Enter:
 
-The page opens on **`anime_pov`**, the best anime blowjob POV so far. Change the template
-dropdown for anything else; the default is only a starting point.
+   > Please download the NSFW Studio from **&lt;the address you were given&gt;** into this folder
+   > and set it up for me by following its **AGENTS.md**. I'm not technical, so please do
+   > everything for me and explain as you go.
 
-## Images in git
+   If you got the Studio as a zip file instead: unzip it, start the session **inside** the
+   unzipped folder and say: *"Please set this up for me by following AGENTS.md."*
+4. DeepSeek checks your PC, **asks you which drive to use** (it needs about 30 GB, more if you
+   want the H3 video models), downloads ComfyUI and the models, and makes a test picture.
 
-**No NSFW image is committed.** If an example is needed in the repo it must be fully censored
-(baguette over the cock, genitals/anus/nipples hidden, no act visible), stripped of prompt
-metadata, and **vetted by a human** before `git add`. References are kept but never committed
-(`gallery/refs/`, git-ignored). Full rule: `docs/IMAGES.md`.
+When it's done you'll have an **NSFW Studio** icon on your desktop.
 
-## What is in here
+The target machine is a normal gaming PC: **8 GB of video memory and 16 GB of RAM** is the
+baseline. The big models are streamed from system RAM, so they run, just slower; DeepSeek will
+tell you what to expect on your card (`docs/HARDWARE.md`).
 
-```
-kit/studio/        the app (server.py, core.py, index.html) - standard library only
-kit/presets.json   templates: workflow + size + prompt shape (e-girl, anime, facial, video)
-workflows/         ComfyUI API graphs with {{placeholders}} (Krea 2, Anima/Pink, H3, Qwen edit)
-templates/         extra prompt snippets for manual runs (optional)
-tools/             lab.py batch driver, clean.py, sheet.py, strip.py, comfy.py
-docs/              EGIRL.md, ANIME.md, FACIAL.md, CUM-VIDEO.md, WORKFLOWS.md
-gallery/           renders (git-ignored)
-my/                settings, history, private records (git-ignored)
-```
+## Making pictures and videos
 
-## Hardware
+Double-click **NSFW Studio**. A page opens in your browser at http://127.0.0.1:8191:
 
-The reference box is a Windows PC with an RTX 3080 (10 GB) and a second Linux box with an
-RX 7800 XT (16 GB). Krea 2 NSFW and Pink Alchemy run on the 3080; H3 video runs on both. Wan 2.2
-14B does **not** fit 16 GB (documented in `docs/CUM-VIDEO.md`).
+- **Create**: pick a **template** (photoreal e-girl, anime, facial...), change the character and
+  scene in plain words, pick a body type and framing, press **Make pictures**. The **Just made**
+  strip shows the latest; click one to rate it, share it, or use it as a reference.
+- **Video**: pick a **video recipe** (POV blowjob, side deepthroat, paizuri, cum shot, anime POV
+  bob), pick a **keyframe from your pictures**, press **Make video**. **Recent videos** sits next
+  to it; a clip can be used as the next keyframe to chain scenes.
+- **My pictures**: your gallery. Pictures are **private** until you press **share**; private ones
+  are invisible to the agent. You can select several and share, lock, or trash them.
+- **Rounds**: test rounds the agent ran, with its notes.
+- **Guide**: the recipes, in plain language.
 
-## Privacy
+## Asking DeepSeek for help
 
-Pictures made on the page are private by default. The agent only sees them after the user
-presses **share** in the gallery; the app records that in `my/library.json`. `my/private/` is
-never read by the agent. This is the same rule as Love Live Studio and it is not optional.
+Open a session **in the Studio's folder** (the one with this file) and just say what you want,
+even vaguely:
+
+- "Make her look less generic."
+- "The strokes look right but the sound is wrong."
+- "I want a chubby e-girl on a couch, like the examples but softer."
+- "The page doesn't open." / "Pictures come out black." / "My disk is full."
+
+For bigger questions DeepSeek makes a small **round** of test pictures or clips. You judge them
+in the **Rounds** tab, and it writes down what worked in `docs/` for next time.
+
+## About the pictures
+
+Everything here is **adult, fictional and local**. The models learned from a huge collection of
+internet pictures, so now and then something can come out more revealing or weirder than you
+asked for. It stays on your PC; you can ignore it, rate it, or tell DeepSeek to steer away.
+
+**No explicit picture is ever committed to the repo.** If an example is needed, it is censored
+and a person approves it first (`docs/IMAGES.md`).
+
+## If something is already set up
+
+`my/settings.json` holds the paths (ComfyUI folder, gallery folder, ComfyUI address). The app is
+started by `NSFW Studio.cmd` or `kit\start.ps1`; the models and the gallery can live on another
+drive. `docs/HARDWARE.md` explains what fits on an 8 GB card.

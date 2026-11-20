@@ -134,3 +134,9 @@ ended.
   layer composited onto a clean reaction clip, or (b) a video model with a cumshot LoRA that
   fits the hardware.
 - Fluid wording is still the lever: milky + translucent + glossy, never "water" or "clear".
+
+## Sound
+
+The model audio is a scratch track: the strokes crunch, the slurp sounds like noodles, and the
+events are not synced to the action. Do not present a clip as finished on the strength of its
+sound; the findings and the next routes are in docs/SOUND.md.

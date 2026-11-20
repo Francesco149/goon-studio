@@ -131,3 +131,9 @@ unstable and not a good anime style. Treat that route as closed unless the style
 - **Anime video**: best current recipe is `v10b` above (POV bob, whole-body motion prompt).
   It is still slightly stiff and the shaft does not travel as far as in the photoreal clips;
   the restyle route is closed by owner verdict.
+
+## Sound
+
+The model audio is a scratch track: the strokes crunch, the slurp sounds like noodles, and the
+events are not synced to the action. Do not present a clip as finished on the strength of its
+sound; the findings and the next routes are in docs/SOUND.md.

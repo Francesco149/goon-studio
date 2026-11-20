@@ -18,6 +18,31 @@ pointed at this folder or its gallery.
   gallery (that is the only way to make it visible). Do not work around it.
 - Never copy, upload, or paste NSFW pictures anywhere outside this repo and the two lab boxes.
 
+## 1a. First session: set up from zero
+
+The user may paste the README bootstrap: "download the NSFW Studio and set it up by following
+AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go.
+
+1. **Confirm the folder**: the session's workspace is the Studio repo. Read the README and this
+   file first.
+2. **Check the PC**: GPU name and VRAM (`nvidia-smi` or `rocm-smi`), system RAM, free disk. The
+   baseline is **8 GB VRAM + 16 GB RAM**; say plainly whether the machine is at, below or above
+   it. Below 8 GB or below 16 GB RAM is not a no - it means smaller frames and more streaming
+   (`docs/HARDWARE.md`), and you should say so.
+3. **Ask which drive** for the models and the gallery (they can be large), then create
+   `my/settings.json` from `my/settings.example.json` with `engine_dir`, `data_dir`, `comfy_url`.
+4. **Install ComfyUI** (portable Windows build) if it is not already there; start it hidden and
+   check `/system_stats`. Put the models in its `models/` folders.
+5. **Download the models in this order** (stop when disk or time runs out; each step is usable):
+   Pink Alchemy Anima v2.9 (4.2 GB) -> Krea 2 Turbo NSFW v10 (7.2 GB) -> H3-Image and H3 FL2VA
+   int8 + the 32B text encoder + VAEs (the big one, ~30 GB) -> the H3 act LoRAs (`h3nsfw/`).
+   `tools/models/` has the download helpers; verify file sizes after each.
+6. **Test**: start the page (`kit\start.ps1`), make one `anime_pov` still and show it. If H3 is
+   installed, make a short video (49 frames, 512x768) as a smoke test. Never claim the sound is
+   good (section 4b).
+7. **Write down** what was installed and where in `my/INSTALL.md` (git-ignored) and set the
+   gallery path in `my/settings.json`. Leave the user with the desktop shortcut and the tabs.
+
 ## 1b. Images in git
 
 **Never commit an NSFW image.** If a committed example is truly needed (UI screenshot, README
@@ -86,6 +111,14 @@ only the public recipes.
 The app's **templates** (`kit/presets.json`) already carry the approved prompt blocks. Prefer
 editing the character/scene fields over rewriting the whole prompt.
 
+## 4b. Sound is not solved
+
+The generated audio is wrong: the strokes crunch (like biting something), the slurp sounds like
+noodles, and nothing is synced to the action. The owner's reference for good SFX is the opalu
+clips (author-only, `AGENTS.local.md`). Sound work is its own session; read `docs/SOUND.md`
+before touching it and **never tell the user the sound is fine**. Treat the model audio as a
+scratch track; a separate Foley pass or a dedicated audio tool is the likely answer.
+
 ## 5. Canon (owner-approved, 2026-11-20)
 
 - **Default template: `anime_pov`** - the best anime blowjob POV so far. It is the first thing the
@@ -126,6 +159,8 @@ editing the character/scene fields over rewriting the whole prompt.
 
 ## 8. Hardware
 
-The reference setup: Windows RTX 3080 10 GB (this repo's main box), Linux RX 7800 XT 16 GB
-("lame"), and a Linux RTX 3080 10 GB ("ampere"). Krea 2 NSFW and Pink Alchemy run on 10 GB. H3
-video runs on both 10 GB boxes. Wan 2.2 14B does not fit 16 GB (see `docs/CUM-VIDEO.md`).
+The repo targets a **single 8 GB GPU and 16 GB of system RAM**. The reference machines are
+bigger (a 10 GB 3080 and a 16 GB 7800 XT), but never design a recipe that needs them: the big
+models are streamed from system RAM and run slower on 8 GB (`docs/HARDWARE.md`). Wan 2.2 14B is
+the exception - it does not fit and needs a 24 GB card (`docs/CUM-VIDEO.md`). The 8 GB
+optimization pass (peak VRAM, flags per box, CPU text encoders) is a later session.
