@@ -1,4 +1,4 @@
-# NSFW Studio
+# Goon Studio
 
 Make explicit pictures and clips on your own PC: your own characters, any body type, any scene.
 Everything runs on your computer, nothing is uploaded anywhere.
@@ -24,7 +24,7 @@ pictures.
 4. Start a **new session** with your **Documents** folder as the workspace.
 5. Paste this message and press Enter:
 
-   > Please download the NSFW Studio from **&lt;the address you were given&gt;** into this folder
+   > Please download the Goon Studio from **https://github.com/Francesco149/goon-studio** into this folder
    > and set it up for me by following its **AGENTS.md**. I'm not technical, so please do
    > everything for me and explain as you go.
 
@@ -33,7 +33,7 @@ pictures.
 6. DeepSeek checks your PC, **asks you which drive to use** (it needs about 30 GB, more if you
    want the H3 video models), downloads ComfyUI and the models, and makes a test picture.
 
-When it's done you'll have an **NSFW Studio** icon on your desktop.
+When it's done you'll have a **Goon Studio** icon on your desktop.
 
 The target machine is a normal gaming PC: **8 GB of video memory and 16 GB of RAM** is the
 baseline. The big models are streamed from system RAM, so they run, just slower; DeepSeek will
@@ -41,7 +41,7 @@ tell you what to expect on your card (`docs/HARDWARE.md`).
 
 ## Making pictures and videos
 
-Double-click **NSFW Studio**. A page opens in your browser at http://127.0.0.1:8191:
+Double-click **Goon Studio**. A page opens in your browser at http://127.0.0.1:8191:
 
 - **Create**: pick a **template** (photoreal e-girl, anime, facial...), change the character and
   scene in plain words, pick a body type and framing, press **Make pictures**. The **Just made**
@@ -79,5 +79,5 @@ and a person approves it first (`docs/IMAGES.md`).
 ## If something is already set up
 
 `my/settings.json` holds the paths (ComfyUI folder, gallery folder, ComfyUI address). The app is
-started by `NSFW Studio.cmd` or `kit\start.ps1`; the models and the gallery can live on another
+started by `Goon Studio.cmd` or `kit\start.ps1`; the models and the gallery can live on another
 drive. `docs/HARDWARE.md` explains what fits on an 8 GB card.

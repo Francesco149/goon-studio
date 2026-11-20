@@ -1,4 +1,4 @@
-"""server.py: the NSFW Studio page (http://127.0.0.1:8191). Standard library only.
+"""server.py: the Goon Studio page (http://127.0.0.1:8191). Standard library only.
 
 Endpoints:
   GET  /api/state       templates, workflows, ComfyUI up?
@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import core  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PORT = int(os.environ.get("NSFW_STUDIO_PORT", "8191"))
+PORT = int(os.environ.get("GOON_STUDIO_PORT", "8191"))
 JOBS = []
 LOCK = threading.Lock()
 Q = queue.Queue()
@@ -179,7 +179,7 @@ class H(BaseHTTPRequestHandler):
 def main():
     threading.Thread(target=worker, daemon=True).start()
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), H)
-    print("NSFW Studio on http://127.0.0.1:%d" % PORT, flush=True)
+    print("Goon Studio on http://127.0.0.1:%d" % PORT, flush=True)
     srv.serve_forever()
 
 

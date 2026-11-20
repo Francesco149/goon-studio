@@ -1,5 +1,5 @@
 {
-  "_note": "NSFW Studio presets: templates (workflow + size + prompt shape), characters and scenes. The user's own templates go in my/presets.json and are merged on top.",
+  "_note": "Goon Studio presets: templates (workflow + size + prompt shape), characters and scenes. The user's own templates go in my/presets.json and are merged on top.",
   "negative": "",
   "templates": {
     "egirl": {

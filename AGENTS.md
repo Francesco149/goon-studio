@@ -1,4 +1,4 @@
-# NSFW Studio: guide for the agent (read all of it before doing anything)
+# Goon Studio: guide for the agent (read all of it before doing anything)
 
 This repo is the explicit counterpart of **Love Live Studio** (`../lovelive-studio`). It has its
 own app, its own gallery and its own rules. It is written for agents that are allowed to work
@@ -20,7 +20,7 @@ pointed at this folder or its gallery.
 
 ## 1a. First session: set up from zero
 
-The user may paste the README bootstrap: "download the NSFW Studio and set it up by following
+The user may paste the README bootstrap: "download the Goon Studio and set it up by following
 AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go.
 
 1. **Confirm the folder**: the session's workspace is the Studio repo. Read the README and this
@@ -62,7 +62,7 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 
 ## 2. Two apps, two galleries
 
-| | Love Live Studio (`../lovelive-studio`) | NSFW Studio (here) |
+| | Love Live Studio (`../lovelive-studio`) | Goon Studio (here) |
 |---|---|---|
 | content | SFW anime pictures | explicit stills and video |
 | gallery | its own `my/`, `examples/` | `gallery/` and `my/` here |

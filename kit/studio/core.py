@@ -1,4 +1,4 @@
-"""core.py: the NSFW Studio's engine layer (shared by server.py and the command line).
+"""core.py: the Goon Studio's engine layer (shared by server.py and the command line).
 
 Builds a ComfyUI graph from a workflow JSON template, sends it to the local ComfyUI, waits, moves
 the result into the gallery and records it. Standard library only.
@@ -180,7 +180,7 @@ def upload_input(path, s=None):
 
 def submit(graph, s=None):
     s = s or settings()
-    body = json.dumps({"prompt": graph, "client_id": "nsfw-studio"}).encode()
+    body = json.dumps({"prompt": graph, "client_id": "goon-studio"}).encode()
     out = json.loads(http(s["comfy_url"] + "/prompt", body))
     if "prompt_id" not in out:
         raise RuntimeError(json.dumps(out)[:500])

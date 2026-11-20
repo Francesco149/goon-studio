@@ -1,4 +1,4 @@
-# start.ps1 - start ComfyUI (hidden) if needed, start the NSFW Studio page, open the browser.
+# start.ps1 - start ComfyUI (hidden) if needed, start the Goon Studio page, open the browser.
 #
 #   powershell -ExecutionPolicy Bypass -File kit\start.ps1
 #   ... -NoBrowser   do not open the browser
@@ -8,7 +8,7 @@
 # Settings live in my\settings.json:
 #   { "comfy_url": "http://127.0.0.1:8188",
 #     "engine_dir": "F:\\LLStudioTest\\engine",       # ComfyUI checkout with python_embeded
-#     "data_dir": "C:\\Users\\you\\Documents\\nsfw-studio\\gallery",
+#     "data_dir": "C:\\Users\\you\\Documents\\goon-studio\\gallery",
 #     "extra_flags": "" }
 param([switch]$NoBrowser, [switch]$Stop, [switch]$RestartEngine)
 $ErrorActionPreference = "Stop"
@@ -72,7 +72,7 @@ if (-not (Up "$($S.comfy_url)/system_stats")) {
     }
 }
 
-$env:NSFW_STUDIO_PORT = "8191"
+$env:GOON_STUDIO_PORT = "8191"
 if (-not (Up "http://127.0.0.1:8191/api/state")) {
     $server = Join-Path $Repo "kit\studio\server.py"
     Write-Host "starting the Studio page ..."
@@ -83,5 +83,5 @@ if (-not (Up "http://127.0.0.1:8191/api/state")) {
         Start-Sleep -Milliseconds 400
     }
 }
-Write-Host "NSFW Studio: http://127.0.0.1:8191"
+Write-Host "Goon Studio: http://127.0.0.1:8191"
 if (-not $NoBrowser) { Start-Process "http://127.0.0.1:8191" }

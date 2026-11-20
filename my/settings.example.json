@@ -2,6 +2,6 @@
   "_comment": "Copy to my/settings.json and edit. engine_dir is the ComfyUI folder that has python_embeded (Windows portable build).",
   "comfy_url": "http://127.0.0.1:8188",
   "engine_dir": "F:\\LLStudioTest\\engine",
-  "data_dir": "C:\\Users\\you\\Documents\\nsfw-studio\\gallery",
+  "data_dir": "C:\\Users\\you\\Documents\\goon-studio\\gallery",
   "extra_flags": ""
 }
