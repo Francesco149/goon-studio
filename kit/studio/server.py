@@ -87,6 +87,7 @@ class H(BaseHTTPRequestHandler):
                                        "scenes": P.get("scenes", {}), "workflows": core.workflow_names(),
                                        "default_template": P.get("default_template"),
                                        "loras": P.get("loras", {}), "video": P.get("video", {}),
+                                       "bodies": P.get("bodies", {}), "framings": P.get("framings", {}),
                                        "comfy_up": core.comfy_up(), "machine": {k: core.settings().get(k) for k in ("gpu", "data_dir")}})
             if p == "/api/jobs":
                 with LOCK:
@@ -106,6 +107,8 @@ class H(BaseHTTPRequestHandler):
                 return self.send(200, list(reversed(out)))
             if p.startswith("/img/"):
                 return self.file(safe_join(core.settings().get("data_dir", core.GALLERY), p[5:]))
+            if p.startswith("/docs/"):
+                return self.file(safe_join(os.path.join(core.ROOT, "docs"), p[6:]))
             return self.send(404, {"error": "not found"})
         except PermissionError:
             return self.send(403, {"error": "forbidden"})

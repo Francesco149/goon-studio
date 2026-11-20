@@ -98,6 +98,17 @@ def fill_tags(text, fields):
     return re.sub(r"\{(\w+)\}", lambda m: str(fields.get(m.group(1), m.group(0))), text or "")
 
 
+def add_tags(base, extra):
+    parts = [p.strip() for p in (base or "").split(",") if p.strip()]
+    have = set(parts)
+    for p in (extra or "").split(","):
+        p = p.strip()
+        if p and p not in have:
+            parts.append(p)
+            have.add(p)
+    return ", ".join(parts)
+
+
 def build_prompt(job):
     P = presets()
     t = P.get("templates", {}).get(job.get("template") or "")
@@ -107,6 +118,12 @@ def build_prompt(job):
         "style": job.get("style") or (t or {}).get("style", ""),
     }
     base = job.get("prompt") or (t or {}).get("prompt", "")
+    body = P.get("bodies", {}).get(job.get("body") or "none", "")
+    frame = P.get("framings", {}).get(job.get("framing") or "portrait", "")
+    if body:
+        fields["character"] = add_tags(fields["character"], body)
+    if frame:
+        fields["scene"] = add_tags(fields["scene"], frame)
     wf = job.get("workflow") or (t or {}).get("workflow", "")
     if "h3vid" in wf:
         # H3 video prompts are a MiniMax script: keep `integrated_multimodal_description` and the

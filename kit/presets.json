@@ -159,5 +159,17 @@
       81,
       124
     ]
+  },
+  "bodies": {
+    "none": "",
+    "curvy": "(curvy:1.6), (wide hips:1.4), thick thighs, large breasts",
+    "petite": "(petite:1.2), small breasts, slim waist",
+    "athletic": "(athletic:1.2), toned body, medium breasts"
+  },
+  "framings": {
+    "portrait": "",
+    "fullbody": "full body, standing, from head to toe",
+    "closeup": "close-up, face and upper body",
+    "pov": "pov, from above"
   }
 }

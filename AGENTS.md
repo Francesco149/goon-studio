@@ -30,6 +30,17 @@ References are kept and organised but **never committed**: `gallery/refs/` (git-
 folder per source with a local `INDEX.md`. The author's own clips live outside the repo
 (`AGENTS.local.md`). Video follows the same rule.
 
+## 2b. The page
+
+- **Generate**: template, body type, framing, character/scene/prompt/negative, size/steps/cfg,
+  seed/count, reference picture (click, paste or drop). The reference is uploaded into
+  `gallery/uploads/` and used by the hires templates.
+- **Video**: i2v, i2v + act LoRA, first+last, ref2va, t2v; keyframe, last frame and second
+  reference slots (paste/drop), LoRA strength, length, size, seed. Slow: 124 f at 768x1152 is
+  about 2.5 min on a 3080.
+- **My pictures**: the user's private gallery, with share/lock, trash/restore and delete.
+- **Rounds**: `my/rounds/*.json`, the agent's round summaries.
+
 ## 2. Two apps, two galleries
 
 | | Love Live Studio (`../lovelive-studio`) | NSFW Studio (here) |

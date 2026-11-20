@@ -28,7 +28,7 @@
   .slot img { max-width:100%; max-height:150px; display:block; }
   .slot.small { min-height:64px; }
   #jobs { font-size:12px; color:var(--dim); white-space:pre-wrap; margin-top:10px; max-height:110px; overflow:auto; }
-  #gallery,#mypics { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; align-content:start; }
+  #gallery,#mypics,#rounds { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; align-content:start; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
   .card img,.card video { width:100%; display:block; aspect-ratio:3/4; object-fit:cover; cursor:zoom-in; background:#000; }
   .card .meta { padding:5px 8px; font-size:11px; color:var(--dim); display:flex; justify-content:space-between; gap:6px; }
@@ -48,9 +48,11 @@
     <button id="tab-generate" class="on" onclick="tab('generate')">Generate</button>
     <button id="tab-video" onclick="tab('video')">Video</button>
     <button id="tab-mypics" onclick="tab('mypics')">My pictures</button>
+    <button id="tab-rounds" onclick="tab('rounds')">Rounds</button>
   </nav>
   <span id="up">checking engine...</span>
   <span style="flex:1"></span>
+  <a href="/docs/ANIME.md" target="_blank" style="color:var(--dim);font-size:12px">guide</a>
   <button class="ghost" style="width:auto" onclick="loadState();loadGallery();loadMyPics()">refresh</button>
 </header>
 <main>
@@ -59,6 +61,7 @@
     <div>
       <label>Template</label>
       <select id="template" onchange="applyTemplate()"></select>
+      <div class="row"><div><label>Body type</label><select id="body"></select></div><div><label>Framing</label><select id="framing"></select></div></div>
       <label>Character</label><textarea id="character" rows="3"></textarea>
       <label>Scene</label><textarea id="scene" rows="3"></textarea>
       <label>Prompt ({character} and {scene} are filled in)</label><textarea id="prompt" rows="7"></textarea>
@@ -113,6 +116,11 @@
     </div>
     <div><div id="mypics"></div></div>
   </section>
+  <!-- ROUNDS -->
+  <section id="pane-rounds" class="tab">
+    <div><p class="hint">Rounds the agent ran, from <code>my/rounds/*.json</code>. Judge them in the gallery; the notes here are the agent's summary.</p></div>
+    <div id="rounds"></div>
+  </section>
 </main>
 <div id="viewer" onclick="this.style.display='none'"><img id="viewimg"><video id="viewvid" controls style="display:none"></video></div>
 <script>
@@ -121,11 +129,12 @@ const $=id=>document.getElementById(id);
 const SLOTS={gen:null,v1:null,v2:null,v3:null};
 
 function tab(name){
-  for(const n of ['generate','video','mypics']){
+  for(const n of ['generate','video','mypics','rounds']){
     $('pane-'+n).classList.toggle('on',n===name);
     $('tab-'+n).classList.toggle('on',n===name);
   }
   if(name==='mypics') loadMyPics();
+  if(name==='rounds') loadRounds();
 }
 
 async function loadState(){
@@ -143,7 +152,11 @@ async function loadState(){
     for(const [k,v] of Object.entries(STATE.loras||{})) l.add(new Option(k,k==='none'?'':k));
     l.value='sideview_deepthroat';
   }
-  loadJobs(); loadGallery();
+  const bd=$('body');
+  if(!bd.options.length){ bd.add(new Option('default','none')); for(const k of Object.keys(STATE.bodies||{})) if(k!=='none') bd.add(new Option(k,k)); }
+  const fr=$('framing');
+  if(!fr.options.length){ for(const k of Object.keys(STATE.framings||{})) fr.add(new Option(k,k)); }
+  loadJobs(); loadGallery(); loadRounds();
 }
 
 function applyTemplate(){
@@ -185,7 +198,7 @@ for(const id of ['slot-gen','slot-v1','slot-v2','slot-v3']){
 function field(job,slot){ if(SLOTS[slot]) job.image=SLOTS[slot].path; return job; }
 
 async function generateStill(){
-  const body={template:$('template').value,character:$('character').value,scene:$('scene').value,prompt:$('prompt').value,negative:$('negative').value,
+  const body={template:$('template').value,body:$('body').value,framing:$('framing').value,character:$('character').value,scene:$('scene').value,prompt:$('prompt').value,negative:$('negative').value,
     width:+$('width').value,height:+$('height').value,steps:+$('steps').value,cfg:+$('cfg').value,seed:+$('seed').value,count:+$('count').value};
   field(body,'gen');
   const r=await (await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
@@ -239,6 +252,23 @@ function card(r,opts){
   if(opts.delete && r.trashed){ const b=document.createElement('button'); b.textContent='delete';
     b.onclick=async()=>{if(confirm('delete forever?')){await fetch('/api/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({files:[r.file]})});loadMyPics();}}; bar.appendChild(b); }
   c.append(el,m,bar); return c;
+}
+
+async function loadRounds(){
+  const rs=await (await fetch('/api/rounds')).json();
+  const g=$('rounds'); g.innerHTML='';
+  if(!rs.length){ g.innerHTML='<p class="hint">no rounds yet</p>'; return; }
+  for(const r of rs){
+    const c=document.createElement('div'); c.className='card'; c.style.padding='10px';
+    const t=document.createElement('div'); t.innerHTML='<b>'+(r.title||r.id||'round')+'</b>';
+    const p=document.createElement('div'); p.className='hint'; p.textContent=(r.note||r.summary||r.why||'');
+    c.append(t,p);
+    const files=r.items||r.files||[];
+    for(const f of files){ if(typeof f==='string' && /\.(png|jpe?g|webp|mp4|webm)$/i.test(f)){
+      const im=document.createElement('img'); im.src='/img/'+encodeURIComponent(f); im.style.maxWidth='100%'; im.style.marginTop='6px'; im.onclick=()=>{$('viewimg').src=im.src;$('viewimg').style.display='block';$('viewvid').style.display='none';$('viewer').style.display='flex';}; c.appendChild(im);
+    }}
+    g.appendChild(c);
+  }
 }
 
 async function loadGallery(){
