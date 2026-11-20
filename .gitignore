@@ -13,3 +13,6 @@ gallery/
 *.tmp
 *.log
 refs/
+refs/
+examples/
+

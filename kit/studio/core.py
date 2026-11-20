@@ -107,6 +107,11 @@ def build_prompt(job):
         "style": job.get("style") or (t or {}).get("style", ""),
     }
     base = job.get("prompt") or (t or {}).get("prompt", "")
+    wf = job.get("workflow") or (t or {}).get("workflow", "")
+    if "h3vid" in wf:
+        # H3 video prompts are a MiniMax script: keep `integrated_multimodal_description` and the
+        # other section keys exactly as written.
+        return (base or "").strip()
     return clean(fill_tags(base, fields))
 
 
@@ -218,6 +223,8 @@ def run(job, by="me", on_queued=None):
         fields["image"] = upload_input(job["image"], s)
     if job.get("image1"):
         fields["image1"] = upload_input(job["image1"], s)
+    if job.get("last"):
+        fields["last"] = upload_input(job["last"], s)
     graph = subst(graph, fields)
     t0 = time.time()
     pid = submit(graph, s)
@@ -325,15 +332,23 @@ def delete_forever(files, s=None):
     return n
 
 
-def all_records():
-    """Every picture this app made, newest first, with its visibility. The page calls this; an agent
-    must not read the user's private records (my/private/history.jsonl) unless they were made public."""
+def all_records(scope="all"):
+    """Every picture this app made, newest first, with its visibility.
+
+    scope: "all" | "public" (agent + shared) | "private" (the user's unshared). An agent must only
+    read "public"; the My pictures tab uses "private".
+    """
     lib = library()
     out = []
     for rec in read_jsonl(PHIST) + read_jsonl(HIST):
         for f in rec.get("files", []):
+            public = (rec.get("by") != "me") or (f in lib["public"])
+            if scope == "public" and not public:
+                continue
+            if scope == "private" and public:
+                continue
             out.append({"file": f, "time": rec.get("time"), "by": rec.get("by"), "prompt": rec.get("prompt"),
                         "seed": rec.get("seed"), "template": rec.get("template"),
-                        "public": (rec.get("by") != "me") or (f in lib["public"]), "trashed": f in lib["trash"]})
+                        "public": public, "trashed": f in lib["trash"]})
     out.sort(key=lambda r: r.get("time") or "", reverse=True)
     return out

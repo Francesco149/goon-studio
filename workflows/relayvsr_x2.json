@@ -1,0 +1,123 @@
+{
+  "_note": "RelayVSR x2 video upscale (Comfy-Org/RelayVSR, template utility_relayvsr_video_x2_upscale as API): 1 step, CFG 1; the model picks the factor from the x2 checkpoint. {{video}} must be in ComfyUI's input/ (comfy.py upload). Audio and fps pass through. detail: 1 = full model output, 0 = bicubic; 0.5 calms the hatching it adds to flat anime shading.",
+  "_params": {
+    "seed": 0,
+    "prefix": "vsr/x2",
+    "detail": 1.0
+  },
+  "1": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "{{video}}"
+    }
+  },
+  "2": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "1",
+        0
+      ]
+    }
+  },
+  "3": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "relayvsr_x2_lightx2v_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "relayvsr_flash_vae_x2_fp32.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "RelayVSRConditioning",
+    "inputs": {
+      "model": [
+        "3",
+        0
+      ],
+      "images": [
+        "2",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "3",
+        0
+      ],
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "5",
+        0
+      ],
+      "latent_image": [
+        "5",
+        1
+      ],
+      "seed": "{{seed}}",
+      "steps": 1,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0
+    }
+  },
+  "7": {
+    "class_type": "VSRDecode",
+    "inputs": {
+      "vae": [
+        "4",
+        0
+      ],
+      "samples": [
+        "6",
+        0
+      ],
+      "images": [
+        "2",
+        0
+      ],
+      "detail": "{{detail}}"
+    }
+  },
+  "8": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "7",
+        0
+      ],
+      "audio": [
+        "2",
+        1
+      ],
+      "fps": [
+        "2",
+        2
+      ]
+    }
+  },
+  "9": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "8",
+        0
+      ],
+      "filename_prefix": "{{prefix}}",
+      "format": "mp4",
+      "codec": "h264"
+    }
+  }
+}

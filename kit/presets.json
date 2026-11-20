@@ -5,7 +5,10 @@
     "egirl": {
       "label": "Photoreal e-girl - portrait",
       "workflow": "wf_krea2_nsfw.json",
-      "width": 896, "height": 1344, "steps": 8, "cfg": 1.0,
+      "width": 896,
+      "height": 1344,
+      "steps": 8,
+      "cfg": 1.0,
       "prompt": "Photorealistic candid photo of {character}, {scene}",
       "character": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, a silver heart choker. She has full natural breasts that sit heavy with a soft slope, a narrow waist, wide hips and thick thighs.",
       "scene": "sitting on a bed in a dim bedroom lit by pink and purple LED strips, looking at the camera with a playful half-smile. Natural skin texture with pores, no beauty filter, phone camera, slight grain."
@@ -13,7 +16,10 @@
     "egirl_full": {
       "label": "Photoreal e-girl - full body mirror",
       "workflow": "wf_krea2_nsfw.json",
-      "width": 832, "height": 1248, "steps": 8, "cfg": 1.0,
+      "width": 832,
+      "height": 1248,
+      "steps": 8,
+      "cfg": 1.0,
       "prompt": "Photorealistic full-body mirror selfie of {character}, {scene}",
       "character": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, silver heart choker. Curvy figure with large natural breasts, narrow waist, wide hips and thick thighs.",
       "scene": "wearing a tiny black crop top, a black pleated mini skirt, black thigh-high socks and chunky sneakers, holding a phone in front of her face, hip cocked. A messy gamer bedroom behind her with a pink LED PC and posters. Phone camera flash, slight grain, honest skin texture, amateur photo."
@@ -21,7 +27,10 @@
     "egirl_facial": {
       "label": "Photoreal facial - cock out, mouth open (approved pose)",
       "workflow": "wf_krea2_nsfw.json",
-      "width": 896, "height": 1344, "steps": 8, "cfg": 1.0,
+      "width": 896,
+      "height": 1344,
+      "steps": 8,
+      "cfg": 1.0,
       "prompt": "Photorealistic first-person POV close-up: {character} kneels between the viewer's legs. He has just pulled his erect adult penis out of her mouth and holds it an inch from her left cheek, the glans pointing at her face; her lips are wet and parted, a thin strand of saliva connects her lower lip to the tip, her hand is wrapped around the base. She looks up into the camera with half-lidded eyes, a light blush. Dim bedroom with pink LED glow, phone flash, natural skin with pores, slight grain.",
       "character": "a young adult Asian woman in her mid-twenties, e-girl with long black hair in pink-streaked twin tails and a silver choker",
       "scene": ""
@@ -29,7 +38,10 @@
     "egirl_cum": {
       "label": "Photoreal facial - cum landed",
       "workflow": "wf_krea2_nsfw.json",
-      "width": 896, "height": 1344, "steps": 8, "cfg": 1.0,
+      "width": 896,
+      "height": 1344,
+      "steps": 8,
+      "cfg": 1.0,
       "prompt": "Photorealistic first-person POV close-up: {character} kneels between the viewer's legs, her face tilted up, mouth open, eyes on the camera. His erect adult penis is just below her mouth, an inch from her chin, her hand at the base. Thick translucent milky semen is splattered across her open mouth, her lips and one cheek, glossy and see-through so the skin shows through, a heavy strand hanging from her chin. Dim bedroom with pink LED glow, phone flash, natural skin with pores, slight grain.",
       "character": "a young adult Asian woman in her mid-twenties, e-girl with long black hair in pink-streaked twin tails and a silver choker",
       "scene": ""
@@ -37,7 +49,10 @@
     "anime_side": {
       "label": "Anime - side view blowjob (Pink Alchemy)",
       "workflow": "wf_anima2.json",
-      "width": 1248, "height": 832, "steps": 30, "cfg": 4.0,
+      "width": 1248,
+      "height": 832,
+      "steps": 30,
+      "cfg": 4.0,
       "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, veins, erection, uncensored, (penis focus:1.2), side view, profile, kneeling, leaning forward, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
@@ -46,7 +61,10 @@
     "anime_pov": {
       "label": "Anime - POV blowjob (Pink Alchemy)",
       "workflow": "wf_anima2.json",
-      "width": 832, "height": 1248, "steps": 30, "cfg": 4.0,
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
       "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, veins, erection, uncensored, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
@@ -55,7 +73,10 @@
     "anime_cum": {
       "label": "Anime - facial cum still",
       "workflow": "wf_anima2.json",
-      "width": 832, "height": 1248, "steps": 30, "cfg": 4.0,
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
       "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, hetero, cum on face, cum on breasts, cum, facial, thick white semen, semen on cheek, semen on lips, cum drip, uncensored, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
@@ -64,7 +85,11 @@
     "anime_hires": {
       "label": "Anime - second pass (hires, needs a picture)",
       "workflow": "wf_anima_hires.json",
-      "width": 1152, "height": 1728, "steps": 20, "cfg": 4.0, "denoise": 0.3,
+      "width": 1152,
+      "height": 1728,
+      "steps": 20,
+      "cfg": 4.0,
+      "denoise": 0.3,
       "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, penis in mouth, lips sealed around penis, mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, veins, erection, uncensored, penis focus, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!"
@@ -72,21 +97,28 @@
     "h3_image": {
       "label": "H3-Image - photoreal still (cum material reference)",
       "workflow": "wf_h3img.json",
-      "width": 896, "height": 1344,
+      "width": 896,
+      "height": 1344,
       "prompt": "{scene}",
       "scene": "Photorealistic close-up of a young adult Asian woman in her mid-twenties with pink-streaked twin tails and a silver choker, lying back against a pillow. Watery translucent semen in thin glossy strands runs from her cheek to her chin, nearly clear with a milky tint, the skin visible through it, small droplets catching the light, wet highlights. She looks at the camera with half-lidded eyes and a flushed smile. Phone flash, shallow depth of field, dim bedroom."
     },
     "video_pov": {
       "label": "Video - H3 POV blowjob (needs a keyframe picture)",
       "workflow": "wf_h3vid_i2v.json",
-      "width": 768, "height": 1152, "length": 124,
+      "width": 768,
+      "height": 1152,
+      "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video: a young adult Asian woman with long black hair in pink-streaked twin tails kneels between the viewer's legs. Her lips are sealed around the shaft of an erect adult penis. She slides her mouth slowly down the shaft until her lips are past the middle, holds there for a beat with a small swallow, then draws back up until only the head stays between her lips; her lips stay sealed the whole way. A thin string of saliva stretches from her lower lip and breaks. She looks up into the lens with half-closed eyes and a light blush. The camera does not move.\n\noverall_soundscape: soft wet suction, a quiet pop, her breathing through her nose, one low, short male grunt halfway through, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
     },
     "video_facial": {
       "label": "Video - cum shot from the facial pose (epic_cumshots)",
       "workflow": "wf_h3vid_i2v_lora.json",
-      "width": 768, "height": 1152, "length": 124, "lora": "h3nsfw/epic_cumshots.safetensors", "strength": 0.8,
-      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video. She holds his cock just below her open mouth, eyes on the lens. The shaft pulses once and a short translucent milky rope shoots from the tip up across her lips and cheek, glossy and see-through, then drips down her chin. It is one short arc, no spray, no mist, nothing foams. She flinches, closes one eye, then smiles with half-lidded eyes, flushed. The camera does not move.\n\noverall_soundscape: a soft wet spurt, one low short male grunt, her sharp breath in, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
+      "width": 768,
+      "height": 1152,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video. She holds his cock just below her open mouth, eyes on the lens. The shaft pulses once and a short translucent milky rope shoots from the tip up across her lips and cheek, glossy and see-through, then drips down her chin. It is one short arc, no spray, no mist, nothing foams. She flinches, closes one eye, then smiles with half-lidded eyes, flushed. The camera does not move.\n\noverall_soundscape: a soft wet spurt, one low short male grunt, her sharp breath in, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
+      "nsfw_lora": "h3nsfw/epic_cumshots.safetensors",
+      "nsfw_strength": 0.8
     }
   },
   "characters": {
@@ -97,5 +129,35 @@
     "bedroom_led": "sitting on a bed in a dim bedroom lit by pink and purple LED strips",
     "bedroom_soft": "bedroom, soft light, love live! sunshine!!",
     "mirror": "full-body mirror selfie in a messy gamer bedroom with a pink LED PC"
+  },
+  "default_template": "anime_pov",
+  "loras": {
+    "none": "",
+    "sideview_deepthroat": "h3nsfw/h3-sideview-deepthroat.safetensors",
+    "titjob": "h3nsfw/Titjob-Titfuck-H3.safetensors",
+    "blowjob_v3": "h3nsfw/MM-H3-Blwjob-v3.safetensors",
+    "astro": "h3nsfw/Astro-nsfw.safetensors",
+    "epic_cumshots": "h3nsfw/epic_cumshots.safetensors"
+  },
+  "video": {
+    "resolutions": {
+      "768x1152": [
+        768,
+        1152
+      ],
+      "1152x768": [
+        1152,
+        768
+      ],
+      "512x768": [
+        512,
+        768
+      ]
+    },
+    "lengths": [
+      49,
+      81,
+      124
+    ]
   }
 }

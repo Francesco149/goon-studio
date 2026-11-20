@@ -18,6 +18,18 @@ pointed at this folder or its gallery.
   gallery (that is the only way to make it visible). Do not work around it.
 - Never copy, upload, or paste NSFW pictures anywhere outside this repo and the two lab boxes.
 
+## 1b. Images in git
+
+**Never commit an NSFW image.** If a committed example is truly needed (UI screenshot, README
+illustration), every explicit part must be obscured (a baguette over the cock, genitals/anus/
+nipples hidden, no sex act visible) and a **human must vet it before `git add`** - an agent may
+stage it and ask, never decide alone. Strip the prompt metadata too. The full rule is
+`docs/IMAGES.md`.
+
+References are kept and organised but **never committed**: `gallery/refs/` (git-ignored), one
+folder per source with a local `INDEX.md`. The author's own clips live outside the repo
+(`AGENTS.local.md`). Video follows the same rule.
+
 ## 2. Two apps, two galleries
 
 | | Love Live Studio (`../lovelive-studio`) | NSFW Studio (here) |
@@ -63,6 +75,8 @@ editing the character/scene fields over rewriting the whole prompt.
 
 ## 5. Canon (owner-approved, 2026-11-20)
 
+- **Default template: `anime_pov`** - the best anime blowjob POV so far. It is the first thing the
+  page selects; keep it the default until another template beats it in the owner's review.
 - Anime stills: `gens/pb`-style output is anatomically clean. Keep **all three cock styles**:
   light mosaic (`censored, mosaic censoring`), half foreskin (`foreskin` tags), fully retracted /
   cut (`foreskin retracted, circumcised`).

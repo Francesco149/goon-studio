@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """lab.py - submit a batch of ComfyUI jobs, poll, pull, then clean the box.
 
 Why not tools/comfy.py: it runs one prompt at a time and its stdout is easy to lose in a
@@ -129,7 +129,10 @@ def main():
 
     def load_wf(name):
         if name not in wfs:
-            w = json.load(open(os.path.join(HERE, name), encoding="utf-8-sig"))
+            path = os.path.join(HERE, name)
+            if not os.path.exists(path):
+                path = os.path.join(HERE, "..", "workflows", name)
+            w = json.load(open(path, encoding="utf-8-sig"))
             d = w.pop("_params", {})
             for k in [k for k in w if k.startswith("_")]:
                 w.pop(k)

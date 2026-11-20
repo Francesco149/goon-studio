@@ -85,12 +85,16 @@ class H(BaseHTTPRequestHandler):
                 P = core.presets()
                 return self.send(200, {"templates": P.get("templates", {}), "characters": P.get("characters", {}),
                                        "scenes": P.get("scenes", {}), "workflows": core.workflow_names(),
+                                       "default_template": P.get("default_template"),
+                                       "loras": P.get("loras", {}), "video": P.get("video", {}),
                                        "comfy_up": core.comfy_up(), "machine": {k: core.settings().get(k) for k in ("gpu", "data_dir")}})
             if p == "/api/jobs":
                 with LOCK:
                     return self.send(200, JOBS[-60:])
             if p == "/api/history":
-                return self.send(200, core.all_records())
+                q = urllib.parse.parse_qs(u.query)
+                scope = (q.get("scope") or ["all"])[0]
+                return self.send(200, core.all_records(scope))
             if p == "/api/rounds":
                 out = []
                 d = os.path.join(core.MY, "rounds")

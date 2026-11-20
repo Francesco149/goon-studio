@@ -22,6 +22,18 @@ stays SFW and this folder stays out of it.
 3. The page opens at http://127.0.0.1:8191. Pick a template, edit the character/scene, press
    **Make pictures**. Pictures can be rated and locked (private) from the gallery.
 
+## The default
+
+The page opens on **`anime_pov`**, the best anime blowjob POV so far. Change the template
+dropdown for anything else; the default is only a starting point.
+
+## Images in git
+
+**No NSFW image is committed.** If an example is needed in the repo it must be fully censored
+(baguette over the cock, genitals/anus/nipples hidden, no act visible), stripped of prompt
+metadata, and **vetted by a human** before `git add`. References are kept but never committed
+(`gallery/refs/`, git-ignored). Full rule: `docs/IMAGES.md`.
+
 ## What is in here
 
 ```
