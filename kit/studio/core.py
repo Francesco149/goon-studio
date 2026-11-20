@@ -228,6 +228,20 @@ def pull(hist, dest):
     return out
 
 
+def local_windows(s=None):
+    """True when this process talks to a ComfyUI on the same Windows machine."""
+    s = s or settings()
+    return os.name == "nt" and bool(re.match(r"https?://(?:127\.0\.0\.1|localhost)(?::\d+)?(?:/|$)",
+                                              s.get("comfy_url", "")))
+
+
+def model_file_field(name, s=None):
+    """Windows ComfyUI lists LoRAs with backslashes; Linux boxes use forward slashes."""
+    if not name:
+        return name
+    return name.replace("/", "\\") if local_windows(s) else name
+
+
 def run(job, by="me", on_queued=None):
     s = settings()
     P = presets()
@@ -236,6 +250,9 @@ def run(job, by="me", on_queued=None):
     graph, defaults = load_workflow(wf)
     fields = dict(defaults)
     fields.update(build_fields(job))
+    for k in ("lora", "nsfw_lora"):
+        if fields.get(k):
+            fields[k] = model_file_field(fields[k], s)
     if job.get("image"):
         fields["image"] = upload_input(job["image"], s)
     if job.get("image1"):

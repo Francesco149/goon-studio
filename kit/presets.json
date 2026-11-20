@@ -3,46 +3,46 @@
   "negative": "",
   "templates": {
     "egirl": {
-      "label": "Photoreal e-girl - portrait",
-      "workflow": "wf_krea2_nsfw.json",
+      "label": "Photoreal e-girl - portrait (6 steps; 4 preview / 8 final)",
+      "workflow": "wf_krea2_nsfw_8gb.json",
       "width": 896,
       "height": 1344,
-      "steps": 8,
+      "steps": 6,
       "cfg": 1.0,
       "prompt": "Photorealistic candid photo of {character}, {scene}",
       "character": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, a silver heart choker. She has full natural breasts that sit heavy with a soft slope, a narrow waist, wide hips and thick thighs.",
       "scene": "sitting on a bed in a dim bedroom lit by pink and purple LED strips, looking at the camera with a playful half-smile. Natural skin texture with pores, no beauty filter, phone camera, slight grain."
     },
     "egirl_full": {
-      "label": "Photoreal e-girl - full body mirror",
-      "workflow": "wf_krea2_nsfw.json",
+      "label": "Photoreal e-girl - full body mirror (6 steps; 4 preview / 8 final)",
+      "workflow": "wf_krea2_nsfw_8gb.json",
       "width": 832,
       "height": 1248,
-      "steps": 8,
+      "steps": 6,
       "cfg": 1.0,
       "prompt": "Photorealistic full-body mirror selfie of {character}, {scene}",
       "character": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, silver heart choker. Curvy figure with large natural breasts, narrow waist, wide hips and thick thighs.",
       "scene": "wearing a tiny black crop top, a black pleated mini skirt, black thigh-high socks and chunky sneakers, holding a phone in front of her face, hip cocked. A messy gamer bedroom behind her with a pink LED PC and posters. Phone camera flash, slight grain, honest skin texture, amateur photo."
     },
     "egirl_facial": {
-      "label": "Photoreal facial - cock out, mouth open (approved pose)",
-      "workflow": "wf_krea2_nsfw.json",
+      "label": "Photoreal facial - cock out, mouth open (6 steps; 4 preview / 8 final)",
+      "workflow": "wf_krea2_nsfw_8gb.json",
       "width": 896,
       "height": 1344,
-      "steps": 8,
+      "steps": 6,
       "cfg": 1.0,
       "prompt": "Photorealistic first-person POV close-up: {character} kneels between the viewer's legs. He has just pulled his erect adult penis out of her mouth and holds it an inch from her left cheek, the glans pointing at her face; her lips are wet and parted, a thin strand of saliva connects her lower lip to the tip, her hand is wrapped around the base. She looks up into the camera with half-lidded eyes, a light blush. Dim bedroom with pink LED glow, phone flash, natural skin with pores, slight grain.",
       "character": "a young adult Asian woman in her mid-twenties, e-girl with long black hair in pink-streaked twin tails and a silver choker",
       "scene": ""
     },
     "egirl_cum": {
-      "label": "Photoreal facial - cum landed",
-      "workflow": "wf_krea2_nsfw.json",
+      "label": "Photoreal facial - cum landed (6 steps; 4 preview / 8 final)",
+      "workflow": "wf_krea2_nsfw_8gb.json",
       "width": 896,
       "height": 1344,
-      "steps": 8,
+      "steps": 6,
       "cfg": 1.0,
-      "prompt": "Photorealistic first-person POV close-up: {character} kneels between the viewer's legs, her face tilted up, mouth open, eyes on the camera. His erect adult penis is just below her mouth, an inch from her chin, her hand at the base. Thick translucent milky semen is splattered across her open mouth, her lips and one cheek, glossy and see-through so the skin shows through, a heavy strand hanging from her chin. Dim bedroom with pink LED glow, phone flash, natural skin with pores, slight grain.",
+      "prompt": "Photorealistic first-person POV close-up: {character} kneels between the viewer's legs, her face tilted up, mouth open, eyes on the camera. His erect adult penis is just below her mouth, an inch from her chin, her hand at the base. Thick translucent milky semen sits in glossy droplets pooled across her open mouth, her lips and one cheek, the skin visible through it, a slow heavy drip running from her chin. Dim bedroom with pink LED glow, phone flash, natural skin with pores, slight grain.",
       "character": "a young adult Asian woman in her mid-twenties, e-girl with long black hair in pink-streaked twin tails and a silver choker",
       "scene": ""
     },
@@ -100,7 +100,7 @@
       "width": 896,
       "height": 1344,
       "prompt": "{scene}",
-      "scene": "Photorealistic close-up of a young adult Asian woman in her mid-twenties with pink-streaked twin tails and a silver choker, lying back against a pillow. Watery translucent semen in thin glossy strands runs from her cheek to her chin, nearly clear with a milky tint, the skin visible through it, small droplets catching the light, wet highlights. She looks at the camera with half-lidded eyes and a flushed smile. Phone flash, shallow depth of field, dim bedroom."
+      "scene": "Photorealistic close-up of a young adult Asian woman in her mid-twenties with pink-streaked twin tails and a silver choker, lying back against a pillow. Thick translucent milky semen sits in glossy droplets and small pools on her cheek, lips and chin, the skin visible through it, a slow heavy drip running from her chin, wet highlights. She looks at the camera with half-lidded eyes and a flushed smile. Phone flash, shallow depth of field, dim bedroom."
     },
     "video_pov": {
       "label": "Video - H3 POV blowjob (needs a keyframe picture)",

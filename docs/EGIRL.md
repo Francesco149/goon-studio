@@ -10,15 +10,19 @@ stack that hit it, and it is a different model from the earlier photoreal chain
 | | |
 |---|---|
 | file | `KREA 2TurboNSFW_v10-nvfp4.safetensors` (7.15 GB, "Star Ultimate Model Converter" nvfp4) |
-| where | ampere `/data/comfyui/models/unet/`, loaded by the plain `UNETLoader` (no special node) |
-| comfy | 0.45.0, 3080 10 GB; loads and runs fine on Ampere despite the nvfp4 storage |
-| speed | 12-20 s at 896x1344, 8 steps |
-| settings | 8 steps, cfg 1.0, euler / simple, denoise 1.0, no negative (ConditioningZeroOut) |
-| workflow | `tools/wf_krea2_nsfw.json` |
+| where | ampere `/data/comfyui/models/unet/`, cutestation `F:\LLStudioTest\models\diffusion_models\`, loaded by the plain `UNETLoader` (no special node) |
+| comfy | 0.45.0; runs on Ampere and on the 8 GB RTX 5060 (nvfp4 is dequantized at load) |
+| speed | cutestation 8 GB: 4 steps 10 s, 6 steps 16 s, 8 steps 20 s at 896x1344 |
+| settings | **6 steps standard** (4 preview / 8 final), cfg 1.0, euler / simple, denoise 1.0, no negative (ConditioningZeroOut) |
+| workflow | `workflows/wf_krea2_nsfw_8gb.json` on cutestation (kitchen attention), `wf_krea2_nsfw.json` otherwise |
 
 It is willing to draw explicit acts without any LoRA, which the plain Krea 2 + Verite chain
 needed the LoRA for. Skin and faces are much more photographic than the Verite stills: pores,
 soft body, real-light falloff, no plastic sheen.
+
+**Preview/refine.** 4 steps is visibly softer but useful for checking pose, framing and the mouth
+seal; 6 is almost identical to 8 and is the default; 8 is the final. Keep the seed and prompt and
+change only the step count. The measured numbers are in `docs/PERFORMANCE-8GB.md`.
 
 ## The character block (keep fixed)
 

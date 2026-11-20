@@ -103,12 +103,12 @@ only the public recipes.
 
 | job | model / workflow | notes |
 |---|---|---|
-| photoreal e-girl stills | Krea 2 Turbo NSFW v10 (nvfp4) + `wf_krea2_nsfw.json`, 8 steps, cfg 1 | `docs/EGIRL.md` |
+| photoreal e-girl stills | Krea 2 Turbo NSFW v10 (nvfp4) + `wf_krea2_nsfw_8gb.json`, 6 steps, cfg 1 | 4 preview / 6 standard / 8 final; `docs/EGIRL.md` |
 | photoreal facial / cum still | same, the `egirl_facial` and `egirl_cum` templates | `docs/FACIAL.md` |
-| anime stills | Pink Alchemy Anima v2.9 + `wf_anima2.json`, 30 steps, cfg 4, er_sde/simple | `docs/ANIME.md` |
+| anime stills | Pink Alchemy Anima v2.9 + `wf_anima2.json`, 20-30 steps, cfg 4, er_sde/simple | 12 preview / 20 standard / 30 final; `docs/ANIME.md` |
 | anime second pass | `wf_anima_hires.json`, denoise 0.30 | `docs/ANIME.md` |
-| keyframes / photoreal stills | H3-Image `wf_h3img.json` | 6 steps, cfg 1 |
-| photoreal video | H3 FL2VA `wf_h3vid_i2v.json` (Pika 6-step), 768x1152, 124 f | `docs/FACIAL.md`, `docs/ANIME.md` |
+| keyframes / photoreal stills | H3-Image `wf_h3img_4bte.json` (draft) / `wf_h3img_8gb.json` (final) | 4/6/8 steps, cfg 1 |
+| photoreal video | H3 FL2VA `wf_h3vid_i2v.json` (Pika 6-step), 768x1152, 124 f | 4-step preview in `wf_h3vid_i2v_4step.json`; `docs/FACIAL.md`, `docs/ANIME.md` |
 | video with an act LoRA | `wf_h3vid_i2v_lora.json` (node 21) | side deepthroat and titjob help; POV blowjob does not |
 | cum-shot clip | `wf_h3vid_i2v_lora.json` + `h3nsfw/epic_cumshots` 0.8 | best dynamics; material still glue |
 | identity edit | Qwen-Image-2.1 `wf_qwen21_edit1.json` | keeps the face, use for "same girl" edits |
@@ -139,8 +139,9 @@ scratch track; a separate Foley pass or a dedicated audio tool is the likely ans
 - Best photoreal BJ motion: Astro NSFW 0.8 on H3 (`docs/FACIAL.md` history); best plain motion:
   the detailed stroke prompt, no LoRA.
 - Best anime clip: POV bob from the Pink POV keyframe with whole-body motion in the prompt.
-- Cum: material is the open problem. `docs/CUM-VIDEO.md` has the tradeoff and the failed routes;
-  do not repeat them.
+- Cum: material is the open problem. Long thin strings are an in-flight look; once landed it must
+  pool/blob and drip organically (owner note, 2026-11-20). `docs/CUM-VIDEO.md` has the tradeoff,
+  the landed-cum wording and the failed routes; do not repeat them.
 
 ## 6. Running a round
 
@@ -169,5 +170,12 @@ scratch track; a separate Foley pass or a dedicated audio tool is the likely ans
 The repo targets a **single 8 GB GPU and 16 GB of system RAM**. The reference machines are
 bigger (a 10 GB 3080 and a 16 GB 7800 XT), but never design a recipe that needs them: the big
 models are streamed from system RAM and run slower on 8 GB (`docs/HARDWARE.md`). Wan 2.2 14B is
-the exception - it does not fit and needs a 24 GB card (`docs/CUM-VIDEO.md`). The 8 GB
-optimization pass (peak VRAM, flags per box, CPU text encoders) is a later session.
+the exception - it does not fit and needs a 24 GB card (`docs/CUM-VIDEO.md`).
+
+The **8 GB optimization pass is done** (2026-11-20): measured peak VRAM, per-workflow flags,
+preview/standard/final step counts, the H3 4B text encoder, RelayVSR x2, and a speculative GTX
+1070 section are in `docs/PERFORMANCE-8GB.md`. The measured launch pair is
+`--use-ck-attention --fast fp16_accumulation`; 4 steps is a preview, 6 the standard, 8 the final
+(same seed), and H3 video is 4-step preview / 6-step final. Do not re-derive this from scratch;
+re-run `tools/experiments/bench_engine.ps1` and `tools/experiments/bench.py` if the hardware or
+ComfyUI version changes.

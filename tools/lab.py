@@ -156,6 +156,11 @@ def main():
                 params[k] = upload(base, job.pop(k), upload_sub)
         for k, v in job.items():
             params[k] = v
+        if a.box == "local" and os.name == "nt":
+            # Windows ComfyUI lists LoRAs with backslashes; the jobs keep the portable form.
+            for k in ("lora", "nsfw_lora"):
+                if isinstance(params.get(k), str):
+                    params[k] = params[k].replace("/", "\\")
         prompt = subst(wf, params, name)
         cid = "lab-" + name
         try:

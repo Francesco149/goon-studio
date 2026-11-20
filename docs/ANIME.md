@@ -28,7 +28,13 @@ mouth off the cock (`a2b`). Pink keeps both.
 
 The model card recommends `euler_ancestral`/`beta`, 26 steps, cfg 4.7. `pa5`/`pa6` with those
 settings are close but not better; stick with the lab's existing Anima numbers.
-Speed: 63 s per still on the 5060 (cutestation); faster on the 3080.
+
+**8 GB tuning (cutestation, 2026-11-20).** With `--use-ck-attention --fast fp16_accumulation`:
+30 steps = **36 s**, 20 steps = **26 s**, 12 steps = **23 s**. 20 steps is almost identical to 30
+and is the better everyday default; keep 30 for a final and 12 for a quick preview. For composition
+drafts, `anima-turbo-v1.1` at 6-8 steps, cfg 1, euler runs in **4-10 s** but has a weaker style -
+never use it for the finished anime look. The hires pass (1152x1728, 20 steps, denoise 0.30) is
+**60 s** and peaks at ~7.6 GB VRAM. Full method and numbers: `PERFORMANCE-8GB.md`.
 
 ## Prompt - side view (mouth sealed)
 
@@ -101,7 +107,6 @@ the community runs after the first render.
 
 Best anime clip so far: `gens/v10/v10b_pov_bob` - H3 i2v from the `pb3_pov_seal` keyframe,
 768x1152, 124 f, no LoRA, with the prompt asking for **whole-body motion**, not just the mouth:
-
 ```
 A 2D anime clip in a clean cel-shaded TV-anime style. POV from above: a young adult woman with
 short silver hair and purple eyes kneels between the viewer's legs, her large breasts on either
@@ -116,6 +121,10 @@ overall_soundscape: wet suction, soft pops, her breath, a low male grunt, quiet 
 Owner: "nicer ... the motion is decent ... still feels a bit stiff but probably the best anime
 one we got so far." The look still has a generic AI-render feel (Pink's shading), which is a
 model property, not a prompt one.
+
+On cutestation the same 768x1152 / 124 f clip is **372 s** at the standard 6 steps and **267 s**
+at 4 steps; 512x768 / 85 f is **111 s** at 6 and **82 s** at 4. Use 4 steps with the same seed as
+a preview, then re-run at 6 for the final. Full numbers: `PERFORMANCE-8GB.md`.
 
 The side-view version of the same idea (`v10a_side_body`) was rejected: the cheek puffing reads
 wrong and does not match the action. Do not use it.

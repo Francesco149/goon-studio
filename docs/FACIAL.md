@@ -30,14 +30,33 @@ scene type.
 `gens/p4/p4_cum_landed` and `p5_cum_landed_2` apply the cum to the same pose:
 
 ```
-... Thick translucent milky semen is splattered across her open mouth, her lips and one cheek,
-glossy and see-through so the skin shows through, a heavy strand hanging from her chin.
+... Thick translucent milky semen sits in glossy droplets pooled across her open mouth, her lips
+and one cheek, the skin visible through it, a slow heavy drip running from her chin.
 ```
 
 The material reads as cum rather than water when the wording is `translucent milky`, `glossy`,
-`see-through`, `heavy strand hanging`; it reads as water when the strands are thin and clear.
+`see-through`, `slow heavy drip`; it reads as water when the strands are thin and clear.
 Placement rule: **lips, tongue, chin, jaw**. Anything high on the cheek or near the eye reads as
 tears/mascara and ruins the shot (`v8b`, `v8c`, and Qwen-edited targets all did this).
+
+### Landed cum: strings are the wrong shape (owner note, 2026-11-20)
+
+In the existing landed stills (including `p4` and the benchmark stills) the cum hangs as long thin
+strings from the tip/chin. That is a **flight/impact** look: cum only looks like a string while it
+is shooting out of the cock. Once it lands it should sit as a pool or blobs on the lips/chin and
+drip down organically in short heavy runs, not hang as a continuous strand. The wording above is
+the corrected version; for a landed still, prompt for `thick milky droplets pooling on her lower
+lip, a slow heavy drip from the chin, no strand from the tip`; keep `translucent milky` and
+`glossy` for the material. This is a prompt / material problem, not a hardware one, and it is
+still open.
+
+## H3-Image on 8 GB (cutestation, 2026-11-20)
+
+`wf_h3img_4bte.json` uses the P-H3 4B text encoder with the H3-Image w4a8 transformer: **21 s**
+cold / ~**10 s** warm at 896x1344, and it leaves ~1.9 GB free RAM instead of ~0.5 GB. Quality is
+comparable but the 32B encoder (`wf_h3img_8gb.json`, 32 s cold) still gives the more natural face
+and the thicker material. Use 4 steps for a preview, 6 as standard, 8 when refining; the 4B + P-H3
+LoRA path is about 2x slower and changes composition, so it is not recommended for stills.
 
 ## The cum-shot video
 
@@ -62,6 +81,10 @@ The camera does not move.
 overall_soundscape: a soft wet spurt, one low short male grunt, her sharp breath in, quiet
 bedroom room tone. No music.
 ```
+
+On cutestation the same recipe is **111 s** for a 512x768 / 85 f clip at 6 steps and **82 s** at 4
+steps (same seed); 768x1152 / 124 f is **372 s** at 6 and **267 s** at 4. Preview at 4, then re-run
+at 6 with the same seed. Full numbers: `docs/PERFORMANCE-8GB.md`.
 
 Result: `gens/v13/v13a_p1` (and `v13b_p2` for the tongue variant). The cum arrives as a heavy
 translucent milky mass on the open mouth/lips and hangs in a strand to the chin; she flinches

@@ -1,7 +1,8 @@
 # Cum-shot video: what works, what does not (as of 2026-11-20)
 
-The still side is solved (`docs/FACIAL.md`). The video side is the open problem: the event and
-the material have not been achieved in the same clip.
+The still side has the approved pose and material (`docs/FACIAL.md`), but the landed shape still
+reads as a string; the video side is the bigger open problem: the event and the material have not
+been achieved in the same clip.
 
 ## The tradeoff (owner-tested)
 
@@ -16,9 +17,31 @@ the material have not been achieved in the same clip.
 | `v17a` (twitch timeline prompt, epic 0.65) | thin drool | no twitches, no spurts |
 | `v18`/`v19` (dual render + mask composite) | marginal | keeps v13's rope |
 
+On cutestation the recipe costs **111 s** for 512x768 / 85 f at 6 steps and **82 s** at 4;
+768x1152 / 124 f is **372 s** at 6 and **267 s** at 4. The LoRA adds about 3%. Preview at 4
+steps with the final seed, then refine at 6. Full numbers: `docs/PERFORMANCE-8GB.md`.
+
 The LoRA carries the event/rope but its learned cum is glue. Thinning the material in the prompt
 turns the event into mist. The still model (Krea2) has the approved material but no motion.
 Compositing the two was rejected by the owner: the cum would not land and drip organically.
+
+## Landed vs in-flight (owner note, 2026-11-20)
+
+Long thin strings are an **in-flight / impact** look: cum only looks like a string while it is
+shooting out of the cock. Once it lands it should pool or blob on the lips/chin and drip down
+organically in short heavy runs. The current stills and clips often keep the string hanging from
+the tip after it has "landed", which reads as a fake cum string. For landed shots prompt for
+`thick milky droplets pooling on her lower lip, a slow heavy drip from the chin, no strand from
+the tip` and keep `translucent milky, glossy` for the material. This is an open prompt/material
+problem, not a hardware one.
+
+## Keyframe inheritance (benchmark note, 2026-11-20)
+
+The 8 GB H3 video benchmark used a keyframe whose cock had a pointed/deformed glans, and every
+clip made from that picture inherited the bad anatomy - the video model preserves the keyframe.
+The prompt's `detailed penis shaft, veins, erection` did not fix it. This is not a performance
+finding, but it is a reminder that the still is the recipe: check the keyframe anatomy before
+spending 2-6 minutes on the clip.
 
 ## Owner's twitch specification (the build-up)
 

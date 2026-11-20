@@ -12,6 +12,7 @@ gallery/
 *.local.md
 *.tmp
 *.log
+gens/bench/
 refs/
 refs/
 examples/
