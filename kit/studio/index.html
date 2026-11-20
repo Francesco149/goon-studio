@@ -94,8 +94,8 @@
       <div id="slot-v2" class="slot small" onclick="pick('v2')">click / paste / drop</div>
       <label>Second reference (ref2va mode)</label>
       <div id="slot-v3" class="slot small" onclick="pick('v3')">click / paste / drop</div>
-      <label>Act LoRA</label>
-      <select id="vlora"></select>
+      <div id="lorarow"><label>Act LoRA</label>
+        <select id="vlora"></select></div>
       <div class="row"><div><label>LoRA strength</label><input id="vstrength" type="number" step="0.05" value="0.8"></div>
       <div><label>Length (frames)</label><input id="vlength" type="number" value="124"></div></div>
       <div class="row"><div><label>Width</label><input id="vwidth" type="number" value="768"></div><div><label>Height</label><input id="vheight" type="number" value="1152"></div></div>
@@ -169,8 +169,7 @@ function videoMode(){
   const m=$('vmode').value;
   $('slot-v2').style.display=(m==='fl')?'flex':'none';
   $('slot-v3').style.display=(m==='ref2va')?'flex':'none';
-  $('vlora').parentElement.style.display=(m==='i2v_lora')?'block':'none';
-}
+  $('lorarow').style.display=(m==='i2v_lora')?'block':'none';}
 videoMode();
 
 function pick(slot){ $('slot-'+slot).dataset.pick=slot; const i=document.createElement('input'); i.type='file'; i.accept='image/*'; i.onchange=()=>setSlot(slot,i.files[0]); i.click(); }
