@@ -33,13 +33,15 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 ## 2b. The page
 
 - **Generate**: template, body type, framing, character/scene/prompt/negative, size/steps/cfg,
-  seed/count, reference picture (click, paste or drop). The reference is uploaded into
-  `gallery/uploads/` and used by the hires templates.
-- **Video**: i2v, i2v + act LoRA, first+last, ref2va, t2v; keyframe, last frame and second
-  reference slots (paste/drop), LoRA strength, length, size, seed. Slow: 124 f at 768x1152 is
-  about 2.5 min on a 3080.
-- **My pictures**: the user's private gallery, with share/lock, trash/restore and delete.
-- **Rounds**: `my/rounds/*.json`, the agent's round summaries.
+  seed/count, reference picture. The reference slot takes a dropped/pasted picture, an uploaded
+  file, or **"Pick from my pictures"** (the gallery picker). "Just made" shows the last 12.
+- **Video**: video recipe dropdown (POV blowjob, side deepthroat, paizuri, cum shot, anime POV
+  bob), mode (i2v, i2v + act LoRA, first+last, ref2va, t2v), keyframe/last/second-reference slots
+  with the same picker/paste/drop, LoRA + strength, length, size, seed, prompt. "Recent videos"
+  sits next to it, and a clip's lightbox has **"Use as keyframe"** to chain the next one.
+- **My pictures**: filter all/private/shared, select several, share/lock, trash; the lightbox
+  has the rating buttons, share toggle, trash and "Use as keyframe".
+- **Trash**: restore or delete forever. **Rounds**: `my/rounds/*.json` with their pictures.
 
 ## 2. Two apps, two galleries
 

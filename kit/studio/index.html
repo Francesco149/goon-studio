@@ -2,292 +2,453 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>NSFW Studio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NSFW Studio</title>
 <style>
-  :root { --bg:#141317; --panel:#1e1c22; --line:#2f2b36; --text:#e8e4ee; --dim:#9a93a6; --pink:#e05a9a; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.45 "Segoe UI",system-ui,sans-serif; }
-  header { display:flex; align-items:center; gap:14px; padding:12px 20px; border-bottom:1px solid var(--line); }
-  header h1 { font-size:17px; margin:0; }
-  #up { font-size:12px; color:var(--dim); }
-  nav { display:flex; gap:4px; }
-  nav button { width:auto; background:transparent; border:1px solid transparent; color:var(--dim); padding:6px 12px; }
-  nav button.on { color:#fff; border-color:var(--line); background:var(--panel); }
-  main { padding:16px 20px; }
-  .tab { display:none; grid-template-columns:400px 1fr; gap:18px; }
-  .tab.on { display:grid; }
-  label { display:block; font-size:12px; color:var(--dim); margin:9px 0 4px; }
-  select,input,textarea,button { width:100%; background:#17151b; color:var(--text); border:1px solid var(--line); border-radius:6px; padding:7px 9px; font:inherit; }
-  textarea { resize:vertical; }
-  button { cursor:pointer; }
-  .go { background:var(--pink); border-color:var(--pink); color:#fff; font-weight:600; }
-  .ghost { background:transparent; border-color:var(--line); color:var(--text); }
-  .row { display:flex; gap:10px; } .row>div { flex:1; }
-  .slot { border:1px dashed var(--line); border-radius:8px; min-height:90px; display:flex; align-items:center; justify-content:center; color:var(--dim); font-size:12px; overflow:hidden; position:relative; background:#17151b; }
-  .slot img { max-width:100%; max-height:150px; display:block; }
-  .slot.small { min-height:64px; }
-  #jobs { font-size:12px; color:var(--dim); white-space:pre-wrap; margin-top:10px; max-height:110px; overflow:auto; }
-  #gallery,#mypics,#rounds { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; align-content:start; }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
-  .card img,.card video { width:100%; display:block; aspect-ratio:3/4; object-fit:cover; cursor:zoom-in; background:#000; }
-  .card .meta { padding:5px 8px; font-size:11px; color:var(--dim); display:flex; justify-content:space-between; gap:6px; }
-  .card .bar { display:flex; gap:3px; padding:0 6px 7px; flex-wrap:wrap; }
-  .card .bar button { width:auto; padding:2px 6px; font-size:11px; background:transparent; border:1px solid var(--line); color:var(--dim); }
-  .card .bar button:hover { color:#fff; }
-  .private { color:var(--pink); }
-  #viewer { position:fixed; inset:0; background:#000d; display:none; align-items:center; justify-content:center; z-index:9; }
-  #viewer img,#viewer video { max-width:92vw; max-height:92vh; }
-  .hint { font-size:11px; color:var(--dim); margin-top:4px; }
+:root{--bg:#fff7fb;--card:#fff;--ink:#2b2233;--mute:#7a6d85;--line:#ecdfe9;--accent:#e4508f;--accent2:#5b8def;--ok:#2e9d62;--bad:#c94a4a;--shadow:0 2px 10px rgba(80,30,70,.08)}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1720;--card:#272030;--ink:#f3eaf6;--mute:#b3a6bd;--line:#3a3044;--shadow:none}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Segoe UI",system-ui,sans-serif}
+header{display:flex;align-items:center;gap:16px;padding:10px 18px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;color:var(--accent)}
+nav button{background:none;border:0;padding:8px 12px;font:inherit;color:var(--mute);cursor:pointer;border-radius:8px}
+nav button.on{background:var(--bg);color:var(--ink);font-weight:600}
+#engine{margin-left:auto;font-size:13px;color:var(--mute)}
+#engine.down{color:var(--bad);font-weight:600}
+main{padding:16px;max-width:1400px;margin:0 auto}
+.panel{display:none}.panel.on{display:block}
+.grid2{display:grid;grid-template-columns:minmax(340px,480px) 1fr;gap:18px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow);margin-bottom:14px}
+label.h{display:block;font-weight:600;margin:12px 0 4px}
+label.h small{font-weight:400;color:var(--mute)}
+textarea,select,input[type=text],input[type=number]{width:100%;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+textarea{min-height:64px;resize:vertical}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row>*{flex:1}
+button.go{width:100%;margin-top:14px;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:600 17px "Segoe UI",sans-serif;cursor:pointer}
+button.go:disabled{opacity:.5}
+button.s{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:5px 10px;font:inherit;cursor:pointer}
+button.s:hover{border-color:var(--accent)}
+details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
+.mono{font:12px/1.4 Consolas,monospace;white-space:pre-wrap;background:var(--bg);padding:8px;border-radius:8px;border:1px solid var(--line)}
+.hint{color:var(--mute);font-size:13px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.thumb{position:relative;cursor:pointer;border-radius:10px;overflow:hidden;background:var(--line)}
+.thumb img,.thumb video{width:100%;display:block;aspect-ratio:2/3;object-fit:cover;background:#000}
+.thumb .tag{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.55);color:#fff;border-radius:6px;padding:1px 6px;font-size:12px}
+.thumb .rate{position:absolute;right:6px;top:6px;font-size:18px}
+.thumb .vis{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.55);color:#fff;border-radius:6px;padding:1px 6px;font-size:12px}
+.thumb .chk{position:absolute;right:6px;bottom:6px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.9);border:2px solid var(--accent);color:var(--accent);font-weight:700;display:none;align-items:center;justify-content:center}
+.selecting .thumb .chk{display:flex}
+.thumb.sel{outline:4px solid var(--accent);outline-offset:-4px}
+.job{display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.job:last-child{border:0}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--mute);flex:none}
+.dot.running{background:var(--accent);animation:p 1s infinite alternate}.dot.done{background:var(--ok)}.dot.error{background:var(--bad)}.dot.cancelled{background:var(--bad)}
+@keyframes p{to{opacity:.3}}
+.slot{border:2px dashed var(--line);border-radius:10px;padding:8px;min-height:86px}
+.slot.over{border-color:var(--accent);background:var(--bg)}
+.slot .thumbs{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
+.slot .thumb{aspect-ratio:1}
+.slot .thumb img{aspect-ratio:2/3}
+.slot .empty{color:var(--mute);text-align:center;padding:18px 0;font-size:13px}
+#lb{position:fixed;inset:0;background:rgba(10,5,15,.88);display:none;z-index:20;padding:16px}
+#lb.on{display:flex;gap:16px}
+#lb img,#lb video{max-height:calc(100vh - 32px);max-width:calc(100vw - 420px);object-fit:contain;margin:auto}
+#lb .side{width:360px;background:var(--card);border-radius:12px;padding:14px;overflow:auto;max-height:calc(100vh - 32px)}
+@media (max-width:900px){#lb.on{flex-direction:column}#lb img,#lb video{max-width:100%;max-height:60vh}#lb .side{width:auto}}
+.rates button{font-size:20px;padding:6px 12px}
+#pk{position:fixed;inset:0;background:rgba(10,5,15,.7);display:none;z-index:25;padding:24px}
+#pk.on{display:block}
+.pkbox{max-width:1100px;margin:0 auto;max-height:calc(100vh - 48px);overflow:auto;background:var(--card);border-radius:12px;padding:14px}
+.empty{color:var(--mute);padding:30px;text-align:center}
+.pill{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:1px 9px;font-size:12px;color:var(--mute);margin-right:4px}
+.selbar{position:sticky;top:58px;z-index:4;margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--bg);padding:6px 0}
 </style>
 </head>
 <body>
 <header>
-  <h1>NSFW Studio</h1>
+  <h1>&#10022; NSFW Studio</h1>
   <nav>
-    <button id="tab-generate" class="on" onclick="tab('generate')">Generate</button>
-    <button id="tab-video" onclick="tab('video')">Video</button>
-    <button id="tab-mypics" onclick="tab('mypics')">My pictures</button>
-    <button id="tab-rounds" onclick="tab('rounds')">Rounds</button>
+    <button data-p="create" class="on">Create</button>
+    <button data-p="video">Video</button>
+    <button data-p="gallery">My pictures</button>
+    <button data-p="rounds">Rounds</button>
+    <button data-p="trash">Trash</button>
+    <button onclick="window.open('/docs/ANIME.md','_blank')">Guide</button>
   </nav>
-  <span id="up">checking engine...</span>
-  <span style="flex:1"></span>
-  <a href="/docs/ANIME.md" target="_blank" style="color:var(--dim);font-size:12px">guide</a>
-  <button class="ghost" style="width:auto" onclick="loadState();loadGallery();loadMyPics()">refresh</button>
+  <button id="busy" class="s" hidden onclick="stopAll()">&#9632; Stop all</button>
+  <span id="engine">checking engine&hellip;</span>
 </header>
 <main>
-  <!-- GENERATE -->
-  <section id="pane-generate" class="tab on">
-    <div>
-      <label>Template</label>
-      <select id="template" onchange="applyTemplate()"></select>
-      <div class="row"><div><label>Body type</label><select id="body"></select></div><div><label>Framing</label><select id="framing"></select></div></div>
-      <label>Character</label><textarea id="character" rows="3"></textarea>
-      <label>Scene</label><textarea id="scene" rows="3"></textarea>
-      <label>Prompt ({character} and {scene} are filled in)</label><textarea id="prompt" rows="7"></textarea>
-      <label>Negative</label><textarea id="negative" rows="2"></textarea>
-      <div class="row"><div><label>Width</label><input id="width" type="number"></div><div><label>Height</label><input id="height" type="number"></div></div>
-      <div class="row"><div><label>Steps</label><input id="steps" type="number"></div><div><label>CFG</label><input id="cfg" type="number" step="0.1"></div></div>
-      <div class="row"><div><label>Seed (-1 random)</label><input id="seed" type="number" value="-1"></div><div><label>Count</label><input id="count" type="number" value="1" min="1" max="12"></div></div>
-      <label>Reference picture (optional; click the box, paste, or drop a file)</label>
-      <div id="slot-gen" class="slot" onclick="pick('gen')">click / paste / drop</div>
-      <div style="margin-top:14px"><button class="go" onclick="generateStill()">Make pictures</button></div>
-      <div id="jobs"></div>
-    </div>
-    <div><div id="gallery"></div></div>
-  </section>
 
-  <!-- VIDEO -->
-  <section id="pane-video" class="tab">
-    <div>
-      <label>Mode</label>
-      <select id="vmode" onchange="videoMode()">
-        <option value="i2v">image to video (POV blowjob)</option>
-        <option value="i2v_lora">image to video + act LoRA</option>
-        <option value="fl">first + last frame</option>
-        <option value="ref2va">two references (ref2va)</option>
-        <option value="t2v">text to video</option>
-      </select>
-      <label>Keyframe / first frame</label>
-      <div id="slot-v1" class="slot" onclick="pick('v1')">click / paste / drop</div>
-      <label>Last frame (first+last mode)</label>
-      <div id="slot-v2" class="slot small" onclick="pick('v2')">click / paste / drop</div>
-      <label>Second reference (ref2va mode)</label>
-      <div id="slot-v3" class="slot small" onclick="pick('v3')">click / paste / drop</div>
-      <div id="lorarow"><label>Act LoRA</label>
-        <select id="vlora"></select></div>
-      <div class="row"><div><label>LoRA strength</label><input id="vstrength" type="number" step="0.05" value="0.8"></div>
-      <div><label>Length (frames)</label><input id="vlength" type="number" value="124"></div></div>
-      <div class="row"><div><label>Width</label><input id="vwidth" type="number" value="768"></div><div><label>Height</label><input id="vheight" type="number" value="1152"></div></div>
-      <div class="row"><div><label>Seed (-1 random)</label><input id="vseed" type="number" value="-1"></div><div><label>Count</label><input id="vcount" type="number" value="1" min="1" max="4"></div></div>
-      <label>Prompt</label><textarea id="vprompt" rows="10"></textarea>
-      <label>Soundscape / negative (appended as its own line if set)</label><textarea id="vnegative" rows="2"></textarea>
-      <div style="margin-top:14px"><button class="go" onclick="generateVideo()">Make video</button></div>
-      <div class="hint">Video jobs are slow: 124 frames at 768x1152 is about 2.5 minutes on the 3080.</div>
+<section id="create" class="panel on">
+ <div class="grid2">
+  <div class="card">
+    <label class="h">Template <small>(the recipe)</small></label>
+    <select id="template"></select>
+    <div class="row" style="margin-top:6px">
+      <div><label class="h">Body type</label><select id="body"></select></div>
+      <div><label class="h">Framing</label><select id="framing"></select></div>
     </div>
-    <div><div id="videogallery"></div></div>
-  </section>
+    <label class="h">Character <small>who: hair, eyes, body, face</small></label>
+    <textarea id="character"></textarea>
+    <label class="h">Scene <small>where, what she does</small></label>
+    <textarea id="scene"></textarea>
+    <details><summary>Prompt (the full text; {character} and {scene} are filled)</summary><textarea id="prompt" rows="8"></textarea></details>
+    <details><summary>Things to avoid (negative)</summary><textarea id="negative"></textarea></details>
+    <div class="row" style="margin-top:6px">
+      <div><label class="h">Width</label><input type="number" id="width"></div>
+      <div><label class="h">Height</label><input type="number" id="height"></div>
+      <div><label class="h">Steps</label><input type="number" id="steps"></div>
+      <div><label class="h">CFG</label><input type="number" step="0.1" id="cfg"></div>
+    </div>
+    <div class="row">
+      <div><label class="h">How many</label><input type="number" id="count" value="1" min="1" max="8"></div>
+      <div><label class="h">Seed <small>blank = new</small></label><input type="text" id="seed" placeholder="random"></div>
+    </div>
+    <label class="h">Reference picture <small>for hires; optional elsewhere</small></label>
+    <div class="slot" id="slot-ref" data-k="ref">
+      <div id="refimgs"></div>
+      <div class="empty">drop a picture here, paste it, or pick one below</div>
+      <div class="row" style="margin-top:6px;flex-wrap:nowrap">
+        <button class="s" onclick="picker('ref')">Pick from my pictures</button>
+        <button class="s" onclick="uploadSlot('ref')">Upload file</button>
+      </div>
+    </div>
+    <button class="go" id="gogen">Make pictures</button>
+    <div class="hint" id="eta" style="margin-top:6px"></div>
+  </div>
+  <div>
+    <div class="card jobsCard" style="display:none"><div class="row" style="justify-content:space-between"><b style="flex:0 0 auto">Working on</b><button class="s" style="flex:0 0 auto" onclick="stopAll()">&#9632; Stop</button></div><div class="jobs"></div></div>
+    <div class="card"><b>Just made</b> <span class="hint">click one to rate it, share it, or use it as a reference</span><div class="thumbs" id="recent" style="margin-top:10px"></div></div>
+  </div>
+ </div>
+</section>
 
-  <!-- MY PICTURES -->
-  <section id="pane-mypics" class="tab">
-    <div>
-      <label><input type="checkbox" id="showtrash" onchange="loadMyPics()" style="width:auto"> show the trash</label>
-      <p class="hint">These are your pictures. They stay private until you press <b>share</b>; the agent only sees shared ones. <b>trash</b> hides a picture, <b>delete</b> removes a trashed one for good.</p>
+<section id="video" class="panel">
+ <div class="grid2">
+  <div class="card">
+    <label class="h">Video recipe <small>(fills the prompt and the LoRA)</small></label>
+    <select id="vtpl" onchange="fillVideo()"></select>
+    <label class="h">Mode</label>
+    <select id="vmode" onchange="videoMode()">
+      <option value="i2v">image to video</option>
+      <option value="i2v_lora">image to video + act LoRA</option>
+      <option value="fl">first + last frame</option>
+      <option value="ref2va">two references (ref2va)</option>
+      <option value="t2v">text to video</option>
+    </select>
+    <label class="h">Keyframe / first frame <small>the clip starts here</small></label>
+    <div class="slot" id="slot-v1" data-k="v1">
+      <div id="v1imgs"></div><div class="empty">drop, paste, or pick a picture</div>
+      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="s" onclick="picker('v1')">Pick from my pictures</button><button class="s" onclick="uploadSlot('v1')">Upload</button></div>
     </div>
-    <div><div id="mypics"></div></div>
-  </section>
-  <!-- ROUNDS -->
-  <section id="pane-rounds" class="tab">
-    <div><p class="hint">Rounds the agent ran, from <code>my/rounds/*.json</code>. Judge them in the gallery; the notes here are the agent's summary.</p></div>
-    <div id="rounds"></div>
-  </section>
+    <label class="h" id="v2lab" hidden>Last frame</label>
+    <div class="slot" id="slot-v2" data-k="v2" hidden>
+      <div id="v2imgs"></div><div class="empty">drop, paste, or pick the end frame</div>
+      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="s" onclick="picker('v2')">Pick from my pictures</button><button class="s" onclick="uploadSlot('v2')">Upload</button></div>
+    </div>
+    <label class="h" id="v3lab" hidden>Second reference</label>
+    <div class="slot" id="slot-v3" data-k="v3" hidden>
+      <div id="v3imgs"></div><div class="empty">drop, paste, or pick a reference</div>
+      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="s" onclick="picker('v3')">Pick from my pictures</button><button class="s" onclick="uploadSlot('v3')">Upload</button></div>
+    </div>
+    <div id="lorarow" hidden><label class="h">Act LoRA</label><select id="vlora"></select></div>
+    <div class="row"><div><label class="h">LoRA strength</label><input type="number" id="vstrength" step="0.05" value="0.8"></div>
+      <div><label class="h">Length (frames)</label><input type="number" id="vlength" value="124"></div>
+      <div><label class="h">Seed <small>blank = new</small></label><input type="text" id="vseed" placeholder="random"></div></div>
+    <div class="row"><div><label class="h">Width</label><input type="number" id="vwidth" value="768"></div><div><label class="h">Height</label><input type="number" id="vheight" value="1152"></div><div><label class="h">How many</label><input type="number" id="vcount" value="1" min="1" max="4"></div></div>
+    <label class="h">Prompt <small>the MiniMax script; keep the section names</small></label>
+    <textarea id="vprompt" rows="10"></textarea>
+    <details><summary>Soundscape / negative (appended if set)</summary><textarea id="vnegative"></textarea></details>
+    <button class="go" id="govideo">Make video</button>
+    <div class="hint" style="margin-top:6px">Video is slow: 124 frames at 768x1152 is about 2.5 minutes on the 3080.</div>
+  </div>
+  <div>
+    <div class="card jobsCard" style="display:none"><div class="row" style="justify-content:space-between"><b style="flex:0 0 auto">Working on</b><button class="s" style="flex:0 0 auto" onclick="stopAll()">&#9632; Stop</button></div><div class="jobs"></div></div>
+    <div class="card"><b>Recent videos</b> <span class="hint">click to play and rate; "use as keyframe" chains the next clip</span><div class="thumbs" id="recentv" style="margin-top:10px"></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="gallery" class="panel">
+  <div class="row" style="justify-content:space-between;margin-bottom:10px">
+    <div class="row" style="flex:0 0 auto">
+      <select id="gfilter" style="width:auto"><option value="all">all</option><option value="private">private</option><option value="shared">shared</option></select>
+      <button class="s" id="selbtn" onclick="toggleSelect()">Select</button>
+    </div>
+    <span class="hint">private = only you; shared = the agent can see it</span>
+  </div>
+  <div class="selbar" id="selbar" hidden>
+    <span id="selcount">0 selected</span>
+    <button class="s" onclick="actSelected('share')">Share</button>
+    <button class="s" onclick="actSelected('lock')">Make private</button>
+    <button class="s" onclick="actSelected('trash')">Move to trash</button>
+    <button class="s" onclick="toggleSelect()">Cancel</button>
+  </div>
+  <div class="thumbs" id="galleryGrid"></div>
+</section>
+
+<section id="rounds" class="panel"><div id="roundList"></div></section>
+
+<section id="trash" class="panel">
+  <p class="hint">Trashed pictures are hidden from the gallery. Delete forever removes the file.</p>
+  <div class="thumbs" id="trashGrid"></div>
+</section>
 </main>
-<div id="viewer" onclick="this.style.display='none'"><img id="viewimg"><video id="viewvid" controls style="display:none"></video></div>
-<script>
-let STATE=null, TPL={};
-const $=id=>document.getElementById(id);
-const SLOTS={gen:null,v1:null,v2:null,v3:null};
 
-function tab(name){
-  for(const n of ['generate','video','mypics','rounds']){
-    $('pane-'+n).classList.toggle('on',n===name);
-    $('tab-'+n).classList.toggle('on',n===name);
-  }
-  if(name==='mypics') loadMyPics();
-  if(name==='rounds') loadRounds();
+<div id="lb" onclick="if(event.target.id==='lb')closeLb()">
+  <img id="lbImg" hidden><video id="lbVid" controls hidden></video>
+  <div class="side">
+    <h3 id="lbTitle" style="margin:0 0 6px"></h3>
+    <div class="hint" id="lbMeta"></div>
+    <div class="rates row" style="margin:10px 0;flex-wrap:nowrap">
+      <button class="s" data-r="love">&#10084;&#65039;</button><button class="s" data-r="good">&#128077;</button><button class="s" data-r="meh">&#128533;</button><button class="s" data-r="bad">&#128078;</button>
+    </div>
+    <div class="row" style="margin-bottom:8px"><button class="s" id="lbShare"></button></div>
+    <div class="row" style="margin-bottom:8px"><button class="s" id="lbRef">Use as keyframe</button><button class="s" id="lbTrash">Trash</button></div>
+    <details><summary>Prompt and seed</summary><div class="mono" id="lbPrompt"></div></details>
+  </div>
+</div>
+
+<div id="pk" onclick="if(event.target.id==='pk')closePicker()">
+  <div class="pkbox">
+    <div class="row" style="justify-content:space-between"><b id="pkTitle">Pick a picture</b><button class="s" onclick="closePicker()">Close</button></div>
+    <div class="thumbs" id="pkGrid" style="margin-top:10px"></div>
+  </div>
+</div>
+
+<script>
+let STATE=null, P={}, HIST=[], SLOTS={ref:null,v1:null,v2:null,v3:null}, LBREC=null, PKK=null, SELMODE=false, SEL=new Set();
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const RATE={love:"\u2764\uFE0F",good:"\uD83D\uDC4D",meh:"\uD83D\uDE10",bad:"\uD83D\uDC4E"};
+const isVid=f=>/\.(mp4|webm)$/i.test(f);
+
+async function api(p,b){const r=await fetch(p,b?{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}:{});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||r.status);return j}
+function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+function show(panel){
+  $$("header nav button[data-p]").forEach(b=>b.classList.toggle("on",b.dataset.p===panel));
+  $$(".panel").forEach(p=>p.classList.toggle("on",p.id===panel));
+  if(panel==="gallery")renderGallery();
+  if(panel==="trash")renderTrash();
+  if(panel==="rounds")loadRounds();
 }
+$$("header nav button[data-p]").forEach(b=>b.onclick=()=>show(b.dataset.p));
 
 async function loadState(){
-  STATE=await (await fetch('/api/state')).json();
-  TPL=STATE.templates||{};
-  $('up').textContent=STATE.comfy_up?'engine up':'engine not running';
-  const t=$('template');
-  if(!t.options.length){
-    for(const [k,v] of Object.entries(TPL)) t.add(new Option(v.label||k,k));
-    t.value=STATE.default_template && TPL[STATE.default_template]?STATE.default_template:t.options[0].value;
-    applyTemplate();
-  }
-  const l=$('vlora');
-  if(!l.options.length){
-    for(const [k,v] of Object.entries(STATE.loras||{})) l.add(new Option(k,k==='none'?'':k));
-    l.value='sideview_deepthroat';
-  }
-  const bd=$('body');
-  if(!bd.options.length){ bd.add(new Option('default','none')); for(const k of Object.keys(STATE.bodies||{})) if(k!=='none') bd.add(new Option(k,k)); }
-  const fr=$('framing');
-  if(!fr.options.length){ for(const k of Object.keys(STATE.framings||{})) fr.add(new Option(k,k)); }
-  loadJobs(); loadGallery(); loadRounds();
+  STATE=await api("/api/state"); P=STATE;
+  $("#engine").textContent=STATE.comfy_up?"engine up":"engine not running";
+  $("#engine").className=STATE.comfy_up?"":"down";
+  const t=$("#template");
+  if(!t.options.length){for(const [k,v] of Object.entries(STATE.templates||{}))t.add(new Option(v.label||k,k));
+    t.value=STATE.default_template&&STATE.templates[STATE.default_template]?STATE.default_template:t.options[0].value; fillTemplate();}
+  const b=$("#body"); if(!b.options.length){b.add(new Option("default","none"));for(const k of Object.keys(STATE.bodies||{}))if(k!=="none")b.add(new Option(k,k));}
+  const f=$("#framing"); if(!f.options.length){for(const k of Object.keys(STATE.framings||{}))f.add(new Option(k,k));}
+  const l=$("#vlora"); if(!l.options.length){for(const [k,v] of Object.entries(STATE.loras||{}))l.add(new Option(k,v||""));l.value="h3nsfw/epic_cumshots.safetensors";}
+  const vt=$("#vtpl"); if(!vt.options.length){for(const [k,v] of Object.entries(STATE.video_templates||{}))vt.add(new Option(v.label||k,k));
+    vt.value=STATE.default_video&&STATE.video_templates[STATE.default_video]?STATE.default_video:vt.options[0].value; fillVideo();}
+  await loadHist();
 }
 
-function applyTemplate(){
-  const t=TPL[$('template').value]||{};
-  $('character').value=t.character||''; $('scene').value=t.scene||''; $('prompt').value=t.prompt||''; $('negative').value=t.negative||'';
-  for(const k of ['width','height','steps','cfg']) if(t[k]!=null) $(k).value=t[k];
+function fillTemplate(){
+  const t=(STATE.templates||{})[$("#template").value]||{};
+  $("#character").value=t.character||""; $("#scene").value=t.scene||""; $("#prompt").value=t.prompt||""; $("#negative").value=t.negative||"";
+  for(const k of ["width","height","steps","cfg"]) if(t[k]!=null) $("#"+k).value=t[k];
+}
+
+function fillVideo(){
+  const t=(STATE.video_templates||{})[$("#vtpl").value]||{};
+  $("#vprompt").value=t.prompt||"";
+  if(t.lora){$("#vlora").value=t.lora;}
+  if(t.strength!=null)$("#vstrength").value=t.strength;
+  const wf=t.workflow||"wf_h3vid_i2v.json";
+  const m=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";
+  $("#vmode").value=m; videoMode();
 }
 
 function videoMode(){
-  const m=$('vmode').value;
-  $('slot-v2').style.display=(m==='fl')?'flex':'none';
-  $('slot-v3').style.display=(m==='ref2va')?'flex':'none';
-  $('lorarow').style.display=(m==='i2v_lora')?'block':'none';}
-videoMode();
+  const m=$("#vmode").value;
+  $("#v2lab").hidden=$("#slot-v2").hidden=(m!=="fl");
+  $("#v3lab").hidden=$("#slot-v3").hidden=(m!=="ref2va");
+  $("#lorarow").hidden=(m!=="i2v_lora");
+}
 
-function pick(slot){ $('slot-'+slot).dataset.pick=slot; const i=document.createElement('input'); i.type='file'; i.accept='image/*'; i.onchange=()=>setSlot(slot,i.files[0]); i.click(); }
+async function loadHist(){
+  HIST=await api("/api/history?scope=all");
+  renderRecent(); if($("#gallery").classList.contains("on"))renderGallery(); if($("#trash").classList.contains("on"))renderTrash();
+}
 
-async function setSlot(slot,file){
-  if(!file) return;
+function tile(r,opts){
+  const v=isVid(r.file);
+  const el=document.createElement("div"); el.className="thumb"; el.dataset.f=r.file;
+  el.innerHTML=(v?`<video muted loop playsinline preload="metadata" src="/img/${encodeURI(r.file)}#t=0.5"></video>`:`<img loading="lazy" src="/img/${encodeURI(r.file)}">`)
+    +(opts&&opts.tag?`<span class="tag">${esc(opts.tag)}</span>`:(v?`<span class="tag">\u25B6 video</span>`:""))
+    +(r.rating?`<span class="rate">${RATE[r.rating]||""}</span>`:"")
+    +((r.by==="me")?(r.public?'<span class="vis">shared</span>':'<span class="vis">private</span>'):"")
+    +'<span class="chk">\u2713</span>';
+  if(v){el.querySelector("video").onmouseenter=e=>e.target.play();el.querySelector("video").onmouseleave=e=>e.target.pause();}
+  el.onclick=()=>{ if(SELMODE && opts&&opts.select){toggleSel(r.file);return;} openLb(r); };
+  return el;
+}
+
+function renderRecent(){
+  const live=HIST.filter(r=>!r.trashed);
+  const imgs=live.filter(r=>!isVid(r.file)).slice(0,12), vids=live.filter(r=>isVid(r.file)).slice(0,12);
+  const rec=$("#recent"); rec.innerHTML=""; if(!imgs.length)rec.innerHTML='<div class="empty">Your pictures will show up here.</div>'; imgs.forEach(r=>rec.appendChild(tile(r)));
+  const rv=$("#recentv"); rv.innerHTML=""; if(!vids.length)rv.innerHTML='<div class="empty">Videos will show up here.</div>'; vids.forEach(r=>rv.appendChild(tile(r)));
+}
+
+/* ---------- slots, picker, paste ---------- */
+function setSlot(k,path,url){
+  SLOTS[k]={path,url};
+  const box=$("#"+k+"imgs"); box.innerHTML="";
+  const t=document.createElement("div"); t.className="thumb";
+  t.innerHTML=isVid(path)?`<video src="${url}" muted loop autoplay></video>`:`<img src="${url}">`;
+  t.title="click to clear"; t.onclick=()=>clearSlot(k);
+  box.appendChild(t);
+}
+function clearSlot(k){SLOTS[k]=null;$("#"+k+"imgs").innerHTML="";}
+async function uploadSlot(k){const i=document.createElement("input");i.type="file";i.accept="image/*";i.onchange=()=>uploadFile(k,i.files[0]);i.click();}
+async function uploadFile(k,file){
+  if(!file)return;
   const data=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(file);});
-  const up=await (await fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({data})})).json();
-  if(up.error){ alert(up.error); return; }
-  SLOTS[slot]={path:up.path,url:URL.createObjectURL(file)};
-  const el=$('slot-'+slot); el.innerHTML=''; const img=document.createElement('img'); img.src=SLOTS[slot].url; el.appendChild(img);
+  const up=await api("/api/upload",{data});
+  setSlot(k,up.path,URL.createObjectURL(file));
 }
+async function picker(k){
+  PKK=k; const l=HIST.filter(r=>!r.trashed&&!isVid(r.file)).slice(0,200);
+  $("#pkTitle").textContent="Pick a picture for "+(k==="ref"?"the reference":k==="v1"?"the keyframe":k==="v2"?"the last frame":"the second reference");
+  const g=$("#pkGrid"); g.innerHTML="";
+  if(!l.length)g.innerHTML='<div class="empty">Nothing to pick yet.</div>';
+  for(const r of l){const t=tile(r);t.onclick=()=>{const base=(STATE.machine&&STATE.machine.data_dir||"").replace(/\\/g,"/");setSlot(k,base+"/"+r.file,"/img/"+encodeURI(r.file));closePicker();};g.appendChild(t);}
+  $("#pk").classList.add("on");
+}
+function closePicker(){$("#pk").classList.remove("on")}
 
-document.addEventListener('paste',e=>{
-  const item=[...(e.clipboardData||{}).items||[]].find(i=>i.type.startsWith('image/'));
-  if(!item) return;
-  const el=document.activeElement; const slot=el&&el.dataset?el.dataset.pick:null;
-  if(slot) setSlot(slot,item.getAsFile());
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePicker();closeLb()}});
+document.addEventListener("paste",async e=>{
+  const it=[...(e.clipboardData||{}).items||[]].find(i=>i.type.startsWith("image/"));
+  if(!it)return;
+  const active=document.querySelector(".slot:hover")||document.querySelector(".slot:focus-within");
+  const k=active?active.dataset.k:(document.querySelector("#video.panel.on")?"v1":"ref");
+  await uploadFile(k,it.getAsFile());
 });
-for(const id of ['slot-gen','slot-v1','slot-v2','slot-v3']){
-  $(id).addEventListener('dragover',e=>e.preventDefault());
-  $(id).addEventListener('drop',e=>{e.preventDefault();setSlot(id.replace('slot-',''),e.dataTransfer.files[0]);});
-}
+$$(".slot").forEach(s=>{
+  s.addEventListener("dragover",e=>{e.preventDefault();s.classList.add("over")});
+  s.addEventListener("dragleave",()=>s.classList.remove("over"));
+  s.addEventListener("drop",e=>{e.preventDefault();s.classList.remove("over");uploadFile(s.dataset.k,e.dataTransfer.files[0])});
+});
 
-function field(job,slot){ if(SLOTS[slot]) job.image=SLOTS[slot].path; return job; }
-
-async function generateStill(){
-  const body={template:$('template').value,body:$('body').value,framing:$('framing').value,character:$('character').value,scene:$('scene').value,prompt:$('prompt').value,negative:$('negative').value,
-    width:+$('width').value,height:+$('height').value,steps:+$('steps').value,cfg:+$('cfg').value,seed:+$('seed').value,count:+$('count').value};
-  field(body,'gen');
-  const r=await (await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
-  if(r.error) alert(r.error); loadJobs();
+/* ---------- generate ---------- */
+function jobBody(){
+  const b={template:$("#template").value,body:$("#body").value,framing:$("#framing").value,
+    character:$("#character").value,scene:$("#scene").value,prompt:$("#prompt").value,negative:$("#negative").value,
+    width:+$("#width").value,height:+$("#height").value,steps:+$("#steps").value,cfg:+$("#cfg").value,count:+$("#count").value};
+  const seed=$("#seed").value.trim(); if(seed!==""&&!isNaN(+seed))b.seed=+seed;
+  if(SLOTS.ref)b.image=SLOTS.ref.path;
+  return b;
 }
+$("#gogen").onclick=async()=>{
+  $("#gogen").disabled=true;
+  try{await api("/api/generate",jobBody());showJobs();}catch(e){alert(e.message)}finally{$("#gogen").disabled=false}
+};
 
 function videoWorkflow(){
-  const m=$('vmode').value;
-  if(m==='i2v_lora') return 'wf_h3vid_i2v_lora.json';
-  if(m==='fl') return 'wf_h3vid_i2v_fl.json';
-  if(m==='ref2va') return 'wf_h3vid_ref2va6.json';
-  if(m==='t2v') return 'wf_h3vid_t2v_lora.json';
-  return 'wf_h3vid_i2v.json';
+  const m=$("#vmode").value;
+  return m==="i2v_lora"?"wf_h3vid_i2v_lora.json":m==="fl"?"wf_h3vid_i2v_fl.json":m==="ref2va"?"wf_h3vid_ref2va6.json":m==="t2v"?"wf_h3vid_t2v_lora.json":"wf_h3vid_i2v.json";
 }
+$("#govideo").onclick=async()=>{
+  const m=$("#vmode").value, b={workflow:videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
+    width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value};
+  const seed=$("#vseed").value.trim(); if(seed!==""&&!isNaN(+seed))b.seed=+seed;
+  if(m!=="t2v"){ if(!SLOTS.v1){alert("Pick a keyframe first.");return} b.image=SLOTS.v1.path; }
+  if(m==="fl"){ if(!SLOTS.v2){alert("First+last needs a last frame.");return} b.last=SLOTS.v2.path; }
+  if(m==="ref2va"&&SLOTS.v3)b.image1=SLOTS.v3.path;
+  if(m==="i2v_lora"){b.nsfw_lora=$("#vlora").value;b.nsfw_strength=+$("#vstrength").value;}
+  $("#govideo").disabled=true;
+  try{await api("/api/generate",b);showJobs();}catch(e){alert(e.message)}finally{$("#govideo").disabled=false}
+};
 
-async function generateVideo(){
-  const m=$('vmode').value;
-  const body={workflow:videoWorkflow(),prompt:$('vprompt').value,negative:$('vnegative').value,
-    width:+$('vwidth').value,height:+$('vheight').value,length:+$('vlength').value,seed:+$('vseed').value,count:+$('vcount').value};
-  if(m!=='t2v'){ if(!SLOTS.v1){ alert('Pick a keyframe picture first.'); return; } body.image=SLOTS.v1.path; }
-  if(m==='fl'){ if(!SLOTS.v2){ alert('First+last needs a last frame.'); return; } body.last=SLOTS.v2.path; }
-  if(m==='ref2va' && SLOTS.v3) body.image1=SLOTS.v3.path;
-  if(m==='i2v_lora'){ body.nsfw_lora=$('vlora').value; body.nsfw_strength=+$('vstrength').value; }
-  const r=await (await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
-  if(r.error) alert(r.error); loadJobs();
+/* ---------- jobs ---------- */
+let POLL=null;
+function showJobs(){$$(".jobsCard").forEach(c=>c.style.display="block");pollJobs()}
+async function pollJobs(){
+  clearTimeout(POLL);
+  let js=[]; try{js=await api("/api/jobs")}catch(e){return}
+  const active=js.filter(j=>["queued","running"].includes(j.status));
+  $("#busy").hidden=!active.length;
+  if(active.length)$("#busy").textContent="\u25A0 working\u2026";
+  const html=js.slice(-8).reverse().map(j=>{
+    const nm=j.job.template||j.job.workflow||"";
+    return `<div class="job"><span class="dot ${j.status}"></span><span>${j.status==="running"?"working\u2026":j.status==="queued"?"waiting":j.status==="error"?"<b>problem:</b> "+esc(j.error||""):j.status}</span><span class="hint">${esc(nm)} \u00b7 seed ${j.job.seed??""}</span>${["queued","running"].includes(j.status)?`<button class="s" style="flex:0 0 auto" onclick="stopJob('${j.id}')">Stop</button>`:""}</div>`;
+  }).join("");
+  $$(".jobs").forEach(el=>el.innerHTML=html||'<div class="empty">nothing yet</div>');
+  if(active.length)POLL=setTimeout(pollJobs,2000);
+  else {await loadHist();}
 }
+async function stopJob(id){try{await api("/api/cancel",{id})}catch(e){}pollJobs()}
+async function stopAll(){try{await api("/api/cancel",{})}catch(e){}pollJobs()}
 
-async function loadJobs(){
-  const js=await (await fetch('/api/jobs')).json();
-  $('jobs').textContent=js.slice(-6).map(j=>j.status+'  '+(j.job.template||j.job.workflow||'')+(j.error?'  '+j.error:'')).join('\n');
-  if(js.some(j=>j.status==='queued'||j.status==='running')) setTimeout(()=>{loadJobs();loadGallery();loadMyPics();},2500);
+/* ---------- gallery, trash, rounds ---------- */
+function renderGallery(){
+  const f=$("#gfilter").value;
+  let l=HIST.filter(r=>!r.trashed);
+  if(f==="private")l=l.filter(r=>!r.public); else if(f==="shared")l=l.filter(r=>r.public);
+  const g=$("#galleryGrid"); g.innerHTML="";
+  g.classList.toggle("selecting",SELMODE);
+  if(!l.length)g.innerHTML='<div class="empty">No pictures yet.</div>';
+  for(const r of l){const t=tile(r,{select:true}); if(SEL.has(r.file))t.classList.add("sel"); g.appendChild(t);}
 }
-
-function card(r,opts){
-  const c=document.createElement('div'); c.className='card';
-  const isVid=/\.(mp4|webm)$/i.test(r.file);
-  const el=document.createElement(isVid?'video':'img');
-  el.src='/img/'+encodeURIComponent(r.file); if(!isVid) el.loading='lazy';
-  el.onclick=()=>{ const v=$('viewer'); $('viewimg').style.display=isVid?'none':'block'; $('viewvid').style.display=isVid?'block':'none';
-    if(isVid){ $('viewvid').src=el.src; } else { $('viewimg').src=el.src; } v.style.display='flex'; };
-  const m=document.createElement('div'); m.className='meta';
-  m.innerHTML='<span>'+(r.template||'')+(r.public?'':' <span class="private">private</span>')+'</span><span>#'+(r.seed??'')+'</span>';
-  const bar=document.createElement('div'); bar.className='bar';
-  if(opts.rate){ for(const [v,e] of [['love','❤'],['good','👍'],['meh','😐'],['bad','👎']]){
-    const b=document.createElement('button'); b.textContent=e;
-    b.onclick=()=>fetch('/api/rate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({file:r.file,rating:v})}); bar.appendChild(b);} }
-  if(opts.share){ const b=document.createElement('button'); b.textContent=r.public?'lock':'share';
-    b.onclick=async()=>{await fetch('/api/visibility',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({files:[r.file],public:!r.public})});loadMyPics();loadGallery();}; bar.appendChild(b); }
-  if(opts.trash){ const b=document.createElement('button'); b.textContent=r.trashed?'restore':'trash';
-    b.onclick=async()=>{await fetch(r.trashed?'/api/restore':'/api/trash',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({files:[r.file]})});loadMyPics();}; bar.appendChild(b); }
-  if(opts.delete && r.trashed){ const b=document.createElement('button'); b.textContent='delete';
-    b.onclick=async()=>{if(confirm('delete forever?')){await fetch('/api/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({files:[r.file]})});loadMyPics();}}; bar.appendChild(b); }
-  c.append(el,m,bar); return c;
+function toggleSelect(){SELMODE=!SELMODE;SEL.clear();$("#selbar").hidden=!SELMODE;$("#selbtn").textContent=SELMODE?"Cancel":"Select";renderGallery()}
+function toggleSel(f){if(SEL.has(f))SEL.delete(f);else SEL.add(f);$("#selcount").textContent=SEL.size+" selected";renderGallery()}
+async function actSelected(what){
+  const files=[...SEL]; if(!files.length)return;
+  if(what==="trash")await api("/api/trash",{files}); else await api("/api/visibility",{files,public:what==="share"});
+  SEL.clear();$("#selcount").textContent="0 selected";await loadHist();renderGallery();
 }
-
+async function renderTrash(){
+  const l=HIST.filter(r=>r.trashed); const g=$("#trashGrid"); g.innerHTML="";
+  if(!l.length)g.innerHTML='<div class="empty">The trash is empty.</div>';
+  for(const r of l){const t=tile(r);const bar=document.createElement("div");bar.className="row";bar.style.marginTop="4px";
+    const a=document.createElement("button");a.className="s";a.textContent="restore";a.onclick=async()=>{await api("/api/restore",{files:[r.file]});await loadHist();renderTrash()};
+    const b=document.createElement("button");b.className="s";b.textContent="delete forever";b.onclick=async()=>{if(confirm("Delete forever?")){await api("/api/delete",{files:[r.file]});await loadHist();renderTrash()}};
+    bar.append(a,b);const c=document.createElement("div");c.append(t,bar);g.appendChild(c);}
+}
 async function loadRounds(){
-  const rs=await (await fetch('/api/rounds')).json();
-  const g=$('rounds'); g.innerHTML='';
-  if(!rs.length){ g.innerHTML='<p class="hint">no rounds yet</p>'; return; }
-  for(const r of rs){
-    const c=document.createElement('div'); c.className='card'; c.style.padding='10px';
-    const t=document.createElement('div'); t.innerHTML='<b>'+(r.title||r.id||'round')+'</b>';
-    const p=document.createElement('div'); p.className='hint'; p.textContent=(r.note||r.summary||r.why||'');
-    c.append(t,p);
-    const files=r.items||r.files||[];
-    for(const f of files){ if(typeof f==='string' && /\.(png|jpe?g|webp|mp4|webm)$/i.test(f)){
-      const im=document.createElement('img'); im.src='/img/'+encodeURIComponent(f); im.style.maxWidth='100%'; im.style.marginTop='6px'; im.onclick=()=>{$('viewimg').src=im.src;$('viewimg').style.display='block';$('viewvid').style.display='none';$('viewer').style.display='flex';}; c.appendChild(im);
-    }}
-    g.appendChild(c);
-  }
+  const rs=await api("/api/rounds"); const g=$("#roundList"); g.innerHTML="";
+  if(!rs.length){g.innerHTML='<div class="empty">No rounds yet.</div>';return}
+  for(const r of rs){const c=document.createElement("div");c.className="card";
+    const files=(r.items||r.files||[]).filter(f=>typeof f==="string"&&/\.(png|jpe?g|webp|mp4|webm)$/i.test(f));
+    c.innerHTML=`<h3 style="margin:0 0 4px">${esc(r.title||r.id||"round")}</h3><div class="hint">${esc(r.note||r.summary||"")}</div>`;
+    if(files.length){const th=document.createElement("div");th.className="thumbs";th.style.marginTop="8px";
+      for(const f of files){const t=document.createElement("div");t.className="thumb";t.innerHTML=isVid(f)?`<video muted loop src="/img/${encodeURI(f)}"></video>`:`<img src="/img/${encodeURI(f)}">`;th.appendChild(t)}c.appendChild(th)}
+    g.appendChild(c)}
 }
 
-async function loadGallery(){
-  const recs=await (await fetch('/api/history?scope=public')).json();
-  const g=$('gallery'); g.innerHTML='';
-  for(const r of recs.slice(0,80)) if(!r.trashed) g.appendChild(card(r,{rate:true}));
-  const vg=$('videogallery'); if(vg){ vg.innerHTML=''; for(const r of recs.slice(0,40)) if(/\.(mp4|webm)$/i.test(r.file)) vg.appendChild(card(r,{rate:true})); }
+/* ---------- lightbox ---------- */
+function openLb(r){
+  LBREC=r; $("#lb").classList.add("on");
+  $("#lbImg").hidden=isVid(r.file); $("#lbVid").hidden=!isVid(r.file);
+  if(isVid(r.file)){$("#lbVid").src="/img/"+encodeURI(r.file);$("#lbImg").src=""} else {$("#lbVid").pause();$("#lbVid").src="";$("#lbImg").src="/img/"+encodeURI(r.file)}
+  $("#lbTitle").textContent=r.template||"picture";
+  $("#lbMeta").textContent="seed "+(r.seed??"?")+" \u00b7 "+(r.public?"shared":"private")+" \u00b7 "+(r.time||"");
+  $("#lbPrompt").textContent=(r.prompt||"")+"\n\nseed "+(r.seed??"");
+  $$("#lb .rates button").forEach(b=>b.classList.toggle("on",b.dataset.r===r.rating));
+  $("#lbShare").textContent=r.public?"Make private":"Share with the agent";
+  $("#lbShare").onclick=async()=>{await api("/api/visibility",{files:[r.file],public:!r.public});await loadHist();openLb({...r,public:!r.public})};
+  $("#lbTrash").onclick=async()=>{await api("/api/trash",{files:[r.file]});closeLb();await loadHist()};
+  $("#lbRef").hidden=isVid(r.file);
+  $("#lbRef").onclick=()=>{const base=(STATE.machine&&STATE.machine.data_dir||"").replace(/\\/g,"/");setSlot("v1",base+"/"+r.file,"/img/"+encodeURI(r.file));closeLb();show("video")};
+  $$("#lb .rates button").forEach(b=>b.onclick=async()=>{await api("/api/rate",{file:r.file,rating:b.dataset.r});r.rating=b.dataset.r;$$("#lb .rates button").forEach(x=>x.classList.toggle("on",x===b));loadHist()});
 }
+function closeLb(){$("#lb").classList.remove("on");$("#lbVid").pause()}
 
-async function loadMyPics(){
-  const recs=await (await fetch('/api/history?scope=private')).json();
-  const trash=$('showtrash').checked;
-  const all=trash?await (await fetch('/api/history?scope=all')).json():recs;
-  const list=(trash?all.filter(r=>r.trashed):recs).slice(0,120);
-  const g=$('mypics'); g.innerHTML='';
-  for(const r of list) g.appendChild(card(r,{share:true,trash:true,delete:true}));
-  if(!list.length) g.innerHTML='<p class="hint">nothing here yet</p>';
-}
-
-loadState(); setInterval(loadGallery,15000);
+$("#gfilter").onchange=renderGallery;
+loadState().catch(e=>{$("#engine").textContent="error: "+e.message;$("#engine").className="down"});
 </script>
 </body>
 </html>

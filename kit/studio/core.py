@@ -349,6 +349,15 @@ def delete_forever(files, s=None):
     return n
 
 
+def ratings():
+    out = {}
+    for rec in read_jsonl(PFEED) + read_jsonl(FEED):
+        f = rec.get("file")
+        if f:
+            out[f] = rec.get("rating") or out.get(f)
+    return out
+
+
 def all_records(scope="all"):
     """Every picture this app made, newest first, with its visibility.
 
@@ -356,6 +365,7 @@ def all_records(scope="all"):
     read "public"; the My pictures tab uses "private".
     """
     lib = library()
+    rate = ratings()
     out = []
     for rec in read_jsonl(PHIST) + read_jsonl(HIST):
         for f in rec.get("files", []):
@@ -365,7 +375,7 @@ def all_records(scope="all"):
             if scope == "private" and public:
                 continue
             out.append({"file": f, "time": rec.get("time"), "by": rec.get("by"), "prompt": rec.get("prompt"),
-                        "seed": rec.get("seed"), "template": rec.get("template"),
+                        "seed": rec.get("seed"), "template": rec.get("template"), "rating": rate.get(f),
                         "public": public, "trashed": f in lib["trash"]})
     out.sort(key=lambda r: r.get("time") or "", reverse=True)
     return out

@@ -87,6 +87,7 @@ class H(BaseHTTPRequestHandler):
                                        "scenes": P.get("scenes", {}), "workflows": core.workflow_names(),
                                        "default_template": P.get("default_template"),
                                        "loras": P.get("loras", {}), "video": P.get("video", {}),
+                                       "video_templates": P.get("video_templates", {}), "default_video": P.get("default_video"),
                                        "bodies": P.get("bodies", {}), "framings": P.get("framings", {}),
                                        "comfy_up": core.comfy_up(), "machine": {k: core.settings().get(k) for k in ("gpu", "data_dir")}})
             if p == "/api/jobs":
@@ -134,6 +135,22 @@ class H(BaseHTTPRequestHandler):
                     Q.put(e)
                     made.append(e["id"])
                 return self.send(200, {"queued": made})
+            if p == "/api/preview":
+                return self.send(200, {"prompt": core.build_prompt(b), "negative": core.build_fields(b).get("negative", "")})
+            if p == "/api/cancel":
+                jid = b.get("id")
+                hit = []
+                with LOCK:
+                    for e in JOBS:
+                        if e["status"] in ("queued", "running") and (not jid or e["id"] == jid):
+                            e["status"] = "cancelled"
+                            e["finished_at"] = time.time()
+                            hit.append(e)
+                try:
+                    core.http(core.settings()["comfy_url"] + "/interrupt", b"{}", timeout=10)
+                except Exception:
+                    pass
+                return self.send(200, {"stopped": len(hit)})
             if p == "/api/upload":
                 raw = base64.b64decode(str(b.get("data", "")).split(",", 1)[-1])
                 ext = next((e for m, e in IMG_MAGIC.items() if raw.startswith(m)), None)

@@ -171,5 +171,39 @@
     "fullbody": "full body, standing, from head to toe",
     "closeup": "close-up, face and upper body",
     "pov": "pov, from above"
+  },
+  "default_video": "pov_blowjob",
+  "video_templates": {
+    "pov_blowjob": {
+      "label": "POV blowjob - slow stroke (best motion)",
+      "workflow": "wf_h3vid_i2v.json",
+      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video: a young adult Asian woman with long black hair in pink-streaked twin tails kneels between the viewer's legs. Her lips are sealed around the shaft of an erect adult penis. She slides her mouth slowly down the shaft until her lips are past the middle, holds there for a beat with a small swallow, then draws back up until only the head stays between her lips; her lips stay sealed the whole way. The penis stays thick and clearly shaped, with a defined glans, a retracted foreskin ridge and visible veins. A thin string of saliva stretches from her lower lip and breaks. She looks up into the lens with half-closed eyes and a light blush. The camera does not move.\n\noverall_soundscape: soft wet suction and a quiet pop as her lips pass the head; her breathing through her nose; one low, short male grunt about halfway through; quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
+    },
+    "side_deepthroat": {
+      "label": "Side deepthroat (act LoRA)",
+      "workflow": "wf_h3vid_i2v_lora.json",
+      "lora": "h3nsfw/h3-sideview-deepthroat.safetensors",
+      "strength": 0.75,
+      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic side-view video: a young adult Asian woman with pink-streaked twin tails kneels over a man's lap in profile. Her lips are sealed around his erect cock; she takes him deeper, her lips travelling down the shaft toward the base until her nose is close to his skin, holds for a beat with a swallow, then pulls back up until only the head stays between her lips. The cock stays thick with a defined glans and corona rim, the shaft glistening. Her eyes are half closed, cheeks flushed. The camera does not move.\n\noverall_soundscape: wet suction, a small gag and swallow at the deepest point, her breath, a low male grunt, quiet room tone. No music.\n\nnon_diegetic_music: N/A"
+    },
+    "paizuri": {
+      "label": "Paizuri (titjob LoRA)",
+      "workflow": "wf_h3vid_i2v_lora.json",
+      "lora": "h3nsfw/Titjob-Titfuck-H3.safetensors",
+      "strength": 0.85,
+      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video: a young adult Asian woman with pink-streaked twin tails leans over the viewer and gives him a titjob. She presses her large natural breasts together around his erect cock and slides them up and down the shaft in slow strokes; the glans pushes out through the top of her cleavage on each stroke, her tongue touches the head. The cock keeps its shape, a defined glans with a corona rim. She looks up into the lens, half-lidded, light blush, a sweat sheen on her chest. The camera does not move.\n\noverall_soundscape: soft skin friction, her breath, a low male grunt at about 2 seconds, quiet room tone. No music.\n\nnon_diegetic_music: N/A"
+    },
+    "cumshot_slow": {
+      "label": "Cum shot - slow translucent (glue caveat)",
+      "workflow": "wf_h3vid_i2v_lora.json",
+      "lora": "h3nsfw/epic_cumshots.safetensors",
+      "strength": 0.8,
+      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video. She holds his cock just below her open mouth, eyes on the lens. The shaft pulses once and a short translucent milky rope shoots from the tip up across her lips and cheek, glossy and see-through, then drips down her chin. It is one short arc, no spray, no mist, nothing foams. She flinches, closes one eye, then smiles with half-lidded eyes, flushed. The camera does not move.\n\noverall_soundscape: a soft wet spurt, one low short male grunt, her sharp breath in, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
+    },
+    "anime_pov_bob": {
+      "label": "Anime POV bob (best anime)",
+      "workflow": "wf_h3vid_i2v.json",
+      "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style. POV from above: a young adult woman with short silver hair and purple eyes kneels between the viewer's legs, her large breasts on either side of an erect penis, her lips sealed around the head. She bobs her head up and down the shaft in a steady rhythm, her breasts bouncing with the motion, her braid swinging, her eyes lifting to the camera between strokes. Saliva gathers at the corner of her mouth. The camera shakes very slightly with her motion.\n\noverall_soundscape: wet suction, soft pops, her breath, a low male grunt, quiet room tone. No music.\n\nnon_diegetic_music: N/A"
+    }
   }
 }
