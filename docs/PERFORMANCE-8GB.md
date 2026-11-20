@@ -231,9 +231,68 @@ exists; 512x768 H3-Image with the 4B encoder only if a dequantized transformer r
 per-step time and peak VRAM before promising anything. If the first step fails on a kernel image
 error, stop: the stack is wrong, not the settings.
 
+## Desktop headroom: generating with a browser open (2026-11-20)
+
+Question: does a normal desktop (browser with a video tab, Discord, a launcher) push an 8 GB / 16 GB
+Windows machine into OOM? Measured on cutestation with `tools/experiments/vram_pressure.py`, which
+holds a fixed block of VRAM and RAM the way a browser does, optionally grabbing it in the middle
+of a job. Prompts are neutral (`jobs/bench_headroom.jsonl`); speed does not depend on the subject.
+Engine: ck + fp16 accumulation on :8189.
+
+| job | pressure | exec | peak VRAM (all apps) | min free RAM | min free commit | result |
+|---|---|---:|---:|---:|---:|---|
+| Krea 6 steps | none | 16.6 s warm | 7450 MB | 0.65 GB | - | ok |
+| Krea 6 steps | 1.5 GB VRAM held before | 13.8-17.9 s | 7649 MB | 1.87 GB | - | ok, no slowdown |
+| Krea 6 steps | 1.5 GB VRAM grabbed mid-job | 20.1 s | 7674 MB | 0.27 GB | - | ok, ~20% slower |
+| H3 i2v 4 steps, 512x768 85 f | none | 78.9 s warm / 67.0 s | 7447 MB | 0.99 GB | 0.74 GB | ok |
+| H3 i2v 4 steps | 1.5 GB VRAM + 3 GB RAM mid-job | 84.0 s | 7770 MB | 0.50 GB | - | ok, ~6% slower |
+| H3 i2v 4 steps | 3 GB VRAM + 4 GB RAM mid-job | 85.9 s | 7784 MB | 0.01 GB | **0.05 GB** | ok, but on the edge |
+
+What this means:
+
+1. **VRAM is not the failure mode.** DynamicVRAM measures what other apps hold (NVML) and streams
+   more of the model instead of failing. Even 3 GB taken mid-video only cost a few seconds.
+   `--reserve-vram` / `--vram-headroom` are not needed on this setup; leave them unset.
+2. **Commit charge is the failure mode.** Windows refuses allocations when RAM + pagefile is fully
+   committed, and whichever process asks next dies: usually a browser tab ("Out of memory"), or
+   ComfyUI with a `MemoryError`. Free commit fell to 0.74 GB with *no* pressure and to 0.05 GB in
+   the worst case. It survived only because the system-managed pagefile grew mid-job (11.4 GB ->
+   29 GB on C:). Growth is lazy and resets to the small size after a reboot, so the first H3 job
+   after boot is the risky one.
+3. **An idle engine keeps its commit.** After one Krea + H3 session the idle bench engine held
+   19.6 GB of commit (4.3 GB resident). A second idle ComfyUI (for example the Love Live Studio
+   engine) held another 5.7 GB. Two engines on a 16 GB box is the easiest way to run out.
+4. **`--cache-ram` does not fix it.** `--cache-ram 2 6` gave the same timings and the engine still
+   reached 16.3 GB of commit after a video. The commit is the model staging itself, not the result
+   cache. Not recommended.
+
+### Recommended Windows setup for headroom
+
+- **A fixed pagefile, so it never has to grow mid-job.** System Properties -> Advanced ->
+  Performance Settings -> Advanced -> Virtual memory -> Change: untick "Automatically manage",
+  pick the fastest NVMe, Custom size **initial 32768 MB, maximum 49152 MB**, then reboot. That
+  gives a commit limit of about 48 GB on 16 GB RAM. It costs disk space only; with DynamicVRAM it
+  is not used as slow "swap" for active weights. This is a user step: the agent must not change
+  system settings.
+- **One ComfyUI engine at a time.** Stop the other studio's engine (`kit\start.ps1 -Stop` in that
+  repo) before an H3 session, or point both apps at the same `comfy_url`.
+- **Close or restart the engine after a video session** if you go back to browsing heavily:
+  `kit\start.ps1 -RestartEngine` releases the 15-20 GB of commit an idle engine holds.
+- **Browser**: hardware acceleration can stay on. VRAM is handled; a 4K video tab costs a few
+  seconds per job, not a crash.
+
+### Launcher bug fixed in the same pass
+
+`kit\start.ps1` passed `extra_flags` to ComfyUI as **one** argument, quoted because it contains
+spaces. With `"--use-ck-attention --fast fp16_accumulation"` set, argparse rejected it and the
+page's own engine launch failed ("ComfyUI did not start"). The flags are now split on whitespace.
+`../lovelive-studio/kit/start.ps1` has the same line and needs the same fix.
+
 ## Re-running this pass
 
 `tools/experiments/bench_engine.ps1` starts/stops the private engine on 8189;
 `tools/experiments/bench.py` queues a JSONL job file and appends
-`{name, wall_s, exec_s, peak_vram_mb, min_free_ram_gb}` to `<out>/_bench.jsonl`. The job files are
+`{name, wall_s, exec_s, peak_vram_mb, min_free_ram_gb, min_free_commit_gb}` to
+`<out>/_bench.jsonl`. Pass `--seed N` when repeating a job, or ComfyUI returns the cached result in
+0 s. `tools/experiments/vram_pressure.py --vram 1.5 --ram 3 --delay 20` simulates a browser. The job files are
 in `jobs/bench_*.jsonl`; the renders and sheets are under `gens/bench/` (git-ignored).

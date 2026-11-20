@@ -104,6 +104,7 @@ class Sampler(threading.Thread):
         self.peak_vram = 0
         self.peak_gpu = 0
         self.min_free_ram = None
+        self.min_free_commit = None
 
     def run(self):
         while not self.stop.is_set():
@@ -130,6 +131,9 @@ class Sampler(threading.Thread):
                 ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(st))
                 free_gb = st.ullAvailPhys / (1 << 30)
                 self.min_free_ram = free_gb if self.min_free_ram is None else min(self.min_free_ram, free_gb)
+                # commit headroom (RAM + pagefile): when this hits 0 Windows kills allocations
+                commit_gb = st.ullAvailPageFile / (1 << 30)
+                self.min_free_commit = commit_gb if self.min_free_commit is None else min(self.min_free_commit, commit_gb)
             except Exception:
                 pass
             self.stop.wait(self.interval)
@@ -215,6 +219,7 @@ def main():
                "wall_s": wall, "exec_s": exec_seconds(hist) if hist else None,
                "peak_vram_mb": sampler.peak_vram, "peak_gpu_pct": sampler.peak_gpu,
                "min_free_ram_gb": round(sampler.min_free_ram, 2) if sampler.min_free_ram is not None else None,
+               "min_free_commit_gb": round(sampler.min_free_commit, 2) if sampler.min_free_commit is not None else None,
                "params": {k: params[k] for k in ("unet", "width", "height", "steps", "length", "cfg", "sampler", "denoise")
                           if k in params and isinstance(params[k], (int, float, str))}}
         if hist and st.get("status_str") != "error":

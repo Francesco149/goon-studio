@@ -22,9 +22,11 @@ this page is the short version.
 1. **Quantized weights**: nvfp4 / w4a8 / int8 variants are what make the 8 GB card usable at all.
 2. **The right text encoder**: H3-Image runs with the P-H3 4B int8 encoder instead of the 32B
    nvfp4 one. It is 5 GB instead of 14.6 GB and roughly 35% faster cold, at a small quality cost.
-3. **ComfyUI's dynamic VRAM** streams weights from system RAM. Keep 16 GB free of other apps;
-   close the browser and the SFW studio while a big model runs. Free RAM, not VRAM, is the limit
-   for H3.
+3. **ComfyUI's dynamic VRAM** streams weights from system RAM and backs off when other apps take
+   VRAM, so a browser with a video tab costs a few seconds, not a crash. The real limit on
+   Windows is the **commit charge** (RAM + pagefile): set a fixed pagefile of 32-48 GB on the
+   NVMe and run only one ComfyUI engine at a time. Measured in `PERFORMANCE-8GB.md`, "Desktop
+   headroom".
 4. **Launch flags** (`my/settings.json` `extra_flags`): `--use-ck-attention --fast fp16_accumulation`
    is the measured best pair. Do not use `--lowvram` (a no-op with dynamic VRAM), `--highvram`
    (worse and nearly fills RAM), or `--fast` with no arguments (slower than fp16 accumulation

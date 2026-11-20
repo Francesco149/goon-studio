@@ -62,7 +62,9 @@ if (-not (Up "$($S.comfy_url)/system_stats")) {
     $cargs = @("-s", "ComfyUI\main.py", "--windows-standalone-build", "--listen", "127.0.0.1", "--port", "8188",
                "--output-directory", (Join-Path $Data "outputs"), "--input-directory", (Join-Path $Data "inputs"),
                "--disable-auto-launch", "--preview-method", "none")
-    if ($S.extra_flags) { $cargs += @($S.extra_flags) }
+    # extra_flags is one string in settings.json; split it so ComfyUI gets separate arguments
+    # (passed whole, Q() quotes it and argparse rejects "--use-ck-attention --fast ...").
+    if ($S.extra_flags) { $cargs += @("$($S.extra_flags)".Trim() -split '\s+') }
     Write-Host "starting ComfyUI ..."
     Launch $Py $cargs $Engine (Join-Path $Logs "comfyui.log") (Join-Path $Logs "comfyui.err.log")
     $t0 = Get-Date
