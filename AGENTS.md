@@ -25,6 +25,11 @@ AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go
 
 1. **Confirm the folder**: the session's workspace is the Studio repo. Read the README and this
    file first.
+1b. **Account**: DSH Desktop is signed in with the user's DeepSeek account and runs on their
+   credits - there is **no API key** to handle. If a model call fails with an auth or balance
+   error, send them to Settings → Account and platform.deepseek.com billing; never ask for a key.
+   The first-run introduction should have been **"Full details"** with developer tools on; if the
+   user sees a simplified chat, tell them to switch the transcript/usage detail to detailed.
 2. **Check the PC**: GPU name and VRAM (`nvidia-smi` or `rocm-smi`), system RAM, free disk. The
    baseline is **8 GB VRAM + 16 GB RAM**; say plainly whether the machine is at, below or above
    it. Below 8 GB or below 16 GB RAM is not a no - it means smaller frames and more streaming

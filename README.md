@@ -12,11 +12,17 @@ pictures.
 
 ## Getting started (about 10 minutes of your time, then DeepSeek works for a while)
 
-1. Install the **DeepSeek Harness** desktop app from the official DeepSeek Harness page (the
-   project is [github.com/deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness))
-   and sign in.
-2. Open the app and start a **new session** with your **Documents** folder as the workspace.
-3. Paste this message and press Enter:
+1. Install the **DeepSeek Harness desktop app** for Windows from
+   [deepseek.com/en/harness](https://deepseek.com/en/harness/).
+2. **Make a DeepSeek account** at [platform.deepseek.com](https://platform.deepseek.com/) - the
+   **Google login** is the easiest - and **add credits** there (Billing / Top up). The desktop app
+   runs on those credits, so you do not need to create or paste an API key anywhere.
+3. Open DeepSeek Harness and **sign in with the same account**. In the first-run introduction,
+   choose **"Full details"** (show everything) rather than "Results only", and turn **developer
+   tools on**; the Studio's agent needs to run commands and read files, and the simplified view
+   hides that.
+4. Start a **new session** with your **Documents** folder as the workspace.
+5. Paste this message and press Enter:
 
    > Please download the NSFW Studio from **&lt;the address you were given&gt;** into this folder
    > and set it up for me by following its **AGENTS.md**. I'm not technical, so please do
@@ -24,7 +30,7 @@ pictures.
 
    If you got the Studio as a zip file instead: unzip it, start the session **inside** the
    unzipped folder and say: *"Please set this up for me by following AGENTS.md."*
-4. DeepSeek checks your PC, **asks you which drive to use** (it needs about 30 GB, more if you
+6. DeepSeek checks your PC, **asks you which drive to use** (it needs about 30 GB, more if you
    want the H3 video models), downloads ComfyUI and the models, and makes a test picture.
 
 When it's done you'll have an **NSFW Studio** icon on your desktop.
