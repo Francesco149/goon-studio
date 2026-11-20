@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NSFW Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --bg:#141317; --panel:#1e1c22; --line:#2f2b36; --text:#e8e4ee; --dim:#9a93a6; --pink:#e05a9a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.45 "Segoe UI", system-ui, sans-serif; }
+  header { display:flex; align-items:center; gap:12px; padding:14px 20px; border-bottom:1px solid var(--line); }
+  header h1 { font-size:17px; margin:0; letter-spacing:.3px; }
+  #up { font-size:12px; color:var(--dim); }
+  main { display:grid; grid-template-columns: 380px 1fr; gap:18px; padding:18px 20px; }
+  label { display:block; font-size:12px; color:var(--dim); margin:10px 0 4px; }
+  select, input, textarea, button { width:100%; background:#17151b; color:var(--text); border:1px solid var(--line); border-radius:6px; padding:7px 9px; font:inherit; }
+  textarea { resize:vertical; }
+  .row { display:flex; gap:10px; }
+  .row > div { flex:1; }
+  button { cursor:pointer; background:var(--pink); border-color:var(--pink); color:#fff; font-weight:600; }
+  button.ghost { background:transparent; border-color:var(--line); color:var(--text); font-weight:400; }
+  #jobs { font-size:12px; color:var(--dim); white-space:pre-wrap; margin-top:10px; max-height:120px; overflow:auto; }
+  #gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:12px; align-content:start; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .card img { width:100%; display:block; aspect-ratio:3/4; object-fit:cover; cursor:zoom-in; }
+  .card .meta { padding:6px 8px; font-size:11px; color:var(--dim); display:flex; justify-content:space-between; gap:6px; }
+  .card .rate { display:flex; gap:2px; padding:0 6px 8px; }
+  .card .rate button { padding:2px 0; font-size:12px; background:transparent; border:1px solid transparent; color:var(--dim); }
+  .card .rate button:hover { color:#fff; }
+  .private { color:var(--pink); }
+  #viewer { position:fixed; inset:0; background:#000c; display:none; align-items:center; justify-content:center; }
+  #viewer img { max-width:92vw; max-height:92vh; }
+</style>
+</head>
+<body>
+<header>
+  <h1>NSFW Studio</h1>
+  <span id="up">checking engine...</span>
+  <span style="flex:1"></span>
+  <button class="ghost" style="width:auto" onclick="loadAll()">refresh</button>
+</header>
+<main>
+  <section>
+    <label>Template</label>
+    <select id="template" onchange="applyTemplate()"></select>
+    <label>Character</label>
+    <textarea id="character" rows="3"></textarea>
+    <label>Scene</label>
+    <textarea id="scene" rows="3"></textarea>
+    <label>Prompt (editable; {character} and {scene} are filled in)</label>
+    <textarea id="prompt" rows="7"></textarea>
+    <label>Negative</label>
+    <textarea id="negative" rows="2"></textarea>
+    <div class="row">
+      <div><label>Width</label><input id="width" type="number"></div>
+      <div><label>Height</label><input id="height" type="number"></div>
+    </div>
+    <div class="row">
+      <div><label>Steps</label><input id="steps" type="number"></div>
+      <div><label>CFG</label><input id="cfg" type="number" step="0.1"></div>
+    </div>
+    <div class="row">
+      <div><label>Seed (-1 random)</label><input id="seed" type="number" value="-1"></div>
+      <div><label>Count</label><input id="count" type="number" value="1" min="1" max="12"></div>
+    </div>
+    <label>Picture (for hires / video templates)</label>
+    <input id="pic" type="file" accept="image/*">
+    <div style="margin-top:14px"><button onclick="generate()">Make pictures</button></div>
+    <div id="jobs"></div>
+  </section>
+  <section>
+    <div id="gallery"></div>
+  </section>
+</main>
+<div id="viewer" onclick="this.style.display='none'"><img id="viewimg"></div>
+<script>
+let STATE = null, TPL = {};
+const $ = id => document.getElementById(id);
+
+async function loadAll(){
+  const s = await (await fetch('/api/state')).json();
+  STATE = s; TPL = s.templates || {};
+  $('up').textContent = s.comfy_up ? 'engine up' : 'engine not running';
+  const t = $('template');
+  if (!t.options.length){
+    for (const [k,v] of Object.entries(TPL)) t.add(new Option(v.label || k, k));
+    applyTemplate();
+  }
+  loadJobs(); loadGallery();
+}
+
+function applyTemplate(){
+  const t = TPL[$('template').value] || {};
+  $('character').value = t.character || '';
+  $('scene').value = t.scene || '';
+  $('prompt').value = t.prompt || '';
+  $('negative').value = t.negative || '';
+  for (const k of ['width','height','steps','cfg']) if (t[k] != null) $(k).value = t[k];
+}
+
+async function generate(){
+  let pic = null;
+  const f = $('pic').files[0];
+  if (f){
+    const data = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(f); });
+    const up = await (await fetch('/api/upload', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({data})})).json();
+    pic = up.path;
+  }
+  const body = { template: $('template').value, character: $('character').value, scene: $('scene').value,
+    prompt: $('prompt').value, negative: $('negative').value,
+    width: +$('width').value, height: +$('height').value, steps: +$('steps').value, cfg: +$('cfg').value,
+    seed: +$('seed').value, count: +$('count').value };
+  if (pic) body.image = pic;
+  const r = await (await fetch('/api/generate', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})).json();
+  if (r.error) alert(r.error);
+  loadJobs();
+}
+
+async function loadJobs(){
+  const js = await (await fetch('/api/jobs')).json();
+  $('jobs').textContent = js.slice(-6).map(j => j.status + '  ' + (j.job.template||'') + (j.error ? '  ' + j.error : '')).join('\n');
+  if (js.some(j => j.status === 'queued' || j.status === 'running')) setTimeout(loadJobs, 2500);
+  else loadGallery();
+}
+
+async function loadGallery(){
+  const recs = await (await fetch('/api/history')).json();
+  const g = $('gallery'); g.innerHTML = '';
+  for (const r of recs.slice(0, 120)){
+    if (r.trashed) continue;
+    const c = document.createElement('div'); c.className = 'card';
+    const img = document.createElement('img');
+    img.src = '/img/' + encodeURIComponent(r.file); img.loading = 'lazy';
+    img.onclick = () => { $('viewimg').src = img.src; $('viewer').style.display = 'flex'; };
+    const m = document.createElement('div'); m.className = 'meta';
+    m.innerHTML = '<span>' + (r.template || '') + (r.public ? '' : ' <span class="private">private</span>') + '</span><span>#' + (r.seed ?? '') + '</span>';
+    const rt = document.createElement('div'); rt.className = 'rate';
+    for (const [v, e] of [['love','❤'],['good','👍'],['meh','😐'],['bad','👎']]){
+      const b = document.createElement('button'); b.textContent = e;
+      b.onclick = () => fetch('/api/rate', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({file:r.file, rating:v})});
+      rt.appendChild(b);
+    }
+    const pv = document.createElement('button'); pv.textContent = r.public ? 'lock' : 'share';
+    pv.onclick = async () => { await fetch('/api/visibility', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({files:[r.file], public: !r.public})}); loadGallery(); };
+    rt.appendChild(pv);
+    c.append(img, m, rt); g.appendChild(c);
+  }
+}
+
+loadAll();
+setInterval(loadGallery, 15000);
+</script>
+</body>
+</html>

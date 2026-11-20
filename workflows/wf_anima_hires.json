@@ -1,0 +1,137 @@
+{
+ "1": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "{{unet}}",
+   "weight_dtype": "default"
+  }
+ },
+ "2": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_3_06b_base.safetensors",
+   "type": "stable_diffusion",
+   "device": "default"
+  }
+ },
+ "3": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "4": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    0
+   ],
+   "text": "{{prompt}}"
+  }
+ },
+ "5": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    0
+   ],
+   "text": "{{negative}}"
+  }
+ },
+ "6": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{image}}"
+  }
+ },
+ "7": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "6",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "disabled"
+  }
+ },
+ "8": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "7",
+    0
+   ],
+   "vae": [
+    "3",
+    0
+   ]
+  }
+ },
+ "9": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "positive": [
+    "4",
+    0
+   ],
+   "negative": [
+    "5",
+    0
+   ],
+   "latent_image": [
+    "8",
+    0
+   ],
+   "seed": "{{seed}}",
+   "steps": "{{steps}}",
+   "cfg": "{{cfg}}",
+   "sampler_name": "er_sde",
+   "scheduler": "simple",
+   "denoise": "{{denoise}}"
+  }
+ },
+ "10": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "9",
+    0
+   ],
+   "vae": [
+    "3",
+    0
+   ]
+  }
+ },
+ "11": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "10",
+    0
+   ],
+   "filename_prefix": "{{prefix}}"
+  }
+ },
+ "_params": {
+  "unet": "anima-base-v1.0.safetensors",
+  "width": 1748,
+  "height": 1164,
+  "seed": 21,
+  "steps": 20,
+  "cfg": 4.0,
+  "denoise": 0.35,
+  "prefix": "gl/x",
+  "negative": "extra hands, extra fingers, bad anatomy, censored, worst quality, low quality, blurry"
+ },
+ "_note": "Anima hires/detail pass: upscale the finished still and re-sample at low denoise. Set width/height to 1.4x the source."
+}

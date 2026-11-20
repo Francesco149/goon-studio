@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+my/settings.json
+my/history.jsonl
+my/feedback.jsonl
+my/library.json
+my/presets.json
+my/private/
+my/rounds/
+my/studio-errors.log
+gallery/
+*.local.md
+*.tmp
+*.log
+refs/
