@@ -12,10 +12,15 @@
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Segoe UI",system-ui,sans-serif}
 header{display:flex;align-items:center;gap:16px;padding:10px 18px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;flex-wrap:wrap}
 header h1{font-size:18px;margin:0;color:var(--accent)}
+@media (max-width:600px){header{position:static;gap:6px;padding:8px 12px}main{padding:12px}.selbar{top:0}}
+nav{display:flex;flex-wrap:wrap}
 nav button{background:none;border:0;padding:8px 12px;font:inherit;color:var(--mute);cursor:pointer;border-radius:8px}
 nav button.on{background:var(--bg);color:var(--ink);font-weight:600}
 #engine{margin-left:auto;font-size:13px;color:var(--mute)}
 #engine.down{color:var(--bad);font-weight:600}
+#engine.upd{color:var(--accent);font-weight:600;cursor:pointer}
+#busy{margin-left:auto;border-color:var(--accent);color:var(--accent);font-weight:600}
+#busy:not([hidden])+#engine{margin-left:12px}
 main{padding:16px;max-width:1400px;margin:0 auto}
 .panel{display:none}.panel.on{display:block}
 .grid2{display:grid;grid-template-columns:minmax(340px,480px) 1fr;gap:18px}
@@ -31,6 +36,8 @@ button.go{width:100%;margin-top:14px;padding:12px;border:0;border-radius:10px;ba
 button.go:disabled{opacity:.5}
 button.s{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:5px 10px;font:inherit;cursor:pointer}
 button.s:hover{border-color:var(--accent)}
+button.s:disabled{opacity:.45;cursor:default}
+button.danger{border-color:var(--bad);color:var(--bad)}
 details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 .mono{font:12px/1.4 Consolas,monospace;white-space:pre-wrap;background:var(--bg);padding:8px;border-radius:8px;border:1px solid var(--line)}
 .hint{color:var(--mute);font-size:13px}
@@ -43,29 +50,33 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 .thumb .chk{position:absolute;right:6px;bottom:6px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.9);border:2px solid var(--accent);color:var(--accent);font-weight:700;display:none;align-items:center;justify-content:center}
 .selecting .thumb .chk{display:flex}
 .thumb.sel{outline:4px solid var(--accent);outline-offset:-4px}
+.thumb.sel .chk{background:var(--accent);color:#fff}
 .job{display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px}
 .job:last-child{border:0}
+.job .stop{margin-left:auto;flex:0 0 auto;padding:2px 9px;font-size:13px}
 .dot{width:10px;height:10px;border-radius:50%;background:var(--mute);flex:none}
-.dot.running{background:var(--accent);animation:p 1s infinite alternate}.dot.done{background:var(--ok)}.dot.error{background:var(--bad)}.dot.cancelled{background:var(--bad)}
+.dot.running{background:var(--accent);animation:p 1s infinite alternate}.dot.done{background:var(--ok)}.dot.error{background:var(--bad)}.dot.cancelled{background:var(--mute)}
 @keyframes p{to{opacity:.3}}
-.slot{border:2px dashed var(--line);border-radius:10px;padding:8px;min-height:86px}
+.slot{border:2px dashed var(--line);border-radius:10px;padding:8px}
 .slot.over{border-color:var(--accent);background:var(--bg)}
-.slot .thumbs{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
-.slot .thumb{aspect-ratio:1}
-.slot .thumb img{aspect-ratio:2/3}
-.slot .empty{color:var(--mute);text-align:center;padding:18px 0;font-size:13px}
+.slot .pic{position:relative;width:96px;border-radius:8px;overflow:hidden;margin-bottom:6px}
+.slot .pic img,.slot .pic video{width:100%;display:block;aspect-ratio:2/3;object-fit:cover;background:#000}
+.slot .pic .x{position:absolute;right:4px;top:4px;width:22px;height:22px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;cursor:pointer;font-size:13px;line-height:22px;padding:0}
 #lb{position:fixed;inset:0;background:rgba(10,5,15,.88);display:none;z-index:20;padding:16px}
 #lb.on{display:flex;gap:16px}
 #lb img,#lb video{max-height:calc(100vh - 32px);max-width:calc(100vw - 420px);object-fit:contain;margin:auto}
 #lb .side{width:360px;background:var(--card);border-radius:12px;padding:14px;overflow:auto;max-height:calc(100vh - 32px)}
-@media (max-width:900px){#lb.on{flex-direction:column}#lb img,#lb video{max-width:100%;max-height:60vh}#lb .side{width:auto}}
+@media (max-width:900px){#lb.on{flex-direction:column;overflow:auto}#lb img,#lb video{max-width:100%;max-height:60vh}#lb .side{width:auto;max-height:none}}
 .rates button{font-size:20px;padding:6px 12px}
+.rates button.on{border-color:var(--accent);background:var(--bg)}
 #pk{position:fixed;inset:0;background:rgba(10,5,15,.7);display:none;z-index:25;padding:24px}
 #pk.on{display:block}
-.pkbox{max-width:1100px;margin:0 auto;max-height:calc(100vh - 48px);overflow:auto;background:var(--card);border-radius:12px;padding:14px}
+.pkbox{max-width:1100px;margin:0 auto;max-height:calc(100vh - 48px);overflow:auto}
 .empty{color:var(--mute);padding:30px;text-align:center}
 .pill{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:1px 9px;font-size:12px;color:var(--mute);margin-right:4px}
-.selbar{position:sticky;top:58px;z-index:4;margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--bg);padding:6px 0}
+.selbar{position:sticky;top:58px;z-index:4;margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.round{margin-bottom:22px}
+.round h3{margin:0 0 4px}
 </style>
 </head>
 <body>
@@ -76,10 +87,10 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <button data-p="video">Video</button>
     <button data-p="gallery">My pictures</button>
     <button data-p="rounds">Rounds</button>
-    <button data-p="trash">Trash</button>
+    <button data-p="trash" id="trashtab">Trash</button>
     <button onclick="window.open('/docs/ANIME.md','_blank')">Guide</button>
   </nav>
-  <button id="busy" class="s" hidden onclick="stopAll()">&#9632; Stop all</button>
+  <button id="busy" class="s" hidden onclick="stopJob()" title="Stop everything that is being made (Shift+Esc)"></button>
   <span id="engine">checking engine&hellip;</span>
 </header>
 <main>
@@ -87,8 +98,9 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 <section id="create" class="panel on">
  <div class="grid2">
   <div class="card">
-    <label class="h">Template <small>(the recipe)</small></label>
+    <label class="h">Template <small>(the recipe; then change anything you like)</small></label>
     <select id="template"></select>
+    <div class="hint" id="tplAbout"></div>
     <div class="row" style="margin-top:6px">
       <div><label class="h">Body type</label><select id="body"></select></div>
       <div><label class="h">Framing</label><select id="framing"></select></div>
@@ -97,33 +109,32 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <textarea id="character"></textarea>
     <label class="h">Scene <small>where, what she does</small></label>
     <textarea id="scene"></textarea>
-    <details><summary>Prompt (the full text; {character} and {scene} are filled)</summary><textarea id="prompt" rows="8"></textarea></details>
-    <details><summary>Things to avoid (negative)</summary><textarea id="negative"></textarea></details>
     <div class="row" style="margin-top:6px">
-      <div><label class="h">Width</label><input type="number" id="width"></div>
-      <div><label class="h">Height</label><input type="number" id="height"></div>
-      <div><label class="h">Steps</label><input type="number" id="steps"></div>
-      <div><label class="h">CFG</label><input type="number" step="0.1" id="cfg"></div>
-    </div>
-    <div class="row">
+      <div><label class="h">Quality</label><select id="quality">
+        <option value="preview">Preview (quick look)</option><option value="standard">Standard</option><option value="final">Final (finest detail)</option></select></div>
       <div><label class="h">How many</label><input type="number" id="count" value="1" min="1" max="8"></div>
       <div><label class="h">Seed <small>blank = new</small></label><input type="text" id="seed" placeholder="random"></div>
     </div>
-    <label class="h">Reference picture <small>for hires; optional elsewhere</small></label>
-    <div class="slot" id="slot-ref" data-k="ref">
-      <div id="refimgs"></div>
-      <div class="empty">drop a picture here, paste it, or pick one below</div>
-      <div class="row" style="margin-top:6px;flex-wrap:nowrap">
-        <button class="s" onclick="picker('ref')">Pick from my pictures</button>
-        <button class="s" onclick="uploadSlot('ref')">Upload file</button>
+    <details><summary>Size and steps</summary>
+      <div class="row" style="margin-top:6px">
+        <div><label class="h">Width</label><input type="number" id="width"></div>
+        <div><label class="h">Height</label><input type="number" id="height"></div>
+        <div><label class="h">Steps</label><input type="number" id="steps"></div>
+        <div><label class="h">CFG</label><input type="number" step="0.1" id="cfg"></div>
       </div>
-    </div>
+      <div class="hint">Blank = the workflow's own default. Quality sets the steps for you.</div>
+    </details>
+    <details><summary>Prompt template <small>({character} and {scene} are filled in)</small></summary><textarea id="prompt" rows="8"></textarea></details>
+    <details><summary>Things to avoid (negative)</summary><textarea id="negative"></textarea></details>
+    <details id="pvBox"><summary>What the model reads (full prompt)</summary><div class="mono" id="preview"></div></details>
+    <label class="h">Reference picture <small>needed for hires; optional elsewhere</small></label>
+    <div class="slot" id="slot-ref" data-k="ref"></div>
     <button class="go" id="gogen">Make pictures</button>
     <div class="hint" id="eta" style="margin-top:6px"></div>
   </div>
   <div>
-    <div class="card jobsCard" style="display:none"><div class="row" style="justify-content:space-between"><b style="flex:0 0 auto">Working on</b><button class="s" style="flex:0 0 auto" onclick="stopAll()">&#9632; Stop</button></div><div class="jobs"></div></div>
-    <div class="card"><b>Just made</b> <span class="hint">click one to rate it, share it, or use it as a reference</span><div class="thumbs" id="recent" style="margin-top:10px"></div></div>
+    <div class="card jobsCard" style="display:none"><div class="row" style="justify-content:space-between"><b style="flex:0 0 auto">Working on</b><button class="s" style="flex:0 0 auto" onclick="stopJob()">&#9632; Stop all</button></div><div class="jobs"></div></div>
+    <div class="card"><b>Just made</b> <span class="hint">click one to rate it, reuse its settings, make it in Final, or use it as a reference</span><div class="thumbs" id="recent" style="margin-top:10px"></div></div>
   </div>
  </div>
 </section>
@@ -132,210 +143,234 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
  <div class="grid2">
   <div class="card">
     <label class="h">Video recipe <small>(fills the prompt and the LoRA)</small></label>
-    <select id="vtpl" onchange="fillVideo()"></select>
+    <select id="vtpl"></select>
     <label class="h">Mode</label>
-    <select id="vmode" onchange="videoMode()">
+    <select id="vmode">
       <option value="i2v">image to video</option>
       <option value="i2v_lora">image to video + act LoRA</option>
       <option value="fl">first + last frame</option>
       <option value="ref2va">two references (ref2va)</option>
       <option value="t2v">text to video</option>
     </select>
-    <label class="h">Keyframe / first frame <small>the clip starts here</small></label>
-    <div class="slot" id="slot-v1" data-k="v1">
-      <div id="v1imgs"></div><div class="empty">drop, paste, or pick a picture</div>
-      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="s" onclick="picker('v1')">Pick from my pictures</button><button class="s" onclick="uploadSlot('v1')">Upload</button></div>
+    <div id="v1box"><label class="h">Keyframe / first frame <small>the clip starts here</small></label>
+      <div class="slot" id="slot-v1" data-k="v1"></div></div>
+    <div id="v2box" hidden><label class="h">Last frame <small>an edit of the first frame, not a new picture</small></label>
+      <div class="slot" id="slot-v2" data-k="v2"></div></div>
+    <div id="v3box" hidden><label class="h">Second reference</label>
+      <div class="slot" id="slot-v3" data-k="v3"></div></div>
+    <div id="lorarow" class="row" hidden>
+      <div><label class="h">Act LoRA</label><select id="vlora"></select></div>
+      <div style="flex:0 0 120px"><label class="h">Strength</label><input type="number" id="vstrength" step="0.05" value="0.8"></div>
     </div>
-    <label class="h" id="v2lab" hidden>Last frame</label>
-    <div class="slot" id="slot-v2" data-k="v2" hidden>
-      <div id="v2imgs"></div><div class="empty">drop, paste, or pick the end frame</div>
-      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="s" onclick="picker('v2')">Pick from my pictures</button><button class="s" onclick="uploadSlot('v2')">Upload</button></div>
+    <div class="row">
+      <div><label class="h">Size and length</label><select id="vsize">
+        <option value="512x768x85">Draft: 512x768, 85 frames (3.5 s)</option>
+        <option value="512x768x124">Draft long: 512x768, 124 frames (5 s)</option>
+        <option value="768x1152x124">Final: 768x1152, 124 frames (5 s)</option>
+        <option value="custom">Custom</option></select></div>
+      <div style="flex:0 0 90px"><label class="h">How many</label><input type="number" id="vcount" value="1" min="1" max="4"></div>
+      <div style="flex:0 0 130px"><label class="h">Seed</label><input type="text" id="vseed" placeholder="random"></div>
     </div>
-    <label class="h" id="v3lab" hidden>Second reference</label>
-    <div class="slot" id="slot-v3" data-k="v3" hidden>
-      <div id="v3imgs"></div><div class="empty">drop, paste, or pick a reference</div>
-      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="s" onclick="picker('v3')">Pick from my pictures</button><button class="s" onclick="uploadSlot('v3')">Upload</button></div>
+    <div class="row" id="vcustom" hidden>
+      <div><label class="h">Width</label><input type="number" id="vwidth" value="768"></div>
+      <div><label class="h">Height</label><input type="number" id="vheight" value="1152"></div>
+      <div><label class="h">Frames</label><input type="number" id="vlength" value="124"></div>
     </div>
-    <div id="lorarow" hidden><label class="h">Act LoRA</label><select id="vlora"></select></div>
-    <div class="row"><div><label class="h">LoRA strength</label><input type="number" id="vstrength" step="0.05" value="0.8"></div>
-      <div><label class="h">Length (frames)</label><input type="number" id="vlength" value="124"></div>
-      <div><label class="h">Seed <small>blank = new</small></label><input type="text" id="vseed" placeholder="random"></div></div>
-    <div class="row"><div><label class="h">Width</label><input type="number" id="vwidth" value="768"></div><div><label class="h">Height</label><input type="number" id="vheight" value="1152"></div><div><label class="h">How many</label><input type="number" id="vcount" value="1" min="1" max="4"></div></div>
     <label class="h">Prompt <small>the MiniMax script; keep the section names</small></label>
     <textarea id="vprompt" rows="10"></textarea>
     <details><summary>Soundscape / negative (appended if set)</summary><textarea id="vnegative"></textarea></details>
     <button class="go" id="govideo">Make video</button>
-    <div class="hint" style="margin-top:6px">Video is slow: 124 frames at 768x1152 is about 2.5 minutes on the 3080.</div>
+    <div class="hint" id="veta" style="margin-top:6px"></div>
   </div>
   <div>
-    <div class="card jobsCard" style="display:none"><div class="row" style="justify-content:space-between"><b style="flex:0 0 auto">Working on</b><button class="s" style="flex:0 0 auto" onclick="stopAll()">&#9632; Stop</button></div><div class="jobs"></div></div>
-    <div class="card"><b>Recent videos</b> <span class="hint">click to play and rate; "use as keyframe" chains the next clip</span><div class="thumbs" id="recentv" style="margin-top:10px"></div></div>
+    <div class="card jobsCard" style="display:none"><div class="row" style="justify-content:space-between"><b style="flex:0 0 auto">Working on</b><button class="s" style="flex:0 0 auto" onclick="stopJob()">&#9632; Stop all</button></div><div class="jobs"></div></div>
+    <div class="card"><b>Recent videos</b> <span class="hint">click to play and rate; <b>Use as keyframe</b> chains the next clip from the last frame</span><div class="thumbs" id="recentv" style="margin-top:10px"></div></div>
   </div>
  </div>
 </section>
 
 <section id="gallery" class="panel">
-  <div class="row" style="justify-content:space-between;margin-bottom:10px">
-    <div class="row" style="flex:0 0 auto">
-      <select id="gfilter" style="width:auto"><option value="all">all</option><option value="private">private</option><option value="shared">shared</option></select>
-      <button class="s" id="selbtn" onclick="toggleSelect()">Select</button>
-    </div>
-    <span class="hint">private = only you; shared = the agent can see it</span>
+  <div class="row" style="margin-bottom:8px;max-width:900px">
+    <select id="gfilter"><option value="all">All pictures and clips</option><option value="fav">Only the ones I loved or liked</option>
+      <option value="private">Private (only me)</option><option value="shared">Shared with the agent</option><option value="agent">Made by the agent</option>
+      <option value="video">Only clips</option></select>
+    <input type="text" id="gsearch" placeholder="search the prompts and templates">
+    <button class="s" id="gselect" style="flex:0 0 auto">Select</button>
   </div>
-  <div class="selbar" id="selbar" hidden>
-    <span id="selcount">0 selected</span>
-    <button class="s" onclick="actSelected('share')">Share</button>
-    <button class="s" onclick="actSelected('lock')">Make private</button>
-    <button class="s" onclick="actSelected('trash')">Move to trash</button>
-    <button class="s" onclick="toggleSelect()">Cancel</button>
+  <p class="hint" style="margin-top:0">&#128274; What you make here is <b>private</b>: the agent can't see it or its prompt.
+    To ask the agent about some, press <b>Select</b>, click them, then <b>Share with the agent</b>.</p>
+  <div class="card selbar" id="gallerybar" hidden>
+    <span id="gallerycount" class="hint"></span>
+    <button class="s" id="gallAll">Select all shown</button>
+    <button class="s" data-need id="gpub">&#128065; Share with the agent</button>
+    <button class="s" data-need id="gpriv">&#128274; Make private</button>
+    <button class="s danger" data-need id="gtrash">&#128465; Move to trash</button>
+    <button class="s" id="gnone">Clear</button>
   </div>
-  <div class="thumbs" id="galleryGrid"></div>
+  <div class="thumbs" id="gal"></div>
 </section>
 
 <section id="rounds" class="panel"><div id="roundList"></div></section>
 
 <section id="trash" class="panel">
-  <p class="hint">Trashed pictures are hidden from the gallery. Delete forever removes the file.</p>
-  <div class="thumbs" id="trashGrid"></div>
+  <p class="hint" style="margin-top:0">Pictures in the trash are hidden everywhere else in the Studio, but still on this PC.
+    <b>Restore</b> brings them back; <b>Delete forever</b> removes the files for good.</p>
+  <div class="card selbar" id="trashbar">
+    <span id="trashcount" class="hint"></span>
+    <button class="s" id="tall">Select all</button>
+    <button class="s" data-need id="trestore">&#8634; Restore</button>
+    <button class="s danger" data-need id="tdelete">Delete forever</button>
+    <button class="s danger" id="tempty" style="margin-left:auto">Empty the trash</button>
+  </div>
+  <div class="thumbs selecting" id="trashList"></div>
 </section>
 </main>
 
-<div id="lb" onclick="if(event.target.id==='lb')closeLb()">
-  <img id="lbImg" hidden><video id="lbVid" controls hidden></video>
+<div id="lb">
+  <img id="lbImg" alt="" hidden><video id="lbVid" controls loop playsinline hidden></video>
   <div class="side">
-    <h3 id="lbTitle" style="margin:0 0 6px"></h3>
-    <div class="hint" id="lbMeta"></div>
+    <div class="row" style="justify-content:space-between"><b id="lbTitle"></b><button class="s" style="flex:0" onclick="closeLb()">Close &#10005;</button></div>
     <div class="rates row" style="margin:10px 0;flex-wrap:nowrap">
-      <button class="s" data-r="love">&#10084;&#65039;</button><button class="s" data-r="good">&#128077;</button><button class="s" data-r="meh">&#128533;</button><button class="s" data-r="bad">&#128078;</button>
+      <button class="s" data-r="love" title="Love it">&#10084;&#65039;</button><button class="s" data-r="good" title="Good">&#128077;</button>
+      <button class="s" data-r="meh" title="So-so">&#128528;</button><button class="s" data-r="bad" title="Not this">&#128078;</button>
     </div>
-    <div class="row" style="margin-bottom:8px"><button class="s" id="lbShare"></button></div>
-    <div class="row" style="margin-bottom:8px"><button class="s" id="lbRef">Use as keyframe</button><button class="s" id="lbTrash">Trash</button></div>
-    <details><summary>Prompt and seed</summary><div class="mono" id="lbPrompt"></div></details>
+    <div id="lbVis" class="hint" style="margin:6px 0"></div>
+    <textarea id="lbNote"></textarea>
+    <button class="s" id="lbSave" style="margin-top:6px">Save note</button>
+    <div class="row" style="margin-top:12px">
+      <button class="s" id="lbReuse">Use these settings</button>
+      <button class="s" id="lbVar">4 variations</button>
+    </div>
+    <div id="lbFinalRow" style="margin-top:12px" hidden><button class="go" id="lbFinal" style="margin-top:0;font-size:15px;padding:9px">Make it in Final quality</button>
+      <div class="hint" id="lbFinalHint" style="margin-top:4px"></div></div>
+    <div class="row" style="margin-top:6px"><button class="s" id="lbKey">Use as keyframe</button><button class="s" id="lbRef">Use as reference</button></div>
+    <div class="row" style="margin-top:6px"><button class="s" id="lbOpen">Open the file</button></div>
+    <div class="row" style="margin-top:12px"><button class="s" id="lbShare"></button><button class="s danger" id="lbTrash">&#128465; Move to trash</button></div>
+    <details open><summary>Settings</summary><div class="mono" id="lbInfo"></div></details>
   </div>
 </div>
 
-<div id="pk" onclick="if(event.target.id==='pk')closePicker()">
-  <div class="pkbox">
-    <div class="row" style="justify-content:space-between"><b id="pkTitle">Pick a picture</b><button class="s" onclick="closePicker()">Close</button></div>
-    <div class="thumbs" id="pkGrid" style="margin-top:10px"></div>
-  </div>
-</div>
+<div id="pk"><div class="card pkbox">
+  <div class="row" style="justify-content:space-between"><b id="pkTitle">Pick one of your pictures</b><button class="s" style="flex:0" onclick="closePicker()">Close &#10005;</button></div>
+  <div class="thumbs" id="pkList" style="margin-top:10px"></div></div></div>
 
 <script>
-let STATE=null, P={}, HIST=[], SLOTS={ref:null,v1:null,v2:null,v3:null}, LBREC=null, PKK=null, SELMODE=false, SEL=new Set();
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const RATE={love:"\u2764\uFE0F",good:"\uD83D\uDC4D",meh:"\uD83D\uDE10",bad:"\uD83D\uDC4E"};
-const isVid=f=>/\.(mp4|webm)$/i.test(f);
+let STATE=null, HIST=[], LBREC=null, PKK=null, seenDone=new Set(), pageStamp=null;
+const SLOTS={ref:null,v1:null,v2:null,v3:null};
+const SLOTNAME={ref:"the reference",v1:"the keyframe",v2:"the last frame",v3:"the second reference"};
+const RATE={love:"❤️",good:"👍",meh:"😐",bad:"👎"};
+const isVid=f=>/\.(mp4|webm|mov)$/i.test(f||"");
 
-async function api(p,b){const r=await fetch(p,b?{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}:{});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||r.status);return j}
+async function api(p,b){const r=await fetch(p,b?{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}:{});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||("HTTP "+r.status));return j}
 function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+const dataDir=()=>((STATE&&STATE.machine&&STATE.machine.data_dir)||"").replace(/\\/g,"/");
+const pathOf=rel=>dataDir()+"/"+rel;
+const relOf=p=>{const d=dataDir();p=String(p||"").replace(/\\/g,"/");return d&&p.toLowerCase().startsWith(d.toLowerCase()+"/")?p.slice(d.length+1):null};
 
+/* ---------- quality: the measured 8 GB step counts and times (docs/PERFORMANCE-8GB.md) ---------- */
+const FAMILY=wf=>!wf?null:/anima_hires/.test(wf)?"hires":/anima/.test(wf)?"anima":/krea/.test(wf)?"krea":/h3img/.test(wf)?"h3img":/qwen/.test(wf)?"qwen":null;
+const STEPS={anima:{preview:12,standard:20,final:30},krea:{preview:4,standard:6,final:8},h3img:{preview:4,standard:6,final:8},qwen:{preview:12,standard:25,final:25}};
+const SECS={anima:{12:23,20:26,30:36},krea:{4:10,6:16,8:20},h3img:{4:7,6:10,8:14},hires:{20:60},qwen:{12:29,25:37}};
+const tplOf=k=>(STATE.templates||{})[k]||{};
+const curWf=()=>tplOf($("#template").value).workflow||"";
+function qualityFor(wf,steps){const S=STEPS[FAMILY(wf)];if(!S||!steps)return"standard";return steps<=S.preview?"preview":steps>=S.final?"final":"standard"}
+
+/* ---------- tabs ---------- */
 function show(panel){
-  $$("header nav button[data-p]").forEach(b=>b.classList.toggle("on",b.dataset.p===panel));
+  $$("nav button[data-p]").forEach(b=>b.classList.toggle("on",b.dataset.p===panel));
   $$(".panel").forEach(p=>p.classList.toggle("on",p.id===panel));
-  if(panel==="gallery")renderGallery();
-  if(panel==="trash")renderTrash();
-  if(panel==="rounds")loadRounds();
+  if(panel==="gallery")loadGallery();if(panel==="trash")loadTrash();if(panel==="rounds")loadRounds();
+  if(location.hash.slice(1)!==panel)history.replaceState(null,"",panel==="create"?location.pathname:"#"+panel);
 }
-$$("header nav button[data-p]").forEach(b=>b.onclick=()=>show(b.dataset.p));
+$$("nav button[data-p]").forEach(b=>b.onclick=()=>show(b.dataset.p));
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if($("#"+h)&&$("#"+h).classList.contains("panel"))show(h)});
 
-async function loadState(){
-  STATE=await api("/api/state"); P=STATE;
-  $("#engine").textContent=STATE.comfy_up?"engine up":"engine not running";
-  $("#engine").className=STATE.comfy_up?"":"down";
+/* ---------- start ---------- */
+async function init(){
+  STATE=await api("/api/state");
   const t=$("#template");
-  if(!t.options.length){for(const [k,v] of Object.entries(STATE.templates||{}))t.add(new Option(v.label||k,k));
-    t.value=STATE.default_template&&STATE.templates[STATE.default_template]?STATE.default_template:t.options[0].value; fillTemplate();}
-  const b=$("#body"); if(!b.options.length){b.add(new Option("default","none"));for(const k of Object.keys(STATE.bodies||{}))if(k!=="none")b.add(new Option(k,k));}
-  const f=$("#framing"); if(!f.options.length){for(const k of Object.keys(STATE.framings||{}))f.add(new Option(k,k));}
-  const l=$("#vlora"); if(!l.options.length){for(const [k,v] of Object.entries(STATE.loras||{}))l.add(new Option(k,v||""));l.value="h3nsfw/epic_cumshots.safetensors";}
-  const vt=$("#vtpl"); if(!vt.options.length){for(const [k,v] of Object.entries(STATE.video_templates||{}))vt.add(new Option(v.label||k,k));
-    vt.value=STATE.default_video&&STATE.video_templates[STATE.default_video]?STATE.default_video:vt.options[0].value; fillVideo();}
-  await loadHist();
+  for(const [k,v] of Object.entries(STATE.templates||{}))if(!/h3vid/.test(v.workflow||""))t.add(new Option(v.label||k,k));
+  t.value=[...t.options].some(o=>o.value===STATE.default_template)?STATE.default_template:(t.options[0]||{}).value;
+  t.onchange=fillTemplate;
+  const b=$("#body");b.add(new Option("as the template","none"));for(const k of Object.keys(STATE.bodies||{}))if(k!=="none")b.add(new Option(k,k));
+  for(const k of Object.keys(STATE.framings||{}))$("#framing").add(new Option(k,k));
+  for(const [k,v] of Object.entries(STATE.loras||{}))$("#vlora").add(new Option(k,v||k));
+  const vt=$("#vtpl");for(const [k,v] of Object.entries(STATE.video_templates||{}))vt.add(new Option(v.label||k,k));
+  vt.value=STATE.default_video&&(STATE.video_templates||{})[STATE.default_video]?STATE.default_video:(vt.options[0]||{}).value;
+  vt.onchange=fillVideo;$("#vmode").onchange=videoMode;$("#vsize").onchange=vsize;
+  ["#vwidth","#vheight","#vlength"].forEach(s=>$(s).oninput=veta);
+  $("#quality").onchange=()=>{const S=STEPS[FAMILY(curWf())];if(S)$("#steps").value=S[$("#quality").value];eta()};
+  $("#steps").oninput=()=>{$("#quality").value=qualityFor(curWf(),+$("#steps").value);eta()};
+  ["#character","#scene","#prompt","#negative","#body","#framing"].forEach(s=>$(s).addEventListener("input",preview));
+  $("#count").oninput=eta;
+  for(const k of Object.keys(SLOTS))drawSlot(k);
+  fillTemplate();fillVideo();
+  engine();setInterval(engine,8000);setInterval(pollJobs,1500);
+  await getHist();showRecent();
+  const h=location.hash.slice(1);if(h&&$("#"+h)&&$("#"+h).classList.contains("panel"))show(h);
 }
 
 function fillTemplate(){
-  const t=(STATE.templates||{})[$("#template").value]||{};
-  $("#character").value=t.character||""; $("#scene").value=t.scene||""; $("#prompt").value=t.prompt||""; $("#negative").value=t.negative||"";
-  for(const k of ["width","height","steps","cfg"]) if(t[k]!=null) $("#"+k).value=t[k];
+  const t=tplOf($("#template").value);
+  $("#character").value=t.character||"";$("#scene").value=t.scene||"";$("#prompt").value=t.prompt||"";$("#negative").value=t.negative||"";
+  for(const k of ["width","height","steps","cfg"])$("#"+k).value=t[k]!=null?t[k]:"";
+  $("#body").value="none";if(t.framing&&STATE.framings[t.framing])$("#framing").value=t.framing;
+  const fam=FAMILY(t.workflow);$("#quality").disabled=!STEPS[fam];$("#quality").value=qualityFor(t.workflow,t.steps);
+  $("#tplAbout").textContent=t.about||(t.workflow?"workflow: "+t.workflow:"");
+  preview();eta();
+}
+let pvT=0;
+function preview(){clearTimeout(pvT);pvT=setTimeout(async()=>{try{const r=await api("/api/preview",jobBody());$("#preview").textContent=r.prompt+(r.negative?"\n\nNOT: "+r.negative:"")}catch(e){$("#preview").textContent="(could not build the prompt: "+e.message+")"}},300)}
+function eta(){
+  const fam=FAMILY(curWf()),st=+$("#steps").value||(STEPS[fam]||{}).standard,n=Math.max(1,+$("#count").value||1);
+  const s=(SECS[fam]||{})[st];const q=$("#quality").value;
+  $("#eta").innerHTML=(s?`About ${s} seconds per picture on an 8 GB card${n>1?` (${n} pictures: about ${Math.ceil(s*n/60)} min)`:""}. The first one after starting takes longer while the model loads.`:"The first picture after starting takes longer while the model loads.")+
+    (q==="preview"&&STEPS[fam]?"<br>Preview is the quick look. <b>Like one?</b> Click it and press <b>Make it in Final quality</b>: the same picture with finer detail.":"");
 }
 
-function fillVideo(){
-  const t=(STATE.video_templates||{})[$("#vtpl").value]||{};
-  $("#vprompt").value=t.prompt||"";
-  if(t.lora){$("#vlora").value=t.lora;}
-  if(t.strength!=null)$("#vstrength").value=t.strength;
-  const wf=t.workflow||"wf_h3vid_i2v.json";
-  const m=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";
-  $("#vmode").value=m; videoMode();
+/* ---------- engine status ---------- */
+async function engine(){
+  try{STATE=Object.assign(STATE||{},await api("/api/state"));const e=$("#engine");e.onclick=null;
+    e.className=STATE.comfy_up?"":"down";
+    e.textContent=STATE.comfy_up?"engine ready"+(STATE.machine&&STATE.machine.gpu?" · "+STATE.machine.gpu:""):"engine not running: run kit\\start.ps1 (or the desktop shortcut) again";
+    if(pageStamp===null)pageStamp=STATE.code_stamp;
+    if(STATE.code_stamp!==pageStamp){e.className="upd";e.textContent="The Studio was updated: click here to reload the page";e.onclick=()=>location.reload()}
+    else if(STATE.code_now>STATE.code_stamp){e.className="upd";e.textContent="The Studio was updated: restart it (kit\\start.ps1 -Stop, then start) to load it"}
+  }catch(err){$("#engine").className="down";$("#engine").textContent="Studio not responding"}
 }
 
-function videoMode(){
-  const m=$("#vmode").value;
-  $("#v2lab").hidden=$("#slot-v2").hidden=(m!=="fl");
-  $("#v3lab").hidden=$("#slot-v3").hidden=(m!=="ref2va");
-  $("#lorarow").hidden=(m!=="i2v_lora");
+/* ---------- slots, picker, paste, drop ---------- */
+function drawSlot(k){
+  const s=SLOTS[k],box=$("#slot-"+k);
+  box.innerHTML=(s?`<div class="pic">${isVid(s.path)?`<video src="${s.url}" muted loop autoplay playsinline></video>`:`<img src="${s.url}" alt="">`}<button class="x" title="Remove">✕</button></div>`:"")+
+    `<div class="hint">${s?"Replace it: ":""}<b>paste</b> (Ctrl+V), <b>drop</b> a picture here, <button class="s" data-a="pick" style="padding:2px 8px">pick from my pictures</button> or <button class="s" data-a="file" style="padding:2px 8px">upload a file</button></div>`;
+  if(s)box.querySelector(".x").onclick=()=>{SLOTS[k]=null;drawSlot(k)};
+  box.querySelector('[data-a="pick"]').onclick=()=>picker(k);
+  box.querySelector('[data-a="file"]').onclick=()=>{const i=document.createElement("input");i.type="file";i.accept="image/png,image/jpeg,image/webp";i.onchange=()=>uploadFile(k,i.files[0]);i.click()};
 }
-
-async function loadHist(){
-  HIST=await api("/api/history?scope=all");
-  renderRecent(); if($("#gallery").classList.contains("on"))renderGallery(); if($("#trash").classList.contains("on"))renderTrash();
-}
-
-function tile(r,opts){
-  const v=isVid(r.file);
-  const el=document.createElement("div"); el.className="thumb"; el.dataset.f=r.file;
-  el.innerHTML=(v?`<video muted loop playsinline preload="metadata" src="/img/${encodeURI(r.file)}#t=0.5"></video>`:`<img loading="lazy" src="/img/${encodeURI(r.file)}">`)
-    +(opts&&opts.tag?`<span class="tag">${esc(opts.tag)}</span>`:(v?`<span class="tag">\u25B6 video</span>`:""))
-    +(r.rating?`<span class="rate">${RATE[r.rating]||""}</span>`:"")
-    +((r.by==="me")?(r.public?'<span class="vis">shared</span>':'<span class="vis">private</span>'):"")
-    +'<span class="chk">\u2713</span>';
-  if(v){el.querySelector("video").onmouseenter=e=>e.target.play();el.querySelector("video").onmouseleave=e=>e.target.pause();}
-  el.onclick=()=>{ if(SELMODE && opts&&opts.select){toggleSel(r.file);return;} openLb(r); };
-  return el;
-}
-
-function renderRecent(){
-  const live=HIST.filter(r=>!r.trashed);
-  const imgs=live.filter(r=>!isVid(r.file)).slice(0,12), vids=live.filter(r=>isVid(r.file)).slice(0,12);
-  const rec=$("#recent"); rec.innerHTML=""; if(!imgs.length)rec.innerHTML='<div class="empty">Your pictures will show up here.</div>'; imgs.forEach(r=>rec.appendChild(tile(r)));
-  const rv=$("#recentv"); rv.innerHTML=""; if(!vids.length)rv.innerHTML='<div class="empty">Videos will show up here.</div>'; vids.forEach(r=>rv.appendChild(tile(r)));
-}
-
-/* ---------- slots, picker, paste ---------- */
-function setSlot(k,path,url){
-  SLOTS[k]={path,url};
-  const box=$("#"+k+"imgs"); box.innerHTML="";
-  const t=document.createElement("div"); t.className="thumb";
-  t.innerHTML=isVid(path)?`<video src="${url}" muted loop autoplay></video>`:`<img src="${url}">`;
-  t.title="click to clear"; t.onclick=()=>clearSlot(k);
-  box.appendChild(t);
-}
-function clearSlot(k){SLOTS[k]=null;$("#"+k+"imgs").innerHTML="";}
-async function uploadSlot(k){const i=document.createElement("input");i.type="file";i.accept="image/*";i.onchange=()=>uploadFile(k,i.files[0]);i.click();}
+function setSlot(k,path,url){SLOTS[k]={path,url};drawSlot(k)}
 async function uploadFile(k,file){
   if(!file)return;
-  const data=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(file);});
-  const up=await api("/api/upload",{data});
-  setSlot(k,up.path,URL.createObjectURL(file));
+  if(!/^image\/(png|jpeg|webp)$/.test(file.type)){alert("That is not a PNG, JPEG or WebP picture.");return}
+  try{const data=await new Promise((ok,no)=>{const f=new FileReader();f.onload=()=>ok(f.result);f.onerror=no;f.readAsDataURL(file)});
+    const up=await api("/api/upload",{data});setSlot(k,up.path,"/img/"+encodeURI(up.file))}
+  catch(e){alert("Could not add the picture: "+e.message)}
 }
 async function picker(k){
-  PKK=k; const l=HIST.filter(r=>!r.trashed&&!isVid(r.file)).slice(0,200);
-  $("#pkTitle").textContent="Pick a picture for "+(k==="ref"?"the reference":k==="v1"?"the keyframe":k==="v2"?"the last frame":"the second reference");
-  const g=$("#pkGrid"); g.innerHTML="";
-  if(!l.length)g.innerHTML='<div class="empty">Nothing to pick yet.</div>';
-  for(const r of l){const t=tile(r);t.onclick=()=>{const base=(STATE.machine&&STATE.machine.data_dir||"").replace(/\\/g,"/");setSlot(k,base+"/"+r.file,"/img/"+encodeURI(r.file));closePicker();};g.appendChild(t);}
+  PKK=k;await getHist();const l=HIST.filter(r=>!r.trashed&&!isVid(r.file)).slice(0,200);
+  $("#pkTitle").textContent="Pick a picture for "+SLOTNAME[k];
+  const g=$("#pkList");g.innerHTML=l.length?l.map(r=>tile(r)).join(""):'<div class="empty">Nothing to pick yet.</div>';
+  g.querySelectorAll(".thumb").forEach(t=>t.onclick=()=>{setSlot(k,pathOf(t.dataset.f),"/img/"+encodeURI(t.dataset.f));closePicker()});
   $("#pk").classList.add("on");
 }
 function closePicker(){$("#pk").classList.remove("on")}
-
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePicker();closeLb()}});
-document.addEventListener("paste",async e=>{
-  const it=[...(e.clipboardData||{}).items||[]].find(i=>i.type.startsWith("image/"));
-  if(!it)return;
-  const active=document.querySelector(".slot:hover")||document.querySelector(".slot:focus-within");
-  const k=active?active.dataset.k:(document.querySelector("#video.panel.on")?"v1":"ref");
-  await uploadFile(k,it.getAsFile());
+$("#pk").onclick=e=>{if(e.target.id==="pk")closePicker()};
+document.addEventListener("paste",e=>{
+  const it=[...((e.clipboardData||{}).items||[])].find(i=>i.kind==="file"&&i.type.startsWith("image/"));if(!it)return;
+  const hov=document.querySelector(".slot:hover");
+  const k=hov?hov.dataset.k:$("#video").classList.contains("on")?"v1":$("#create").classList.contains("on")?"ref":null;
+  if(!k)return;e.preventDefault();uploadFile(k,it.getAsFile());
 });
 $$(".slot").forEach(s=>{
   s.addEventListener("dragover",e=>{e.preventDefault();s.classList.add("over")});
@@ -344,111 +379,208 @@ $$(".slot").forEach(s=>{
 });
 
 /* ---------- generate ---------- */
+function num(sel){const v=$(sel).value.trim();return v===""||isNaN(+v)?undefined:+v}
 function jobBody(){
   const b={template:$("#template").value,body:$("#body").value,framing:$("#framing").value,
-    character:$("#character").value,scene:$("#scene").value,prompt:$("#prompt").value,negative:$("#negative").value,
-    width:+$("#width").value,height:+$("#height").value,steps:+$("#steps").value,cfg:+$("#cfg").value,count:+$("#count").value};
-  const seed=$("#seed").value.trim(); if(seed!==""&&!isNaN(+seed))b.seed=+seed;
+    character:$("#character").value,scene:$("#scene").value,prompt:$("#prompt").value,negative:$("#negative").value,count:+$("#count").value||1};
+  for(const k of ["width","height","steps","cfg"]){const v=num("#"+k);if(v!==undefined)b[k]=v}
+  const seed=num("#seed");if(seed!==undefined)b.seed=seed;
   if(SLOTS.ref)b.image=SLOTS.ref.path;
   return b;
 }
 $("#gogen").onclick=async()=>{
+  if(/hires/.test(curWf())&&!SLOTS.ref){alert("The hires template needs a reference picture: the one to refine.");return}
   $("#gogen").disabled=true;
-  try{await api("/api/generate",jobBody());showJobs();}catch(e){alert(e.message)}finally{$("#gogen").disabled=false}
+  try{await api("/api/generate",jobBody());showWorking()}catch(e){alert(e.message)}
+  setTimeout(()=>$("#gogen").disabled=false,800);
 };
 
-function videoWorkflow(){
-  const m=$("#vmode").value;
-  return m==="i2v_lora"?"wf_h3vid_i2v_lora.json":m==="fl"?"wf_h3vid_i2v_fl.json":m==="ref2va"?"wf_h3vid_ref2va6.json":m==="t2v"?"wf_h3vid_t2v_lora.json":"wf_h3vid_i2v.json";
+function fillVideo(){
+  const t=(STATE.video_templates||{})[$("#vtpl").value]||{};
+  $("#vprompt").value=t.prompt||"";$("#vnegative").value=t.negative||"";
+  if(t.lora)$("#vlora").value=t.lora;
+  if(t.strength!=null)$("#vstrength").value=t.strength;
+  const wf=t.workflow||"wf_h3vid_i2v.json";
+  $("#vmode").value=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";
+  if(t.width&&t.height&&t.length)setVsize(t.width,t.height,t.length);
+  videoMode();
 }
+function videoMode(){
+  const m=$("#vmode").value;
+  $("#v1box").hidden=m==="t2v";$("#v2box").hidden=m!=="fl";$("#v3box").hidden=m!=="ref2va";$("#lorarow").hidden=m!=="i2v_lora";veta();
+}
+function setVsize(w,h,l){const k=`${w}x${h}x${l}`;$("#vwidth").value=w;$("#vheight").value=h;$("#vlength").value=l;
+  $("#vsize").value=[...$("#vsize").options].some(o=>o.value===k)?k:"custom";$("#vcustom").hidden=$("#vsize").value!=="custom";veta()}
+function vsize(){const v=$("#vsize").value;$("#vcustom").hidden=v!=="custom";if(v!=="custom"){const [w,h,l]=v.split("x").map(Number);$("#vwidth").value=w;$("#vheight").value=h;$("#vlength").value=l}veta()}
+function veta(){
+  // measured on an 8 GB card: 512x768x85 at 6 steps ~111 s warm; cost scales with pixels x frames
+  const w=+$("#vwidth").value||512,h=+$("#vheight").value||768,l=+$("#vlength").value||85;
+  const s=111*(w*h*l)/(512*768*85),n=Math.max(1,+$("#vcount").value||1);
+  const t=s<90?`about ${Math.round(s/10)*10} seconds`:`about ${Math.round(s/60*2)/2} minutes`;
+  $("#veta").innerHTML=`Video is slow: ${t} per clip on an 8 GB card${n>1?`, ${n} clips in a row`:""}; the first one after starting takes 30-60 s more.`+
+    (w*h<=512*768?"<br>Draft first. <b>Like a clip?</b> Open it and press <b>Make it in Final</b>: the same script and seed at 768x1152.":"");
+}
+function videoWorkflow(){const m=$("#vmode").value;
+  return m==="i2v_lora"?"wf_h3vid_i2v_lora.json":m==="fl"?"wf_h3vid_i2v_fl.json":m==="ref2va"?"wf_h3vid_ref2va6.json":m==="t2v"?"wf_h3vid_t2v_lora.json":"wf_h3vid_i2v.json"}
 $("#govideo").onclick=async()=>{
-  const m=$("#vmode").value, b={workflow:videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
-    width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value};
-  const seed=$("#vseed").value.trim(); if(seed!==""&&!isNaN(+seed))b.seed=+seed;
-  if(m!=="t2v"){ if(!SLOTS.v1){alert("Pick a keyframe first.");return} b.image=SLOTS.v1.path; }
-  if(m==="fl"){ if(!SLOTS.v2){alert("First+last needs a last frame.");return} b.last=SLOTS.v2.path; }
-  if(m==="ref2va"&&SLOTS.v3)b.image1=SLOTS.v3.path;
-  if(m==="i2v_lora"){b.nsfw_lora=$("#vlora").value;b.nsfw_strength=+$("#vstrength").value;}
+  const m=$("#vmode").value;
+  if(!$("#vprompt").value.trim()){alert("Write the clip's script first.");return}
+  const b={workflow:videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
+    width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value||1};
+  const seed=num("#vseed");if(seed!==undefined)b.seed=seed;
+  if(m!=="t2v"){if(!SLOTS.v1){alert("Pick a keyframe first.");return}b.image=SLOTS.v1.path}
+  if(m==="fl"){if(!SLOTS.v2){alert("First + last needs a last frame.");return}b.last=SLOTS.v2.path}
+  if(m==="ref2va"){if(!SLOTS.v3){alert("Two references needs a second reference.");return}b.image1=SLOTS.v3.path}
+  if(m==="i2v_lora"){b.nsfw_lora=$("#vlora").value;b.nsfw_strength=+$("#vstrength").value}
   $("#govideo").disabled=true;
-  try{await api("/api/generate",b);showJobs();}catch(e){alert(e.message)}finally{$("#govideo").disabled=false}
+  try{await api("/api/generate",b);showWorking()}catch(e){alert(e.message)}
+  setTimeout(()=>$("#govideo").disabled=false,800);
 };
 
 /* ---------- jobs ---------- */
-let POLL=null;
-function showJobs(){$$(".jobsCard").forEach(c=>c.style.display="block");pollJobs()}
+function jobName(j){const t=j.job.template&&tplOf(j.job.template);return t&&t.label?t.label:(j.job.workflow||j.job.template||"").replace(/^wf_|\.json$/g,"")}
 async function pollJobs(){
-  clearTimeout(POLL);
-  let js=[]; try{js=await api("/api/jobs")}catch(e){return}
-  const active=js.filter(j=>["queued","running"].includes(j.status));
-  $("#busy").hidden=!active.length;
-  if(active.length)$("#busy").textContent="\u25A0 working\u2026";
-  const html=js.slice(-8).reverse().map(j=>{
-    const nm=j.job.template||j.job.workflow||"";
-    return `<div class="job"><span class="dot ${j.status}"></span><span>${j.status==="running"?"working\u2026":j.status==="queued"?"waiting":j.status==="error"?"<b>problem:</b> "+esc(j.error||""):j.status}</span><span class="hint">${esc(nm)} \u00b7 seed ${j.job.seed??""}</span>${["queued","running"].includes(j.status)?`<button class="s" style="flex:0 0 auto" onclick="stopJob('${j.id}')">Stop</button>`:""}</div>`;
-  }).join("");
-  $$(".jobs").forEach(el=>el.innerHTML=html||'<div class="empty">nothing yet</div>');
-  if(active.length)POLL=setTimeout(pollJobs,2000);
-  else {await loadHist();}
+  let js;try{js=await api("/api/jobs")}catch(e){return}
+  const now=Date.now()/1000;
+  const act=js.filter(j=>["queued","running"].includes(j.status)||(j.status==="error"&&now-j.finished_at<600)||(j.status==="cancelled"&&now-j.finished_at<8));
+  const live=js.filter(j=>["queued","running"].includes(j.status)).length;
+  $("#busy").hidden=!live;$("#busy").innerHTML=`&#9632; Stop (${live} in progress)`;
+  const h=act.map(j=>`<div class="job"><span class="dot ${j.status}"></span><span>${j.status==="running"?"working… "+Math.round(now-(j.started_at||now))+" s":j.status==="queued"?"waiting":j.status==="cancelled"?"stopped":"<b>problem:</b> "+esc(j.error)}</span><span class="hint">${esc(jobName(j))} · seed ${esc(j.job.seed)}</span>${["queued","running"].includes(j.status)?`<button class="s stop" onclick="stopJob('${j.id}')" title="Stop this one">&#10005; Stop</button>`:""}</div>`).join("");
+  $$(".jobsCard").forEach(c=>{c.style.display=act.length?"block":"none";c.querySelector(".jobs").innerHTML=h});
+  let fresh=false;for(const j of js)if(j.status==="done"&&!seenDone.has(j.id)){seenDone.add(j.id);fresh=true}
+  if(fresh){await getHist();refreshViews()}
 }
-async function stopJob(id){try{await api("/api/cancel",{id})}catch(e){}pollJobs()}
-async function stopAll(){try{await api("/api/cancel",{})}catch(e){}pollJobs()}
+function showWorking(){$$(".jobsCard").forEach(c=>{c.style.display="block";if(!c.querySelector(".job"))c.querySelector(".jobs").innerHTML='<div class="job"><span class="dot running"></span><span>starting…</span></div>'});pollJobs()}
+async function stopJob(id){try{await api("/api/cancel",id?{id}:{})}catch(e){alert(e.message)}pollJobs()}
 
-/* ---------- gallery, trash, rounds ---------- */
-function renderGallery(){
-  const f=$("#gfilter").value;
-  let l=HIST.filter(r=>!r.trashed);
-  if(f==="private")l=l.filter(r=>!r.public); else if(f==="shared")l=l.filter(r=>r.public);
-  const g=$("#galleryGrid"); g.innerHTML="";
-  g.classList.toggle("selecting",SELMODE);
-  if(!l.length)g.innerHTML='<div class="empty">No pictures yet.</div>';
-  for(const r of l){const t=tile(r,{select:true}); if(SEL.has(r.file))t.classList.add("sel"); g.appendChild(t);}
+/* ---------- pictures ---------- */
+function tile(r,label){const v=isVid(r.file);
+  return `<div class="thumb" data-f="${esc(r.file)}">${v?`<video muted loop playsinline preload="metadata" src="/img/${encodeURI(r.file)}#t=0.5" onmouseenter="this.play()" onmouseleave="this.pause()"></video>`:`<img loading="lazy" src="/img/${encodeURI(r.file)}" alt="">`}`+
+    (label||v?`<span class="tag">${esc(label||"▶ video")}</span>`:"")+(r.rating?`<span class="rate">${RATE[r.rating]||""}</span>`:"")+
+    (r.by==="me"?(r.public?'<span class="vis" title="Shared: the agent can see this one">&#128065; shared</span>':'<span class="vis" title="Private: the agent can\'t see it">&#128274;</span>'):"")+
+    '<span class="chk">✓</span></div>'}
+const live=r=>!r.trashed;
+async function getHist(){HIST=await api("/api/history?scope=all");const n=HIST.filter(r=>r.trashed).length;$("#trashtab").textContent=n?`Trash (${n})`:"Trash";return HIST}
+function bind(el,list){el.querySelectorAll(".thumb").forEach(t=>t.onclick=()=>openLb(list.find(r=>r.file===t.dataset.f)||{file:t.dataset.f}))}
+function showRecent(){
+  const l=HIST.filter(live),imgs=l.filter(r=>!isVid(r.file)).slice(0,12),vids=l.filter(r=>isVid(r.file)).slice(0,12);
+  $("#recent").innerHTML=imgs.length?imgs.map(r=>tile(r)).join(""):'<div class="empty">Your pictures will show up here.</div>';bind($("#recent"),imgs);
+  $("#recentv").innerHTML=vids.length?vids.map(r=>tile(r)).join(""):'<div class="empty">Your clips will show up here.</div>';bind($("#recentv"),vids);
 }
-function toggleSelect(){SELMODE=!SELMODE;SEL.clear();$("#selbar").hidden=!SELMODE;$("#selbtn").textContent=SELMODE?"Cancel":"Select";renderGallery()}
-function toggleSel(f){if(SEL.has(f))SEL.delete(f);else SEL.add(f);$("#selcount").textContent=SEL.size+" selected";renderGallery()}
-async function actSelected(what){
-  const files=[...SEL]; if(!files.length)return;
-  if(what==="trash")await api("/api/trash",{files}); else await api("/api/visibility",{files,public:what==="share"});
-  SEL.clear();$("#selcount").textContent="0 selected";await loadHist();renderGallery();
-}
-async function renderTrash(){
-  const l=HIST.filter(r=>r.trashed); const g=$("#trashGrid"); g.innerHTML="";
-  if(!l.length)g.innerHTML='<div class="empty">The trash is empty.</div>';
-  for(const r of l){const t=tile(r);const bar=document.createElement("div");bar.className="row";bar.style.marginTop="4px";
-    const a=document.createElement("button");a.className="s";a.textContent="restore";a.onclick=async()=>{await api("/api/restore",{files:[r.file]});await loadHist();renderTrash()};
-    const b=document.createElement("button");b.className="s";b.textContent="delete forever";b.onclick=async()=>{if(confirm("Delete forever?")){await api("/api/delete",{files:[r.file]});await loadHist();renderTrash()}};
-    bar.append(a,b);const c=document.createElement("div");c.append(t,bar);g.appendChild(c);}
-}
+function refreshViews(){showRecent();if($("#gallery").classList.contains("on"))renderGallery();if($("#trash").classList.contains("on"))renderTrash()}
+
+/* gallery and trash: Select, click toggles, Shift+click selects a range */
+const GF={all:()=>true,fav:r=>r.rating==="love"||r.rating==="good",private:r=>r.by==="me"&&!r.public,shared:r=>r.by==="me"&&r.public,agent:r=>r.by&&r.by!=="me",video:r=>isVid(r.file)};
+const SEL={gallery:{on:false,set:new Set(),list:[],last:-1,el:"#gal"},trash:{on:true,set:new Set(),list:[],last:-1,el:"#trashList"}};
+async function loadGallery(){await getHist();renderGallery()}
+function renderGallery(){const f=GF[$("#gfilter").value]||GF.all,q=$("#gsearch").value.toLowerCase().trim();
+  const l=HIST.filter(r=>live(r)&&f(r)&&(!q||((r.prompt||"")+" "+(r.template||"")).toLowerCase().includes(q)));
+  $("#gal").innerHTML=l.length?l.map(r=>tile(r)).join(""):'<div class="empty">Nothing here yet.</div>';selBind("gallery",$("#gal"),l)}
+$("#gfilter").onchange=renderGallery;$("#gsearch").oninput=renderGallery;
+function selShow(k){const S=SEL[k],el=$(S.el);el.classList.toggle("selecting",S.on);
+  for(const f of [...S.set])if(!S.list.some(r=>r.file===f))S.set.delete(f);
+  el.querySelectorAll(".thumb").forEach(t=>t.classList.toggle("sel",S.set.has(t.dataset.f)));
+  $("#"+k+"count").textContent=S.set.size?`${S.set.size} selected`:"Click pictures to select them (Shift+click selects a run of them)";
+  $$(`#${k}bar [data-need]`).forEach(b=>b.disabled=!S.set.size);if(k==="gallery")$("#gallerybar").hidden=!S.on}
+function selBind(k,el,list){const S=SEL[k];S.list=list;
+  el.querySelectorAll(".thumb").forEach((t,i)=>t.onclick=e=>{if(!S.on){openLb(list[i]);return}const f=t.dataset.f;
+    if(e.shiftKey&&S.last>=0&&S.last<list.length){for(let x=Math.min(S.last,i);x<=Math.max(S.last,i);x++)S.set.add(list[x].file)}else if(S.set.has(f))S.set.delete(f);else S.set.add(f);
+    S.last=i;selShow(k)});selShow(k)}
+async function libAct(path,files,extra){try{const r=await api(path,Object.assign({files:[...files]},extra||{}));await getHist();refreshViews();return r}catch(e){alert(e.message)}}
+$("#gselect").onclick=()=>{const S=SEL.gallery;S.on=!S.on;S.set.clear();S.last=-1;$("#gselect").textContent=S.on?"Done selecting":"Select";selShow("gallery")};
+$("#gallAll").onclick=()=>{SEL.gallery.list.forEach(r=>SEL.gallery.set.add(r.file));selShow("gallery")};
+$("#gnone").onclick=()=>{SEL.gallery.set.clear();selShow("gallery")};
+const mineOf=set=>[...set].filter(f=>(HIST.find(r=>r.file===f)||{}).by==="me");
+$("#gpub").onclick=async()=>{const m=mineOf(SEL.gallery.set);if(!m.length){alert("Those were made by the agent: it already sees them.");return}await libAct("/api/visibility",m,{public:true});SEL.gallery.set.clear();selShow("gallery")};
+$("#gpriv").onclick=async()=>{const m=mineOf(SEL.gallery.set);if(!m.length){alert("Those were made by the agent: they can't be made private.");return}await libAct("/api/visibility",m,{public:false});SEL.gallery.set.clear();selShow("gallery")};
+$("#gtrash").onclick=async()=>{await libAct("/api/trash",SEL.gallery.set);SEL.gallery.set.clear();selShow("gallery")};
+async function loadTrash(){await getHist();renderTrash()}
+function renderTrash(){const l=HIST.filter(r=>r.trashed);
+  $("#trashList").innerHTML=l.length?l.map(r=>tile(r)).join(""):'<div class="empty">The trash is empty.</div>';selBind("trash",$("#trashList"),l);$("#tempty").disabled=!l.length}
+$("#tall").onclick=()=>{SEL.trash.list.forEach(r=>SEL.trash.set.add(r.file));selShow("trash")};
+$("#trestore").onclick=async()=>{await libAct("/api/restore",SEL.trash.set);SEL.trash.set.clear();selShow("trash")};
+async function delForever(files){if(!files.length)return;
+  if(!confirm(`Delete ${files.length} ${files.length===1?"file":"files"} forever?\n\nThey are removed from this PC and can't be brought back.`))return;
+  await libAct("/api/delete",files);SEL.trash.set.clear();selShow("trash")}
+$("#tdelete").onclick=()=>delForever([...SEL.trash.set]);
+$("#tempty").onclick=()=>delForever(SEL.trash.list.map(r=>r.file));
+
+/* rounds: the agent's test batches; the note box goes to the agent */
 async function loadRounds(){
-  const rs=await api("/api/rounds"); const g=$("#roundList"); g.innerHTML="";
-  if(!rs.length){g.innerHTML='<div class="empty">No rounds yet.</div>';return}
-  for(const r of rs){const c=document.createElement("div");c.className="card";
-    const files=(r.items||r.files||[]).filter(f=>typeof f==="string"&&/\.(png|jpe?g|webp|mp4|webm)$/i.test(f));
-    c.innerHTML=`<h3 style="margin:0 0 4px">${esc(r.title||r.id||"round")}</h3><div class="hint">${esc(r.note||r.summary||"")}</div>`;
-    if(files.length){const th=document.createElement("div");th.className="thumbs";th.style.marginTop="8px";
-      for(const f of files){const t=document.createElement("div");t.className="thumb";t.innerHTML=isVid(f)?`<video muted loop src="/img/${encodeURI(f)}"></video>`:`<img src="/img/${encodeURI(f)}">`;th.appendChild(t)}c.appendChild(th)}
-    g.appendChild(c)}
+  let rs=[];try{rs=await api("/api/rounds")}catch(e){}await getHist();const byF=Object.fromEntries(HIST.map(r=>[r.file,r]));
+  const items=r=>(r.items||r.files||[]).map(it=>typeof it==="string"?{file:it}:it).filter(it=>it&&it.file&&/\.(png|jpe?g|webp|mp4|webm)$/i.test(it.file)&&!(byF[it.file]||{}).trashed);
+  $("#roundList").innerHTML=rs.length?rs.map(r=>`<div class="round card"><h3>${esc(r.title||r.id)}</h3><div class="hint">${esc(r.created||"")} ${r.status?`<span class="pill">${esc(r.status)}</span>`:""} ${esc(r.note||r.summary||"")}</div>
+    ${r.question?`<p><b>The agent asks:</b> ${esc(r.question)}</p>`:""}<div class="thumbs" style="margin-top:8px">${items(r).map((it,i)=>tile(Object.assign({},byF[it.file]||{},{file:it.file}),(i+1)+". "+(it.label||""))).join("")}</div>
+    <label class="h">Your thoughts on this round</label><textarea data-round="${esc(r.id)}" placeholder="Which ones work and why? What should change?"></textarea>
+    <button class="s" data-saveround="${esc(r.id)}" style="margin-top:6px">Send to the agent</button> <span class="hint">then tell the agent "I judged the round"</span></div>`).join("")
+    :'<div class="empty">No rounds yet. Ask the agent to try something out and its test pictures will appear here for you to judge.</div>';
+  rs.forEach(r=>{const el=document.querySelector(`.round textarea[data-round="${CSS.escape(r.id)}"]`).closest(".round");
+    bind(el,items(r).map(it=>Object.assign({},byF[it.file]||{},{file:it.file,label:it.label})))});
+  $$("button[data-saveround]").forEach(b=>b.onclick=async()=>{const id=b.dataset.saveround,t=document.querySelector(`textarea[data-round="${CSS.escape(id)}"]`);
+    try{await api("/api/rate",{file:id+"/_round",rating:null,note:t.value});b.textContent="Sent ✓"}catch(e){alert(e.message)}});
 }
 
 /* ---------- lightbox ---------- */
+function finalSteps(r){const S=STEPS[FAMILY(r.workflow||(r.job||{}).workflow||tplOf(r.template).workflow)];return S&&r.steps&&r.steps<S.final?S.final:null}
 function openLb(r){
-  LBREC=r; $("#lb").classList.add("on");
-  $("#lbImg").hidden=isVid(r.file); $("#lbVid").hidden=!isVid(r.file);
-  if(isVid(r.file)){$("#lbVid").src="/img/"+encodeURI(r.file);$("#lbImg").src=""} else {$("#lbVid").pause();$("#lbVid").src="";$("#lbImg").src="/img/"+encodeURI(r.file)}
-  $("#lbTitle").textContent=r.template||"picture";
-  $("#lbMeta").textContent="seed "+(r.seed??"?")+" \u00b7 "+(r.public?"shared":"private")+" \u00b7 "+(r.time||"");
-  $("#lbPrompt").textContent=(r.prompt||"")+"\n\nseed "+(r.seed??"");
+  LBREC=r;const v=isVid(r.file),mine=r.by==="me";
+  $("#lbImg").hidden=v;$("#lbVid").hidden=!v;
+  if(v){$("#lbVid").src="/img/"+encodeURI(r.file);$("#lbVid").play().catch(()=>{})}else{$("#lbVid").pause();$("#lbVid").removeAttribute("src");$("#lbImg").src="/img/"+encodeURI(r.file)}
+  $("#lbTitle").textContent=r.label||(r.template&&tplOf(r.template).label)||r.template||(v?"clip":"picture");
   $$("#lb .rates button").forEach(b=>b.classList.toggle("on",b.dataset.r===r.rating));
-  $("#lbShare").textContent=r.public?"Make private":"Share with the agent";
-  $("#lbShare").onclick=async()=>{await api("/api/visibility",{files:[r.file],public:!r.public});await loadHist();openLb({...r,public:!r.public})};
-  $("#lbTrash").onclick=async()=>{await api("/api/trash",{files:[r.file]});closeLb();await loadHist()};
-  $("#lbRef").hidden=isVid(r.file);
-  $("#lbRef").onclick=()=>{const base=(STATE.machine&&STATE.machine.data_dir||"").replace(/\\/g,"/");setSlot("v1",base+"/"+r.file,"/img/"+encodeURI(r.file));closeLb();show("video")};
-  $$("#lb .rates button").forEach(b=>b.onclick=async()=>{await api("/api/rate",{file:r.file,rating:b.dataset.r});r.rating=b.dataset.r;$$("#lb .rates button").forEach(x=>x.classList.toggle("on",x===b));loadHist()});
+  $("#lbVis").innerHTML=mine?(r.public?"&#128065; <b>Shared with the agent</b>: it can see this and its prompt.":"&#128274; <b>Private</b>: the agent can't see this or its prompt."):r.by?"Made by the agent.":"";
+  $("#lbNote").value=r.note||"";$("#lbNote").placeholder=mine&&!r.public?"Your note (private, like the picture)":"What works and what doesn't? (the agent reads this)";
+  $("#lbShare").hidden=!mine;$("#lbShare").innerHTML=r.public?"&#128274; Make it private again":"&#128065; Share with the agent";$("#lbTrash").hidden=!!r.trashed;
+  const job=r.job;$("#lbReuse").hidden=!job&&!r.template;$("#lbVar").hidden=!job;$("#lbVar").textContent=v?"2 more clips":"4 variations";
+  const fs=!v&&job&&finalSteps(r);let vf=v&&job&&(job.width||0)*(job.height||0)<=512*768;
+  $("#lbFinalRow").hidden=!(fs||vf);
+  if(fs){$("#lbFinal").textContent="Make it in Final quality";$("#lbFinalHint").textContent=`The same picture (seed ${r.seed}) at ${fs} steps instead of ${r.steps}: finer detail, a little slower.`}
+  if(vf){$("#lbFinal").textContent="Make it in Final (768x1152)";$("#lbFinalHint").textContent=`The same script and seed (${r.seed}) at 768x1152: sharper; a close but not identical clip. About 6 minutes on an 8 GB card.`}
+  $("#lbKey").textContent=v?"Use the last frame as keyframe":"Use as keyframe";$("#lbRef").hidden=v;
+  const j=job||{};
+  $("#lbInfo").textContent=[r.template&&"template: "+r.template,(r.workflow||j.workflow)&&"workflow: "+(r.workflow||j.workflow),
+    r.width&&`size: ${r.width}x${r.height}${r.length?"  frames: "+r.length:""}`,`seed: ${r.seed??"?"}${r.steps?"  steps: "+r.steps:""}${r.secs?"  "+r.secs+" s to make":""}`,
+    j.image&&"from: "+(relOf(j.image)||j.image),j.last&&"last frame: "+(relOf(j.last)||j.last),j.nsfw_lora&&`LoRA: ${j.nsfw_lora} ${j.nsfw_strength??""}`,
+    r.time&&"made: "+r.time.replace("T"," "),"",r.prompt||"",r.negative?"\nNOT: "+r.negative:""].filter(x=>x!==undefined&&x!==null&&x!==false).join("\n");
+  $("#lb").classList.add("on");
 }
 function closeLb(){$("#lb").classList.remove("on");$("#lbVid").pause()}
+$("#lb").onclick=e=>{if(e.target.id==="lb")closeLb()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(e.shiftKey){stopJob();return}closeLb();closePicker()}});
+$$("#lb .rates button").forEach(b=>b.onclick=async()=>{const r=b.dataset.r===LBREC.rating?null:b.dataset.r;
+  try{await api("/api/rate",{file:LBREC.file,rating:r||"none",note:""})}catch(e){alert(e.message);return}
+  LBREC.rating=r;$$("#lb .rates button").forEach(x=>x.classList.toggle("on",x.dataset.r===r));await getHist();refreshViews()});
+$("#lbSave").onclick=async()=>{try{await api("/api/rate",{file:LBREC.file,rating:null,note:$("#lbNote").value});LBREC.note=$("#lbNote").value;$("#lbSave").textContent="Saved ✓";setTimeout(()=>$("#lbSave").textContent="Save note",1500)}catch(e){alert(e.message)}};
+function slotFromPath(k,p){if(!p)return;const rel=relOf(p);setSlot(k,p,rel?"/img/"+encodeURI(rel):"")}
+$("#lbReuse").onclick=()=>{const r=LBREC,j=r.job||{template:r.template};closeLb();
+  if(isVid(r.file)){
+    $("#vprompt").value=j.prompt||r.prompt||"";$("#vnegative").value=j.negative||"";
+    const wf=j.workflow||"";$("#vmode").value=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";
+    if(j.nsfw_lora)$("#vlora").value=j.nsfw_lora;if(j.nsfw_strength!=null)$("#vstrength").value=j.nsfw_strength;
+    slotFromPath("v1",j.image);slotFromPath("v2",j.last);slotFromPath("v3",j.image1);
+    if(j.width&&j.height&&j.length)setVsize(j.width,j.height,j.length);$("#vseed").value=r.seed??"";videoMode();return show("video")}
+  if(j.template&&[...$("#template").options].some(o=>o.value===j.template)){$("#template").value=j.template;fillTemplate()}
+  for(const k of ["character","scene","prompt","negative"])if(j[k]!=null)$("#"+k).value=j[k];
+  if(j.body)$("#body").value=j.body;if(j.framing)$("#framing").value=j.framing;
+  for(const k of ["width","height","steps","cfg"])if(j[k]!=null)$("#"+k).value=j[k];
+  $("#quality").value=qualityFor(curWf(),+$("#steps").value);
+  SLOTS.ref=null;drawSlot("ref");slotFromPath("ref",j.image);
+  $("#seed").value=r.seed??"";preview();eta();show("create")};
+$("#lbVar").onclick=async()=>{const r=LBREC,j=Object.assign({},r.job);delete j.seed;j.count=isVid(r.file)?2:4;
+  try{await api("/api/generate",j);closeLb();showWorking()}catch(e){alert(e.message)}};
+$("#lbFinal").onclick=async()=>{const r=LBREC,j=Object.assign({},r.job,{seed:r.seed,count:1});
+  if(isVid(r.file))Object.assign(j,{width:768,height:1152});else j.steps=finalSteps(r);
+  try{await api("/api/generate",j);closeLb();showWorking()}catch(e){alert(e.message)}};
+$("#lbKey").onclick=async()=>{const r=LBREC;
+  if(isVid(r.file)){try{const f=await api("/api/lastframe",{file:r.file});setSlot("v1",f.path,"/img/"+encodeURI(f.file))}catch(e){alert("Could not take the last frame: "+e.message);return}}
+  else setSlot("v1",pathOf(r.file),"/img/"+encodeURI(r.file));
+  closeLb();if($("#vmode").value==="t2v"){$("#vmode").value="i2v";videoMode()}show("video")};
+$("#lbRef").onclick=()=>{setSlot("ref",pathOf(LBREC.file),"/img/"+encodeURI(LBREC.file));closeLb();show("create")};
+$("#lbOpen").onclick=()=>window.open("/img/"+encodeURI(LBREC.file),"_blank");
+$("#lbShare").onclick=async()=>{const pub=!LBREC.public;await libAct("/api/visibility",[LBREC.file],{public:pub});LBREC.public=pub;openLb(LBREC)};
+$("#lbTrash").onclick=async()=>{const f=LBREC.file;closeLb();await libAct("/api/trash",[f])};
 
-$("#gfilter").onchange=renderGallery;
-loadState().catch(e=>{$("#engine").textContent="error: "+e.message;$("#engine").className="down"});
+init().catch(e=>{document.body.insertAdjacentHTML("afterbegin",`<p style="color:#c94a4a;padding:10px">Could not load the Studio: ${esc(e.message)}</p>`)});
 </script>
 </body>
 </html>

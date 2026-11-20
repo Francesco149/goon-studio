@@ -78,16 +78,25 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 
 ## 2a. The page
 
-- **Generate**: template, body type, framing, character/scene/prompt/negative, size/steps/cfg,
-  seed/count, reference picture. The reference slot takes a dropped/pasted picture, an uploaded
-  file, or **"Pick from my pictures"** (the gallery picker). "Just made" shows the last 12.
+- **Generate**: template, body type, framing, character/scene/prompt/negative, **quality**
+  (Preview / Standard / Final = the measured 4/6/8 or 12/20/30 steps), size/steps/cfg, seed/count,
+  reference picture, a live "what the model reads" preview and a time estimate. The reference slot
+  takes a dropped/pasted picture, an uploaded file, or **"Pick from my pictures"** (the gallery
+  picker). "Just made" shows the last 12; a job card shows elapsed time with per-job Stop
+  (Shift+Esc stops all).
 - **Video**: video recipe dropdown (POV blowjob, side deepthroat, paizuri, cum shot, anime POV
   bob), mode (i2v, i2v + act LoRA, first+last, ref2va, t2v), keyframe/last/second-reference slots
   with the same picker/paste/drop, LoRA + strength, length, size, seed, prompt. "Recent videos"
-  sits next to it, and a clip's lightbox has **"Use as keyframe"** to chain the next one.
-- **My pictures**: filter all/private/shared, select several, share/lock, trash; the lightbox
-  has the rating buttons, share toggle, trash and "Use as keyframe".
-- **Trash**: restore or delete forever. **Rounds**: `my/rounds/*.json` with their pictures.
+  sits next to it, and a clip's lightbox has **"Use the last frame as keyframe"** (PyAV, ffmpeg
+  fallback) to chain the next one. Workflow model names fall back to the quantization the engine
+  has (`*_int8_convrot` on ampere vs `*_w4a8_mixed` on an 8 GB card).
+- **My pictures**: filter (all, loved/liked, private, shared, by the agent, clips), search,
+  Select with Shift+click ranges, share/lock, trash. The lightbox has rating (click again to
+  clear), a note (private notes stay in `my/private/`), Use these settings, variations, **Make it
+  in Final** (same seed), Use as keyframe / reference, share toggle, trash.
+- **Trash**: select, restore, delete forever, empty. **Rounds**: `my/rounds/*.json` (items are
+  file strings or `{file, label}`, optional `question`); the user's round notes go to
+  `my/feedback.jsonl` for the agent.
 
 ## 3. Author-only notes
 

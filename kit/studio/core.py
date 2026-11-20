@@ -181,10 +181,30 @@ def upload_input(path, s=None):
 def submit(graph, s=None):
     s = s or settings()
     body = json.dumps({"prompt": graph, "client_id": "goon-studio"}).encode()
-    out = json.loads(http(s["comfy_url"] + "/prompt", body))
+    try:
+        out = json.loads(http(s["comfy_url"] + "/prompt", body))
+    except urllib.error.HTTPError as e:
+        # ComfyUI explains a rejected graph (missing model, bad value) in the body: show that
+        raise RuntimeError(comfy_error(e.read())) from None
     if "prompt_id" not in out:
         raise RuntimeError(json.dumps(out)[:500])
     return out["prompt_id"]
+
+
+def comfy_error(raw):
+    """One readable line from ComfyUI's /prompt error JSON."""
+    try:
+        j = json.loads(raw)
+    except ValueError:
+        return (raw or b"")[:300].decode("utf-8", "replace")
+    msgs = []
+    for node, ne in (j.get("node_errors") or {}).items():
+        for er in ne.get("errors", []):
+            msgs.append("%s (node %s %s): %s" % (er.get("message", ""), node, ne.get("class_type", ""), er.get("details", "")))
+    if not msgs:
+        er = j.get("error") or {}
+        msgs.append(er.get("message", "") + (": " + er["details"] if er.get("details") else ""))
+    return "ComfyUI refused the job: " + "; ".join(msgs)[:450]
 
 
 def outputs_of(hist):
@@ -207,7 +227,10 @@ def wait(pid, s=None, timeout=3600):
         if pid in h:
             st = h[pid].get("status", {})
             if st.get("status_str") == "error":
-                raise RuntimeError("ComfyUI error")
+                ex = [m[1] for m in st.get("messages", []) if m and m[0] in ("execution_error", "execution_interrupted")]
+                if ex and ex[0].get("exception_message"):
+                    raise RuntimeError("%s: %s" % (ex[0].get("node_type") or "ComfyUI", str(ex[0]["exception_message"]).strip()[:400]))
+                raise RuntimeError("ComfyUI stopped the job" if ex else "ComfyUI error")
             if st.get("completed"):
                 return h[pid]
         time.sleep(2)
@@ -222,6 +245,13 @@ def pull(hist, dest):
         q = urllib.parse.urlencode({"filename": it["filename"], "subfolder": it.get("subfolder", ""), "type": it.get("type", "output")})
         data = http(s["comfy_url"] + "/view?" + q, timeout=600)
         p = os.path.join(dest, it["filename"])
+        # ComfyUI numbers files per engine/output folder: another engine (or a cleaned output
+        # folder) restarts at _00001_, which must never overwrite a picture already in the gallery
+        stem, ext = os.path.splitext(p)
+        n = 1
+        while os.path.exists(p):
+            p = "%s-%d%s" % (stem, n, ext)
+            n += 1
         with open(p, "wb") as f:
             f.write(data)
         out.append(p)
@@ -242,6 +272,37 @@ def model_file_field(name, s=None):
     return name.replace("/", "\\") if local_windows(s) else name
 
 
+QUANT = re.compile(r"_(int8_convrot|w4a8_mixed|w4a8|nvfp4|int8|fp8\w*|bf16|fp16)$")
+_UNETS = {}
+
+
+def unet_names(s=None):
+    """The diffusion models this ComfyUI has (cached per engine URL)."""
+    s = s or settings()
+    url = s["comfy_url"]
+    if url not in _UNETS:
+        try:
+            info = json.loads(http(url + "/object_info/UNETLoader", timeout=15))
+            spec = info["UNETLoader"]["input"]["required"]["unet_name"]
+            names = spec[0] if isinstance(spec[0], list) else (spec[1] or {}).get("options", [])
+            _UNETS[url] = list(names)
+        except Exception:
+            return []
+    return _UNETS[url]
+
+
+def resolve_unet(name, s=None):
+    """Same model, the quantization this box has: the workflows default to one box's file names
+    (ampere: *_int8_convrot, an 8 GB card: *_w4a8_mixed). Unknown or unmatched names pass through."""
+    have = unet_names(s)
+    if not name or not have or name in have:
+        return name
+    stem, ext = os.path.splitext(name)
+    base = QUANT.sub("", stem)
+    alts = [h for h in have if QUANT.sub("", os.path.splitext(h)[0]) == base]
+    return alts[0] if alts else name
+
+
 def run(job, by="me", on_queued=None):
     s = settings()
     P = presets()
@@ -253,6 +314,8 @@ def run(job, by="me", on_queued=None):
     for k in ("lora", "nsfw_lora"):
         if fields.get(k):
             fields[k] = model_file_field(fields[k], s)
+    if fields.get("unet"):
+        fields["unet"] = resolve_unet(fields["unet"], s)
     if job.get("image"):
         fields["image"] = upload_input(job["image"], s)
     if job.get("image1"):
@@ -270,6 +333,9 @@ def run(job, by="me", on_queued=None):
     rec = {"time": time.strftime("%Y-%m-%dT%H:%M:%S"), "by": by, "workflow": wf,
            "template": job.get("template"), "prompt": fields.get("prompt"), "negative": fields.get("negative"),
            "seed": fields.get("seed"), "width": fields.get("width"), "height": fields.get("height"),
+           "steps": fields.get("steps"), "length": fields.get("length"),
+           # the job as sent, so the page can "use these settings", remake in final quality, chain
+           "job": {k: v for k, v in job.items() if k not in ("count",)},
            "secs": round(time.time() - t0, 1), "files": [os.path.relpath(p, s.get("data_dir", GALLERY)).replace("\\", "/") for p in files]}
     append_jsonl(HIST if by != "me" else PHIST, rec)
     return rec
@@ -366,13 +432,61 @@ def delete_forever(files, s=None):
     return n
 
 
+def feedback_path(rel):
+    """Where a rating/note goes: the agent's feedback file only for what the agent may see."""
+    if rel.endswith("/_round"):
+        return FEED
+    if rel in library()["public"]:
+        return FEED
+    if any(rel in r.get("files", []) for r in read_jsonl(HIST)):
+        return FEED
+    return PFEED
+
+
 def ratings():
-    out = {}
-    for rec in read_jsonl(PFEED) + read_jsonl(FEED):
+    """{file: (rating, note)}; the latest rating and the latest non-empty note win.
+    rating "none" clears it."""
+    rate, note = {}, {}
+    rows = sorted(read_jsonl(PFEED) + read_jsonl(FEED), key=lambda r: r.get("time") or 0)
+    for rec in rows:
         f = rec.get("file")
-        if f:
-            out[f] = rec.get("rating") or out.get(f)
-    return out
+        if not f:
+            continue
+        r = rec.get("rating")
+        if r == "none":
+            rate.pop(f, None)
+        elif r:
+            rate[f] = r
+        if rec.get("note"):
+            note[f] = rec["note"]
+    return {f: (rate.get(f), note.get(f)) for f in set(rate) | set(note)}
+
+
+def last_frame(rel, s=None):
+    """Save the last frame of a gallery clip as a PNG under uploads/ and return its path."""
+    s = s or settings()
+    base = s.get("data_dir", GALLERY)
+    src = os.path.normpath(os.path.join(base, rel.replace("/", os.sep)))
+    if not src.startswith(os.path.normpath(base)) or not os.path.isfile(src):
+        raise ValueError("no such clip: %s" % rel)
+    out_rel = "uploads/lastframe_%s_%d.png" % (time.strftime("%Y%m%d-%H%M%S"), int(time.time() * 1000) % 1000)
+    dst = os.path.join(base, out_rel.replace("/", os.sep))
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    try:
+        import av  # bundled with the ComfyUI portable build
+        last = None
+        with av.open(src) as c:
+            for fr in c.decode(video=0):
+                last = fr
+        if last is None:
+            raise ValueError("the clip has no frames")
+        last.to_image().save(dst)
+    except ImportError:
+        r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-sseof", "-0.1", "-i", src,
+                            "-update", "1", "-frames:v", "1", dst], capture_output=True, text=True)
+        if r.returncode != 0 or not os.path.isfile(dst):
+            raise RuntimeError("could not read the last frame (no PyAV, ffmpeg said: %s)" % r.stderr[-300:])
+    return out_rel
 
 
 def all_records(scope="all"):
@@ -391,8 +505,11 @@ def all_records(scope="all"):
                 continue
             if scope == "private" and public:
                 continue
+            rt, nt = rate.get(f, (None, None))
             out.append({"file": f, "time": rec.get("time"), "by": rec.get("by"), "prompt": rec.get("prompt"),
-                        "seed": rec.get("seed"), "template": rec.get("template"), "rating": rate.get(f),
-                        "public": public, "trashed": f in lib["trash"]})
+                        "seed": rec.get("seed"), "template": rec.get("template"), "rating": rt, "note": nt,
+                        "workflow": rec.get("workflow"), "width": rec.get("width"), "height": rec.get("height"),
+                        "steps": rec.get("steps"), "length": rec.get("length"), "secs": rec.get("secs"),
+                        "job": rec.get("job"), "public": public, "trashed": f in lib["trash"]})
     out.sort(key=lambda r: r.get("time") or "", reverse=True)
     return out

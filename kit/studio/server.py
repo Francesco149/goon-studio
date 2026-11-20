@@ -9,6 +9,7 @@ Endpoints:
   POST /api/visibility  {files, public}
   POST /api/trash       {files};  /api/restore {files};  /api/delete {files}
   POST /api/upload      {data: "data:image/...;base64,..."} -> gallery/uploads/<file>
+  POST /api/lastframe   {file: clip} -> its last frame as a picture (to chain the next clip)
   GET  /img/<path>      a picture in the gallery
 """
 import base64, json, mimetypes, os, queue, threading, time, traceback, urllib.parse
@@ -32,15 +33,28 @@ def worker():
         if e["status"] == "cancelled":
             continue
         e["status"] = "running"
+        e["started_at"] = time.time()
         try:
             e["record"] = core.run(e["job"], by="me", on_queued=lambda pid: e.__setitem__("prompt_id", pid))
-            e["status"] = "done"
+            if e["status"] != "cancelled":
+                e["status"] = "done"
         except Exception as ex:
-            e["status"] = "error"
-            e["error"] = str(ex)[:500]
-            with open(os.path.join(core.MY, "studio-errors.log"), "a", encoding="utf-8") as f:
-                f.write("%s %s\n%s\n" % (time.strftime("%Y-%m-%d %H:%M:%S"), e["job"].get("template"), traceback.format_exc()))
+            # a stopped job ends in a ComfyUI interrupt error: keep it as "stopped", not a problem
+            if e["status"] != "cancelled":
+                e["status"] = "error"
+                e["error"] = str(ex)[:500]
+                with open(os.path.join(core.MY, "studio-errors.log"), "a", encoding="utf-8") as f:
+                    f.write("%s %s\n%s\n" % (time.strftime("%Y-%m-%d %H:%M:%S"), e["job"].get("template"), traceback.format_exc()))
         e["finished_at"] = time.time()
+
+
+def code_stamp():
+    """Newest mtime of the page's own code: the page offers a reload when it changes."""
+    names = ("index.html", "server.py", "core.py")
+    return max(os.path.getmtime(os.path.join(HERE, n)) for n in names)
+
+
+STARTED_STAMP = code_stamp()
 
 
 def safe_join(base, rel):
@@ -89,7 +103,8 @@ class H(BaseHTTPRequestHandler):
                                        "loras": P.get("loras", {}), "video": P.get("video", {}),
                                        "video_templates": P.get("video_templates", {}), "default_video": P.get("default_video"),
                                        "bodies": P.get("bodies", {}), "framings": P.get("framings", {}),
-                                       "comfy_up": core.comfy_up(), "machine": {k: core.settings().get(k) for k in ("gpu", "data_dir")}})
+                                       "comfy_up": core.comfy_up(), "machine": {k: core.settings().get(k) for k in ("gpu", "data_dir")},
+                                       "code_stamp": STARTED_STAMP, "code_now": code_stamp()})
             if p == "/api/jobs":
                 with LOCK:
                     return self.send(200, JOBS[-60:])
@@ -169,8 +184,13 @@ class H(BaseHTTPRequestHandler):
             if p == "/api/delete":
                 return self.send(200, {"deleted": core.delete_forever(b.get("files") or [])})
             if p == "/api/rate":
-                core.append_jsonl(core.PFEED, {"time": time.time(), "file": b["file"], "rating": b.get("rating"), "note": b.get("note")})
+                # notes on private pictures stay private; round notes and shared pictures go to the agent
+                core.append_jsonl(core.feedback_path(b["file"]),
+                                  {"time": time.time(), "file": b["file"], "rating": b.get("rating"), "note": b.get("note")})
                 return self.send(200, {"ok": True})
+            if p == "/api/lastframe":
+                rel = core.last_frame(b.get("file") or "")
+                return self.send(200, {"file": rel, "path": safe_join(core.settings().get("data_dir", core.GALLERY), rel)})
             return self.send(404, {"error": "not found"})
         except Exception as e:
             return self.send(500, {"error": str(e)})
