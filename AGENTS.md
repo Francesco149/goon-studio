@@ -2,8 +2,10 @@
 
 This repo is the explicit counterpart of **Love Live Studio** (`../lovelive-studio`). It has its
 own app, its own gallery and its own rules. It is written for agents that are allowed to work
-with adult NSFW material (DeepSeek and similar); a non-NSFW agent such as Claude must never be
-pointed at this folder or its gallery.
+with adult NSFW material (DeepSeek and similar). Claude also works here, on a narrower scope set in
+`CLAUDE.md`: engineering, setup, performance and non-explicit (ecchi-level) tests. Explicit
+prompts, presets and reviewing explicit output stay with you. Claude's neutral jobs are in
+`jobs/neutral/` and its renders in `sfw/`.
 
 ## 1. The one rule that matters
 
@@ -27,7 +29,7 @@ AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go
    file first.
 1b. **Account**: DSH Desktop is signed in with the user's DeepSeek account and runs on their
    credits - there is **no API key** to handle. If a model call fails with an auth or balance
-   error, send them to Settings → Account and platform.deepseek.com billing; never ask for a key.
+   error, send them to Settings â†’ Account and platform.deepseek.com billing; never ask for a key.
    The first-run introduction should have been **"Full details"** with developer tools on; if the
    user sees a simplified chat, tell them to switch the transcript/usage detail to detailed.
 2. **Check the PC**: GPU name and VRAM (`nvidia-smi` or `rocm-smi`), system RAM, free disk. The
@@ -66,7 +68,7 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 |---|---|---|
 | content | SFW anime pictures | explicit stills and video |
 | gallery | its own `my/`, `examples/` | `gallery/` and `my/` here |
-| agent | Claude (non-NSFW) | DeepSeek and other NSFW-tolerant agents |
+| agent | Claude | DeepSeek and other NSFW-tolerant agents; Claude for engineering only (`CLAUDE.md`) |
 
 - When the user says "the picture from the studio" or references an SFW image, look in
   `../lovelive-studio` (`my/rounds/`, `examples/`, and only the `public` records in its
@@ -161,7 +163,7 @@ scratch track; a separate Foley pass or a dedicated audio tool is the likely ans
 3. Make a sheet: `python tools/sheet.py analysis/<round>.jpg gens/<round> --cols 4 --thumb 420`.
 4. Look at the sheet, write down what changed in `docs/` (or the round log), keep the prompts in
    `jobs/`.
-5. Do not leave renders outside `gallery/`, `gens/`, `analysis/` or the boxes' `gl/` scratch
+5. Do not leave renders outside `gallery/`, `gens/`, `analysis/`, `sfw/` (Claude's neutral renders) or the boxes' `gl/` scratch
    folders.
 
 ## 7. Quality bar

@@ -81,3 +81,8 @@ and a person approves it first (`docs/IMAGES.md`).
 `my/settings.json` holds the paths (ComfyUI folder, gallery folder, ComfyUI address). The app is
 started by `Goon Studio.cmd` or `kit\start.ps1`; the models and the gallery can live on another
 drive. `docs/HARDWARE.md` explains what fits on an 8 GB card.
+
+## License
+
+The code is MIT (`LICENSE`). ComfyUI (GPL-3.0) and the models are downloaded separately and keep
+their own licenses; check each model's card before sharing what you make with it.

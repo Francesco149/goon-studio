@@ -236,7 +236,7 @@ error, stop: the stack is wrong, not the settings.
 Question: does a normal desktop (browser with a video tab, Discord, a launcher) push an 8 GB / 16 GB
 Windows machine into OOM? Measured on cutestation with `tools/experiments/vram_pressure.py`, which
 holds a fixed block of VRAM and RAM the way a browser does, optionally grabbing it in the middle
-of a job. Prompts are neutral (`jobs/bench_headroom.jsonl`); speed does not depend on the subject.
+of a job. Prompts are neutral (`jobs/neutral/bench_headroom.jsonl`, renders in `sfw/bench/`); speed does not depend on the subject.
 Engine: ck + fp16 accumulation on :8189.
 
 | job | pressure | exec | peak VRAM (all apps) | min free RAM | min free commit | result |
