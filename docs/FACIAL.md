@@ -60,6 +60,10 @@ LoRA path is about 2x slower and changes composition, so it is not recommended f
 
 ## The cum-shot video
 
+**Superseded 2026-11-20 session 4: see `docs/CUM-VIDEO.md`.** The recipe below is the v13 version
+(0.8, one fat rope); the current one is `epic_cumshots` at 0.5 with several thin ropes on the
+wide-gap keyframe, and the glans must stay bare. This still pose is unchanged and is the keyframe.
+
 Start from the approved pose (`p1`/`p2`), then H3 i2v with the epic_cumshots LoRA:
 
 ```

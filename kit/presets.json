@@ -111,14 +111,14 @@
       "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video: a young adult Asian woman with long black hair in pink-streaked twin tails kneels between the viewer's legs. Her lips are sealed around the shaft of an erect adult penis. She slides her mouth slowly down the shaft until her lips are past the middle, holds there for a beat with a small swallow, then draws back up until only the head stays between her lips; her lips stay sealed the whole way. A thin string of saliva stretches from her lower lip and breaks. She looks up into the lens with half-closed eyes and a light blush. The camera does not move.\n\noverall_soundscape: soft wet suction, a quiet pop, her breathing through her nose, one low, short male grunt halfway through, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
     },
     "video_facial": {
-      "label": "Video - cum shot from the facial pose (epic_cumshots)",
+      "label": "Video - cum shot, several thin ropes (epic_cumshots; wide-gap keyframe)",
       "workflow": "wf_h3vid_i2v_lora.json",
       "width": 768,
       "height": 1152,
       "length": 124,
-      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video. She holds his cock just below her open mouth, eyes on the lens. The shaft pulses once and a short translucent milky rope shoots from the tip up across her lips and cheek, glossy and see-through, then drips down her chin. It is one short arc, no spray, no mist, nothing foams. She flinches, closes one eye, then smiles with half-lidded eyes, flushed. The camera does not move.\n\noverall_soundscape: a soft wet spurt, one low short male grunt, her sharp breath in, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
+      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video, one fixed camera. A young adult Asian woman in her mid-twenties with long black hair in pink-streaked twin tails and a silver choker kneels between the viewer's legs. She holds his erect adult cock in her hand low between his thighs, the tip a hand's width below her chin and a little to one side, her head tilted down, her mouth wide open with her tongue out, her eyes rolled up to the lens, half-lidded, a light blush. The semen is not a uniform opaque white and does not look like glue or paint: it is a mostly clear, glossy liquid with pearl-white clumps suspended in it, so the thin parts are see-through and wet and only the small clumps are opaque milk-white. His cock pulses again and again. With each pulse a short thin rope of semen shoots from the tip and lands on her tongue and her lower lip. There is no spray and nothing splatters across her face; most of it stays on her tongue and lower lip, and only a few drops run off her chin and fall slowly onto his thighs. Four or five ropes in a row, about a second apart, each one narrow; some pulses only add to what is already there. The ropes do not cross her nose or her cheek. His glans stays bare and clean between pulses, no semen sits on the tip; the tip is only wet. After the last rope the patches gather into small heavy beads and begin to run slowly down her chin. She flinches at each spurt, then looks into the lens with half-lidded eyes and a light blush, flushed. The camera does not move.\n\noverall_soundscape: four or five soft wet spurts about a second apart, one low male groan, her breath catching between them, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
       "nsfw_lora": "h3nsfw/epic_cumshots.safetensors",
-      "nsfw_strength": 0.8
+      "nsfw_strength": 0.5
     }
   },
   "characters": {
@@ -193,12 +193,25 @@
       "strength": 0.85,
       "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video: a young adult Asian woman with pink-streaked twin tails leans over the viewer and gives him a titjob. She presses her large natural breasts together around his erect cock and slides them up and down the shaft in slow strokes; the glans pushes out through the top of her cleavage on each stroke, her tongue touches the head. The cock keeps its shape, a defined glans with a corona rim. She looks up into the lens, half-lidded, light blush, a sweat sheen on her chest. The camera does not move.\n\noverall_soundscape: soft skin friction, her breath, a low male grunt at about 2 seconds, quiet room tone. No music.\n\nnon_diegetic_music: N/A"
     },
-    "cumshot_slow": {
-      "label": "Cum shot - slow translucent (glue caveat)",
+    "cumshot_multi": {
+      "label": "Cum shot - several thin ropes (best; use the wide-gap keyframe)",
+      "workflow": "wf_h3vid_i2v_lora.json",
+      "lora": "h3nsfw/epic_cumshots.safetensors",
+      "strength": 0.5,
+      "width": 768,
+      "height": 1152,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video, one fixed camera. A young adult Asian woman in her mid-twenties with long black hair in pink-streaked twin tails and a silver choker kneels between the viewer's legs. She holds his erect adult cock in her hand low between his thighs, the tip a hand's width below her chin and a little to one side, her head tilted down, her mouth wide open with her tongue out, her eyes rolled up to the lens, half-lidded, a light blush. The semen is not a uniform opaque white and does not look like glue or paint: it is a mostly clear, glossy liquid with pearl-white clumps suspended in it, so the thin parts are see-through and wet and only the small clumps are opaque milk-white. His cock pulses again and again. With each pulse a short thin rope of semen shoots from the tip and lands on her tongue and her lower lip. There is no spray and nothing splatters across her face; most of it stays on her tongue and lower lip, and only a few drops run off her chin and fall slowly onto his thighs. Four or five ropes in a row, about a second apart, each one narrow; some pulses only add to what is already there. The ropes do not cross her nose or her cheek. His glans stays bare and clean between pulses, no semen sits on the tip; the tip is only wet. After the last rope the patches gather into small heavy beads and begin to run slowly down her chin. She flinches at each spurt, then looks into the lens with half-lidded eyes and a light blush, flushed. The camera does not move.\n\noverall_soundscape: four or five soft wet spurts about a second apart, one low male groan, her breath catching between them, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
+    },
+    "cumshot_heavy": {
+      "label": "Cum shot - one heavy rope (exaggerated volume)",
       "workflow": "wf_h3vid_i2v_lora.json",
       "lora": "h3nsfw/epic_cumshots.safetensors",
       "strength": 0.8,
-      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video. She holds his cock just below her open mouth, eyes on the lens. The shaft pulses once and a short translucent milky rope shoots from the tip up across her lips and cheek, glossy and see-through, then drips down her chin. It is one short arc, no spray, no mist, nothing foams. She flinches, closes one eye, then smiles with half-lidded eyes, flushed. The camera does not move.\n\noverall_soundscape: a soft wet spurt, one low short male grunt, her sharp breath in, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
+      "width": 768,
+      "height": 1152,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video. She holds his cock just below her open mouth, eyes on the lens. The shaft pulses once and a short translucent milky rope shoots from the tip up across her lips and cheek, glossy and see-through, then drips down her chin. It is one short arc, no spray, nothing foams. She flinches, closes one eye, then smiles with half-lidded eyes, flushed. The camera does not move.\n\noverall_soundscape: a soft wet spurt, one low short male grunt, her sharp breath in, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
     },
     "anime_pov_bob": {
       "label": "Anime POV bob (best anime)",

@@ -12,9 +12,11 @@ gallery/
 *.local.md
 *.tmp
 *.log
-gens/bench/
-refs/
+
+# renders, sheets and frame extracts are never committed (docs/IMAGES.md)
+gens/
+!gens/.gitkeep
+analysis/
 refs/
 examples/
-
 sfw/
