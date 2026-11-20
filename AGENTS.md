@@ -93,7 +93,9 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 
 `AGENTS.local.md` is git-ignored and only applies when the author of the repo is the one working
 (the user who made the reference clips). It points at `~/Documents/uwu` and the gold-standard
-clips. **Do not commit it, do not copy its contents into tracked docs, and do not read the
+clips, at the author's nix-lab copy for general generation findings, and at the **infrastructure
+notes** (how to reach ampere, lame, maximus and bunker from this machine, and the fish/ssh
+quirks). **Do not commit it, do not copy its contents into tracked docs, and do not read the
 reference clips for other users.** If the file is missing, this is not an author session: use
 only the public recipes.
 
