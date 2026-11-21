@@ -80,3 +80,24 @@ wording moves the level, not the texture, and it is not monotonic.
 The texture verdict is the owner's ear: do not mark this solved from the measurements. The
 current clips ship A; B and C are written and ready for the comparison. The likely answer is
 still a separate Foley bed cut to the visual beats (section above), not the model's audio.
+
+## Session 6b: the voice-only test and the audio box
+
+Owner's verdict on the current audio: blowjob sounds are still **crunches**, spurts are **clicks**,
+the moans are not fully incoherent but far off. He suggested a separate porn-TTS/SFX generator if
+H3 cannot be prompted out of it.
+
+- **Voice-only test `k15_voice_only`** (same k9 clip and seed, soundscape replaced with "no wet
+  Foley and no skin sounds; only her soft breathy moans and quick breaths, one low male groan, and
+  the quiet bedroom room tone ... no crunch, no clicks"). It is the direct test of whether the bad
+  wet layer can be subtracted at the prompt level. Measured: -38.1 dBFS, centroid 1496 Hz, no
+  clipping; the transient count is lower than the normal mix. The owner still has to listen.
+- **The audio box exists.** `lame` has `ace_step_1.5_turbo_aio.safetensors` (ACE-Step 1.5 Turbo)
+  and `Qwen3-TTS-12Hz-1.7B-Base` / `-VoiceDesign` under `models/qwen-tts`, plus the ComfyUI-Qwen-TTS
+  custom node. The service was started and stopped again during this session. Windows cannot reach
+  `10.10.10.56:8188` directly and the SSH `-L` forward through maximus timed out, so the audio work
+  has to run as a script on `lame` (submit via `127.0.0.1:8188`, pull the wav over `scp` through
+  maximus). That is the next sound session: Qwen3-TTS for the voice/moans, ACE-Step for a Foley
+  bed, then mux with ffmpeg against the visual beats.
+- Clipping warning: "loud and present" is not free - `k11` clipped 370 samples (peak +2.6 dBFS)
+  while `k16` did not. Check `tools/sfx_report.py` on every final.

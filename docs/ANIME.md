@@ -306,3 +306,27 @@ plain LoRA one.
   and stays on the back of her head. The hand is large and slightly stiff, but it reads; template
   `anime_ll_headgrab`. The slow and deepthroat variants are written as templates but not rendered
   yet.
+
+### Motion variants (owner review, 2026-11-21 late)
+
+The owner asked for a push, a two-hand, a tip tease, and a stroke-then-take-it cum shot. All are
+built from the k9 base by changing only the stroke sentence:
+
+- **Head-grab push, held: `k16_headgrab_hold` is the recipe** ("very good that's the recipe"). He
+  pushes her down until her nose is against his body, holds her perfectly still while she sucks,
+  she braces her hands on his thighs and briefly tries to push back up against his hand, then he
+  releases. The earlier `k11` was close but ended with the smile; remove the k9 base's
+  `the corner of her mouth curls` on any clip where the cock stays in the mouth - it opens the
+  mouth and shows the fangs.
+- Two hands: `k12` is good but fangs pop at the end (same smile); `k18` removes the smile and
+  keeps the lips sealed. Template `anime_ll_two_hands`.
+- Tip tease: `k13` (licks the tip, kisses the glans, takes just the head, pops off, then goes
+  deep) reads; template `anime_ll_tip_tease`.
+- **Cum switch (stroke, then the moment he cums she takes it in the mouth): still open.** The
+  front handjob keyframe `n1_handjob_a` puts the tip at her tongue, so `k14`/`k17` take it in
+  immediately and the spurt reads as marks on her nose, not a shot. The side handjob keyframe
+  (`n2_side_handjob_b`, a clean gap) does not make the epic LoRA emit at all (`k19`, motion 1.3).
+  `n1_handjob_a`, `n2_side_handjob_a/b` and the `anime_ll_fz_side_handjob` template preserve the
+  poses; `k20` is the front take with the shot aimed at the tongue/lips only.
+- The mouth-purse/suction base is unchanged; the `k9` prompt plus the `anime_ll_*` video templates
+  are the current library (headgrab, two hands, tip tease, slow, deepthroat, cum switch).
