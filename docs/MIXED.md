@@ -91,6 +91,10 @@ golden mouth:
 
 - The deep-seal fill hides the glans. A "head out" piece needs a shallow still + its own mask
   (or a mouth-level seal) - do not reuse the deep mask.
+- The dark `s1_dark` base has her lips at the tip of the drawn head, so the fill puts the real
+  glans outside the mouth (`gens/a58`, `gens/a59`) and the mask edge shows. It needs a dark base
+  generated with the j2_b deep prompt ("his cock deep in her mouth, her lips around the middle of
+  his shaft"), not the s1 prompt; then the same masked fill.
 - The i2v still puffs at the deepest point of a long stroke. Next: a first+last frame pair with
   the thin seal at both ends (`wf_h3vid_i2v_fl.json`), or a shorter stroke.
 - The mask is traced for the base still. A SAM point mask on the drawn cock would automate it;
