@@ -556,7 +556,7 @@ Total if you have none of them: about 5.7 GB (most templates share files).
 
 ## Video recipes
 
-### POV blowjob - slow stroke (best motion)
+### POV blowjob - physics wording, no LoRA (fallback 1)
 
 Template `pov_blowjob`, workflow `wf_h3vid_i2v.json`.
 
@@ -570,7 +570,7 @@ Template `pov_blowjob`, workflow `wf_h3vid_i2v.json`.
 
 Total if you have none of them: about 32.2 GB (most templates share files).
 
-### POV blowjob - Astro NSFW 0.8 (owner: best photoreal BJ video)
+### POV blowjob - physics + Astro 0.8 (fallback 2)
 
 Template `pov_blowjob_astro`, workflow `wf_h3vid_i2v_lora.json`.
 
@@ -585,7 +585,7 @@ Template `pov_blowjob_astro`, workflow `wf_h3vid_i2v_lora.json`.
 
 Total if you have none of them: about 32.5 GB (most templates share files).
 
-### POV blowjob - glans holds its shape (Male Anatomy 0.9, candidate)
+### POV blowjob - photoreal GOLDEN (physics + Male Anatomy 0.9; owner: best photoreal yet)
 
 Template `pov_blowjob_anatomy`, workflow `wf_h3vid_i2v_lora.json`.
 
@@ -599,6 +599,20 @@ Template `pov_blowjob_anatomy`, workflow `wf_h3vid_i2v_lora.json`.
 | `Male_Anatomy-v2.02-ep4.safetensors` | `loras/h3nsfw` | 0.08 GB | [download](https://civitai.com/api/download/models/3250559?fileId=3133640) - [page](https://civitai.com/models/2839513?modelVersionId=3250559) |
 
 Total if you have none of them: about 32.3 GB (most templates share files).
+
+### POV blowjob - first+last = keyframe (fallback: strongest shape hold, least motion)
+
+Template `pov_blowjob_fl`, workflow `wf_h3vid_i2v_fl.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` | `diffusion_models` | 12.54 GB | [download](https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3-experimental) |
+| `pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors` | `loras` | 0.56 GB | [download](https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3_comfy) |
+| `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `text_encoders` | 15.69 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3-Image) |
+| `minimax_h3_video_vae_int8_convrot.safetensors` | `vae` | 2.81 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `minimax_h3_audio_vae_fp32.safetensors` | `vae` | 0.61 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+
+Total if you have none of them: about 32.2 GB (most templates share files).
 
 ### Side deepthroat (act LoRA)
 
@@ -766,7 +780,7 @@ Template `anime_ll_paizuri`, workflow `wf_h3vid_i2v_lora2.json`.
 
 Total if you have none of them: about 32.5 GB (most templates share files).
 
-### Anime - LL suction blowjob POV - base recipe (best blowjob)
+### Anime - LL suction blowjob POV - base recipe + physics (k9; owner: h-game level)
 
 Template `anime_ll_suction`, workflow `wf_h3vid_i2v_lora2.json`.
 

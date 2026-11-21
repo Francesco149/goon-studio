@@ -135,11 +135,31 @@ def build_prompt(job):
     if frame:
         fields["scene"] = add_tags(fields["scene"], frame)
     wf = job.get("workflow") or (t or {}).get("workflow", "")
+    cock = P.get("cocks", {}).get(job.get("cock") or "template") or {}
     if "h3vid" in wf:
         # H3 video prompts are a MiniMax script: keep `integrated_multimodal_description` and the
-        # other section keys exactly as written.
-        return (base or "").strip()
-    return clean(fill_tags(base, fields))
+        # other section keys exactly as written. A penis type goes at the end of the description
+        # so the clip keeps the keyframe's anatomy (the video model redraws what is not named).
+        text = (base or "").strip()
+        if cock.get("prose"):
+            cut = text.find("\n\noverall_soundscape")
+            text = (text[:cut] + " " + cock["prose"] + text[cut:]) if cut > 0 else (text + " " + cock["prose"])
+        return text
+    if cock.get("tags") and is_tag_prompt(base):
+        fields["scene"] = add_tags(fields["scene"], cock["tags"])
+    out = fill_tags(base, fields)
+    if cock.get("prose") and not is_tag_prompt(base):
+        # prose prompts: before a closing camera tag ("... phone photo.") when there is one
+        m = re.search(r"\s*(Candid amateur phone photo\.|Natural skin texture[^.]*\.)", out)
+        out = (out[:m.start()] + " " + cock["prose"] + out[m.start():]) if m else (out.rstrip() + " " + cock["prose"])
+        return re.sub(r"\s+", " ", out).strip()
+    return clean(out)
+
+
+def is_tag_prompt(text):
+    """Danbooru-style tag prompts (anime) vs prose (photoreal): tags are short comma-separated items."""
+    parts = [p for p in (text or "").split(",") if p.strip()]
+    return len(parts) >= 8 and sum(len(p.split()) for p in parts) / len(parts) < 4
 
 
 def build_late_prompt(prompt, series=None):
@@ -169,7 +189,7 @@ def build_fields(job):
         if "strength" in t:
             fields["nsfw_strength"] = t["strength"]
     for k, v in job.items():
-        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene"):
+        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock"):
             fields[k] = v
     fields["prompt"] = build_prompt(job)
     late = t.get("late")

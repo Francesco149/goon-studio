@@ -247,9 +247,13 @@ Foley pass or a dedicated audio tool is the likely answer.
 - Photoreal e-girl: the character block in `docs/EGIRL.md`; `full natural breasts` is the size
   control; tag prompts for portraits, prose for acts.
 - Facial pose: `egirl_facial` template (cock out, mouth open, eyes on camera) - owner approved.
-- Best photoreal BJ motion: Astro NSFW 0.8 on H3 (`pov_blowjob_astro`; owner: "best BJ video so
-  far", it can drift the character); best plain motion: the detailed stroke prompt, no LoRA
-  (`pov_blowjob`). The anime blowjob is the other way round: MM-H3 Blowjob v3 0.65 + motion 0.5
+- **Golden photoreal blowjob (owner, 2026-11-21: "the best photoreal video gens we have made
+  yet"): keyframe `egirl_bj_pov` (Krea 2 + Verite) -> clip `pov_blowjob_anatomy`** (the physics
+  wording + Male Anatomy v2.02 at 0.9: the glans keeps its shape and springs back; `docs/FACIAL.md`
+  a87). **All four a87 variants are owner-valid** ("all clean with varying levels of spring
+  back"), so they are the fallbacks when one artifacts on a seed: `pov_blowjob` (physics, no
+  LoRA), `pov_blowjob_astro` (physics + Astro 0.8), `pov_blowjob_fl` (first+last = the keyframe:
+  strongest shape hold, least motion). The anime blowjob is the other way round: MM-H3 Blowjob v3 0.65 + motion 0.5
   (`anime_ll_suction`, k9).
 - Best anime clip: POV bob from the Pink POV keyframe with whole-body motion in the prompt.
 - Cum (2026-11-21 session 5): the recipe works and is a **dial**, not one look. `epic_cumshots` at

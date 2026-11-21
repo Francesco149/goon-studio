@@ -321,9 +321,12 @@ def check(workflow, fields=None, s=None):
 
 
 def resolve_graph(graph, s=None):
-    """Swap every loader's file for the one this install has (same model, other quantization).
+    """Swap every loader's file for the one this install has (same model, other quantization), and
+    write every file in the engine's own spelling: a local Windows ComfyUI lists subfolder files
+    with backslashes and rejects "h3nsfw/x.safetensors" - for every loader, not only the act LoRA.
     Returns the list of swaps; names nothing matches are left for ComfyUI to report."""
     s = s or settings()
+    win = os.name == "nt" and is_local(s)
     cache, swaps = {}, []
     for nid, ct, k, name, folder in graph_files(graph):
         if folder not in cache:
@@ -331,8 +334,12 @@ def resolve_graph(graph, s=None):
         if not cache[folder]:
             continue
         use = pick(folder, name, cache[folder])
-        if use and use != name:
-            graph[nid]["inputs"][k] = use.replace("/", "\\") if os.name == "nt" and is_local(s) else use
+        if not use:
+            continue
+        spelled = use.replace("/", "\\") if win else use
+        if graph[nid]["inputs"][k] != spelled:
+            graph[nid]["inputs"][k] = spelled
+        if use != name:
             swaps.append((name, use))
     return swaps
 

@@ -89,11 +89,14 @@ full resolution at f0 / f90-f110 (withdrawal) / f123 (`analysis/a87_glans_compar
   the rim it is fully round again; only the loose shaft skin moves a few millimetres and settles
   back. Result: no cone, the skin bunches a little at the rim as the lips pass (the middle
   ground), the last frame matches f0.
-- **+ Male Anatomy v2.02 at 0.9** (`pov_blowjob_anatomy`, candidate): the best spring-back - the
+- **+ Male Anatomy v2.02 at 0.9** (`pov_blowjob_anatomy`, **GOLDEN** - owner: "the best photoreal video gens we have made yet"): the best spring-back - the
   head pops out as a round dome with a clear rim. Civitai 2839513, no login needed.
 - **+ first+last frame = the keyframe**: shape held perfectly but by freezing - one stroke, then
   still from ~f90. The stiff extreme; not the fix.
 - **+ Astro 0.8**: better than a86 Astro, the head slightly compressed under the lips.
+- **Owner verdict (2026-11-21): all four are convincing, clean variants with varying spring-back**
+  - golden is the anatomy one; the others are the fallbacks (`pov_blowjob`, `pov_blowjob_astro`,
+  `pov_blowjob_fl`) when one approach artifacts on a given seed.
 - Not tested yet: HMPenis v2 (needs a Civitai login), the same wording on the anime blowjob
   recipes and on paizuri (where the opposite - skin that never moves - needs the "loose skin
   slides a few millimetres" half of the wording).

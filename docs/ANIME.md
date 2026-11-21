@@ -114,6 +114,51 @@ seed). What locks it, tested on seeds 86103-86106 (in the templates now):
   (also removed a split-tip artifact on 86106). `anime_pov_mosaic` carries it too.
 - Not locked by wording: the seal depth (lips over the top of the glans) - see a85.
 
+## Glans physics on the anime clips, rounds a88-a89 (2026-11-21)
+
+- `k9_phys` (k9 + the physics paragraph: rigid erection, the glans keeps its round shape, her lips
+  slide over it instead of dragging it, only the loose shaft skin moves): owner - "pretty
+  convincing (comparable to a h-game animation)", dynamics "definitely less rigid than previous
+  anime video gens". Missing: fluid action. The fangs are awkward in this scene (character
+  specific). The shaft came out smooth, not veiny like the stills: the video model redraws what
+  the prompt does not name, so the penis type now has its own presets (`cocks` in
+  `kit/presets.json`, the **Cock** pickers on the page) - tags for anime stills, a sentence for
+  prose stills and for the video script. Keep the clip's type the same as the keyframe's.
+- The physics paragraph is now in every anime blowjob recipe (`anime_ll_suction` family,
+  `anime_pov_bob`).
+- `k9_phys_anat06` (+ Male Anatomy 0.6, `wf_h3vid_i2v_lora3.json`): owner - "very odd": the penis
+  slowly pulls back and deforms while she keeps bobbing. The anatomy LoRA stays photoreal-only.
+- `k2_phys` (paizuri + "the loose shaft skin is dragged a little with her breasts and gathers
+  under the rim"): almost frame-for-frame the same as `k2`; no visible skin slide in either
+  (`analysis/a88_paizuri_shaft.jpg`). The wording does not move this clip - it follows the
+  keyframe closely. Owner: solid, but the same tongue-in-front-of-the-glans as before, **and a new
+  unnatural shading change on the inner breasts about 2 s in** - confirmed: from ~f48 the inner
+  edges beside the shaft get a darker blotchy pink band that the original does not have
+  (`analysis/a88_paizuri_shade.jpg`). The skin-drag sentence makes the model paint the movement
+  onto the breasts. **Do not add skin-drag wording to paizuri.** `anime_ll_paizuri` left as is;
+  the skin slide needs another route (a LoRA, or a first/last pair with the skin in two
+  positions). The tongue is fixed at the keyframe (round a90: the paizuri still without
+  `(tongue out:1.2) touching the glans`; 1/4 seeds clean - 86012, closed mouth, glans just under
+  her lips). Round a92 animated it with k2's settings and the licking sentence replaced by "she
+  watches it with her lips closed": no tongue in front any more, but from the first up stroke she
+  takes the tip between her lips and keeps it there, and the tip gets a small notch where her lips
+  grip it. No shading band. Owner to judge.
+- **Gold standard for dynamics, poses and expressions (owner): round a26** - `k11_headgrab_push`,
+  `k12_two_hands`, `k13_tip_tease`, `k14_cum_switch`. Round a89 re-renders all four from the same
+  keyframes and seeds with only the physics paragraph added, for review. Owner on the a89 clips:
+  "not necessarily superior to the golden batch but not worse either - just the penis type is
+  different"; **default the penis type to the golden batch's** - the `golden` preset (thick,
+  girthy, a little darker than her skin, softly wrinkled skin, a few soft wavy veins, not glossy),
+  now the Video tab default (`default_cock_video`); round a91 checks it on k11/k12. The a89 shafts
+  came out longer, smoother and glossier: "a firm, rigid erection" pulls toward a clean cylinder.
+- a91 (k11/k12 + physics + `golden`): the shaft matches a26 (thick, tan, soft wrinkle ridges) but
+  at the top of the stroke the glans shows redder and more swollen at her lips than a26 ever does
+  (`analysis/a91_golden_compare.jpg`). Owner to judge at full speed.
+- **Do not put the rigidity paragraph on cum clips.** `k14_cum_switch_phys` lost most of the cum:
+  a26 fills and overflows the mouth from ~f50, the physics version only shows a little at the lips
+  at the end (`analysis/a89_k13_k14.jpg`) - "never changes" fights the spurt/twitch event. The cum
+  recipes stay without it. k13 (tip tease) kept the a26 progression.
+
 ## Censorship
 
 - `bar censor` draws a free-floating striped sticker (`pb4`) - unusable.

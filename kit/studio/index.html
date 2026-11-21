@@ -110,6 +110,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <div class="row" style="margin-top:6px">
       <div><label class="h">Body type</label><select id="body"></select></div>
       <div><label class="h">Framing</label><select id="framing"></select></div>
+      <div><label class="h">Cock</label><select id="cock"></select></div>
     </div>
     <label class="h">Character <small>who: hair, eyes, body, face</small></label>
     <textarea id="character"></textarea>
@@ -152,6 +153,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <label class="h">Video recipe <small>(fills the prompt and the LoRA)</small></label>
     <select id="vtpl"></select>
     <div id="vneeds"></div>
+    <label class="h">Cock <small>(keep it the same as the keyframe's)</small></label><select id="vcock"></select>
     <label class="h">Mode</label>
     <select id="vmode">
       <option value="i2v">image to video</option>
@@ -327,6 +329,8 @@ async function init(){
   t.onchange=fillTemplate;
   const b=$("#body");b.add(new Option("as the template","none"));for(const k of Object.keys(STATE.bodies||{}))if(k!=="none")b.add(new Option(k,k));
   for(const k of Object.keys(STATE.framings||{}))$("#framing").add(new Option(k,k));
+  for(const [k,v] of Object.entries(STATE.cocks||{template:{label:"as the template"}})){$("#cock").add(new Option(v.label||k,k));$("#vcock").add(new Option(v.label||k,k))}
+  if(STATE.default_cock_video&&(STATE.cocks||{})[STATE.default_cock_video])$("#vcock").value=STATE.default_cock_video;
   for(const [k,v] of Object.entries(STATE.loras||{}))$("#vlora").add(new Option(k,v||k));
   const vt=$("#vtpl");for(const [k,v] of Object.entries(STATE.video_templates||{}))vt.add(new Option(v.label||k,k));
   vt.value=STATE.default_video&&(STATE.video_templates||{})[STATE.default_video]?STATE.default_video:(vt.options[0]||{}).value;
@@ -334,7 +338,7 @@ async function init(){
   ["#vwidth","#vheight","#vlength"].forEach(s=>$(s).oninput=veta);
   $("#quality").onchange=()=>{const S=STEPS[FAMILY(curWf())];if(S)$("#steps").value=S[$("#quality").value];eta()};
   $("#steps").oninput=()=>{$("#quality").value=qualityFor(curWf(),+$("#steps").value);eta()};
-  ["#character","#scene","#prompt","#negative","#body","#framing"].forEach(s=>$(s).addEventListener("input",preview));
+  ["#character","#scene","#prompt","#negative","#body","#framing","#cock"].forEach(s=>$(s).addEventListener("input",preview));
   $("#count").oninput=eta;
   for(const k of Object.keys(SLOTS))drawSlot(k);
   fillTemplate();fillVideo();
@@ -415,7 +419,7 @@ $$(".slot").forEach(s=>{
 function num(sel){const v=$(sel).value.trim();return v===""||isNaN(+v)?undefined:+v}
 function jobBody(){
   const b={template:$("#template").value,body:$("#body").value,framing:$("#framing").value,
-    character:$("#character").value,scene:$("#scene").value,prompt:$("#prompt").value,negative:$("#negative").value,count:+$("#count").value||1};
+    character:$("#character").value,scene:$("#scene").value,prompt:$("#prompt").value,negative:$("#negative").value,count:+$("#count").value||1,cock:$("#cock").value};
   for(const k of ["width","height","steps","cfg"]){const v=num("#"+k);if(v!==undefined)b[k]=v}
   const seed=num("#seed");if(seed!==undefined)b.seed=seed;
   if(SLOTS.ref)b.image=SLOTS.ref.path;
@@ -463,7 +467,7 @@ function videoWorkflow(){const m=$("#vmode").value;
 $("#govideo").onclick=async()=>{
   const m=$("#vmode").value;
   if(!$("#vprompt").value.trim()){alert("Write the clip's script first.");return}
-  const b={template:$("#vtpl").value,workflow:VWF||videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
+  const b={template:$("#vtpl").value,cock:$("#vcock").value,workflow:VWF||videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
     width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value||1};
   const seed=num("#vseed");if(seed!==undefined)b.seed=seed;
   if(m!=="t2v"){if(!SLOTS.v1){alert("Pick a keyframe first.");return}b.image=SLOTS.v1.path}
