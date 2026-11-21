@@ -224,8 +224,10 @@ draws the acts natively and the Verite skin is plastic. Kept for a fallback only
 
 1. Read the header before trusting the name: `python -c "import json,struct;f=open(P,'rb');n=struct.unpack('<Q',f.read(8))[0];print(json.loads(f.read(n)).get('__metadata__'))"`
    - base model, dim/alpha, whether the text encoder was trained.
-2. Copy it to `<engine_dir>\ComfyUI\models\loras\` (local). Refresh check:
-   `/object_info/LoraLoaderModelOnly` must list it.
+2. Put it in the store and register it: `python tools/models/store.py adopt <path> --folder loras
+   --url <download link> --page <model page> --what "..."` (it moves the file to
+   `<models_dir>/loras/` and adds the `kit/models.json` entry; ask the user for the link if they
+   downloaded it). Refresh check: `/object_info/LoraLoaderModelOnly` must list it.
 3. Wire it: `LoraLoaderModelOnly` between `UNETLoader` and `KSampler`; Anima characters are
    unet-only, so model-only is correct. A new graph goes in `workflows/wf_anima2_lora.json` or a
    copy of it, never inline in a script.

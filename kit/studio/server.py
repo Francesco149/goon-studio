@@ -10,6 +10,8 @@ Endpoints:
   POST /api/trash       {files};  /api/restore {files};  /api/delete {files}
   POST /api/upload      {data: "data:image/...;base64,..."} -> gallery/uploads/<file>
   POST /api/lastframe   {file: clip} -> its last frame as a picture (to chain the next clip)
+  POST /api/needs       {template, workflow?, nsfw_lora?...} -> the model files it loads, which are
+                        missing, where they go and where to download them (kit/models.json)
   GET  /img/<path>      a picture in the gallery
 """
 import base64, json, mimetypes, os, queue, threading, time, traceback, urllib.parse
@@ -18,6 +20,7 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import core  # noqa: E402
+import modelstore  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PORT = int(os.environ.get("GOON_STUDIO_PORT", "8191"))
@@ -150,6 +153,16 @@ class H(BaseHTTPRequestHandler):
                     Q.put(e)
                     made.append(e["id"])
                 return self.send(200, {"queued": made})
+            if p == "/api/needs":
+                s = core.settings()
+                P = modelstore.presets()
+                tid = b.get("template")
+                wf, fields = (modelstore.template_job(tid, P) if tid in P.get("templates", {}) or
+                              tid in P.get("video_templates", {}) else (None, {}))
+                wf = b.get("workflow") or wf or "wf_krea2_nsfw.json"
+                fields.update({k: v for k, v in b.items() if k in ("unet", "lora", "nsfw_lora", "motion_lora") and v})
+                return self.send(200, {"workflow": wf, "files": modelstore.check(wf, fields, s),
+                                       "models_dir": modelstore.models_dir(s), "local": modelstore.is_local(s)})
             if p == "/api/preview":
                 return self.send(200, {"prompt": core.build_prompt(b), "negative": core.build_fields(b).get("negative", "")})
             if p == "/api/cancel":

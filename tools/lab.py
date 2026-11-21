@@ -20,6 +20,8 @@ import urllib.request
 import uuid
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(os.path.dirname(HERE), "kit", "studio"))
+import modelstore  # noqa: E402  (the shared model store: names, sources)
 
 
 def _local():
@@ -126,6 +128,7 @@ def main():
     a = ap.parse_args()
 
     base, root = BOXES[a.box]
+    engine_s = dict(modelstore.settings(), comfy_url=base)
     os.makedirs(a.out, exist_ok=True)
     # one batch at a time per box: two batches sharing a subfolder clean each other's renders away
     lock = os.path.join(HERE, ".lock." + a.box)
@@ -165,7 +168,8 @@ def main():
     for job in jobs:
         job = dict(job)
         name = job.pop("name")
-        wf, defaults = load_wf(job.pop("wf", a.wf))
+        wfname = job.pop("wf", a.wf)
+        wf, defaults = load_wf(wfname)
         params = dict(defaults)
         params["prefix"] = "%s/%s" % (a.sub, name)
         for k in IMG_KEYS:
@@ -179,6 +183,13 @@ def main():
                 if isinstance(params.get(k), str):
                     params[k] = params[k].replace("/", "\\")
         prompt = subst(wf, params, name)
+        # same model, the quantization this engine has (the workflows name one box's files)
+        for old, new in modelstore.resolve_graph(prompt, engine_s):
+            log("%-22s model %s -> %s" % (name, old, new), fh)
+        miss = modelstore.graph_missing(prompt, engine_s)
+        if miss:
+            log("%-22s SKIPPED (%s): %s" % (name, wfname, modelstore.missing_message(miss)), fh)
+            continue
         cid = "lab-" + name
         try:
             r = http(base, "/prompt", data=json.dumps({"prompt": prompt, "client_id": cid}).encode())

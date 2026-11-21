@@ -43,6 +43,9 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
 
 ## Work and outputs
 
+- Models: one store (`models_dir`), registry `kit/models.json`, tool `tools/models/store.py`
+  (check / fetch / adopt / audit / doc); AGENTS.md section 4a. A template that is good must be
+  usable by hand: every file it loads has a source in the registry.
 - Jobs: `jobs/<round>.jsonl`; renders: `gens/<round>/`; sheets and studies: `analysis/`; neutral
   work: `sfw/<round>/`; the page's own gallery stays in the app.
 - The app's templates and approved prompt blocks: `kit/presets.json`; the user's own presets:

@@ -15,6 +15,8 @@ A job is a dict:
 """
 import json, os, random, re, shutil, subprocess, threading, time, urllib.parse, urllib.request
 
+import modelstore
+
 KIT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(KIT)
 MY = os.path.join(ROOT, "my")
@@ -41,6 +43,8 @@ def settings():
     s = load_json(os.path.join(MY, "settings.json"), {}) or {}
     s.setdefault("comfy_url", "http://127.0.0.1:8188")
     s.setdefault("data_dir", GALLERY)
+    if os.environ.get("GOON_COMFY_URL"):          # a bench engine (tests), never the user's setting
+        s["comfy_url"] = os.environ["GOON_COMFY_URL"]
     return s
 
 
@@ -291,37 +295,6 @@ def model_file_field(name, s=None):
     return name.replace("/", "\\") if local_windows(s) else name
 
 
-QUANT = re.compile(r"_(int8_convrot|w4a8_mixed|w4a8|nvfp4|int8|fp8\w*|bf16|fp16)$")
-_UNETS = {}
-
-
-def unet_names(s=None):
-    """The diffusion models this ComfyUI has (cached per engine URL)."""
-    s = s or settings()
-    url = s["comfy_url"]
-    if url not in _UNETS:
-        try:
-            info = json.loads(http(url + "/object_info/UNETLoader", timeout=15))
-            spec = info["UNETLoader"]["input"]["required"]["unet_name"]
-            names = spec[0] if isinstance(spec[0], list) else (spec[1] or {}).get("options", [])
-            _UNETS[url] = list(names)
-        except Exception:
-            return []
-    return _UNETS[url]
-
-
-def resolve_unet(name, s=None):
-    """Same model, the quantization this box has: the workflows default to one box's file names
-    (an 8 GB card: *_w4a8_mixed, a bigger one: *_int8_convrot). Unknown or unmatched names pass through."""
-    have = unet_names(s)
-    if not name or not have or name in have:
-        return name
-    stem, ext = os.path.splitext(name)
-    base = QUANT.sub("", stem)
-    alts = [h for h in have if QUANT.sub("", os.path.splitext(h)[0]) == base]
-    return alts[0] if alts else name
-
-
 def run(job, by="me", on_queued=None):
     s = settings()
     P = presets()
@@ -333,8 +306,6 @@ def run(job, by="me", on_queued=None):
     for k in ("lora", "nsfw_lora"):
         if fields.get(k):
             fields[k] = model_file_field(fields[k], s)
-    if fields.get("unet"):
-        fields["unet"] = resolve_unet(fields["unet"], s)
     if job.get("image"):
         fields["image"] = upload_input(job["image"], s)
     if job.get("image1"):
@@ -342,6 +313,11 @@ def run(job, by="me", on_queued=None):
     if job.get("last"):
         fields["last"] = upload_input(job["last"], s)
     graph = subst(graph, fields)
+    # same model in the quantization this engine has; a missing file stops here with where to get it
+    modelstore.resolve_graph(graph, s)
+    miss = modelstore.graph_missing(graph, s)
+    if miss:
+        raise RuntimeError(modelstore.missing_message(miss))
     t0 = time.time()
     pid = submit(graph, s)
     if on_queued:

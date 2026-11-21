@@ -8,6 +8,7 @@
 # Settings live in my\settings.json:
 #   { "comfy_url": "http://127.0.0.1:8188",
 #     "engine_dir": "D:\\GoonStudio\\ComfyUI_windows_portable",  # ComfyUI folder with python_embeded
+#     "models_dir": "D:\\GoonStudio\\models",   # every model file (tools/models/store.py wire)
 #     "data_dir": "C:\\Users\\you\\Documents\\goon-studio\\gallery",
 #     "extra_flags": "" }
 param([switch]$NoBrowser, [switch]$Stop, [switch]$RestartEngine)

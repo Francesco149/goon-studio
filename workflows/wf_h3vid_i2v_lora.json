@@ -213,7 +213,7 @@
   "length": 124,
   "seed": 1,
   "prefix": "gl/x",
-  "nsfw_lora": "MM-H3-Blwjob-v3.safetensors",
+  "nsfw_lora": "h3nsfw/MM-H3-Blwjob-v3.safetensors",
   "nsfw_strength": 0.8
  },
  "_note": "H3 FL2VA + Pika Flex 6-step i2v, plus a second NSFW act LoRA after it (node 21)."

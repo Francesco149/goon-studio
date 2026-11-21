@@ -41,6 +41,10 @@ button.danger{border-color:var(--bad);color:var(--bad)}
 details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 .mono{font:12px/1.4 Consolas,monospace;white-space:pre-wrap;background:var(--bg);padding:8px;border-radius:8px;border:1px solid var(--line)}
 .hint{color:var(--mute);font-size:13px}
+.needs{margin-top:8px;font-size:13px;border-radius:8px;padding:8px 10px;border:1px solid var(--line)}
+.needs.miss{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 8%,transparent)}
+.needs ul{margin:6px 0 0;padding-left:18px}.needs li{margin:3px 0;overflow-wrap:anywhere}
+.needs a{color:var(--accent2)}.needs code{font-size:12px}.needs.ok summary{color:var(--ok);cursor:pointer}
 .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .thumb{position:relative;cursor:pointer;border-radius:10px;overflow:hidden;background:var(--line)}
 .thumb img,.thumb video{width:100%;display:block;aspect-ratio:2/3;object-fit:cover;background:#000}
@@ -101,6 +105,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <label class="h">Template <small>(the recipe; then change anything you like)</small></label>
     <select id="template"></select>
     <div class="hint" id="tplAbout"></div>
+    <div id="needs"></div>
     <div class="row" style="margin-top:6px">
       <div><label class="h">Body type</label><select id="body"></select></div>
       <div><label class="h">Framing</label><select id="framing"></select></div>
@@ -144,6 +149,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
   <div class="card">
     <label class="h">Video recipe <small>(fills the prompt and the LoRA)</small></label>
     <select id="vtpl"></select>
+    <div id="vneeds"></div>
     <label class="h">Mode</label>
     <select id="vmode">
       <option value="i2v">image to video</option>
@@ -273,6 +279,26 @@ const FAMILY=wf=>!wf?null:/anima_hires/.test(wf)?"hires":/anima/.test(wf)?"anima
 const STEPS={anima:{preview:12,standard:20,final:30},krea:{preview:4,standard:6,final:8},h3img:{preview:4,standard:6,final:8},qwen:{preview:12,standard:25,final:25}};
 const SECS={anima:{12:23,20:26,30:36},krea:{4:10,6:16,8:20},h3img:{4:7,6:10,8:14},hires:{20:60},qwen:{12:29,25:37}};
 const tplOf=k=>(STATE.templates||{})[k]||{};
+/* which model files a template loads, what is missing, where to put it and where to get it */
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let NEEDQ={};
+async function showNeeds(el,body){
+  const q=JSON.stringify(body);NEEDQ[el]=q;let r;
+  try{r=await api("/api/needs",body)}catch(e){$(el).innerHTML="";return}
+  if(NEEDQ[el]!==q)return;                    // a newer pick won
+  const miss=r.files.filter(f=>!f.present),gb=miss.reduce((a,f)=>a+(f.gb||0),0);
+  const name=f=>f.fetch.split("/").pop(),where=f=>f.dest.slice(0,f.dest.length-name(f).length-1);
+  const src=f=>(f.url?`<a href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">download</a>`:"no download link recorded - ask the agent")+
+    (f.page?` · <a href="${esc(f.page)}" target="_blank" rel="noopener noreferrer">page</a>`:"")+(f.license?` · ${esc(f.license)}`:"");
+  if(!miss.length){
+    $(el).innerHTML=`<details class="needs ok"><summary>Models: all ${r.files.length} files are here ✓</summary><ul>${r.files.map(f=>`<li><code>${esc(f.use)}</code> <span class="hint">${esc(f.what||f.folder)}</span></li>`).join("")}</ul></details>`;
+    return}
+  $(el).innerHTML=`<div class="needs miss"><b>This needs ${miss.length} file${miss.length>1?"s":""} you don't have yet</b>${gb?` (about ${gb.toFixed(1)} GB)`:""}.
+    Easiest: ask the agent <i>"download the models for ${esc(body.template||r.workflow)}"</i>. To do it yourself, download each one, save it under exactly this name in the folder shown, then close and reopen Goon Studio:
+    <ul>${miss.map(f=>`<li><code>${esc(name(f))}</code> ${f.gb?`(${f.gb.toFixed(2)} GB)`:""} - ${esc(f.what||"")}<br>${src(f)}${f.login?" (free Civitai login needed)":""}<br>put it in <code>${esc(where(f))}</code></li>`).join("")}</ul>
+    ${r.local?"":`<span class="hint">The engine is not on this PC: put the files in its models folder instead.</span>`}
+    <span class="hint">Every template's files: <a href="/docs/MODELS.md" target="_blank">docs/MODELS.md</a></span></div>`;
+}
 const curWf=()=>tplOf($("#template").value).workflow||"";
 function qualityFor(wf,steps){const S=STEPS[FAMILY(wf)];if(!S||!steps)return"standard";return steps<=S.preview?"preview":steps>=S.final?"final":"standard"}
 
@@ -298,7 +324,7 @@ async function init(){
   for(const [k,v] of Object.entries(STATE.loras||{}))$("#vlora").add(new Option(k,v||k));
   const vt=$("#vtpl");for(const [k,v] of Object.entries(STATE.video_templates||{}))vt.add(new Option(v.label||k,k));
   vt.value=STATE.default_video&&(STATE.video_templates||{})[STATE.default_video]?STATE.default_video:(vt.options[0]||{}).value;
-  vt.onchange=fillVideo;$("#vmode").onchange=()=>{VWF="";videoMode()};$("#vsize").onchange=vsize;
+  vt.onchange=fillVideo;$("#vlora").addEventListener("change",vneeds);$("#vmode").onchange=()=>{VWF="";videoMode()};$("#vsize").onchange=vsize;
   ["#vwidth","#vheight","#vlength"].forEach(s=>$(s).oninput=veta);
   $("#quality").onchange=()=>{const S=STEPS[FAMILY(curWf())];if(S)$("#steps").value=S[$("#quality").value];eta()};
   $("#steps").oninput=()=>{$("#quality").value=qualityFor(curWf(),+$("#steps").value);eta()};
@@ -318,6 +344,7 @@ function fillTemplate(){
   $("#body").value="none";if(t.framing&&STATE.framings[t.framing])$("#framing").value=t.framing;
   const fam=FAMILY(t.workflow);$("#quality").disabled=!STEPS[fam];$("#quality").value=qualityFor(t.workflow,t.steps);
   $("#tplAbout").textContent=t.about||(t.workflow?"workflow: "+t.workflow:"");
+  showNeeds("#needs",{template:$("#template").value});
   preview();eta();
 }
 let pvT=0;
@@ -410,6 +437,7 @@ function fillVideo(){
 function videoMode(){
   const m=$("#vmode").value;
   $("#v1box").hidden=m==="t2v";$("#v2box").hidden=m!=="fl";$("#v3box").hidden=m!=="ref2va";$("#lorarow").hidden=m!=="i2v_lora";veta();
+  vneeds();
 }
 function setVsize(w,h,l){const k=`${w}x${h}x${l}`;$("#vwidth").value=w;$("#vheight").value=h;$("#vlength").value=l;
   $("#vsize").value=[...$("#vsize").options].some(o=>o.value===k)?k:"custom";$("#vcustom").hidden=$("#vsize").value!=="custom";veta()}
@@ -422,6 +450,8 @@ function veta(){
   $("#veta").innerHTML=`Video is slow: ${t} per clip on an 8 GB card${n>1?`, ${n} clips in a row`:""}; the first one after starting takes 30-60 s more.`+
     (w*h<=512*768?"<br>Draft first. <b>Like a clip?</b> Open it and press <b>Make it in Final</b>: the same script and seed at 768x1152.":"");
 }
+function vneeds(){const m=$("#vmode").value,b={template:$("#vtpl").value,workflow:VWF||videoWorkflow()};
+  if(m==="i2v_lora")b.nsfw_lora=$("#vlora").value;showNeeds("#vneeds",b)}
 function videoWorkflow(){const m=$("#vmode").value;
   return m==="i2v_lora"?"wf_h3vid_i2v_lora.json":m==="fl"?"wf_h3vid_i2v_fl.json":m==="ref2va"?"wf_h3vid_ref2va6.json":m==="t2v"?"wf_h3vid_t2v_lora.json":"wf_h3vid_i2v.json"}
 $("#govideo").onclick=async()=>{

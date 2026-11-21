@@ -77,16 +77,18 @@ AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go
    or the quantized models; follow "GTX 1070 8 GB" in `docs/PERFORMANCE-8GB.md` (older PyTorch,
    Anima/Pink first, measure before promising anything) instead of the steps below as written.
 3. **Ask which drive** for the models and the gallery (they can be large), then create
-   `my/settings.json` from `my/settings.example.json` with `engine_dir`, `data_dir`, `comfy_url`.
-4. **Install ComfyUI** (portable Windows build) if it is not already there; start it hidden and
-   check `/system_stats`. Put the models in its `models/` folders.
-5. **Download the models in this order** (stop when disk or time runs out; each step is usable):
-   Pink Alchemy Anima v2.9 (4.2 GB) -> Krea 2 Turbo NSFW v10 (7.2 GB) -> H3-Image and H3 FL2VA in
-   the **w4a8** quantization (the 8 GB variant) + the **P-H3 4B text encoder** + VAEs -> the H3
-   act LoRAs (`h3nsfw/`). The `int8_convrot` transformers and the 32B text encoder are for
-   bigger cards / more RAM; on 16 GB RAM the 4B encoder is the fix (`docs/PERFORMANCE-8GB.md`).
-   `tools/models/` has the download helpers - pass them this install's
-   `<engine_dir>/ComfyUI/models` folder; verify file sizes after each.
+   `my/settings.json` from `my/settings.example.json` with `engine_dir`, `data_dir`, `comfy_url`
+   and **`models_dir`** (the one model store, section 4a - e.g. `D:\GoonStudio\models`).
+4. **Install ComfyUI** (portable Windows build) if it is not already there, then point it at the
+   store: `python tools/models/store.py wire`. Start it hidden and check `/system_stats`.
+5. **Download the models template by template** (stop when disk or time runs out; each step is
+   usable): `python tools/models/store.py fetch anime_lz_pov anime_pov` (anime, ~10 GB) ->
+   `fetch egirl` (photoreal) -> `fetch video_pov cumshot_medium` (H3 video, the big one) -> the
+   other templates (`check --all` lists what is still missing). The registry picks the **8 GB
+   variants** (w4a8 transformers; the `int8_convrot` ones are for bigger cards). Files marked
+   `login` are on Civitai, which needs the user's free account: ask them to download those in
+   their browser, then `adopt` the file (section 4a), or to save their own Civitai API key in
+   `my/.civitai-token` themselves - never ask for the key in chat.
 6. **Test**: start the page (`kit\start.ps1`), make one `anime_pov` still and show it. If H3 is
    installed, make a short video (49 frames, 512x768) as a smoke test. Never claim the sound is
    good (section 4b).
@@ -190,6 +192,33 @@ frame 0 will invent it. **Mixed reality is still unfinished - needs more researc
 chewing - and the audio is unusable). The still/fill and the frame-0 anchoring hold; do not call
 the video recipe proven.
 
+## 4a. Models: one store, every file with a source
+
+- **One place.** Every model file (UNets, text encoders, VAEs, LoRAs, ...) lives in `models_dir`
+  (`my/settings.json`) in ComfyUI's layout (`diffusion_models/`, `text_encoders/`, `vae/`,
+  `loras/`, `loras/h3nsfw/`, ...). The engine reads it through `extra_model_paths.yaml`
+  (`python tools/models/store.py where` / `wire`). Do not scatter files into the engine folder,
+  the repo or Downloads.
+- **The registry** is `kit/models.json`: one entry per file, keyed `<folder>/<name ComfyUI lists>`,
+  with `url` (direct download), `page`, size, what it is, `tier` (8gb / big) and `login`.
+- **Before using a template or workflow**: `python tools/models/store.py check <template>`; if
+  something is missing, `fetch <template>` (or `fetch --workflow wf_x.json`) and use it. The page
+  and `tools/lab.py` swap a workflow's model for the same model in the quantization the engine
+  has (int8 <-> w4a8) and refuse a job whose file is missing, saying where to get it.
+- **The user downloaded something** (a LoRA in Downloads, a file dropped in the repo) and wants it
+  tested: move it into the store with `python tools/models/store.py adopt <path> --folder loras
+  [--sub h3nsfw] [--name clean-name.safetensors] --url <download> --page <page> --what "..."`. Ask
+  them for the link if you do not have it - a file without a source cannot go into a template.
+  Then follow the LoRA checklist (`docs/LORAS.md`).
+- **A template that is established as good must be usable by hand.** Every file it loads is in
+  `kit/models.json` with a source, its workflow/LoRA/strength live in the template itself (no
+  agent-only step), and the page shows a non-technical user what is missing, where to download it
+  and which folder it goes in. After adding or changing a template or a registry entry, run
+  `python tools/models/store.py audit` (must say ok) and `python tools/models/store.py doc`
+  (regenerates `docs/MODELS.md`, the per-template download list) and commit both.
+- When the user asks where to get a model or why a template fails with "Missing model file",
+  answer from the registry / `docs/MODELS.md`, or just fetch it.
+
 ## 4b. Sound is not solved
 
 **Status: unfinished - needs more research** (owner, 2026-11-21). The generated audio is wrong:
@@ -239,7 +268,9 @@ Foley pass or a dedicated audio tool is the likely answer.
    `kit\start.ps1` runs). `ampere` (10.0.10.240) and `lame` (10.0.10.56) only exist on the author's
    home network for experiments - never assume them, never go looking for them on a normal install.
    Every recipe in `docs/` must be runnable on `local` with 8 GB, which is the target; the boxes
-   are just faster ways to try a variant. `tools/lab.py` cleans only its own outputs afterwards.
+   are just faster ways to try a variant. `tools/lab.py` cleans only its own outputs afterwards,
+   swaps model names for the quantization the engine has, and skips (with the download link) any
+   job whose model file is missing - `store.py fetch` it and rerun.
 3. Make a sheet: `python tools/sheet.py analysis/<round>.jpg gens/<round> --cols 4 --thumb 420`.
 4. Look at the sheet, write down what changed in `docs/` (or the round log), keep the prompts in
    `jobs/`.

@@ -72,6 +72,16 @@ Double-click **Goon Studio**. A page opens in your browser at http://127.0.0.1:8
 - **Rounds**: test rounds the agent ran, with its notes.
 - **Guide**: the recipes, in plain language.
 
+## Doing it by hand
+
+Each template needs some model files. If one is missing, the page says so under the template:
+which file, a download link, and the exact folder to save it in. Save it under exactly the name
+shown, then close and reopen Goon Studio. [`docs/MODELS.md`](docs/MODELS.md) lists every
+template's files. A few files are on Civitai, which needs a free account to download.
+
+If you download a LoRA or a model yourself and want to try it, just tell DeepSeek where it is. It
+moves it into the models folder, notes where it came from, and tests it.
+
 ## Asking DeepSeek for help
 
 Open a session **in the Studio's folder** (the one with this file) and just say what you want,

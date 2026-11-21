@@ -1,7 +1,8 @@
 {
-  "_comment": "Copy to my/settings.json and edit. engine_dir is the ComfyUI folder that has python_embeded (Windows portable build).",
+  "_comment": "Copy to my/settings.json and edit. engine_dir is the ComfyUI folder that has python_embeded (Windows portable build); models_dir is the one folder every model file lives in (python tools/models/store.py wire points ComfyUI at it).",
   "comfy_url": "http://127.0.0.1:8188",
   "engine_dir": "D:\\GoonStudio\\ComfyUI_windows_portable",
+  "models_dir": "D:\\GoonStudio\\models",
   "data_dir": "C:\\Users\\you\\Documents\\goon-studio\\gallery",
   "extra_flags": ""
 }

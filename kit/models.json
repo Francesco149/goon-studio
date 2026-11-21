@@ -1,0 +1,232 @@
+{
+ "_note": "Every model file a template or page workflow loads: where it comes from and what it is. Key = <models folder>/<name as ComfyUI lists it>; save the download under that name in <models_dir>/<folder>/ (models_dir in my/settings.json). tier: 8gb = the variant for the 8 GB target, big = same model for 12 GB+. login: Civitai wants a (free) account for the download. Kept up to date with tools/models/store.py (adopt, audit, doc).",
+ "files": {
+  "background_removal/birefnet.safetensors": {
+   "what": "BiRefNet - background removal (mixed-reality cut-outs)",
+   "gb": 0.44,
+   "url": "https://huggingface.co/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/BiRefNet"
+  },
+  "diffusion_models/anima-aesthetic-v1.1.safetensors": {
+   "what": "Anima aesthetic v1.1 - base anime model used by some older workflows",
+   "gb": 4.18,
+   "url": "https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/diffusion_models/anima-aesthetic-v1.1.safetensors",
+   "page": "https://huggingface.co/circlestone-labs/Anima"
+  },
+  "diffusion_models/anima-base-v1.0.safetensors": {
+   "what": "Anima base v1.0",
+   "gb": 4.18,
+   "url": "https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/diffusion_models/anima-base-v1.0.safetensors",
+   "page": "https://huggingface.co/circlestone-labs/Anima"
+  },
+  "diffusion_models/krea2_turbo_int8_convrot.safetensors": {
+   "what": "Krea 2 Turbo (plain, int8) - the non-NSFW base",
+   "gb": 13.49,
+   "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/diffusion_models/krea2_turbo_int8_convrot.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/Krea-2"
+  },
+  "diffusion_models/krea2_turbo_nsfw_v10_nvfp4.safetensors": {
+   "what": "Krea 2 Turbo NSFW v10 (nvfp4) - the photoreal picture model",
+   "gb": 7.67,
+   "url": "https://civitai.com/api/download/models/3368732",
+   "page": "https://civitai.com/models/2873257?modelVersionId=3368732",
+   "login": true,
+   "tier": "8gb",
+   "note": "Civitai only: published as 'KREA 2TurboNSFW_v10-nvfp4.safetensors' - rename it to the name above."
+  },
+  "diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors": {
+   "what": "H3 video (FL2VA, int8) - for 12 GB+ cards; the w4a8 file is the same model",
+   "gb": 20.97,
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/MiniMax-H3",
+   "tier": "big"
+  },
+  "diffusion_models/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors": {
+   "what": "H3 video (FL2VA, w4a8) - the video model, 8 GB variant",
+   "gb": 12.54,
+   "url": "https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
+   "page": "https://huggingface.co/Kijai/MiniMax-H3-experimental",
+   "tier": "8gb"
+  },
+  "diffusion_models/minimax_h3_image_pruned_int8_convrot.safetensors": {
+   "what": "H3-Image (int8) - for 12 GB+ cards; the w4a8 file is the same model",
+   "gb": 20.98,
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/diffusion_models/minimax_h3_image_pruned_int8_convrot.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image",
+   "tier": "big"
+  },
+  "diffusion_models/minimax_h3_image_pruned_w4a8.safetensors": {
+   "what": "H3-Image (w4a8) - photoreal keyframes, the 8 GB variant",
+   "gb": 12.55,
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/diffusion_models/minimax_h3_image_pruned_w4a8.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image",
+   "tier": "8gb"
+  },
+  "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors": {
+   "what": "H3 video Ref2VA (two reference pictures)",
+   "gb": 20.97,
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/MiniMax-H3",
+   "note": "No 8 GB variant published; streams from RAM on an 8 GB card."
+  },
+  "diffusion_models/qwen_image_2.1_int8_convrot.safetensors": {
+   "what": "Qwen-Image 2.1 - identity-keeping edits",
+   "gb": 7.26,
+   "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/diffusion_models/qwen_image_2.1_int8_convrot.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1"
+  },
+  "diffusion_models/ramthrustsNSFWPINK_v29.safetensors": {
+   "what": "Pink Alchemy Anima v2.9 - the anime picture model (fits 8 GB)",
+   "gb": 4.18,
+   "url": "https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors",
+   "page": "https://civitai.com/models/2578175?modelVersionId=3053107",
+   "note": "Same file as Civitai v2.9-Anima1.0Base (sha256 matches); the HF mirror needs no login. Save it under this name."
+  },
+  "diffusion_models/relayvsr_x2_lightx2v_int8_convrot.safetensors": {
+   "what": "RelayVSR x2 - video upscaler",
+   "gb": 5.16,
+   "url": "https://huggingface.co/Comfy-Org/RelayVSR/resolve/main/diffusion_models/relayvsr_x2_lightx2v_int8_convrot.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/RelayVSR"
+  },
+  "loras/h3nsfw/Astro-nsfw.safetensors": {
+   "what": "H3 LoRA: Astro NSFW (best photoreal blowjob motion)",
+   "gb": 0.3,
+   "url": "https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora/resolve/main/Astro%20nsfw.safetensors",
+   "page": "https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora",
+   "note": "Published as 'Astro nsfw.safetensors'."
+  },
+  "loras/h3nsfw/H3_Motion_BoosterV2.safetensors": {
+   "what": "H3 LoRA: motion booster v2",
+   "gb": 0.16,
+   "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors",
+   "page": "https://huggingface.co/kimjob/h3_NSFW_lora"
+  },
+  "loras/h3nsfw/MM-H3-Blwjob-v3.safetensors": {
+   "what": "H3 act LoRA: blowjob v3",
+   "gb": 0.31,
+   "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/MM-H3%20-%20Blowjob%20v3.safetensors",
+   "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
+   "note": "Published as 'MM-H3 - Blowjob v3.safetensors'."
+  },
+  "loras/h3nsfw/Titjob-Titfuck-H3.safetensors": {
+   "what": "H3 act LoRA: paizuri",
+   "gb": 0.16,
+   "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/Titjob%20-%20Titfuck%20ComfyTinker%20Minimax%20V0.9safetensors.safetensors",
+   "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
+   "note": "Published as 'Titjob - Titfuck ComfyTinker Minimax V0.9safetensors.safetensors'."
+  },
+  "loras/h3nsfw/epic_cumshots.safetensors": {
+   "what": "H3 act LoRA: cum shot (the cum-shot dial)",
+   "gb": 0.16,
+   "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors",
+   "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
+   "note": "Published as 'epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors'."
+  },
+  "loras/h3nsfw/h3-sideview-deepthroat.safetensors": {
+   "what": "H3 act LoRA: side-view deepthroat",
+   "gb": 0.6,
+   "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/h3-sideview-deepthroat-step00007800-k3nk.safetensors",
+   "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
+   "note": "Published as 'h3-sideview-deepthroat-step00007800-k3nk.safetensors'."
+  },
+  "loras/kasumi-nakasu-s2-anima-lora-nochekaiser.safetensors": {
+   "what": "Character LoRA for Anima: Kasumi Nakasu design study (nochekaiser, anime s2)",
+   "gb": 0.09,
+   "url": "https://civitai.com/api/download/models/3042032",
+   "page": "https://civitai.com/models/2708250?modelVersionId=3042032",
+   "login": true
+  },
+  "loras/lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors": {
+   "what": "Character LoRA for Anima: Lanzhu Zhong design study (nochekaiser, anime s2)",
+   "gb": 0.09,
+   "url": "https://civitai.com/api/download/models/3042063",
+   "page": "https://civitai.com/models/2708274?modelVersionId=3042063",
+   "login": true
+  },
+  "loras/p-h3-image_lora_bf16.safetensors": {
+   "what": "P-H3 connector LoRA (goes with the 4B encoder)",
+   "gb": 1.96,
+   "url": "https://huggingface.co/yachiyo8080/P-H3-Image-Comfy/resolve/main/loras/p-h3-image_lora_bf16.safetensors",
+   "page": "https://huggingface.co/yachiyo8080/P-H3-Image-Comfy"
+  },
+  "loras/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors": {
+   "what": "Pika Flex 6-step LoRA for H3 video (the speed-up every video recipe uses)",
+   "gb": 0.56,
+   "url": "https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors",
+   "page": "https://huggingface.co/Kijai/MiniMax-H3_comfy"
+  },
+  "loras/pika_h3_flex_ref2va_v1_avg_rank_55_bf16.safetensors": {
+   "what": "Pika Flex LoRA for H3 Ref2VA",
+   "gb": 0.55,
+   "url": "https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_ref2va_v1_avg_rank_55_bf16.safetensors",
+   "page": "https://huggingface.co/Kijai/MiniMax-H3_comfy"
+  },
+  "text_encoders/p-h3-image_text_encoder_int8_convrot.safetensors": {
+   "what": "P-H3 4B text encoder - the light H3-Image encoder for 16 GB RAM",
+   "gb": 5.12,
+   "url": "https://huggingface.co/yachiyo8080/P-H3-Image-Comfy/resolve/main/text_encoders/p-h3-image_text_encoder_int8_convrot.safetensors",
+   "page": "https://huggingface.co/yachiyo8080/P-H3-Image-Comfy",
+   "note": "Community mirror (also sony3021919/P-H3-Image-Comfy); original diffusers repo TechnoBaptist/P-H3-Image."
+  },
+  "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors": {
+   "what": "H3 text encoder, 32B (best faces; heavy on 16 GB RAM)",
+   "gb": 15.69,
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image"
+  },
+  "text_encoders/qwen3vl_4b_int8_convrot.safetensors": {
+   "what": "Krea 2's text encoder (Qwen3-VL 4B)",
+   "gb": 4.86,
+   "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/text_encoders/qwen3vl_4b_int8_convrot.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/Krea-2"
+  },
+  "text_encoders/qwen3vl_8b_w4a8.safetensors": {
+   "what": "Qwen-Image 2.1 text encoder (Qwen3-VL 8B)",
+   "gb": 6.31,
+   "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/text_encoders/qwen3vl_8b_w4a8.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1"
+  },
+  "text_encoders/qwen_3_06b_base.safetensors": {
+   "what": "Anima's text encoder (Qwen3 0.6B)",
+   "gb": 1.19,
+   "url": "https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors",
+   "page": "https://huggingface.co/circlestone-labs/Anima"
+  },
+  "vae/minimax_h3_audio_vae_fp32.safetensors": {
+   "what": "H3 audio VAE",
+   "gb": 0.61,
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/MiniMax-H3"
+  },
+  "vae/minimax_h3_image_vae_fp16.safetensors": {
+   "what": "H3-Image VAE",
+   "gb": 1.17,
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/vae/minimax_h3_image_vae_fp16.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image"
+  },
+  "vae/minimax_h3_video_vae_int8_convrot.safetensors": {
+   "what": "H3 video VAE",
+   "gb": 2.81,
+   "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/MiniMax-H3"
+  },
+  "vae/qwen_image_2.1_vae_bf16.safetensors": {
+   "what": "Qwen-Image 2.1 VAE",
+   "gb": 0.68,
+   "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/vae/qwen_image_2.1_vae_bf16.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1"
+  },
+  "vae/qwen_image_vae.safetensors": {
+   "what": "Anima / Krea VAE",
+   "gb": 0.25,
+   "url": "https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors",
+   "page": "https://huggingface.co/circlestone-labs/Anima"
+  },
+  "vae/relayvsr_flash_vae_x2_fp32.safetensors": {
+   "what": "RelayVSR VAE",
+   "gb": 0.13,
+   "url": "https://huggingface.co/Comfy-Org/RelayVSR/resolve/main/vae/relayvsr_flash_vae_x2_fp32.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/RelayVSR"
+  }
+ }
+}
