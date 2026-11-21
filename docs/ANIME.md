@@ -234,13 +234,11 @@ Judge at 1:1 for the cum and with `tools/vsheet.py --frames 8` for the motion.
 
 ### Results of the a10-a17 clips (owner, live review)
 
-- **Best blowjob POV so far: `gens/a13/k4_anime_suction_00001_.mp4`.** Owner: "pretty solid ...
-  save as our best blowjob POV yet." It starts from `j2_suction_seal_a` (hollow cheeks), 124 f,
-  `MM-H3-Blwjob-v3` 0.65 + motion 0.5. It is still too static; the next pass should add more
-  dynamics/bounce, more saliva (a strand from her lips to the shaft, a drip from the chin),
-  **locking eyes with the camera**, a **slight change in expression** (eyebrows lift, lashes
-  flutter, blush deepens) and a **mouth-pursing suction pop** on the pull-up. `jobs/a19` is that
-  performance pass. Video template `anime_ll_suction`.
+- **Best blowjob POV: `gens/a21/k9_anime_suction_perf_00001_.mp4`** (the k4 base plus eye lock,
+  a slight expression change, a mouth-pursing suction pop and more saliva). Owner: "best blowjob
+  so far - make that the recipe for blowjobs for now." **This is the base recipe**; other angles
+  and motions change only the stroke sentence (`anime_ll_slow`, `anime_ll_deepthroat`,
+  `anime_ll_headgrab`). The earlier `k4` is kept as `anime_ll_suction_orig`.
 - **Paizuri: `gens/a11/k2_anime_paizuri_00001_.mp4`** is "better than anything we did before"
   (Titjob 0.6 + motion 0.4, bright prompt fixed the dark/grainy drift of the 0.85 pass). The one
   defect is the tongue drawn in front of the glans; `k7` changes it to "her tongue stays under
@@ -275,11 +273,20 @@ plain LoRA one.
   the veins swell and the glans twitches. Owner on t1: "way better but a bit too extreme
   expansion when twitching ... a slight side bob instead of too much expansion". t2 did not
   remove the rope-from-above; it stayed static.
-- `t3_gemini_timing` (the Gemini cadence: slit flares, 0.8 s then 1.0 s then 1.2 s between
-  spurts, 10 degree snap in two frames, hold, dampened bob, still between) still drew the rope
-  from above and did not show a readable twitch. `t4_side_bob` (sideways bob, explicit "the cock
-  does not expand or change size") went the other way and became static (motion 1.9). The twitch
-  is still open; if it cannot be made natural, ship the still-shaft version (k1/k5) and drop it.
+- `t3_gemini_timing` (the Gemini cadence: 0.8 s then 1.0 s then 1.2 s between spurts, 10 degree
+  snap in two frames, hold, dampened bob, still between) **failed badly**: the "slit flares open"
+  wording turned the urethra into a hole. Never prompt the meatus/slit opening in anime - the
+  model draws it as a hole. The rope-from-above also stayed.
+- `t4` (prompted as a small sideways bob, but the model rendered another **front POV** cum shot)
+  and `t1` (one upward kick, still between) are both **acceptable**; the owner wants the motion
+  dialled down a tiny bit. `t4` is the best cum shot so far. Do not call t4 a side bob in notes -
+  it is a front POV.
+- `t5_dialed_down` is `t4` with a very small sideways sway, faint vein swell and motion 0.35.
+- **The blowjob base is now `k9_anime_suction_perf`** (owner: "best blowjob so far - make that the
+  recipe for blowjobs for now"). Video templates built from it: `anime_ll_suction` (the base),
+  `anime_ll_slow`, `anime_ll_deepthroat`, `anime_ll_headgrab` (his hand on the back of her head),
+  plus `anime_ll_suction_orig` (the k4 still-shaft version). Use the base prompt and change only
+  the stroke/motion sentence.
 - Paizuri tongue: the k7 wording ("her tongue stays under the shaft and never covers the glans")
   changed nothing. The tongue is baked into the keyframe (`tongue out touching the glans`), so the
   fix is structural - a keyframe with the tongue away from the tip, or no licking action - not
@@ -290,6 +297,12 @@ plain LoRA one.
 - `k9_anime_suction_perf` is the k4 performance pass: locking eyes with the camera, a slight
   expression change (eyebrows, lashes, blush), a mouth-pursing suction pop, and more saliva.
   Video template `anime_ll_suction_perf`.
-- Video templates now carry both cum flavours: `anime_ll_cumshot` (k5: thin ropes, all three
-  land, no twitch) and `anime_ll_cumshot_twitch` (t1: one kick and still between, the closest
-  twitch so far, but the shaft expands). Neither is finished.
+- Video templates now carry the cum flavours: `anime_ll_cumshot` (t4: the best so far, small
+  sway, no expansion), `anime_ll_cumshot_soft` (t5: t4 dialled down) and `anime_ll_cumshot_twitch`
+  (t1: one kick and still between, but the shaft expands). None is finished.
+- `t5_dialed_down` is t4 with the sway/vein swell dialled down; `anime_ll_cumshot_soft` preserves
+  it. `anime_ll_cumshot` stays on t4 until t5 is judged.
+- `k10_headgrab` proves the base takes a new motion: his hand enters from the side at about 0.7 s
+  and stays on the back of her head. The hand is large and slightly stiff, but it reads; template
+  `anime_ll_headgrab`. The slow and deepthroat variants are written as templates but not rendered
+  yet.
