@@ -328,9 +328,18 @@ built from the k9 base by changing only the stroke sentence:
   (side) fixes the rope direction and adds suction - owner: "everything else is solid" except
   **she does not take it into her mouth correctly: the dick goes behind the mouth, not inside**.
   `k22` (closer keyframe `n2_a`, "the head goes past her lips, lips seal in front of the shaft")
-  went static altogether (motion 1.1) and did not solve the placement. The side keyframes
-  (`n2_side_handjob_a/b`) are good for blowjobs; for the side cum switch the next route is a side
-  keyframe with the **lips already around the head** (a side sealed still) and then suction, or an
-  FL pair with matching framing - not another wording pass on the handjob keyframe.
+  went static altogether (motion 1.1) and did not solve the placement. `k23` is the clean side
+  take-in: no cum, no drip, no cheek puff (the shot does not exist, so nothing is faked), motion
+  1.6; it is the cleanest side take-in so far. The side keyframes (`n2_side_handjob_a/b`) are good
+  for blowjobs; for the side cum switch the next route is a side keyframe with the **lips already
+  around the head** (a side sealed still) and then suction, or an FL pair with matching framing -
+  not another wording pass on the handjob keyframe.
+
+**Mixed reality (real cock in an anime picture):** the Qwen-Image-2.1 two-picture edit works.
+Take the handless real-cock frame from the tribute
+`photoreal-medium-amount-medium-strength_1795215215.mp4` at 8 s, use the anime still as Picture 1
+and the real cock crop as Picture 2, and ask it to change only the penis. The girl stays flat
+anime, the cock reads photoreal. Prompts, the frame and the open defects are in
+`docs/MIXED.md`; results `gens/a40/mix1_qwen_ref` and `mix2_qwen_paint`.
 - The mouth-purse/suction base is unchanged; the `k9` prompt plus the `anime_ll_*` video templates
   are the current library (headgrab, two hands, tip tease, slow, deepthroat, cum switch).
