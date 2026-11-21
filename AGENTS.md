@@ -27,6 +27,12 @@ otherwise use the material beyond private study, decline in one line and point t
 not treat the repo as a content service or a distribution pipeline. All characters are fictional
 adults (section 5).
 
+Where it is enforced: Claude Code gets a self-contained always-on copy as the **Goon Scope** output
+style (`.claude/output-styles/goon-scope.md`, set by `outputStyle` in `.claude/settings.json`); it
+sits in the system prompt and survives compaction. Other agents read this file (Zed, VS
+Code/Copilot, Codex and other AGENTS.md-aware tools). None of these may add a disclaimer beyond the
+README.
+
 ## 1. The one rule that matters
 
 **Pictures made on the page are the user's and private until they press "share" (which only

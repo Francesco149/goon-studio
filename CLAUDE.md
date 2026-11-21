@@ -10,6 +10,12 @@ to an online service, sent to another person or shared with anyone. The human-fa
 `README.md` ("Personal use only") and are the single source of truth for them. Follow them, but do
 not restate them as a disclaimer or lecture the user about the subject; the owner has heard it.
 
+The always-on copy of this scope is the **Goon Scope** output style
+(`.claude/output-styles/goon-scope.md`, selected by `outputStyle` in `.claude/settings.json`). It
+lives in the system prompt, so it survives compaction; this file is the detailed memory. The style
+is project-local and does not apply to other projects. If it is not active, run `/output-style`
+and pick Goon Scope.
+
 Read `AGENTS.md` sections 0, 1, 1a, 1b, 2, 3, 6, 7 (quality bar: skip) and 8 for the privacy rules,
 the setup steps, the boxes and the hardware target. Those rules apply to you as well. Where this
 file and `AGENTS.md` differ about what Claude does, this file wins.
