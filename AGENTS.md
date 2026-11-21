@@ -121,7 +121,7 @@ only the public recipes.
 | keyframes / photoreal stills | H3-Image `wf_h3img_4bte.json` (draft) / `wf_h3img_8gb.json` (final) | 4/6/8 steps, cfg 1 |
 | photoreal video | H3 FL2VA `wf_h3vid_i2v.json` (Pika 6-step), 768x1152, 124 f | 4-step preview in `wf_h3vid_i2v_4step.json`; `docs/FACIAL.md`, `docs/ANIME.md` |
 | video with an act LoRA | `wf_h3vid_i2v_lora.json` (node 21) | side deepthroat and titjob help; POV blowjob does not |
-| cum-shot clip | `wf_h3vid_i2v_lora.json` + `h3nsfw/epic_cumshots` **0.5** | several thin ropes, glans stays bare; use the wide-gap keyframe. `docs/CUM-VIDEO.md`; the material is still glue (0.8 = one fat rope, the `cumshot_heavy` variant) |
+| cum-shot clip | `wf_h3vid_i2v_lora.json` + `h3nsfw/epic_cumshots` 0.6 | the `cumshot_high` / `cumshot_medium` (default) / `cumshot_low` dial, plus `cumshot_goopy`, `cumshot_mouth`, `cumshot_softening`. `docs/CUM-VIDEO.md` |
 | identity edit | Qwen-Image-2.1 `wf_qwen21_edit1.json` | keeps the face, use for "same girl" edits |
 | first+last clip | `wf_h3vid_i2v_fl.json` | last frame must be an edit of the first, not a new roll |
 | ref2va clip | `wf_h3vid_ref2va6.json` | two reference pictures |
@@ -150,15 +150,18 @@ scratch track; a separate Foley pass or a dedicated audio tool is the likely ans
 - Best photoreal BJ motion: Astro NSFW 0.8 on H3 (`docs/FACIAL.md` history); best plain motion:
   the detailed stroke prompt, no LoRA.
 - Best anime clip: POV bob from the Pink POV keyframe with whole-body motion in the prompt.
-- Cum (2026-11-20 session 4): the **dynamics are solved, the material is not**. Use
-  `epic_cumshots` at **0.5** with a "four or five thin ropes, about a second apart" prompt on the
-  wide-gap keyframe (`gallery/refs/cumshot/k4_wide_clean.png`), 124 frames. Rules the owner set:
-  the **glans stays bare** (no pool on the tip), one rope per pulse not one fat rope, the impact
-  flattens into a patch, the run-off drips onto his thighs, and placement is tongue/lower lip only.
-  Never use "bead/blob/ball/glob" for the emission - it draws a static sphere instead of a spurt.
-  The material still renders as uniform opaque glue instead of a clear carrier with pearl-white
-  clumps, and the LoRA tends to draw the spurt as a cord between tip and face. `docs/CUM-VIDEO.md`
-  has the wording ladder, the measured costs and the failed routes; do not repeat them.
+- Cum (2026-11-21 session 5): the recipe works and is a **dial**, not one look. `epic_cumshots` at
+  0.6, 768x1152/124f, the P1 or wide-gap keyframe. Three tiers in `kit/presets.json`:
+  `cumshot_high` (k14, the owner's maximum exaggeration standard), **`cumshot_medium` (the
+  default)**, `cumshot_low`; plus the variant looks `cumshot_goopy` (wax-like extreme, owner calls
+  it unrealistic), `cumshot_mouth` (clean swallow) and `cumshot_softening` (messy, keeps sucking as
+  he goes soft). Hard rules: one rope per pulse out of the slit, never a split into two cords;
+  three decaying pulses; the rope is an inch or two long and **hits her face and stops there** with
+  a little splash on impact - it must never arc over her head; and **the glans stays bare** - which
+  is a volume effect, met by the medium tier and below, and not fixable by wording at high volume.
+  Never use "bead/blob/ball/glob" for the emission. Judge the material at 1:1, never on a
+  downscaled sheet. `docs/CUM-VIDEO.md` has the dial, the wording ladder, the measured costs and the
+  failed routes; do not repeat them.
 
 ## 6. Running a round
 
