@@ -114,6 +114,24 @@ The next still round (`jobs/a62_suction_seal.jsonl`) is a dark deep-seal base wi
 pushed (cheeks hollowed/sucked in/sunken 1.5-1.6) so the first frame reads as suction before any
 video is made.
 
+### Suction motion
+
+The mouth shape was only half the problem; the other half is that the first frame's expression
+was neutral. The fix is to make the *suction itself* the motion, with the glans kept inside:
+
+- `gens/a68/s1_hollow` and `s2_drag` (49 f) and the 124 f finals `gens/a69/v5_suction` and
+  **`gens/a69/v5_pull`**. The prompt: "she sucks hard and slow, her cheeks hollow and pull in
+  sharply, the skin under her cheekbones dents inward, her lips grip the shaft and drag it, the
+  seal holds; the glans stays inside her mouth and never comes out." `v5_pull` is two long
+  pulls with the cheeks hollowing then relaxing - the best "applying suction" read so far.
+  `v5_suction` is a held suck; stronger, but the cheeks end gaunt.
+- Because the glans never comes out, there is nothing for the video model to invent. This is the
+  cheap side of the reanchor rule: keep the unseen thing unseen.
+- Strong-cheek Anima stills (`a62`, `a67`) put the drawn head *at* the lips, so the masked fill
+  shows the real head outside the mouth; they are not deep-seal bases. The `j2_b` still remains
+  the only base that fills as a shaft-only seal. A cheek-only H3 mask (`a66`) did not hollow the
+  cheeks; H3 ignored the expression inside the small mask.
+
 ## Open
 
 - The deep-seal fill hides the glans. A "head out" piece needs a shallow still + its own mask
