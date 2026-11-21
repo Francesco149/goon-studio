@@ -24,7 +24,7 @@ repo.
 | `wf_h3vid_i2v_8step.json` | same, 8 sigmas | same | HQ test; 50% slower than 6, no proven gain |
 | `wf_h3vid_i2v_lora.json` | same + a second LoRA (node 21) | same | side deepthroat, titjob, cum LoRA |
 | `wf_h3vid_i2v_fl.json` | same, first+last frame | same | state transitions (endpoint must be an edit of the first) |
-| `wf_h3vid_ref2va6.json` | H3 Ref2VA + Pika ref LoRA | same | two references (pose + cock, or pose + cum) |
+| `wf_h3vid_ref2va6.json` | H3 Ref2VA + Pika ref LoRA | same | two references (pose + cock, or pose + cum); **use it whenever something that appears in the clip is not in the first frame** |
 | `wf_h3vid_t2v.json` / `_lora` | H3 FL2VA t2v | 576x1024, 124 f | text-only motion |
 | `wf_h3vid_i2v_noaudio.json` | i2v without audio VAE | same | measured no gain; kept for testing |
 | `wf_h3vid_i2v_pytorch.json` | i2v with pytorch attention | same | fallback for cards without Kitchen INT8 |

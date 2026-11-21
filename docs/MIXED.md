@@ -87,6 +87,33 @@ golden mouth:
 - `wf_h3vid_i2v_fl.json` (first+last pair with the thin seal at both ends) is the next route if
   the deepest point of a longer stroke still puffs.
 
+### Video: reanchor what frame 0 does not show
+
+The i2v clips only know what is visible in the first frame. In `v3_seal` the glans is hidden in
+her mouth at frame 0 and appears on the upstroke - the video model **invented** that glans, and it
+is the wrong shape. The same will happen to any hand, prop, second person or cum that is not on
+screen at frame 0. This is now a general rule in `AGENTS.md` section 4.
+
+Tests (2026-11-21, session 6):
+
+- **Ref2VA** (`wf_h3vid_ref2va6.json`, ref0 = the `inpaint_a` seal still, ref1 = the real cock,
+  or a glans close-up): the scene is preserved and the glans that appears is a real photographed
+  glans (a60/r1, r3), but the mouth opens into a pout at the pull-back and the suction still does
+  not read. It reanchors the cock; it does not fix the mouth.
+- **First+last** (`wf_h3vid_i2v_fl.json`, first = `inpaint_a` deep, last = `inpaint_b` at the
+  head): at 49 f / 6 steps the model did not follow the last frame; it invented a gold-toned cock
+  and puffed the cheeks (a61). The workflow's own note says one stroke that returns to the same
+  pose - deep-to-head may be too large a transition for it. Do not trust the last frame to
+  anchor the object at this length.
+- **The practical rule for this act:** if the glans stays hidden inside her mouth for the whole
+  clip (the `v3_slow` tight-seal stroke), there is nothing for the video model to invent. If it
+  is going to be revealed, reanchor it with Ref2VA - or keep it hidden. The suction expression
+  must also be in the first frame: the video model does not invent hollow cheeks.
+
+The next still round (`jobs/a62_suction_seal.jsonl`) is a dark deep-seal base with the cheek tags
+pushed (cheeks hollowed/sucked in/sunken 1.5-1.6) so the first frame reads as suction before any
+video is made.
+
 ## Open
 
 - The deep-seal fill hides the glans. A "head out" piece needs a shallow still + its own mask

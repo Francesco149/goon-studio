@@ -129,6 +129,16 @@ only the public recipes.
 The app's **templates** (`kit/presets.json`) already carry the approved prompt blocks. Prefer
 editing the character/scene fields over rewriting the whole prompt.
 
+**Reanchor what frame 0 does not show.** H3 video only knows what is visible in the first frame
+(i2v) or in the reference pictures (ref2va). Anything that appears later but is not on screen at
+frame 0 - the glans of a cock that starts hidden in her mouth, a hand entering, cum, a second
+person, a prop - is invented by the video model and usually wrong (the glans comes out the wrong
+shape, the mouth stops reading as suction). When the clip needs it, give the model a picture of
+it: `wf_h3vid_ref2va6.json` with two references (the pose/scene + the real cock/glans), or a
+first+last pair whose last frame shows it (`wf_h3vid_i2v_fl.json`). Do not rely on the prompt to
+describe something the model has never seen; reanchor it. The same applies to anything the model
+has not learned and that is not on screen in the first frame.
+
 ## 4b. Sound is not solved
 
 The generated audio is wrong: the strokes crunch (like biting something), the slurp sounds like
