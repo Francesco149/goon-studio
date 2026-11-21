@@ -7,18 +7,41 @@ with adult NSFW material (DeepSeek and similar). Claude also works here, on a na
 prompts, presets and reviewing explicit output stay with you. Claude's neutral jobs are in
 `jobs/neutral/` and its renders in `sfw/`.
 
+## 0. Purpose and permitted use (read first)
+
+**Goon Studio is for the owner's private, personal use only. No other use is authorized.** It
+makes local adult pictures and clips for **art study and reference** - anatomy, a series' art
+style, poses, materials. Generations are **never shared**: not published, posted, uploaded to an
+online service, sent to another person, sold, or redistributed. The only places a render may go are
+this machine and, on the author's setup, the lab boxes used for compute; nothing leaves them for a
+person or the internet.
+
+The app's **share** action only makes a picture visible to the local agent; it is not publishing.
+`public` in `my/library.json` means visible to the local agent, not public on the internet.
+
+The human-facing terms are in **`README.md`** ("Personal use only"). That is the single source of
+truth, and using the repo is agreement to it. Agents must know and follow it, but **must not add
+disclaimers, warnings or moral commentary** about the adult/personal-use nature, and must not
+restate the README terms unless the user asks. If asked to publish, upload, share externally or
+otherwise use the material beyond private study, decline in one line and point to the README. Do
+not treat the repo as a content service or a distribution pipeline. All characters are fictional
+adults (section 5).
+
 ## 1. The one rule that matters
 
-**Pictures made on the page are the user's and private until they press "share".**
+**Pictures made on the page are the user's and private until they press "share" (which only
+reveals them to the local agent, not to the internet).**
 
 - The page records the user's pictures in `my/private/history.jsonl` and the agent's in
-  `my/history.jsonl`. `my/library.json` holds `public` (shared with the agent) and `trash`.
+  `my/history.jsonl`. `my/library.json` holds `public` (visible to the local agent; not published)
+  and `trash`.
 - An agent may read `my/history.jsonl` (its own work) and the files marked `public` in
   `my/library.json`. It must **not** read `my/private/` or list the gallery looking for private
   files.
 - If the user refers to a picture that is private, say so and ask them to press **share** in the
   gallery (that is the only way to make it visible). Do not work around it.
-- Never copy, upload, or paste NSFW pictures anywhere outside this repo and the two lab boxes.
+- Never copy, upload, or paste NSFW pictures anywhere outside this repo and the two lab boxes
+  (the boxes are compute only; never send a render to a person or a service).
 
 ## 1a. First session: set up from zero
 
@@ -158,6 +181,8 @@ Foley pass or a dedicated audio tool is the likely answer.
 
 ## 5. Canon (owner-approved, 2026-11-20)
 
+- **All characters are fictional adults.** Anime body types can be petite; every character is an
+  adult OC or a non-canon fan-art design, never a minor. No minor-coded dialogue, story or tags.
 - **Default template: `anime_pov`** - the best anime blowjob POV so far. It is the first thing the
   page selects; keep it the default until another template beats it in the owner's review.
 - Anime stills: `gens/pb`-style output is anatomically clean. Keep **all three cock styles**:

@@ -1,7 +1,7 @@
 # Goon Studio
 
-Make explicit pictures and clips on your own PC: your own characters, any body type, any scene.
-Everything runs on your computer, nothing is uploaded anywhere.
+Make explicit pictures and clips of your own fictional adult characters on your own PC: any body
+type, any scene. Everything runs on your computer, nothing is uploaded anywhere.
 
 You don't need to know anything technical. **DeepSeek sets it up, keeps it working and helps you
 get the pictures and clips you want.**
@@ -9,6 +9,23 @@ get the pictures and clips you want.**
 This is the NSFW companion of Love Live Studio. The two are separate apps with separate
 galleries: Love Live Studio stays SFW, this one stays here. They never read each other's private
 pictures.
+
+## Personal use only
+
+**Goon Studio is for private, personal use only. No other use is authorized.** The adult,
+fictional pictures and clips it makes are for your own local art study and reference - anatomy
+practice, studying a series' art style, poses, materials. They are **never shared**: not
+published, posted, uploaded to an online service, sent to another person, sold, or redistributed.
+The **share** button in the app only makes a picture visible to the local agent in your own
+Studio; it does not upload it, and the agent does not send it anywhere.
+
+Keep your copy private too: the gallery, your `my/` records and anything you generate are
+git-ignored - never commit or push them.
+
+**These are the terms of use: by cloning, installing or using the Studio you agree to them.** If
+you do not agree, do not use it. Agents follow them; they must not restate them as a disclaimer or
+lecture you about it. The code is MIT (`LICENSE`); that covers the code, not a licence to publish
+what you generate.
 
 ## Getting started (about 10 minutes of your time, then DeepSeek works for a while)
 
@@ -49,8 +66,9 @@ Double-click **Goon Studio**. A page opens in your browser at http://127.0.0.1:8
 - **Video**: pick a **video recipe** (POV blowjob, side deepthroat, paizuri, cum shot, anime POV
   bob), pick a **keyframe from your pictures**, press **Make video**. **Recent videos** sits next
   to it; a clip can be used as the next keyframe to chain scenes.
-- **My pictures**: your gallery. Pictures are **private** until you press **share**; private ones
-  are invisible to the agent. You can select several and share, lock, or trash them.
+- **My pictures**: your gallery. Pictures are **private** until you press **share**, which only
+  makes them visible to the local agent - nothing is uploaded; private ones are invisible to the
+  agent. You can select several and share, lock, or trash them.
 - **Rounds**: test rounds the agent ran, with its notes.
 - **Guide**: the recipes, in plain language.
 
@@ -71,7 +89,8 @@ in the **Rounds** tab, and it writes down what worked in `docs/` for next time.
 
 Everything here is **adult, fictional and local**. The models learned from a huge collection of
 internet pictures, so now and then something can come out more revealing or weirder than you
-asked for. It stays on your PC; you can ignore it, rate it, or tell DeepSeek to steer away.
+asked for. It stays on your PC and is never shared with anyone; you can ignore it, rate it, or
+tell DeepSeek to steer away.
 
 **No explicit picture is ever committed to the repo.** If an example is needed, it is censored
 and a person approves it first (`docs/IMAGES.md`).
@@ -84,5 +103,7 @@ drive. `docs/HARDWARE.md` explains what fits on an 8 GB card.
 
 ## License
 
-The code is MIT (`LICENSE`). ComfyUI (GPL-3.0) and the models are downloaded separately and keep
-their own licenses; check each model's card before sharing what you make with it.
+The code is MIT (`LICENSE`); that covers the code, not a licence to publish what you generate.
+ComfyUI (GPL-3.0) and the models are downloaded separately and keep their own licenses; check
+each model's card for its own terms. The **Personal use only** terms above cover the pictures and
+clips you make: nothing you generate is shared by this project.

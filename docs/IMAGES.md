@@ -1,5 +1,8 @@
 # Images in this repo: what may be committed
 
+The terms of use are in **`README.md`** ("Personal use only"); this file only covers what may be
+committed. The generated material never goes into the repo.
+
 **No NSFW image is ever committed.** Not in `docs/`, not in `examples/`, not in a PR, not in a
 test fixture.
 
@@ -24,9 +27,11 @@ References are kept, organised and **never committed**:
   and a short `INDEX.md` there describing what each clip is for; that index is local too.
 - The author's own reference clips live outside the repo (see `AGENTS.local.md`, which is
   git-ignored). They are not copied in.
-- If a reference must be shared with another agent, describe it in text; do not attach the file.
+- If a reference must be shared with another local agent, describe it in text; do not attach the
+  file, and never send it to a remote service.
 
 ## Why
 
 The repo is public-shaped: it can be cloned, pushed or shown without leaking the user's material.
-The gallery is the private part; the repo is the recipe book.
+The gallery is the private part; the repo is the recipe book. The terms for the generated
+material itself are in `README.md` ("Personal use only"): it stays local and is never shared.
