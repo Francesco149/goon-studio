@@ -4,46 +4,59 @@ Goal: the "anime tribute" look - a photoreal real cock in an otherwise flat 2D a
 the anime girl taking it. The real-cock references are the owner's tribute clips in
 `gallery/refs/art-study/refs/` (git-ignored); never commit them.
 
-## The source frame
+## The source
 
-The cleanest handless real cock is in
-`photoreal-medium-amount-medium-strength_1795215215.mp4` at **8 s**: the anime standee (Tohsaka
-maid) behind, the real cock vertical in front, no hand in frame. Crop 440x920 at (360,1000) from
-the 1080x1920 frame -> `analysis/mixed/real_cock_ref.jpg` (scratch, not committed).
+The owner's sharp still `gallery/refs/custom-cock/p03ryyxaprvh1.jpg` (2256x3295). The cock is cut by
+the left frame edge, so the cutout carries a straight edge on that side; place it toward the frame
+edge or let the girl's body cover it.
 
-Other refs are usable but worse: `..._1795215197` (tablet, cock out of focus),
-`..._1795215167` (tablet, cock blurred), `..._1795215155` (card + only the tip), ref5/ref6
-(real girl in frame, cock partly soft). The ref11 8 s frame is the one.
+## Isolation: BiRefNet, cropped to the cock
 
-## The recipe (works)
+ComfyUI's core background-removal nodes work:
 
-1. Anime scene: the LL signature still with the girl taking a cock in her mouth, e.g.
-   `gens/a11/j2_suction_seal_a_00001_.png`.
-2. Qwen-Image-2.1 edit, **two pictures** (`workflows/qwen21_edit2.json`): Picture 1 = the anime
-   still, Picture 2 = the real cock crop.
-3. Prompt:
+- model: `Comfy-Org/BiRefNet` -> `background_removal/birefnet.safetensors` (424 MB,
+  https://huggingface.co/Comfy-Org/BiRefNet), into `ComfyUI/models/background_removal/`
+  (the engine's own `models` dir, not the `F:/LLStudioTest/models` extra path - that extra path
+  does not map `background_removal`).
+- `workflows/wf_bgremove.json`: LoadImage -> LoadBackgroundRemovalModel -> RemoveBackground ->
+  MaskToImage -> SaveImage. Run with
+  `python tools/lab.py --wf wf_bgremove.json --jobs jobs/a43_bgremove.jsonl --box local --sub gl/mask --out gens/mask`.
+
+**Crop first.** On the full frame BiRefNet picks the anime figure printed on the screen as the
+salient object. On the crop `(0, 650, 950, 2950)` it picks the cock cleanly. `jobs/a44` /
+`gens/mask2/mask_crop_00001_.png` is that mask.
+
+`tools/mixed_prep.py <source> <mask> out_cut.png out_canvas.png` applies the mask, trims, scales the
+cock to 1150 px tall and places it on a dark 896x1344 canvas (`analysis/mixed/mix_canvas.png`).
+
+## The edit (works)
+
+Qwen-Image-2.1 one-image edit (`wf_qwen21_edit1.json`, 896x1344, 25 steps, cfg 1):
 
 ```
-Keep the anime girl from Picture 1 exactly: the same face, hair, eyes, body, pose, mouth, hands,
-background, lighting and 2D flat anime art style. Replace only the penis with the photoreal penis
-from Picture 2: real skin texture, visible veins, a defined glans, photoreal specular highlights
-and natural shadows, at the same position and angle as the penis in Picture 1, scaled so her lips
-are sealed around the real glans and the shaft goes into her mouth. Only the penis is photoreal;
-the girl and everything else stay 2D anime. Match the scene light and colour on the real skin.
+Keep the real penis in the foreground exactly as it is: photoreal, the same shape, colour, veins,
+glans and skin texture, in the same position, unchanged. Paint a flat 2D anime scene around it: a
+young adult anime woman with short silver hair in a single braid, purple eyes, jitome half-lidded
+eyes, a mole under her eye, a small fang, no glasses, topless, kneels in front of the penis with her
+lips sealed around the glans, her cheeks hollow, her eyes looking up at the viewer; clean lineart,
+flat cel shading, a dim bedroom behind her with pink LED glow. The penis stays photoreal and
+unchanged, she is drawn around it. No screen, no monitor, no text.
 ```
 
-832x1248, 25 steps, cfg 1. Results: `gens/a40/mix1_qwen_ref_00001_.png`.
+Result: `gens/a45/mix5_isolated_00001_.png`. The cock is the real one (same pixels), the girl is the
+LL signature 2D style.
 
-The one-image variant also works (`wf_qwen21_edit1.json`, "render only the penis
-photorealistically..."), `gens/a40/mix2_qwen_paint_00001_.png`; the two-image version keeps the
-real cock's actual shape and veins a little better.
+## Rejected routes (do not repeat)
 
-## What still needs work
+- Qwen **two-image** swap (anime still as Picture 1, real cock as Picture 2): the model regenerated
+  the cock; wrong anatomy, does not resemble the source. Owner: "unusable".
+- Editing the real photo itself ("keep the penis, replace the screen"): it keeps the screen girl and
+  copies her outfit/face. Good enough to prove the method, not the target.
+- Manual colour-threshold or polygon masks: ragged edges / screen fringes; the BiRefNet mask is
+  clean.
 
-- The mouth is behind the shaft in this composition, so the "sucking" is implied rather than seen.
-  The next pass should start from a **side** anime still with the lips clearly sealed around the
-  glans, or edit the mouth open around the real tip.
-- A video version would need the real cock to hold still while the anime girl moves; H3 will
-  probably relight/restyle it. Test later.
-- The real-cock crop keeps the anime standee behind it; it is a reference for the object, not a
-  background. The prompt is explicit that only the penis changes.
+## Open
+
+- The girl's lips touch the glans rather than sealing deep around it. A variant with her mouth open
+  around the head (or a side angle) is the next try.
+- The cock is a still; a video version needs the real cock held static while the anime girl moves.

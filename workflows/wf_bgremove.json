@@ -1,0 +1,9 @@
+{
+ "1": {"class_type": "LoadImage", "inputs": {"image": "{{image}}"}},
+ "2": {"class_type": "LoadBackgroundRemovalModel", "inputs": {"bg_removal_name": "{{model}}"}},
+ "3": {"class_type": "RemoveBackground", "inputs": {"bg_removal_model": ["2", 0], "image": ["1", 0]}},
+ "4": {"class_type": "MaskToImage", "inputs": {"mask": ["3", 0]}},
+ "5": {"class_type": "SaveImage", "inputs": {"images": ["4", 0], "filename_prefix": "{{prefix}}"}},
+ "_params": {"image": "", "model": "birefnet.safetensors", "prefix": "gl/x"},
+ "_note": "BiRefNet foreground mask. White = subject. Apply it to the source with tools/mixed_cut.py."
+}
