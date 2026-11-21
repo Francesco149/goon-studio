@@ -325,9 +325,12 @@ built from the k9 base by changing only the stroke sentence:
 - **Cum switch:** the front version `k17` is **good** (owner), template
   `anime_ll_cum_switch_front`; it uses the front handjob keyframe `n1_handjob_a`. The side version
   `k19` has a **good pose** but the rope shoots sideways and the mouth goes static after; `k21`
-  (side) forces the rope straight forward into the mouth and then adds suction - hollow cheeks,
-  two small sucking bobs, a swallow. The side handjob keyframes (`n2_side_handjob_a/b`) are both
-  good and preserved as `anime_ll_fz_side_handjob`. The old front take `k20` aimed the shot at the
-  tongue/lips only; it is superseded by k17.
+  (side) fixes the rope direction and adds suction - owner: "everything else is solid" except
+  **she does not take it into her mouth correctly: the dick goes behind the mouth, not inside**.
+  `k22` (closer keyframe `n2_a`, "the head goes past her lips, lips seal in front of the shaft")
+  went static altogether (motion 1.1) and did not solve the placement. The side keyframes
+  (`n2_side_handjob_a/b`) are good for blowjobs; for the side cum switch the next route is a side
+  keyframe with the **lips already around the head** (a side sealed still) and then suction, or an
+  FL pair with matching framing - not another wording pass on the handjob keyframe.
 - The mouth-purse/suction base is unchanged; the `k9` prompt plus the `anime_ll_*` video templates
   are the current library (headgrab, two hands, tip tease, slow, deepthroat, cum switch).
