@@ -585,6 +585,21 @@ Template `pov_blowjob_astro`, workflow `wf_h3vid_i2v_lora.json`.
 
 Total if you have none of them: about 32.5 GB (most templates share files).
 
+### POV blowjob - glans holds its shape (Male Anatomy 0.9, candidate)
+
+Template `pov_blowjob_anatomy`, workflow `wf_h3vid_i2v_lora.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` | `diffusion_models` | 12.54 GB | [download](https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3-experimental) |
+| `pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors` | `loras` | 0.56 GB | [download](https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3_comfy) |
+| `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `text_encoders` | 15.69 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3-Image) |
+| `minimax_h3_video_vae_int8_convrot.safetensors` | `vae` | 2.81 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `minimax_h3_audio_vae_fp32.safetensors` | `vae` | 0.61 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `Male_Anatomy-v2.02-ep4.safetensors` | `loras/h3nsfw` | 0.08 GB | [download](https://civitai.com/api/download/models/3250559?fileId=3133640) - [page](https://civitai.com/models/2839513?modelVersionId=3250559) |
+
+Total if you have none of them: about 32.3 GB (most templates share files).
+
 ### Side deepthroat (act LoRA)
 
 Template `side_deepthroat`, workflow `wf_h3vid_i2v_lora.json`.
@@ -948,6 +963,8 @@ Total if you have none of them: about 32.5 GB (most templates share files).
 | `h3nsfw/Astro-nsfw.safetensors` | `loras` | H3 LoRA: Astro NSFW (best photoreal blowjob motion) | 0.30 GB | [download](https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora/resolve/main/Astro%20nsfw.safetensors) - [page](https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora) | Published as 'Astro nsfw.safetensors'. |
 | `h3nsfw/H3_Motion_BoosterV2.safetensors` | `loras` | H3 LoRA: motion booster v2 | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |  |
 | `h3nsfw/MM-H3-Blwjob-v3.safetensors` | `loras` | H3 act LoRA: blowjob v3 | 0.31 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/MM-H3%20-%20Blowjob%20v3.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) | Published as 'MM-H3 - Blowjob v3.safetensors'. |
+| `h3nsfw/Male_Anatomy-v2.02-ep4.safetensors` | `loras` | H3 LoRA: male anatomy (penis, glans, testicles) - aimed at a stable glans shape | 0.08 GB | [download](https://civitai.com/api/download/models/3250559?fileId=3133640) - [page](https://civitai.com/models/2839513?modelVersionId=3250559) | Author: start at 0.9 (works 0.4-1.5); trained t2v, not on motion; triggers 'penis', 'glans', 'testicles'. Cannot control cut/uncut. |
+| `h3nsfw/PenisV2_minimax-h3_epoch60.safetensors` | `loras` | H3 LoRA: HMPenis v2 - penis shape (trigger HMPenis) | 0.08 GB | [download](https://civitai.com/api/download/models/3247473?fileId=3130327) - [page](https://civitai.com/models/2849923?modelVersionId=3247473) | Trigger 'HMPenis', lead with it; state the direction (front/POV); medium-large; 'circumcised', 'pink glans'. Needs a Civitai login. |
 | `h3nsfw/Titjob-Titfuck-H3.safetensors` | `loras` | H3 act LoRA: paizuri | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/Titjob%20-%20Titfuck%20ComfyTinker%20Minimax%20V0.9safetensors.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) | Published as 'Titjob - Titfuck ComfyTinker Minimax V0.9safetensors.safetensors'. |
 | `h3nsfw/epic_cumshots.safetensors` | `loras` | H3 act LoRA: cum shot (the cum-shot dial) | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) | Published as 'epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors'. |
 | `h3nsfw/h3-sideview-deepthroat.safetensors` | `loras` | H3 act LoRA: side-view deepthroat | 0.60 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/h3-sideview-deepthroat-step00007800-k3nk.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) | Published as 'h3-sideview-deepthroat-step00007800-k3nk.safetensors'. |

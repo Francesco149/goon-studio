@@ -117,6 +117,23 @@
    "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
    "note": "Published as 'MM-H3 - Blowjob v3.safetensors'."
   },
+  "loras/h3nsfw/Male_Anatomy-v2.02-ep4.safetensors": {
+   "what": "H3 LoRA: male anatomy (penis, glans, testicles) - aimed at a stable glans shape",
+   "gb": 0.08,
+   "url": "https://civitai.com/api/download/models/3250559?fileId=3133640",
+   "page": "https://civitai.com/models/2839513?modelVersionId=3250559",
+   "sha256": "E639C295694309801173A7E6818BE970B5535411AC0821AD0ED11578BEADE276",
+   "note": "Author: start at 0.9 (works 0.4-1.5); trained t2v, not on motion; triggers 'penis', 'glans', 'testicles'. Cannot control cut/uncut."
+  },
+  "loras/h3nsfw/PenisV2_minimax-h3_epoch60.safetensors": {
+   "what": "H3 LoRA: HMPenis v2 - penis shape (trigger HMPenis)",
+   "gb": 0.08,
+   "url": "https://civitai.com/api/download/models/3247473?fileId=3130327",
+   "page": "https://civitai.com/models/2849923?modelVersionId=3247473",
+   "sha256": "017DD1ADDDC1BE3EC0605DD2E7DE97138EB2C6C6BA24BE402CF47F103AC1F1B3",
+   "login": true,
+   "note": "Trigger 'HMPenis', lead with it; state the direction (front/POV); medium-large; 'circumcised', 'pink glans'."
+  },
   "loras/h3nsfw/Titjob-Titfuck-H3.safetensors": {
    "what": "H3 act LoRA: paizuri",
    "gb": 0.16,

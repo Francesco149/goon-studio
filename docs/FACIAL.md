@@ -73,6 +73,31 @@ From `egirl_bj_pov` seed 86403 (Krea 2 + Verite, owner: "excellent"), seed 86301
 - Still wrong: the veins are raised vine-like cords, inherited from the keyframe. Sound not
   judged (AGENTS.md 4b).
 
+## The glans stretches and does not spring back, round a87 (2026-11-21)
+
+Owner: on the way up the suction drags the glans longer and it does not spring back (both a86
+clips); the paizuri LoRA errs the other way (the skin does not move at all). The middle ground is
+the target. Same keyframe (Krea 2 + Verite, 86403) and seed 86301 for every clip; compared at
+full resolution at f0 / f90-f110 (withdrawal) / f123 (`analysis/a87_glans_compare.jpg`):
+
+- **a86 baseline**: the withdrawal drags the head into a tall wrinkled cone; still elongated at
+  the last frame (plain and Astro).
+- **Physics wording (now in `pov_blowjob` and `pov_blowjob_astro`)** - the model has no idea of the
+  mechanics, so spell them out: the erection is rigid and never changes length; the glans is a
+  firm dome that keeps its round shape and size the whole time and is never pulled longer; her
+  soft lips do the moving and slide *over* the glans on the way up instead of dragging it; past
+  the rim it is fully round again; only the loose shaft skin moves a few millimetres and settles
+  back. Result: no cone, the skin bunches a little at the rim as the lips pass (the middle
+  ground), the last frame matches f0.
+- **+ Male Anatomy v2.02 at 0.9** (`pov_blowjob_anatomy`, candidate): the best spring-back - the
+  head pops out as a round dome with a clear rim. Civitai 2839513, no login needed.
+- **+ first+last frame = the keyframe**: shape held perfectly but by freezing - one stroke, then
+  still from ~f90. The stiff extreme; not the fix.
+- **+ Astro 0.8**: better than a86 Astro, the head slightly compressed under the lips.
+- Not tested yet: HMPenis v2 (needs a Civitai login), the same wording on the anime blowjob
+  recipes and on paizuri (where the opposite - skin that never moves - needs the "loose skin
+  slides a few millimetres" half of the wording).
+
 ## H3-Image on 8 GB (cutestation, 2026-11-20)
 
 `wf_h3img_4bte.json` uses the P-H3 4B text encoder with the H3-Image w4a8 transformer: **21 s**
