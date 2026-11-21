@@ -2,26 +2,10 @@
   "outputStyle": "Goon Scope",
   "permissions": {
     "deny": [
-      "Read(./gallery/**)", "Edit(./gallery/**)", "Write(./gallery/**)",
-      "Read(./gens/**)", "Edit(./gens/**)", "Write(./gens/**)",
-      "Read(./analysis/**)", "Edit(./analysis/**)", "Write(./analysis/**)",
-      "Read(./refs/**)",
       "Read(./my/private/**)", "Edit(./my/private/**)", "Write(./my/private/**)",
-      "Read(./my/rounds/**)",
-      "Read(./my/history.jsonl)",
-      "Read(./my/feedback.jsonl)",
-      "Read(./my/library.json)",
-      "Read(./my/presets.json)", "Edit(./my/presets.json)", "Write(./my/presets.json)",
-      "Read(./kit/presets.json)", "Edit(./kit/presets.json)", "Write(./kit/presets.json)",
-      "Read(./jobs/*.jsonl)", "Edit(./jobs/*.jsonl)", "Write(./jobs/*.jsonl)",
-      "Read(./docs/ANIME.md)", "Edit(./docs/ANIME.md)",
-      "Read(./docs/EGIRL.md)", "Edit(./docs/EGIRL.md)",
-      "Read(./docs/FACIAL.md)", "Edit(./docs/FACIAL.md)",
-      "Read(./docs/CUM-VIDEO.md)", "Edit(./docs/CUM-VIDEO.md)",
-      "Read(./docs/MIXED.md)", "Edit(./docs/MIXED.md)",
-      "Read(./docs/SOUND.md)", "Edit(./docs/SOUND.md)",
-      "Read(./docs/archive/**)", "Edit(./docs/archive/**)",
-      "Read(~/Documents/uwu/**)"
+      "Read(./gallery/studio/**)", "Edit(./gallery/studio/**)", "Write(./gallery/studio/**)",
+      "Read(./gallery/uploads/**)", "Edit(./gallery/uploads/**)", "Write(./gallery/uploads/**)",
+      "Read(./gallery/outputs/studio/**)", "Edit(./gallery/outputs/studio/**)", "Write(./gallery/outputs/studio/**)"
     ]
   }
 }

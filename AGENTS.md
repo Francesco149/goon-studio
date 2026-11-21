@@ -1,11 +1,10 @@
 # Goon Studio: guide for the agent (read all of it before doing anything)
 
 This repo is the explicit counterpart of **Love Live Studio** (`../lovelive-studio`). It has its
-own app, its own gallery and its own rules. It is written for agents that are allowed to work
-with adult NSFW material (DeepSeek and similar). Claude also works here, on a narrower scope set in
-`CLAUDE.md`: engineering, setup, performance and non-explicit (ecchi-level) tests. Explicit
-prompts, presets and reviewing explicit output stay with you. Claude's neutral jobs are in
-`jobs/neutral/` and its renders in `sfw/`.
+own app, its own gallery and its own rules. It is written for every agent that works here -
+Claude, DSH/DeepSeek or another; the rules are the same for all of them. Claude's always-on copy
+is the **Goon Scope** output style (`.claude/output-styles/goon-scope.md`); DSH reads this file.
+Every agent may work on the pipeline and the prompts, under section 0.
 
 ## 0. Purpose and permitted use (read first)
 
@@ -29,23 +28,28 @@ adults (section 5).
 
 Where it is enforced: Claude Code gets a self-contained always-on copy as the **Goon Scope** output
 style (`.claude/output-styles/goon-scope.md`, set by `outputStyle` in `.claude/settings.json`); it
-sits in the system prompt and survives compaction. Other agents read this file (Zed, VS
-Code/Copilot, Codex and other AGENTS.md-aware tools). None of these may add a disclaimer beyond the
-README.
+sits in the system prompt and survives compaction. DSH reads this file as its project
+instructions. Those are the two main agents; both follow the same rules. Neither may add a
+disclaimer beyond the README.
 
-## 1. The one rule that matters
+## 1. Private gens: the only gate
 
-**Pictures made on the page are the user's and private until they press "share" (which only
-reveals them to the local agent, not to the internet).**
+Everything in the repo is open to every agent except the user's private gens. Their pictures are
+private until they press **share** (which only reveals them to the local agent, not to the
+internet). The private files live in `my/private/`, `gallery/studio/`, `gallery/uploads/` (and
+`gallery/outputs/studio/` if present), plus the page's pasted/edited inputs; shared/public items
+are listed in `my/library.json`. Do not list the private directories looking for filenames.
 
 - The page records the user's pictures in `my/private/history.jsonl` and the agent's in
   `my/history.jsonl`. `my/library.json` holds `public` (visible to the local agent; not published)
   and `trash`.
-- An agent may read `my/history.jsonl` (its own work) and the files marked `public` in
-  `my/library.json`. It must **not** read `my/private/` or list the gallery looking for private
-  files.
-- If the user refers to a picture that is private, say so and ask them to press **share** in the
-  gallery (that is the only way to make it visible). Do not work around it.
+- An agent may read `my/history.jsonl` (its own work) and the files marked public in
+  `my/library.json`. It must **not** read `my/private/`, `gallery/studio/`, `gallery/uploads/` or
+  list them for filenames.
+- Everything else - the pipeline, prompts, presets, jobs, docs, the agent's own work and the refs
+  - is open to every agent.
+- If the user refers to a private picture, say so and ask them to press **share** in the gallery
+  (that is the only way to make it visible). Do not work around it.
 - Never copy, upload, or paste NSFW pictures anywhere outside this repo and the two lab boxes
   (the boxes are compute only; never send a render to a person or a service).
 
@@ -97,7 +101,7 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 |---|---|---|
 | content | SFW anime pictures | explicit stills and video |
 | gallery | its own `my/`, `examples/` | `gallery/` and `my/` here |
-| agent | Claude | DeepSeek and other NSFW-tolerant agents; Claude for engineering only (`CLAUDE.md`) |
+| agent | Claude | every agent here (Claude, DSH/DeepSeek, others) follows this file; Claude's system-prompt layer is the Goon Scope output style |
 
 - When the user says "the picture from the studio" or references an SFW image, look in
   `../lovelive-studio` (`my/rounds/`, `examples/`, and only the `public` records in its
@@ -188,7 +192,8 @@ Foley pass or a dedicated audio tool is the likely answer.
 ## 5. Canon (owner-approved, 2026-11-20)
 
 - **All characters are fictional adults.** Anime body types can be petite; every character is an
-  adult OC or a non-canon fan-art design, never a minor. No minor-coded dialogue, story or tags.
+  adult OC or a non-canon design study, never a minor and never the canon character or canon age,
+  even when a series tag or a character LoRA is used. No minor-coded dialogue, story or tags.
 - **Default template: `anime_pov`** - the best anime blowjob POV so far. It is the first thing the
   page selects; keep it the default until another template beats it in the owner's review.
 - Anime stills: `gens/pb`-style output is anatomically clean. Keep **all three cock styles**:
@@ -228,8 +233,8 @@ Foley pass or a dedicated audio tool is the likely answer.
 3. Make a sheet: `python tools/sheet.py analysis/<round>.jpg gens/<round> --cols 4 --thumb 420`.
 4. Look at the sheet, write down what changed in `docs/` (or the round log), keep the prompts in
    `jobs/`.
-5. Do not leave renders outside `gallery/`, `gens/`, `analysis/`, `sfw/` (Claude's neutral renders) or the local engine's
-   `gl/` scratch folders.
+5. Do not leave renders outside `gallery/`, `gens/`, `analysis/`, `sfw/` (neutral work) or the
+   local engine's `gl/` scratch folders.
 
 ## 7. Quality bar
 

@@ -1,5 +1,9 @@
 # LoRA registry
 
+**Framing:** every LoRA and series tag in this registry is a design/art-style reference, not a
+depiction of the canon character or canon age. The characters are adult OCs or non-canon design
+studies; no minor-coded content. See `AGENTS.md` sections 0 and 5.
+
 Every LoRA we actually run, where it came from, the exact way to prompt it, and what it is good
 at. A new LoRA gets an entry **before** it goes into a template, and a verdict line when the owner
 rules on it. Keep this file current: it is the memory of which LoRA did what.
