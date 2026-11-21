@@ -138,6 +138,10 @@ it: `wf_h3vid_ref2va6.json` with two references (the pose/scene + the real cock/
 first+last pair whose last frame shows it (`wf_h3vid_i2v_fl.json`). Do not rely on the prompt to
 describe something the model has never seen; reanchor it. The same applies to anything the model
 has not learned and that is not on screen in the first frame.
+The mixed-cock version of this rule is solved the other way round: **start on a head-out seal with
+the real glans in frame 0 and have her take it in** (`docs/MIXED.md`, the complete recipe). The
+glans is anchored because it is visible, then hidden; no reveal is needed. A clip that reveals a
+glans hidden at frame 0 will invent it.
 
 ## 4b. Sound is not solved
 
