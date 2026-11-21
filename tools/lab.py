@@ -26,7 +26,7 @@ BOXES = {
     "lame": ("http://10.0.10.56:8188", "/lamedata/comfyui"),
 }
 PH = re.compile(r"\{\{(\w+)\}\}")
-IMG_KEYS = ("image", "image1", "image2", "last", "video")
+IMG_KEYS = ("image", "image1", "image2", "image3", "mask", "last", "video")
 T0 = time.time()
 
 

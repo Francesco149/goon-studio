@@ -336,10 +336,11 @@ built from the k9 base by changing only the stroke sentence:
   not another wording pass on the handjob keyframe.
 
 **Mixed reality (real cock in an anime picture):** the working method is now
-**BiRefNet isolation + Qwen one-image edit**, not the two-image swap. Crop the real-cock photo to
-the cock, run ComfyUI's `RemoveBackground` (BiRefNet), place the cutout on a canvas, then ask Qwen
-to paint the 2D anime girl around the real penis. The two-image swap was rejected (it regenerated
-the cock, wrong anatomy). Prompts and pipeline in `docs/MIXED.md`; result
-`gens/a45/mix5_isolated`.
+**golden anime seal + H3-Image two-reference masked fill**, not the Qwen one-image edit and not a
+hand composite. Start from the seal still (`a11/j2_suction_seal_b`), mask the drawn cock only
+(lips outside the mask), then `wf_h3img_2ref_inpaint.json` fills that mask with the real BiRefNet
+cock while the golden lips stay untouched. The H3 two-reference full generation alone redraws the
+mouth into a pucker or puff (see `docs/MIXED.md` for the stills and the rejected routes). The
+detail and the open defects are in `docs/MIXED.md`; result `gens/a55/inpaint_a`.
 - The mouth-purse/suction base is unchanged; the `k9` prompt plus the `anime_ll_*` video templates
   are the current library (headgrab, two hands, tip tease, slow, deepthroat, cum switch).

@@ -1,0 +1,21 @@
+{
+ "_note": "H3-Image 2ref + mask: fill the masked area with Picture 2 while keeping the rest of Picture 1. Untested graph.",
+ "_params": {"unet": "minimax_h3_image_pruned_int8_convrot.safetensors", "width": 896, "height": 1344, "seed": 1, "prefix": "gl/x", "denoise": 0.95},
+ "1": {"class_type": "UNETLoader", "inputs": {"unet_name": "{{unet}}", "weight_dtype": "default"}},
+ "2": {"class_type": "CLIPLoader", "inputs": {"clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors", "type": "minimax", "device": "default"}},
+ "3": {"class_type": "VAELoader", "inputs": {"vae_name": "minimax_h3_image_vae_fp16.safetensors"}},
+ "4": {"class_type": "LoadImage", "inputs": {"image": "{{image1}}"}},
+ "14": {"class_type": "LoadImage", "inputs": {"image": "{{image2}}"}},
+ "15": {"class_type": "LoadImage", "inputs": {"image": "{{mask}}"}},
+ "5": {"class_type": "ImageScaleToTotalPixels", "inputs": {"image": ["4", 0], "upscale_method": "lanczos", "megapixels": 1.0, "resolution_steps": 32}},
+ "16": {"class_type": "ImageScaleToTotalPixels", "inputs": {"image": ["14", 0], "upscale_method": "lanczos", "megapixels": 1.0, "resolution_steps": 32}},
+ "34": {"class_type": "ImageScale", "inputs": {"image": ["4", 0], "upscale_method": "lanczos", "width": "{{width}}", "height": "{{height}}", "crop": "disabled"}},
+ "31": {"class_type": "ImageToMask", "inputs": {"image": ["15", 0], "channel": "red"}},
+ "32": {"class_type": "VAEEncode", "inputs": {"pixels": ["34", 0], "vae": ["3", 0]}},
+ "33": {"class_type": "SetLatentNoiseMask", "inputs": {"samples": ["32", 0], "mask": ["31", 0]}},
+ "6": {"class_type": "MiniMaxH3ImageConditioning", "inputs": {"clip": ["2", 0], "prompt": "{{prompt}}", "width": "{{width}}", "height": "{{height}}", "vae": ["3", 0], "images.image_1": ["5", 0], "images.image_2": ["16", 0]}},
+ "7": {"class_type": "ConditioningZeroOut", "inputs": {"conditioning": ["6", 0]}},
+ "8": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "positive": ["6", 0], "negative": ["7", 0], "latent_image": ["33", 0], "seed": "{{seed}}", "steps": 6, "cfg": 1.0, "sampler_name": "euler", "scheduler": "simple", "denoise": "{{denoise}}"}},
+ "9": {"class_type": "VAEDecode", "inputs": {"samples": ["8", 0], "vae": ["3", 0]}},
+ "10": {"class_type": "SaveImage", "inputs": {"images": ["9", 0], "filename_prefix": "{{prefix}}"}}
+}

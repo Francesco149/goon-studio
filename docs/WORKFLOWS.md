@@ -14,6 +14,8 @@ repo.
 | `wf_anima_hires.json` | same, img2img | 1152x1728, 20, denoise 0.30 | anime second pass |
 | `wf_anima_i2i.json` | same, img2img | 24 steps, denoise 0.45 | frame restyle (closed by owner verdict) |
 | `wf_h3img.json` | H3-Image | 896x1344, 6, cfg 1 | keyframes, cum material stills |
+| `wf_h3img_2ref.json` | H3-Image with Picture 1 + Picture 2 | 896x1344, 6 | mixed gens: scene + real object (mouth redrawn) |
+| `wf_h3img_2ref_inpaint.json` | H3-Image 2ref + `SetLatentNoiseMask` | 896x1344, 6, denoise 0.92 | mixed gens with the lips pinned: fill only the cock mask |
 | `wf_h3img_8gb.json` | H3-Image w4a8 + 32B encoder, kitchen attention | 896x1344, 6 | cutestation final; 32B material |
 | `wf_h3img_4bte.json` | H3-Image w4a8 + P-H3 4B encoder, kitchen attention | 896x1344, 4/6/8 | cutestation draft; ~5 GB encoder |
 | `wf_h3img_4bte_lora.json` | 4B encoder + `p-h3-image_lora_bf16` | 896x1344, 8 | slower, changes composition; not recommended |
