@@ -219,6 +219,10 @@ the video recipe proven.
 - When the user asks where to get a model or why a template fails with "Missing model file",
   answer from the registry / `docs/MODELS.md`, or just fetch it.
 
+**Open items and the handoff from the 2026-11-21 session (cum physics next, the facial variant,
+paizuri saliva, penis type in anime video, an anime animation style, the round method):
+`docs/OPEN-ITEMS.md`. Read it before starting experiments.**
+
 ## 4b. Sound is not solved
 
 **Status: unfinished - needs more research** (owner, 2026-11-21). The generated audio is wrong:
@@ -247,6 +251,10 @@ Foley pass or a dedicated audio tool is the likely answer.
 - Photoreal e-girl: the character block in `docs/EGIRL.md`; `full natural breasts` is the size
   control; tag prompts for portraits, prose for acts.
 - Facial pose: `egirl_facial` template (cock out, mouth open, eyes on camera) - owner approved.
+- **Golden anime blowjob clips: the round a26 batch** (owner: the gold standard for dynamics, poses
+  and expressions) - `anime_ll_headgrab_push`, `anime_ll_two_hands_a26`, `anime_ll_tip_tease`,
+  `anime_ll_cum_switch_a26`, exact a26 prompts. Paizuri: `anime_ll_fz_paizuri_notongue` ->
+  `anime_ll_paizuri` (no tongue in front of the glans; solid).
 - **Golden photoreal blowjob (owner, 2026-11-21: "the best photoreal video gens we have made
   yet"): keyframe `egirl_bj_pov` (Krea 2 + Verite) -> clip `pov_blowjob_anatomy`** (the physics
   wording + Male Anatomy v2.02 at 0.9: the glans keeps its shape and springs back; `docs/FACIAL.md`

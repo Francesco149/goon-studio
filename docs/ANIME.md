@@ -154,6 +154,12 @@ seed). What locks it, tested on seeds 86103-86106 (in the templates now):
 - a91 (k11/k12 + physics + `golden`): the shaft matches a26 (thick, tan, soft wrinkle ridges) but
   at the top of the stroke the glans shows redder and more swollen at her lips than a26 ever does
   (`analysis/a91_golden_compare.jpg`). Owner to judge at full speed.
+- **Owner on a91: still the smooth penis (and one odd fold on the glans) - the type is not
+  controlled by wording, so the anime golden reverts to the known-good a26 batch.** The anime
+  recipes are back to their pre-a88 prompts; the four a26 clips are their own templates
+  (`anime_ll_headgrab_push`, `anime_ll_two_hands_a26`, `anime_ll_tip_tease`,
+  `anime_ll_cum_switch_a26`); the physics workflow stays the golden for photoreal. The Video tab's
+  penis default is back to "as the template". Open items: `docs/OPEN-ITEMS.md`.
 - **Do not put the rigidity paragraph on cum clips.** `k14_cum_switch_phys` lost most of the cum:
   a26 fills and overflows the mouth from ~f50, the physics version only shows a little at the lips
   at the end (`analysis/a89_k13_k14.jpg`) - "never changes" fights the spurt/twitch event. The cum

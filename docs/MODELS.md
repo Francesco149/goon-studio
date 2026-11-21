@@ -197,6 +197,18 @@ Template `anime_ll_fz_paizuri`, workflow `wf_anima2_sig.json`.
 
 Total if you have none of them: about 5.6 GB (most templates share files).
 
+### Anime - LL fuzichoco paizuri, mouth closed (keyframe for the paizuri clip)
+
+Template `anime_ll_fz_paizuri_notongue`, workflow `wf_anima2_sig.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
+| `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+| `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+
+Total if you have none of them: about 5.6 GB (most templates share files).
+
 ### Anime - LL kantoku, paizuri
 
 Template `anime_ll_kt_paizuri`, workflow `wf_anima2_sig.json`.
@@ -764,7 +776,7 @@ Template `anime_ll_cumshot`, workflow `wf_h3vid_i2v_lora2.json`.
 
 Total if you have none of them: about 32.5 GB (most templates share files).
 
-### Anime - LL paizuri (k2: better than anything before)
+### Anime - LL paizuri, no tongue (a92; owner: solid, right penis type)
 
 Template `anime_ll_paizuri`, workflow `wf_h3vid_i2v_lora2.json`.
 
@@ -780,7 +792,7 @@ Template `anime_ll_paizuri`, workflow `wf_h3vid_i2v_lora2.json`.
 
 Total if you have none of them: about 32.5 GB (most templates share files).
 
-### Anime - LL suction blowjob POV - base recipe + physics (k9; owner: h-game level)
+### Anime - LL suction blowjob POV - base recipe (best blowjob)
 
 Template `anime_ll_suction`, workflow `wf_h3vid_i2v_lora2.json`.
 
@@ -908,7 +920,7 @@ Template `anime_ll_two_hands`, workflow `wf_h3vid_i2v_lora2.json`.
 
 Total if you have none of them: about 32.7 GB (most templates share files).
 
-### Anime - LL blowjob - tip tease then take it deep
+### Anime - LL blowjob - tip tease then take it deep (GOLDEN batch a26, k13)
 
 Template `anime_ll_tip_tease`, workflow `wf_h3vid_i2v_lora2.json`.
 
@@ -923,6 +935,54 @@ Template `anime_ll_tip_tease`, workflow `wf_h3vid_i2v_lora2.json`.
 | `H3_Motion_BoosterV2.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
 
 Total if you have none of them: about 32.7 GB (most templates share files).
+
+### Anime - LL head grab, pushes her down (GOLDEN batch a26, k11)
+
+Template `anime_ll_headgrab_push`, workflow `wf_h3vid_i2v_lora2.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` | `diffusion_models` | 12.54 GB | [download](https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3-experimental) |
+| `pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors` | `loras` | 0.56 GB | [download](https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3_comfy) |
+| `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `text_encoders` | 15.69 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3-Image) |
+| `minimax_h3_video_vae_int8_convrot.safetensors` | `vae` | 2.81 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `minimax_h3_audio_vae_fp32.safetensors` | `vae` | 0.61 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `MM-H3-Blwjob-v3.safetensors` | `loras/h3nsfw` | 0.31 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/MM-H3%20-%20Blowjob%20v3.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+| `H3_Motion_BoosterV2.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+
+Total if you have none of them: about 32.7 GB (most templates share files).
+
+### Anime - LL both hands on her head (GOLDEN batch a26, k12; fangs can pop at the end)
+
+Template `anime_ll_two_hands_a26`, workflow `wf_h3vid_i2v_lora2.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` | `diffusion_models` | 12.54 GB | [download](https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3-experimental) |
+| `pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors` | `loras` | 0.56 GB | [download](https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3_comfy) |
+| `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `text_encoders` | 15.69 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3-Image) |
+| `minimax_h3_video_vae_int8_convrot.safetensors` | `vae` | 2.81 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `minimax_h3_audio_vae_fp32.safetensors` | `vae` | 0.61 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `MM-H3-Blwjob-v3.safetensors` | `loras/h3nsfw` | 0.31 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/MM-H3%20-%20Blowjob%20v3.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+| `H3_Motion_BoosterV2.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+
+Total if you have none of them: about 32.7 GB (most templates share files).
+
+### Anime - LL stroke, shoot, take it in (GOLDEN batch a26, k14)
+
+Template `anime_ll_cum_switch_a26`, workflow `wf_h3vid_i2v_lora2.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` | `diffusion_models` | 12.54 GB | [download](https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3-experimental) |
+| `pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors` | `loras` | 0.56 GB | [download](https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3_comfy) |
+| `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `text_encoders` | 15.69 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3-Image) |
+| `minimax_h3_video_vae_int8_convrot.safetensors` | `vae` | 2.81 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `minimax_h3_audio_vae_fp32.safetensors` | `vae` | 0.61 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `epic_cumshots.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+| `H3_Motion_BoosterV2.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+
+Total if you have none of them: about 32.5 GB (most templates share files).
 
 ### Anime - LL cum switch - side (k21: solid except the take-in)
 

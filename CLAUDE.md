@@ -43,6 +43,8 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
 
 ## Work and outputs
 
+- Open items and the round method (bench engine on 8189, `tools/rounds/run_template_round.py`,
+  frame grids with the engine's Python): `docs/OPEN-ITEMS.md`. Read it before experiments.
 - Models: one store (`models_dir`), registry `kit/models.json`, tool `tools/models/store.py`
   (check / fetch / adopt / audit / doc); AGENTS.md section 4a. A template that is good must be
   usable by hand: every file it loads has a source in the registry.
