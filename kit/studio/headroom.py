@@ -98,9 +98,29 @@ def processes(ttl=15):
         cl = p.get("CommandLine") or ""
         eng = (p.get("Name") or "").lower() == "python.exe" and "main.py" in cl
         out.append(((p.get("Name") or "?").rsplit(".exe", 1)[0], (p.get("PrivatePageCount") or 0) / 1e9, eng,
-                    p.get("ExecutablePath") or "", cl))
+                    p.get("ExecutablePath") or "", cl, p.get("ProcessId")))
     out.sort(key=lambda x: -x[1])
     _PROCS[:] = [time.time(), out]
+    return out
+
+
+def gpu_by_pid():
+    """{pid: dedicated VRAM GB} from the Windows "GPU Process Memory" counters (WDDM hides this
+    from nvidia-smi), or {} when unavailable."""
+    if os.name != "nt":
+        return {}
+    ps = (r'(Get-Counter "\GPU Process Memory(*)\Dedicated Usage" -ErrorAction SilentlyContinue).CounterSamples'
+          ' | Where-Object {$_.CookedValue -gt 0} | ForEach-Object { "$($_.InstanceName) $($_.CookedValue)" }')
+    try:
+        r = subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+                           capture_output=True, text=True, timeout=30, creationflags=0x08000000)
+    except Exception:
+        return {}
+    out = {}
+    for line in r.stdout.splitlines():
+        m = re.match(r"pid_(\d+)_\S*\s+([\d.]+)", line.strip())
+        if m:
+            out[int(m.group(1))] = out.get(int(m.group(1)), 0) + float(m.group(2)) / 1e9
     return out
 
 
@@ -175,8 +195,15 @@ def plan(workflow, fields=None, s=None, procs=None):
     if others_engines:
         out["warnings"].append("Another ComfyUI engine is running (%.1f GB): stop it if you are not using it "
                                "(the other studio's kit\\start.ps1 -Stop)." % sum(p[1] for p in others_engines))
-    if vr and eng is not None:
+    gp = gpu_by_pid() if vr else {}
+    if gp:
+        engine_pids = {p[5] for p in procs if p[2]}
+        other_v = sum(g for pid, g in gp.items() if pid not in engine_pids)
+    elif vr and eng is not None:
         other_v = max(0.0, vr["vram_used"] - eng["torch_vram"])
+    else:
+        other_v = None
+    if other_v is not None:
         out["vram_other_gb"] = round(other_v, 1)
         if other_v > OTHER_VRAM_GB:
             out["warnings"].append("Other apps hold %.1f GB of video memory (a browser playing video, a game): this "

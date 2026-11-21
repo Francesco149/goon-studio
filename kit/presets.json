@@ -60,7 +60,7 @@
       "unet": "ramthrustsNSFWPINK_v29.safetensors"
     },
     "anime_pov": {
-      "label": "Anime - POV blowjob (Pink Alchemy)",
+      "label": "Anime - POV blowjob (Pink Alchemy, foreskin retracted)",
       "workflow": "wf_anima2.json",
       "width": 832,
       "height": 1248,
@@ -69,7 +69,7 @@
       "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, veins, erection, uncensored, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
-      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
       "unet": "ramthrustsNSFWPINK_v29.safetensors"
     },
     "anime_pov_mosaic": {
@@ -82,7 +82,7 @@
       "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, veins, erection, censored, mosaic censoring, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
-      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, male body, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
       "unet": "ramthrustsNSFWPINK_v29.safetensors",
       "about": "Owner-preferred presentation (pb5_pov_mosaic). The mosaic's placement is luck: reroll the seed."
     },
@@ -96,23 +96,9 @@
       "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, foreskin, veins, erection, uncensored, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
-      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
       "unet": "ramthrustsNSFWPINK_v29.safetensors",
       "about": "The half-foreskin cock the owner kept as a preferred style."
-    },
-    "anime_pov_cut": {
-      "label": "Anime - POV blowjob, foreskin retracted",
-      "workflow": "wf_anima2.json",
-      "width": 832,
-      "height": 1248,
-      "steps": 30,
-      "cfg": 4.0,
-      "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, foreskin retracted, circumcised, veins, erection, uncensored, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
-      "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
-      "scene": "bedroom, soft light, love live! sunshine!!",
-      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
-      "unet": "ramthrustsNSFWPINK_v29.safetensors",
-      "about": "The fully retracted / cut style (owner: also correct)."
     },
     "anime_cum": {
       "label": "Anime - facial cum still",

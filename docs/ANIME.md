@@ -83,6 +83,23 @@ and `male body` added to the negative.
 - `pb6_side_big` - the "bigger" variant. `huge thick penis` really is comical; use it only on purpose.
 - `pb7_cum_face` - anime cum is correct (strands, drips, gloss). The photoreal model is not.
 
+## Template review, round a85 (2026-11-21, 8 GB, through the page code)
+
+`anime_pov` now runs Pink (it ran `anima-aesthetic` before: the template's model was dropped).
+Four seeds (86103-86106) at 30 steps, plus two with a "lips around the middle of his shaft,
+glans inside mouth" wording test:
+
+- **The seal is the recorded one, not deeper.** On every seed the lips close over the top of the
+  glans and the corona stays outside - the same as the recorded `b1_pov_sealed_base` keyframe
+  (same prompt). The extra wording did not take the head further in. Whether `pb3` looked the
+  same is the open question for the owner (round a85).
+- 86105 is the weakest (lips only touch the tip); 86106 drew a frilled top (no clothing tag in
+  either direction).
+- **Cock styles**: `anime_pov_mosaic` gives the pb5 look (one block over the shaft, glans
+  visible) on both seeds; `anime_pov_foreskin` gives the half-foreskin on both. The cut wording
+  (`foreskin retracted, circumcised`) renders the same as `anime_pov`, which already draws it
+  retracted, so it is not a separate template.
+
 ## Censorship
 
 - `bar censor` draws a free-floating striped sticker (`pb4`) - unusable.

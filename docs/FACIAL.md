@@ -50,6 +50,17 @@ lip, a slow heavy drip from the chin, no strand from the tip`; keep `translucent
 `glossy` for the material. This is a prompt / material problem, not a hardware one, and it is
 still open.
 
+## Photoreal blowjob clip, round a85 (2026-11-21, 8 GB)
+
+Same H3-Image keyframe (`key_photo_bj`, the RECIPE.md POV prompt with the e-girl hair, w4a8 +
+32B encoder, 768x1152) and seed 86301, 124 frames, ~6 min each on the 8 GB card:
+
+- `pov_blowjob` (no LoRA): one full stroke down to her hand and back, eyes close at the bottom;
+  at the end the glans softens into her pursed lips.
+- `pov_blowjob_astro` (Astro 0.8): goes down to her hand with eye contact, then pulls off with a
+  thin saliva string; the glans keeps its shape. No character drift on this seed.
+- Both draw the "retracted foreskin ridge" as a thin seam line. Sound not judged (AGENTS.md 4b).
+
 ## H3-Image on 8 GB (cutestation, 2026-11-20)
 
 `wf_h3img_4bte.json` uses the P-H3 4B text encoder with the H3-Image w4a8 transformer: **21 s**

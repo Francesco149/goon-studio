@@ -76,7 +76,7 @@ Template `anime_side`, workflow `wf_anima2.json`.
 
 Total if you have none of them: about 5.6 GB (most templates share files).
 
-### Anime - POV blowjob (Pink Alchemy)
+### Anime - POV blowjob (Pink Alchemy, foreskin retracted)
 
 Template `anime_pov`, workflow `wf_anima2.json`.
 
@@ -103,18 +103,6 @@ Total if you have none of them: about 5.6 GB (most templates share files).
 ### Anime - POV blowjob, half foreskin
 
 Template `anime_pov_foreskin`, workflow `wf_anima2.json`.
-
-| file | put it in | size | get it from |
-|---|---|---|---|
-| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
-| `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
-| `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
-
-Total if you have none of them: about 5.6 GB (most templates share files).
-
-### Anime - POV blowjob, foreskin retracted
-
-Template `anime_pov_cut`, workflow `wf_anima2.json`.
 
 | file | put it in | size | get it from |
 |---|---|---|---|
