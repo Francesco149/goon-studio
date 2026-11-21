@@ -13,6 +13,7 @@ are not part of any recipe a user gets.
 | LoRA | what for | base | strength | status |
 |---|---|---|---|---|
 | `lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors` | Lanzhu Zhong character, anime stills | Anima (Pink Alchemy v2.9) | 1.0 | **approved** 2026-11-21 |
+| `kasumi-nakasu-s2-anima-lora-nochekaiser.safetensors` | Kasumi Nakasu character, anime stills | Anima (Pink Alchemy v2.9) | 1.0 | **approved** 2026-11-21 |
 | `Verite_realism.safetensors` | photoreal realism on Krea 2 | Krea 2 Turbo | 1.0-1.3 | superseded by Krea 2 Turbo NSFW v10 |
 | `h3nsfw/epic_cumshots.safetensors` | cum-shot event/dial, H3 video | H3 FL2VA | 0.5-0.6 | in the cum recipe, unfinished (material) |
 | `h3nsfw/Astro-nsfw.safetensors` | photoreal BJ motion, H3 video | H3 FL2VA | 0.8 | best photoreal BJ motion |
@@ -93,7 +94,8 @@ POV cock-out, side gap and paizuri are approved; the POV mouth seal is the open 
 
 **Known limits:**
 
-- **POV mouth seal is not reliable with this LoRA.** At 1.0 and at 0.7-0.9, with the LL seal
+- **POV mouth seal is not reliable with this LoRA** (and it is the same with Kasumi: it is the
+  author's training recipe, not one LoRA - see her entry). At 1.0 and at 0.7-0.9, with the LL seal
   wording, with stronger `(penis in mouth:1.4)` weights, with `@murota yuuhei`, without it, and on
   a seed sweep (811, 4242, 611, 9137) the model keeps drawing the shaft **in front of her lips**
   and her mouth closed behind it: her face prior wins over the seal tags. The reliable sealed shot
@@ -106,6 +108,84 @@ POV cock-out, side gap and paizuri are approved; the POV mouth seal is the open 
   wide. Reroll the seed before changing the prompt.
 - Safe/neutral side: portraits in her canon outfit come out clean, that is the identity check to
   run after any workflow change.
+
+### Kasumi Nakasu (S2) - nochekaiser (approved 2026-11-21)
+
+| | |
+|---|---|
+| source | Civitai model **2708250** / version **3042032 "anime s2"**, author **nochekaiser** - the user's download link was `https://civitai.red/models/2708250/kasumi-kasumin-kasukasu-nakasu-love-live-nijigasaki-high-school-idol-club` (the `.red` mirror of `https://civitai.com/models/2708250`) |
+| file | `kasumi-nakasu-s2-anima-lora-nochekaiser.safetensors`, 87.6 MB |
+| sha256 | `313c46aa584b87fe7b48c79557b03a74569bc2998d60b821a50bb318f14f3a1e` |
+| where | local `F:\LLStudioTest\models\loras\` |
+| training | base `anima_baseV10`, 1000 images, dim 32 / alpha 32, 4 epochs, 1024x1024, text encoder not trained - the same recipe as the Lanzhu LoRA from the same author |
+| load as | `LoraLoaderModelOnly` on the unet, node 48 of `workflows/wf_anima2_lora.json` |
+| strength | **1.0**; no drift at 0.8, but 1.0 keeps the bob and the face |
+
+**Trigger words** (the model page's two blocks):
+
+```
+kasumi nakasu, nakasu kasumi, short hair, bangs, brown hair, pink eyes, bob cut, light brown hair,
+asymmetrical hair, mature female, small breasts, anime screencap
+```
+
+```
+skirt, long sleeves, jacket, red ribbon, black jacket, blazer
+```
+
+Both names work (`kasumi nakasu` and `nakasu kasumi`), and the LoRA likes both together. The
+outfit block renders the Nijigasaki blazer and skirt; the `red ribbon` tag came out **yellow-gold**
+(the canon ribbon, and what the training data has) - that is the LoRA's look, not a bug in the
+prompt. Her cheek mole comes with the face.
+
+**Prompt shape** - identical to Lanzhu, which is the point: one shape for this family of LoRAs.
+
+```
+masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, {scene}
+```
+
+with the character block
+
+```
+1girl, 1boy, hetero, <framing>, kasumi nakasu, nakasu kasumi, short hair, bangs, brown hair,
+pink eyes, bob cut, light brown hair, asymmetrical hair, mature female,
+(curvy:1.6), (wide hips:1.4), thick thighs, medium breasts, half-closed eyes, blush, saliva
+```
+
+(`medium breasts` for the curvy read; the canon variant keeps her trigger's `small breasts`.)
+Signature late pass: `"late": "signature"`, `"series": "love live! nijigasaki high school idol club"`.
+
+**Templates** (all on `wf_anima2_lora.json`, 30 steps, cfg 4, er_sde/simple):
+
+| template | what | size |
+|---|---|---|
+| `anime_kc_pov` | POV cock out | 832x1248 |
+| `anime_kc_side` | side gap | 1248x832 |
+| `anime_kc_seal` | side head seal (head between her lips) | 1248x832 |
+| `anime_kc_paizuri` | paizuri, glans above the cleavage | 832x1248 |
+| `anime_kc_canon_*` | the same four with her small-breasts trigger body | same |
+
+Characters: `kc_curvy`, `kc_canon` in `kit/presets.json`, next to `lz_curvy` / `lz_canon`.
+
+**Measured (local 5060, 8 GB):** 30 steps, 832x1248 - **36-41 s** per still, same ~7 GB footprint
+as Lanzhu; the LoRA adds nothing measurable.
+
+**Verdict (owner, 2026-11-21):** approved to be set up with templates, same deal as Lanzhu.
+
+**Known limits:**
+
+- **The POV mouth seal fails exactly like it does for Lanzhu** (same author, same training recipe):
+  with the LL seal wording, with `@murota yuuhei`, and both with and without the signature late
+  pass, the model puts the shaft **in front of her lips** and keeps the mouth closed behind it.
+  This is a property of the character-LoRA family, not of one LoRA - treat the **side head seal**
+  (`anime_kc_seal`) as the sealed shot for every character LoRA from this author until one proves
+  otherwise.
+- The POV deepthroat wording (`deepthroat, his cock deep in her throat, lips around the base of his
+  shaft, nose against his body`) **does** get the shaft into her mouth at POV, but the framing is
+  poor (her face fills the frame, the shaft comes in from the edge). Kept in
+  `jobs/kc02.jsonl` as a route, not shipped as a template.
+- Paizuri works even with her `small breasts` canon body; the shaft reads thin on the curvy body,
+  where `(thick penis:1.2)` matters.
+- Reroll before rewriting: the side seals at seed 1717 are clean, 4242 is a near-miss.
 
 ### Anime LoRAs on the dev box without a record
 

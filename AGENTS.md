@@ -118,7 +118,7 @@ only the public recipes.
 | photoreal facial / cum still | same, the `egirl_facial` and `egirl_cum` templates | `docs/FACIAL.md` |
 | anime stills | Pink Alchemy Anima v2.9 + `wf_anima2.json`, 20-30 steps, cfg 4, er_sde/simple | 12 preview / 20 standard / 30 final; `docs/ANIME.md` |
 | anime second pass | `wf_anima_hires.json`, denoise 0.30 | `docs/ANIME.md` |
-| anime stills with a character LoRA | Pink + `wf_anima2_lora.json` (`LoraLoaderModelOnly`, node 48), 30 steps, cfg 4, strength 1.0 | the `anime_lz_*` templates (Lanzhu Zhong); registry and prompt shape in `docs/LORAS.md` |
+| anime stills with a character LoRA | Pink + `wf_anima2_lora.json` (`LoraLoaderModelOnly`, node 48), 30 steps, cfg 4, strength 1.0 | the `anime_lz_*` (Lanzhu) and `anime_kc_*` (Kasumi) templates; registry and prompt shape in `docs/LORAS.md` |
 | keyframes / photoreal stills | H3-Image `wf_h3img_4bte.json` (draft) / `wf_h3img_8gb.json` (final) | 4/6/8 steps, cfg 1 |
 | photoreal video | H3 FL2VA `wf_h3vid_i2v.json` (Pika 6-step), 768x1152, 124 f | 4-step preview in `wf_h3vid_i2v_4step.json`; `docs/FACIAL.md`, `docs/ANIME.md` |
 | video with an act LoRA | `wf_h3vid_i2v_lora.json` (node 21) | side deepthroat and titjob help; POV blowjob does not |
