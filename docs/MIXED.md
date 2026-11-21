@@ -1,5 +1,12 @@
 # Mixed reality: a real cock in an anime picture (2026-11-21)
 
+**Status: unfinished - needs more research.** The still pipeline is repeatable (head-out seal +
+real-cock fill; k9 deep-seal fill), and the frame-0 anchoring works, but the **video dynamics are
+still below the pure-anime blowjob clips**: the owner's verdict on the take-in pair (2026-11-21) is
+that one puffs the cheeks and the other reads as chewing, not suction, and the audio is unusable.
+Do not call the video recipe proven. The stills, the fill and the frame-0 rule are the parts that
+hold; the motion is the open research.
+
 Goal: the "anime tribute" look - a photoreal real cock in an otherwise flat 2D anime picture,
 with the anime girl taking it. The real-cock source is the owner's sharp still
 `gallery/refs/custom-cock/p03ryyxaprvh1.jpg` (2256x3295). The cock is cut by the left frame edge,
@@ -30,7 +37,7 @@ ComfyUI's core background-removal nodes work:
 salient object. On the crop `(0, 650, 950, 2950)` it picks the cock cleanly. The cutout on the
 dark canvas is `analysis/mixed/mix_canvas2.png` (896x1344, the cock 1150 px tall).
 
-## The complete recipe: head-out take-in (shows the real glans, no invention)
+## The take-in pipeline (mechanics repeatable; motion unfinished)
 
 The reveal was the unsolved half because the glans is hidden at frame 0 and the video model
 invents it. The fix is to put the glans **in frame 0**: start on a head-out seal, then have her
@@ -57,7 +64,14 @@ take it in. The model never has to invent the hidden part; it sees it, then hide
 Pass criteria: frame 0 shows the real glans above the lips with the lips sealed around the shaft;
 the take-in hides it; after that the mouth is a thin seal, cheeks hollow, no puff; the cock is the
 same real one throughout. The face/scene are the head-out still's own roll, so there is no morph
-and no identity blend. This is the recipe to use when the glans must be seen.
+and no identity blend.
+
+**Owner verdict (2026-11-21): not good enough.** The mechanics pass, but the motion does not: one
+of the two take-in clips puffs the cheeks, the other reads as chewing rather than suction, and
+neither matches the dynamics of the pure-anime blowjob clips. The audio on both is unusable. So
+the take-in is a repeatable *pipeline*, not a proven *recipe* for the look; the motion needs more
+research (a motion reference / act LoRA / retimed first+last pair from a pure-anime clip - the
+prompt alone is not enough).
 
 
 
@@ -78,7 +92,9 @@ not the best BJ mouth, and whatever it gets wrong the video carries. Use a frame
 4. **Suction clip:** i2v from the fill (`jobs/a73`, `v7_seal`, 124 f 768x1152): "she sucks hard
    and slow, cheeks hollow and pull in, lips grip and drag, the glans stays inside". The golden
    mouth holds, the cheeks hollow, the glans never comes out, so there is nothing to invent.
-   This is the **proven** half of the recipe (`v6_seal` is the 49 f version).
+   This is the repeatable still + i2v mechanics; the owner's 2026-11-21 verdict is that the motion
+   is still below the pure-anime BJs, so it is not a proven motion recipe (`v6_seal` is the 49 f
+   version).
 5. **Reveal via Ref2VA (optional; the take-in above is the way to show the glans):** Ref2VA from
    the fill + the same real cock (`v7_reveal`) shows a real glans, but at the reveal her lips
    close *behind* the head - the cock sits on her lips rather than staying sealed around the
@@ -181,7 +197,9 @@ was neutral. The fix is to make the *suction itself* the motion, with the glans 
   **`gens/a69/v5_pull`**. The prompt: "she sucks hard and slow, her cheeks hollow and pull in
   sharply, the skin under her cheekbones dents inward, her lips grip the shaft and drag it, the
   seal holds; the glans stays inside her mouth and never comes out." `v5_pull` is two long
-  pulls with the cheeks hollowing then relaxing - the best "applying suction" read so far.
+  pulls with the cheeks hollowing then relaxing - the best "applying suction" read of the session,
+  but the owner's verdict is that it still does not reach the pure-anime dynamics (one clip puffs,
+  the other reads as chewing), so the motion stays open.
   `v5_suction` is a held suck; stronger, but the cheeks end gaunt.
 - Because the glans never comes out, there is nothing for the video model to invent. This is the
   cheap side of the reanchor rule: keep the unseen thing unseen.

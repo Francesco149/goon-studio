@@ -335,12 +335,12 @@ built from the k9 base by changing only the stroke sentence:
   around the head** (a side sealed still) and then suction, or an FL pair with matching framing -
   not another wording pass on the handjob keyframe.
 
-**Mixed reality (real cock in an anime picture):** the working method is now
-**golden anime seal + H3-Image two-reference masked fill**, not the Qwen one-image edit and not a
-hand composite. Start from the seal still (`a11/j2_suction_seal_b`), mask the drawn cock only
-(lips outside the mask), then `wf_h3img_2ref_inpaint.json` fills that mask with the real BiRefNet
-cock while the golden lips stay untouched. The H3 two-reference full generation alone redraws the
-mouth into a pucker or puff (see `docs/MIXED.md` for the stills and the rejected routes). The
-detail and the open defects are in `docs/MIXED.md`; result `gens/a55/inpaint_a`.
+**Mixed reality (real cock in an anime picture): unfinished - needs more research.** The still
+pipeline is now **golden anime seal + H3-Image masked fill** (k9 deep seal, and a head-out seal so
+the real glans can be shown in frame 0), not the Qwen one-image edit and not a hand composite. But
+the owner's verdict (2026-11-21) is that the video dynamics are still below the pure-anime BJs -
+one take-in clip puffs the cheeks, the other reads as chewing - and the audio is unusable. Do not
+call the video recipe proven. See `docs/MIXED.md` for the stills, the pipeline and the rejected
+routes.
 - The mouth-purse/suction base is unchanged; the `k9` prompt plus the `anime_ll_*` video templates
   are the current library (headgrab, two hands, tip tease, slow, deepthroat, cum switch).

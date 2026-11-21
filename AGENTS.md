@@ -139,17 +139,21 @@ first+last pair whose last frame shows it (`wf_h3vid_i2v_fl.json`). Do not rely 
 describe something the model has never seen; reanchor it. The same applies to anything the model
 has not learned and that is not on screen in the first frame.
 The mixed-cock version of this rule is solved the other way round: **start on a head-out seal with
-the real glans in frame 0 and have her take it in** (`docs/MIXED.md`, the complete recipe). The
-glans is anchored because it is visible, then hidden; no reveal is needed. A clip that reveals a
-glans hidden at frame 0 will invent it.
+the real glans in frame 0 and have her take it in** (`docs/MIXED.md`). The glans is anchored
+because it is visible, then hidden; no reveal is needed. A clip that reveals a glans hidden at
+frame 0 will invent it. **Mixed reality is still unfinished - needs more research** (owner,
+2026-11-21: the video dynamics are below the pure-anime BJs - one clip puffs, the other reads as
+chewing - and the audio is unusable). The still/fill and the frame-0 anchoring hold; do not call
+the video recipe proven.
 
 ## 4b. Sound is not solved
 
-The generated audio is wrong: the strokes crunch (like biting something), the slurp sounds like
-noodles, and nothing is synced to the action. The owner's reference for good SFX is the opalu
-clips (author-only, `AGENTS.local.md`). Sound work is its own session; read `docs/SOUND.md`
-before touching it and **never tell the user the sound is fine**. Treat the model audio as a
-scratch track; a separate Foley pass or a dedicated audio tool is the likely answer.
+**Status: unfinished - needs more research** (owner, 2026-11-21). The generated audio is wrong:
+the strokes crunch (like biting something), the slurp sounds like noodles, and nothing is synced
+to the action. The owner's reference for good SFX is the opalu clips (author-only,
+`AGENTS.local.md`). Sound work is its own session; read `docs/SOUND.md` before touching it and
+**never tell the user the sound is fine**. Treat the model audio as a scratch track; a separate
+Foley pass or a dedicated audio tool is the likely answer.
 
 ## 5. Canon (owner-approved, 2026-11-20)
 

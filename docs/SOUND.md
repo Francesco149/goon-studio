@@ -1,7 +1,9 @@
 # Sound: the verdict and the open problem (2026-11-20)
 
-**Status: not solved. Sound work is a separate session.** This note exists so the finding is not
-lost and nobody ships a clip claiming the audio is fine.
+**Status: unfinished - needs more research.** Sound work is a separate session. This note exists
+so the finding is not lost and nobody ships a clip claiming the audio is fine. The owner's verdict
+at the close of the mixed-reality session (2026-11-21) is unchanged: **the generated audio is
+still not usable**, including on the mixed reality clips.
 
 ## What the owner heard
 
