@@ -160,8 +160,11 @@ scratch track; a separate Foley pass or a dedicated audio tool is the likely ans
   a little splash on impact - it must never arc over her head; and **the glans stays bare** - which
   is a volume effect, met by the medium tier and below, and not fixable by wording at high volume.
   Never use "bead/blob/ball/glob" for the emission. Judge the material at 1:1, never on a
-  downscaled sheet. `docs/CUM-VIDEO.md` has the dial, the wording ladder, the measured costs and the
-  failed routes; do not repeat them.
+  downscaled sheet. **Not finished** (owner verdict at the close of session 5): the in-flight cum
+  looks like far more than what lands (**mass conservation** - the top defect, untouched so far),
+  the low tier atomises into mist, and occasional unnatural splitting remains. `docs/CUM-VIDEO.md`
+  has the dial, the wording ladder, the open defects, the measured costs and the failed routes; do
+  not repeat them.
 
 ## 6. Running a round
 

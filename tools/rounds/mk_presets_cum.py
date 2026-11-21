@@ -55,7 +55,7 @@ CUM = {
                          k14["k14_direct_p1_06"]["prompt"]),
     "cumshot_medium": tmpl("Cum shot - MEDIUM (default: shorter thinner ropes, small twitch)",
                            k16["k16_medium"]["prompt"]),
-    "cumshot_low": tmpl("Cum shot - LOW (two thin pulses, no kick, mostly ooze)",
+    "cumshot_low": tmpl("Cum shot - LOW (two thin pulses, no kick; caveat: mists - see docs)",
                         k16["k16_low"]["prompt"]),
     "cumshot_goopy": tmpl("Cum shot - goopy dense (extreme variant: wax-like, no spray)",
                           k11["k11_goopy_06"]["prompt"]),

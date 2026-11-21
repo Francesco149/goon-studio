@@ -1,8 +1,12 @@
 # Cum-shot video: the recipe, the variants, and what is still open
 
-Last updated 2026-11-21 (session 5). The cum shot is no longer "unsolved"; it is a **recipe plus a
-variant matrix**, and each variant is a preset in `kit/presets.json`. What is still open is listed
-at the end and is narrow.
+Last updated 2026-11-21 (session 5 close). The cum shot is no longer "unsolved" - it is a **recipe
+plus an intensity dial plus variant presets**, all in `kit/presets.json`. It is **not finished**: the
+owner's end-of-session verdict and the three concrete defects left are at the bottom, under *Open
+defects*. Read that section first if you are picking this up.
+
+> `cumshot_normal` no longer exists; it was split into the `cumshot_high` / `_medium` / `_low` dial.
+> Wherever an older note says `cumshot_normal`, it means `cumshot_medium`.
 
 ## The default look (owner preference)
 
@@ -66,7 +70,7 @@ presets, and they scale two axes together (amount per shot + twitch):
 |---|---|---|---|---|
 | `cumshot_high` | full rope each pulse, the first splashes on her face | shaft kicks up on every pulse | **not clean** - the head gets a white patch | `k14` - the owner's maximum exaggeration standard |
 | `cumshot_medium` (default) | shorter, thinner ropes, only the first splashes | small twitch, the shaft barely moves | **clean**, wet gloss only | `k16_medium` |
-| `cumshot_low` | one short thin rope, the rest only oozes | no kick, only the veins swell | a small drop on the visible head | `k16_low` |
+| `cumshot_low` | one short thin rope, the rest only oozes | no kick, only the veins swell | a small drop on the visible head | `k16_low` - **caveat: mists at this amount; do not ship as-is**, see *Open defects* 2 |
 
 **The glans rule is a volume effect, not a wording effect** (tested in k17, compared at 1:1 in
 `analysis/cum-ref/mat/glans_tiers.jpg`): the strong wording - "not a drop of semen sits on the head,
@@ -183,16 +187,48 @@ Judging: `python tools/vsheet.py out.jpg gens/<round> --frames 8` for motion, an
 crops for the material** - the owner's "pooling on the glans", "sticks to the face" and the whole
 optics question are invisible at 200 px. That mistake cost a round.
 
+## Open defects at the close of session 5 (owner verdict, 2026-11-21)
+
+Verbatim shape of the verdict: *"its still not quite there - the low strength does the nebulizer
+thing, there's still some unnatural splitting, and it feels like the in-flight cum is way more than
+what lands. To be iterated on in future sessions."*
+
+Three defects, in the order they are worth attacking:
+
+1. **MASS CONSERVATION - the biggest one, and new.** The rope looks like far more fluid than ends up
+   on her. The LoRA draws an impressive in-flight body and then the deposit is a thin smudge, which
+   reads as fake no matter how good either half is. Nothing in k01-k17 addressed it, so there is no
+   prompt evidence yet. Candidate levers: prompt the deposit as the same amount that left
+   ("most of it lands on her face and stays there", "a heavy patch forms where the first rope
+   hits"), or drive the volume *from the landing side* - decide the face deposit first and make the
+   rope only as thick as that deposit implies. Worth measuring: compare the apparent width of the
+   rope mid-flight with the area of the landed patch across a clip, and treat a ratio above ~2 as a
+   fail. This is a taste-rule the owner stated and the pipeline currently violates.
+2. **NEBULIZER MIST AT LOW AMOUNT.** The low tier (`cumshot_low`) reproduces the old `v14a`
+   failure: at low amount/strength the emission atomises into mist instead of staying a rope. The
+   low tier is therefore **not shippable as labelled** - either it needs a rope-preserving wording
+   that survives low volume, or the low tier should be built as "fewer pulses at medium amount"
+   rather than "less fluid per pulse". The latter is probably right, because of defect 3.
+3. **UNNATURAL SPLITTING** still appears occasionally even though the prompt says "one stream only,
+   it never splits into two" and k10 removed the systematic version. Look for it as a *fork near
+   the tip* (two cords leaving the glans) rather than one cord breaking into droplets mid-flight -
+   the second is physically fine.
+
+And a standing note on the glans: the rule is met by `cumshot_medium` and below, but `cumshot_high`
+still paints the head, and no wording tested fixes it (see the dial section). The unrendered fix is
+a **high twitch + medium amount** tier.
+
 ## Next
 
-1. Judge k11 (goopy, mouth, softening) and write the one-line verdict for each into the preset
-   label, so the page says what the preset actually gives.
-2. The remaining artefact on the ropes is that they are **smooth uniform rods**: the refs have
-   lumpy ropes, bulbous where they land, thinner where they stretch. Prompt for `uneven and lumpy,
-   bulbous where it lands` - untested.
-3. Splatter control on the wide keyframe is still imperfect (a few drops on his thighs is right, a
-   scatter of specks is not).
-4. Then the blowjob/pose work the art study enables: §1 lip curl and cheek hollow, §1.2 the glans
+1. **Mass conservation** (defect 1 above). This is the one that decides whether the cum shot reads
+   as real, and it has had no work yet.
+2. Rebuild the low tier around *fewer pulses at medium amount* instead of less fluid, which should
+   also fix the mist (defect 2).
+3. The **high twitch + medium amount** tier: maximum drama with a clean glans and no extra volume.
+4. The ropes are still **smooth uniform rods**; the refs are lumpy, bulbous where they land and
+   thinner where they stretch. "Uneven and lumpy, bulbous where it lands" is written into the
+   prompts but has not produced lumpiness.
+5. Then the blowjob/pose work the art study enables: §1 lip curl and cheek hollow, §1.2 the glans
    compress and coronal snap, §3 the paizuri and reverse cowgirl kinematics, §4.1 the upward gaze.
    The new study's §8 (vein turgor, meatal flare, recoil, post-ejaculatory tremor) is the source for
    the micro-movement pass.
