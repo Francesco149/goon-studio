@@ -100,6 +100,20 @@ glans inside mouth" wording test:
   (`foreskin retracted, circumcised`) renders the same as `anime_pov`, which already draws it
   retracted, so it is not a separate template.
 
+## Locking the cock style and nudity, round a86 (2026-11-21)
+
+Owner on a85: "mostly solid with a few mishaps" (the cut wording still drew foreskin skin on one
+seed). What locks it, tested on seeds 86103-86106 (in the templates now):
+
+- **Retracted (`anime_pov`)**: positive `circumcised, (exposed glans:1.1)` and no word "foreskin"
+  in the positive (the tag itself drew skin); negative `foreskin, phimosis, uncircumcised`. 4/4.
+- **Half foreskin (`anime_pov_foreskin`)**: `(foreskin:1.2), (partially retracted foreskin:1.15)`,
+  negative `circumcised`. 4/4.
+- **Nude**: seeds 86105/86106 drew a top on every style. `(completely nude:1.2)` after
+  `1girl, 1boy` and `clothes, shirt, dress` in the negative fixed both, on all three styles
+  (also removed a split-tip artifact on 86106). `anime_pov_mosaic` carries it too.
+- Not locked by wording: the seal depth (lips over the top of the glans) - see a85.
+
 ## Censorship
 
 - `bar censor` draws a free-floating striped sticker (`pb4`) - unusable.

@@ -35,6 +35,21 @@
       "character": "a young adult Asian woman in her mid-twenties, e-girl with long black hair in pink-streaked twin tails and a silver choker",
       "scene": ""
     },
+    "egirl_bj_pov": {
+      "label": "Photoreal e-girl - POV blowjob keyframe (Krea 2 + Verite; for the blowjob clips)",
+      "workflow": "wf_krea2_lora_8gb.json",
+      "width": 896,
+      "height": 1344,
+      "steps": 8,
+      "cfg": 1.0,
+      "prompt": "A blowjob, close-up POV from above. {character} She kneels between a man's legs with his erect cock in her mouth: her lips are sealed in a tight wet ring around the shaft just behind the glans, her cheeks hollowed, her head bowed forward. The man sits on the edge of the bed; his cock has a defined glans with a rim, the foreskin folded back behind it, a natural veined shaft and his balls at the base behind her hand. Her hand wraps the base of his cock, her other hand rests on his thigh. Her eyes lift to the camera, half-lidded, light blush, saliva at the corner of her mouth. Dim bedroom lit by pink and purple LED strips. Candid amateur phone photo.",
+      "character": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, a silver heart choker. She has full natural breasts that sit heavy with a soft slope, a narrow waist, wide hips and thick thighs.",
+      "scene": "",
+      "about": "The e1e recipe: plain Krea 2 Turbo + the Verite realism LoRA 1.0, Verite-style caption (act, her, him, hands, setting, camera tag last). Krea NSFW v10 alone draws a handjob here (round a86). 8 steps, ~40 s on 8 GB.",
+      "unet": "krea2_turbo_int8_convrot.safetensors",
+      "lora": "Verite_realism.safetensors",
+      "strength": 1.0
+    },
     "egirl_cum": {
       "label": "Photoreal facial - cum landed (6 steps; 4 preview / 8 final)",
       "workflow": "wf_krea2_nsfw_8gb.json",
@@ -66,11 +81,12 @@
       "height": 1248,
       "steps": 30,
       "cfg": 4.0,
-      "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, veins, erection, uncensored, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, (completely nude:1.2), hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, circumcised, (exposed glans:1.1), veins, erection, uncensored, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
-      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
-      "unet": "ramthrustsNSFWPINK_v29.safetensors"
+      "negative": "clothes, shirt, dress, foreskin, phimosis, uncircumcised, extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
+      "unet": "ramthrustsNSFWPINK_v29.safetensors",
+      "about": "Locked (round a86): nude and foreskin retracted on every seed tested; the seal is lips over the top of the glans."
     },
     "anime_pov_mosaic": {
       "label": "Anime - POV blowjob, light mosaic (owner's preferred look)",
@@ -79,12 +95,12 @@
       "height": 1248,
       "steps": 30,
       "cfg": 4.0,
-      "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, veins, erection, censored, mosaic censoring, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, (completely nude:1.2), hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, veins, erection, censored, mosaic censoring, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
-      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
+      "negative": "clothes, shirt, dress, extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
       "unet": "ramthrustsNSFWPINK_v29.safetensors",
-      "about": "Owner-preferred presentation (pb5_pov_mosaic). The mosaic's placement is luck: reroll the seed."
+      "about": "Owner-preferred presentation (pb5). Locked nude (round a86). The mosaic placement still varies a little: reroll."
     },
     "anime_pov_foreskin": {
       "label": "Anime - POV blowjob, half foreskin",
@@ -93,12 +109,12 @@
       "height": 1248,
       "steps": 30,
       "cfg": 4.0,
-      "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, foreskin, veins, erection, uncensored, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, 1girl, 1boy, (completely nude:1.2), hetero, blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, (foreskin:1.2), (partially retracted foreskin:1.15), veins, erection, uncensored, (penis focus:1.2), pov, from above, looking up at viewer, {character}, {scene}",
       "character": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
       "scene": "bedroom, soft light, love live! sunshine!!",
-      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
+      "negative": "clothes, shirt, dress, circumcised, extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, tongue out, open mouth, glans outside mouth, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic",
       "unet": "ramthrustsNSFWPINK_v29.safetensors",
-      "about": "The half-foreskin cock the owner kept as a preferred style."
+      "about": "Locked (round a86): nude and half foreskin on every seed tested."
     },
     "anime_cum": {
       "label": "Anime - facial cum still",

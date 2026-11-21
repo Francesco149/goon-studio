@@ -88,6 +88,14 @@
    "url": "https://huggingface.co/Comfy-Org/RelayVSR/resolve/main/diffusion_models/relayvsr_x2_lightx2v_int8_convrot.safetensors",
    "page": "https://huggingface.co/Comfy-Org/RelayVSR"
   },
+  "loras/Verite_realism.safetensors": {
+   "gb": 0.46,
+   "page": "https://civitai.com/search/models?query=V%C3%A9rit%C3%A9%20V5",
+   "what": "Vérité V5 'Verite-realism' - candid amateur realism NSFW LoRA for Krea 2 (the owner's Krea 2 LoRA; best photoreal BJ still e1e)",
+   "url": "",
+   "note": "Civitai 'Vérité V5 - candid amateur realism NSFW LoRA for Krea 2' (version V5, file Verite-realism). The exact page URL was not recorded and the model is hidden from Civitai's public search: the page field is a search link. Author's notes: strength 0.8-1.2 (up to 2); prompt 'candid'/'amateur', camera tag last; for sex acts a long caption: the act, then her, then him ('a man, then his cock'), then legs/hands, then the setting. Sibling file Verite-overcooked is stronger for fluids.",
+   "login": true
+  },
   "loras/h3nsfw/Astro-nsfw.safetensors": {
    "what": "H3 LoRA: Astro NSFW (best photoreal blowjob motion)",
    "gb": 0.3,

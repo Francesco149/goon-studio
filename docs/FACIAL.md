@@ -61,6 +61,18 @@ Same H3-Image keyframe (`key_photo_bj`, the RECIPE.md POV prompt with the e-girl
   thin saliva string; the glans keeps its shape. No character drift on this seed.
 - Both draw the "retracted foreskin ridge" as a thin seam line. Sound not judged (AGENTS.md 4b).
 
+## Photoreal blowjob clip, round a86 (2026-11-21): the Krea 2 + Verite keyframe
+
+From `egirl_bj_pov` seed 86403 (Krea 2 + Verite, owner: "excellent"), seed 86301, 768x1152,
+124 f, ~6 min each on 8 GB (the first ran in the automatic low-memory mode, Firefox open):
+
+- Both keep the e-girl look, choker, LED room and bust through the whole clip; one full stroke
+  to her hand and back; the glans keeps its rim and the foreskin collar.
+- `pov_blowjob`: ends pulled off with puckered lips and a saliva drip.
+  `pov_blowjob_astro`: ends with her lips back on the head, tongue under it.
+- Still wrong: the veins are raised vine-like cords, inherited from the keyframe. Sound not
+  judged (AGENTS.md 4b).
+
 ## H3-Image on 8 GB (cutestation, 2026-11-20)
 
 `wf_h3img_4bte.json` uses the P-H3 4B text encoder with the H3-Image w4a8 transformer: **21 s**

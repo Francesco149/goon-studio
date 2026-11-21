@@ -1,5 +1,17 @@
 # Photoreal e-girl recipe (Krea 2 Turbo NSFW v10, 2026-11-20)
 
+> **Blowjob keyframe: Krea 2 Turbo + Verite (owner, 2026-11-21: "excellent ... the recipe working
+> correctly").** Template `egirl_bj_pov`: plain `krea2_turbo_int8_convrot` + `Verite_realism` 1.0
+> (`wf_krea2_lora_8gb.json`, 8 steps, 896x1344, ~40 s on 8 GB), prompted the Verite way - the act
+> first, then her (the character block), then him ("a man ... his cock has a defined glans with a
+> rim, the foreskin folded back behind it ... his balls at the base behind her hand"), hands,
+> setting, `Candid amateur phone photo.` last. Round a86: 4/4 seeds a sealed POV blowjob with the
+> e-girl look, LED room and natural bust; weak spots are slightly vine-like veins and one seed
+> where his hand replaced hers. **Krea NSFW v10 alone draws a handjob for the same scene (4/4)**,
+> and Verite on NSFW v10 seals but drifts to a side angle with a tongue-like glans. H3-Image as
+> the keyframe (round a85) was the regression the owner saw. The portrait/facial stills below
+> stay on NSFW v10.
+
 The owner's target for the photoreal side: an Asian e-girl with a curvy body and large
 breasts, proportions comparable to the anime curvy type, not a caricature. This is the first
 stack that hit it, and it is a different model from the earlier photoreal chain

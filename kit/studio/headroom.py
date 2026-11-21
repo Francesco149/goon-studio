@@ -210,7 +210,7 @@ def plan(workflow, fields=None, s=None, procs=None):
                                    "still works, about 20%% slower." % other_v)
     if out["profile"] != "ok" or out.get("vram_other_gb", 0) > OTHER_VRAM_GB:
         apps = {}
-        for name, gb, is_eng, exe, cl in procs:
+        for name, gb, is_eng, exe, cl, _pid in procs:
             if is_eng or KEEP.match(name) or gb < 0.05:
                 continue
             name = FRIENDLY.get(name.lower(), name)

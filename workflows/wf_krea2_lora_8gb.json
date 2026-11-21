@@ -1,0 +1,132 @@
+{
+ "_note": "Krea 2 + a Krea 2 LoRA (Verite realism by default), kitchen INT8 attention for 8 GB. unet: krea2_turbo_nsfw_v10_nvfp4 (tuned, default) or krea2_turbo_int8_convrot (the plain base the e1e keyframe used).",
+ "_params": {
+  "unet": "krea2_turbo_nsfw_v10_nvfp4.safetensors",
+  "width": 896,
+  "height": 1344,
+  "seed": 1,
+  "steps": 8,
+  "prefix": "gl/x",
+  "lora": "Verite_realism.safetensors",
+  "strength": 1.0
+ },
+ "1": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "{{unet}}",
+   "weight_dtype": "default"
+  }
+ },
+ "3": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+   "type": "krea2",
+   "device": "default"
+  }
+ },
+ "4": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "5": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "3",
+    0
+   ],
+   "text": "{{prompt}}"
+  }
+ },
+ "6": {
+  "class_type": "ConditioningZeroOut",
+  "inputs": {
+   "conditioning": [
+    "5",
+    0
+   ]
+  }
+ },
+ "7": {
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "batch_size": 1
+  }
+ },
+ "8": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "20",
+    0
+   ],
+   "positive": [
+    "5",
+    0
+   ],
+   "negative": [
+    "6",
+    0
+   ],
+   "latent_image": [
+    "7",
+    0
+   ],
+   "seed": "{{seed}}",
+   "steps": "{{steps}}",
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "denoise": 1.0
+  }
+ },
+ "9": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "8",
+    0
+   ],
+   "vae": [
+    "4",
+    0
+   ]
+  }
+ },
+ "10": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "9",
+    0
+   ],
+   "filename_prefix": "{{prefix}}"
+  }
+ },
+ "20": {
+  "class_type": "ModelAttentionBackend",
+  "inputs": {
+   "model": [
+    "21",
+    0
+   ],
+   "attention": "comfy kitchen attention"
+  }
+ },
+ "21": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "lora_name": "{{lora}}",
+   "strength_model": "{{strength}}"
+  }
+ }
+}
