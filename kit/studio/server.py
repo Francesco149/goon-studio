@@ -10,6 +10,7 @@ Endpoints:
   POST /api/trash       {files};  /api/restore {files};  /api/delete {files}
   POST /api/upload      {data: "data:image/...;base64,..."} -> gallery/uploads/<file>
   POST /api/lastframe   {file: clip} -> its last frame as a picture (to chain the next clip)
+  POST /api/headroom    {template, workflow?} -> memory profile for it (ok / lean / critical), what to close
   POST /api/needs       {template, workflow?, nsfw_lora?...} -> the model files it loads, which are
                         missing, where they go and where to download them (kit/models.json)
   GET  /img/<path>      a picture in the gallery
@@ -21,6 +22,7 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import core  # noqa: E402
 import modelstore  # noqa: E402
+import headroom  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PORT = int(os.environ.get("GOON_STUDIO_PORT", "8191"))
@@ -38,7 +40,8 @@ def worker():
         e["status"] = "running"
         e["started_at"] = time.time()
         try:
-            e["record"] = core.run(e["job"], by="me", on_queued=lambda pid: e.__setitem__("prompt_id", pid))
+            e["record"] = core.run(e["job"], by="me", on_queued=lambda pid: e.__setitem__("prompt_id", pid),
+                                   on_note=lambda txt, plan: e.update(note=txt, memory=plan["profile"]))
             if e["status"] != "cancelled":
                 e["status"] = "done"
         except Exception as ex:
@@ -163,6 +166,16 @@ class H(BaseHTTPRequestHandler):
                 fields.update({k: v for k, v in b.items() if k in ("unet", "lora", "nsfw_lora", "motion_lora") and v})
                 return self.send(200, {"workflow": wf, "files": modelstore.check(wf, fields, s),
                                        "models_dir": modelstore.models_dir(s), "local": modelstore.is_local(s)})
+            if p == "/api/headroom":
+                s = core.settings()
+                P = modelstore.presets()
+                tid = b.get("template")
+                wf, fields = (modelstore.template_job(tid, P) if tid in P.get("templates", {}) or
+                              tid in P.get("video_templates", {}) else (None, {}))
+                wf = b.get("workflow") or wf or "wf_krea2_nsfw.json"
+                pl = headroom.plan(wf, fields, s)
+                pl["text"] = headroom.summary(pl)
+                return self.send(200, pl)
             if p == "/api/preview":
                 return self.send(200, {"prompt": core.build_prompt(b), "negative": core.build_fields(b).get("negative", "")})
             if p == "/api/cancel":

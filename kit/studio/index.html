@@ -44,7 +44,8 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 .needs{margin-top:8px;font-size:13px;border-radius:8px;padding:8px 10px;border:1px solid var(--line)}
 .needs.miss{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 8%,transparent)}
 .needs ul{margin:6px 0 0;padding-left:18px}.needs li{margin:3px 0;overflow-wrap:anywhere}
-.needs a{color:var(--accent2)}.needs code{font-size:12px}.needs.ok summary{color:var(--ok);cursor:pointer}
+.needs a{color:var(--accent2)}.needs code{font-size:12px}
+.mem{margin-top:8px;font-size:13px;border-radius:8px;padding:8px 10px;border:1px solid #d9a53a;background:color-mix(in srgb,#d9a53a 10%,transparent)}.needs.ok summary{color:var(--ok);cursor:pointer}
 .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .thumb{position:relative;cursor:pointer;border-radius:10px;overflow:hidden;background:var(--line)}
 .thumb img,.thumb video{width:100%;display:block;aspect-ratio:2/3;object-fit:cover;background:#000}
@@ -134,6 +135,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <details id="pvBox"><summary>What the model reads (full prompt)</summary><div class="mono" id="preview"></div></details>
     <label class="h">Reference picture <small>needed for hires; optional elsewhere</small></label>
     <div class="slot" id="slot-ref" data-k="ref"></div>
+    <div id="mem"></div>
     <button class="go" id="gogen">Make pictures</button>
     <div class="hint" id="eta" style="margin-top:6px"></div>
   </div>
@@ -185,6 +187,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <label class="h">Prompt <small>the MiniMax script; keep the section names</small></label>
     <textarea id="vprompt" rows="10"></textarea>
     <details><summary>Soundscape / negative (appended if set)</summary><textarea id="vnegative"></textarea></details>
+    <div id="vmem"></div>
     <button class="go" id="govideo">Make video</button>
     <div class="hint" id="veta" style="margin-top:6px"></div>
   </div>
@@ -280,8 +283,11 @@ const STEPS={anima:{preview:12,standard:20,final:30},krea:{preview:4,standard:6,
 const SECS={anima:{12:23,20:26,30:36},krea:{4:10,6:16,8:20},h3img:{4:7,6:10,8:14},hires:{20:60},qwen:{12:29,25:37}};
 const tplOf=k=>(STATE.templates||{})[k]||{};
 /* which model files a template loads, what is missing, where to put it and where to get it */
-const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let NEEDQ={};
+async function showMem(el,body){
+  let r;try{r=await api("/api/headroom",body)}catch(e){$(el).innerHTML="";return}
+  $(el).innerHTML=r.text?`<div class="mem"><b>${r.profile==="critical"?"Very low memory":r.profile==="lean"?"Low memory":"Heads-up"}</b>: ${esc(r.text)}</div>`:"";
+}
 async function showNeeds(el,body){
   const q=JSON.stringify(body);NEEDQ[el]=q;let r;
   try{r=await api("/api/needs",body)}catch(e){$(el).innerHTML="";return}
@@ -344,7 +350,7 @@ function fillTemplate(){
   $("#body").value="none";if(t.framing&&STATE.framings[t.framing])$("#framing").value=t.framing;
   const fam=FAMILY(t.workflow);$("#quality").disabled=!STEPS[fam];$("#quality").value=qualityFor(t.workflow,t.steps);
   $("#tplAbout").textContent=t.about||(t.workflow?"workflow: "+t.workflow:"");
-  showNeeds("#needs",{template:$("#template").value});
+  showNeeds("#needs",{template:$("#template").value});showMem("#mem",{template:$("#template").value});
   preview();eta();
 }
 let pvT=0;
@@ -451,13 +457,13 @@ function veta(){
     (w*h<=512*768?"<br>Draft first. <b>Like a clip?</b> Open it and press <b>Make it in Final</b>: the same script and seed at 768x1152.":"");
 }
 function vneeds(){const m=$("#vmode").value,b={template:$("#vtpl").value,workflow:VWF||videoWorkflow()};
-  if(m==="i2v_lora")b.nsfw_lora=$("#vlora").value;showNeeds("#vneeds",b)}
+  if(m==="i2v_lora")b.nsfw_lora=$("#vlora").value;showNeeds("#vneeds",b);showMem("#vmem",{template:b.template,workflow:b.workflow})}
 function videoWorkflow(){const m=$("#vmode").value;
   return m==="i2v_lora"?"wf_h3vid_i2v_lora.json":m==="fl"?"wf_h3vid_i2v_fl.json":m==="ref2va"?"wf_h3vid_ref2va6.json":m==="t2v"?"wf_h3vid_t2v_lora.json":"wf_h3vid_i2v.json"}
 $("#govideo").onclick=async()=>{
   const m=$("#vmode").value;
   if(!$("#vprompt").value.trim()){alert("Write the clip's script first.");return}
-  const b={workflow:VWF||videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
+  const b={template:$("#vtpl").value,workflow:VWF||videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
     width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value||1};
   const seed=num("#vseed");if(seed!==undefined)b.seed=seed;
   if(m!=="t2v"){if(!SLOTS.v1){alert("Pick a keyframe first.");return}b.image=SLOTS.v1.path}
@@ -477,7 +483,7 @@ async function pollJobs(){
   const act=js.filter(j=>["queued","running"].includes(j.status)||(j.status==="error"&&now-j.finished_at<600)||(j.status==="cancelled"&&now-j.finished_at<8));
   const live=js.filter(j=>["queued","running"].includes(j.status)).length;
   $("#busy").hidden=!live;$("#busy").innerHTML=`&#9632; Stop (${live} in progress)`;
-  const h=act.map(j=>`<div class="job"><span class="dot ${j.status}"></span><span>${j.status==="running"?"working… "+Math.round(now-(j.started_at||now))+" s":j.status==="queued"?"waiting":j.status==="cancelled"?"stopped":"<b>problem:</b> "+esc(j.error)}</span><span class="hint">${esc(jobName(j))} · seed ${esc(j.job.seed)}</span>${["queued","running"].includes(j.status)?`<button class="s stop" onclick="stopJob('${j.id}')" title="Stop this one">&#10005; Stop</button>`:""}</div>`).join("");
+  const h=act.map(j=>`<div class="job"><span class="dot ${j.status}"></span><span>${j.status==="running"?"working… "+Math.round(now-(j.started_at||now))+" s":j.status==="queued"?"waiting":j.status==="cancelled"?"stopped":"<b>problem:</b> "+esc(j.error)}</span><span class="hint">${esc(jobName(j))} · seed ${esc(j.job.seed)}</span>${["queued","running"].includes(j.status)?`<button class="s stop" onclick="stopJob('${j.id}')" title="Stop this one">&#10005; Stop</button>`:""}</div>${j.note&&["queued","running"].includes(j.status)?`<div class="mem">${esc(j.note)}</div>`:""}`).join("");
   $$(".jobsCard").forEach(c=>{c.style.display=act.length?"block":"none";c.querySelector(".jobs").innerHTML=h});
   let fresh=false;for(const j of js)if(j.status==="done"&&!seenDone.has(j.id)){seenDone.add(j.id);fresh=true}
   if(fresh){await getHist();refreshViews()}

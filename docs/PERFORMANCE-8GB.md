@@ -288,6 +288,34 @@ spaces. With `"--use-ck-attention --fast fp16_accumulation"` set, argparse rejec
 page's own engine launch failed ("ComfyUI did not start"). The flags are now split on whitespace.
 `../lovelive-studio/kit/start.ps1` has the same line and needs the same fix.
 
+## Automatic low-memory mode (2026-11-21)
+
+Every job from the page and every `tools/lab.py` batch is checked first (`kit/studio/headroom.py`;
+`python tools/headroom.py <template>` from a terminal). Because commit is the failure mode (above),
+the check is about commit, not VRAM:
+
+- **Estimate**: the files the engine will actually load (its quantization; from
+  `kit/models.json`) x 0.6 + 2 GB. The 0.6 is fitted to the two measured engine commits above
+  (16.3 GB after an H3 video with 32 GB of files; 19.6 GB after Krea + H3). It is an estimate, not
+  a calibration: re-fit it when `bench.py` has more `min_free_commit_gb` numbers.
+- **Have**: free commit (`GlobalMemoryStatusEx`) + what our own engine already holds (it reuses it).
+- **ok** with 4 GB or more to spare. **lean** below that: the engine drops its cached models
+  (`/free`) before the job, so it loads slower, and H3-Image swaps the 32B encoder for the P-H3 4B
+  one (`wf_h3img_4bte.json`, the measured best RAM fix) when those files are present. **critical**
+  when even that does not fit: same as lean, plus a warning that the pagefile has to grow mid-job.
+  The job runs in every case.
+- **What to close**: the apps holding the most commit (Steam, browsers, Discord, ...), never
+  Windows itself, the antivirus, the agent's app or the engine. Another ComfyUI engine (the other
+  studio's) is called out on its own. Other apps holding more than 1.5 GB of VRAM get a "about 20%
+  slower" note (measured), not a profile change.
+- The page shows it under **Make pictures** / **Make video** when a template is picked and on the
+  running job's card. `tools/lab.py` warns and unloads but never swaps the encoder in a round
+  (that would change what is being compared); it suggests the light workflow instead.
+- Not done on purpose: engine flags. `--lowvram` is a no-op with dynamic VRAM, `--reserve-vram`
+  was not needed, and `--cache-ram` did not lower commit (measured above). The one engine-level
+  fix that works, restarting the engine to release 15-20 GB of idle commit, kills the engine for
+  every app using it, so it stays a suggestion.
+
 ## Re-running this pass
 
 `tools/experiments/bench_engine.ps1` starts/stops the private engine on 8189;

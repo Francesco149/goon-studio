@@ -15,6 +15,7 @@ A job is a dict:
 """
 import json, os, random, re, shutil, subprocess, threading, time, urllib.parse, urllib.request
 
+import headroom
 import modelstore
 
 KIT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -113,9 +114,14 @@ def add_tags(base, extra):
     return ", ".join(parts)
 
 
+def template(P, tid):
+    """A picture template or a video recipe by id ({} when unknown)."""
+    return P.get("templates", {}).get(tid or "") or P.get("video_templates", {}).get(tid or "") or {}
+
+
 def build_prompt(job):
     P = presets()
-    t = P.get("templates", {}).get(job.get("template") or "")
+    t = template(P, job.get("template")) or None
     fields = {
         "character": clean(job.get("character") or (t or {}).get("character", "")),
         "scene": clean(job.get("scene") or (t or {}).get("scene", "")),
@@ -150,11 +156,18 @@ def build_late_prompt(prompt, series=None):
 
 def build_fields(job):
     P = presets()
-    t = P.get("templates", {}).get(job.get("template") or "", {})
+    t = template(P, job.get("template"))
     fields = dict(t.get("params") or {})
-    for k in ("width", "height", "steps", "cfg", "length", "lora", "strength", "denoise"):
+    # everything a template pins down reaches the workflow: size, steps, the model, the LoRAs and
+    # the motion booster (a video recipe names its act LoRA "lora"/"strength")
+    for k in ("width", "height", "steps", "cfg", "length", "lora", "strength", "denoise", "unet", "sampler",
+              "sched", "nsfw_lora", "nsfw_strength", "motion_lora", "motion_strength"):
         if k in t:
             fields[k] = t[k]
+    if "lora" in t and "nsfw_lora" not in t:
+        fields["nsfw_lora"] = t["lora"]
+        if "strength" in t:
+            fields["nsfw_strength"] = t["strength"]
     for k, v in job.items():
         if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene"):
             fields[k] = v
@@ -295,14 +308,27 @@ def model_file_field(name, s=None):
     return name.replace("/", "\\") if local_windows(s) else name
 
 
-def run(job, by="me", on_queued=None):
+def run(job, by="me", on_queued=None, on_note=None):
     s = settings()
     P = presets()
-    t = P.get("templates", {}).get(job.get("template") or "", {})
+    t = template(P, job.get("template"))
     wf = job.get("workflow") or t.get("workflow") or "wf_krea2_nsfw.json"
     graph, defaults = load_workflow(wf)
     fields = dict(defaults)
     fields.update(build_fields(job))
+    # memory check: tight -> low-memory mode (drop cached models, light encoder), warn, run anyway
+    plan = headroom.plan(wf, fields, s)
+    note = headroom.summary(plan)
+    if note and on_note:
+        on_note(note, plan)
+    if plan["workflow"] != wf:
+        wf = plan["workflow"]
+        seed = fields["seed"]
+        graph, defaults = load_workflow(wf)
+        fields = dict(defaults)
+        fields.update(build_fields(dict(job, seed=seed)))
+    if plan["unload"]:
+        headroom.unload(s)
     for k in ("lora", "nsfw_lora"):
         if fields.get(k):
             fields[k] = model_file_field(fields[k], s)
@@ -331,7 +357,7 @@ def run(job, by="me", on_queued=None):
            "steps": fields.get("steps"), "length": fields.get("length"),
            # the job as sent, so the page can "use these settings", remake in final quality, chain
            "job": {k: v for k, v in job.items() if k not in ("count",)},
-           "secs": round(time.time() - t0, 1), "files": [os.path.relpath(p, s.get("data_dir", GALLERY)).replace("\\", "/") for p in files]}
+           "memory": plan["profile"], "secs": round(time.time() - t0, 1), "files": [os.path.relpath(p, s.get("data_dir", GALLERY)).replace("\\", "/") for p in files]}
     append_jsonl(HIST if by != "me" else PHIST, rec)
     return rec
 

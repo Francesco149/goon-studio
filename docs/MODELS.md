@@ -70,7 +70,7 @@ Template `anime_side`, workflow `wf_anima2.json`.
 
 | file | put it in | size | get it from |
 |---|---|---|---|
-| `anima-aesthetic-v1.1.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/diffusion_models/anima-aesthetic-v1.1.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
 | `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
 | `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
 
@@ -82,7 +82,43 @@ Template `anime_pov`, workflow `wf_anima2.json`.
 
 | file | put it in | size | get it from |
 |---|---|---|---|
-| `anima-aesthetic-v1.1.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/diffusion_models/anima-aesthetic-v1.1.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
+| `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+| `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+
+Total if you have none of them: about 5.6 GB (most templates share files).
+
+### Anime - POV blowjob, light mosaic (owner's preferred look)
+
+Template `anime_pov_mosaic`, workflow `wf_anima2.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
+| `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+| `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+
+Total if you have none of them: about 5.6 GB (most templates share files).
+
+### Anime - POV blowjob, half foreskin
+
+Template `anime_pov_foreskin`, workflow `wf_anima2.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
+| `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+| `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+
+Total if you have none of them: about 5.6 GB (most templates share files).
+
+### Anime - POV blowjob, foreskin retracted
+
+Template `anime_pov_cut`, workflow `wf_anima2.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
 | `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
 | `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
 
@@ -94,7 +130,7 @@ Template `anime_cum`, workflow `wf_anima2.json`.
 
 | file | put it in | size | get it from |
 |---|---|---|---|
-| `anima-aesthetic-v1.1.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/diffusion_models/anima-aesthetic-v1.1.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
 | `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
 | `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
 
@@ -250,7 +286,7 @@ Template `anime_hires`, workflow `wf_anima_hires.json`.
 
 | file | put it in | size | get it from |
 |---|---|---|---|
-| `anima-base-v1.0.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/diffusion_models/anima-base-v1.0.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
+| `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) |
 | `qwen_3_06b_base.safetensors` | `text_encoders` | 1.19 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
 | `qwen_image_vae.safetensors` | `vae` | 0.25 GB | [download](https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/vae/qwen_image_vae.safetensors) - [page](https://huggingface.co/circlestone-labs/Anima) |
 
@@ -533,6 +569,21 @@ Template `pov_blowjob`, workflow `wf_h3vid_i2v.json`.
 
 Total if you have none of them: about 32.2 GB (most templates share files).
 
+### POV blowjob - Astro NSFW 0.8 (owner: best photoreal BJ video)
+
+Template `pov_blowjob_astro`, workflow `wf_h3vid_i2v_lora.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` | `diffusion_models` | 12.54 GB | [download](https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3-experimental) |
+| `pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors` | `loras` | 0.56 GB | [download](https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3_comfy) |
+| `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `text_encoders` | 15.69 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3-Image) |
+| `minimax_h3_video_vae_int8_convrot.safetensors` | `vae` | 2.81 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `minimax_h3_audio_vae_fp32.safetensors` | `vae` | 0.61 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `Astro-nsfw.safetensors` | `loras/h3nsfw` | 0.30 GB | [download](https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora/resolve/main/Astro%20nsfw.safetensors) - [page](https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora) |
+
+Total if you have none of them: about 32.5 GB (most templates share files).
+
 ### Side deepthroat (act LoRA)
 
 Template `side_deepthroat`, workflow `wf_h3vid_i2v_lora.json`.
@@ -683,7 +734,7 @@ Template `anime_ll_cumshot`, workflow `wf_h3vid_i2v_lora2.json`.
 
 Total if you have none of them: about 32.5 GB (most templates share files).
 
-### Anime - LL paizuri (tongue stays under the glans)
+### Anime - LL paizuri (k2: better than anything before)
 
 Template `anime_ll_paizuri`, workflow `wf_h3vid_i2v_lora2.json`.
 
@@ -843,7 +894,7 @@ Template `anime_ll_tip_tease`, workflow `wf_h3vid_i2v_lora2.json`.
 
 Total if you have none of them: about 32.7 GB (most templates share files).
 
-### Anime - LL cum switch - stroke, shoot, take it in the mouth
+### Anime - LL cum switch - side (k21: solid except the take-in)
 
 Template `anime_ll_cum_switch`, workflow `wf_h3vid_i2v_lora2.json`.
 

@@ -22,6 +22,7 @@ import uuid
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "kit", "studio"))
 import modelstore  # noqa: E402  (the shared model store: names, sources)
+import headroom  # noqa: E402  (memory check before a batch)
 
 
 def _local():
@@ -164,6 +165,15 @@ def main():
         http(base, "/system_stats", timeout=10)
     except Exception as e:
         sys.exit("%s: ComfyUI not answering (%s)" % (base, e))
+    # memory check for the batch's main workflow: warn, say what to close, drop cached models when
+    # tight. A round never swaps the encoder by itself (that would change what is being compared).
+    plan = headroom.plan(a.wf, None, engine_s)
+    if plan["profile"] != "ok" or plan["warnings"]:
+        log("memory: %s - %s" % (plan["profile"], headroom.summary(plan)), fh)
+        if plan["workflow"] != a.wf:
+            log("memory: %s would fit better; rerun with --wf %s if the comparison allows it" % (plan["workflow"], plan["workflow"]), fh)
+    if plan["unload"]:
+        log("memory: unloading the engine's cached models first: %s" % ("ok" if headroom.unload(engine_s) else "failed"), fh)
 
     for job in jobs:
         job = dict(job)

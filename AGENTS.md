@@ -233,16 +233,24 @@ Foley pass or a dedicated audio tool is the likely answer.
 - **All characters are fictional adults.** Anime body types can be petite; every character is an
   adult OC or a non-canon design study, never a minor and never the canon character or canon age,
   even when a series tag or a character LoRA is used. No minor-coded dialogue, story or tags.
-- **Default template: `anime_pov`** - the best anime blowjob POV so far. It is the first thing the
-  page selects; keep it the default until another template beats it in the owner's review.
+- **Default template: `anime_pov`** - the best anime blowjob POV so far (Pink Alchemy, the `gens/pb`
+  recipe). It is the first thing the page selects; keep it the default until another template
+  beats it in the owner's review. The three kept cock styles are their own templates:
+  `anime_pov_mosaic` (the owner's preferred presentation), `anime_pov_foreskin`, `anime_pov_cut`.
+- **Templates reproduce the approved render exactly**: model (`unet`), LoRA + strength, motion
+  booster strength, size and length live in the template, taken from the job that was approved.
+  Where the best setting differs by series tag, character LoRA or style (photoreal vs anime), that
+  is two templates, never one compromise.
 - Anime stills: `gens/pb`-style output is anatomically clean. Keep **all three cock styles**:
   light mosaic (`censored, mosaic censoring`), half foreskin (`foreskin` tags), fully retracted /
   cut (`foreskin retracted, circumcised`).
 - Photoreal e-girl: the character block in `docs/EGIRL.md`; `full natural breasts` is the size
   control; tag prompts for portraits, prose for acts.
 - Facial pose: `egirl_facial` template (cock out, mouth open, eyes on camera) - owner approved.
-- Best photoreal BJ motion: Astro NSFW 0.8 on H3 (`docs/FACIAL.md` history); best plain motion:
-  the detailed stroke prompt, no LoRA.
+- Best photoreal BJ motion: Astro NSFW 0.8 on H3 (`pov_blowjob_astro`; owner: "best BJ video so
+  far", it can drift the character); best plain motion: the detailed stroke prompt, no LoRA
+  (`pov_blowjob`). The anime blowjob is the other way round: MM-H3 Blowjob v3 0.65 + motion 0.5
+  (`anime_ll_suction`, k9).
 - Best anime clip: POV bob from the Pink POV keyframe with whole-body motion in the prompt.
 - Cum (2026-11-21 session 5): the recipe works and is a **dial**, not one look. `epic_cumshots` at
   0.6, 768x1152/124f, the P1 or wide-gap keyframe. Three tiers in `kit/presets.json`:
@@ -293,6 +301,12 @@ The repo targets a **single 8 GB GPU and 16 GB of system RAM**. The reference ma
 bigger (a 10 GB 3080 and a 16 GB 7800 XT), but never design a recipe that needs them: the big
 models are streamed from system RAM and run slower on 8 GB (`docs/HARDWARE.md`). Wan 2.2 14B is
 the exception - it does not fit and needs a 24 GB card (`docs/CUM-VIDEO.md`).
+
+**Memory check before every job** (page and `tools/lab.py`; `python tools/headroom.py
+<template>`): when commit is tight the job runs in low-memory mode (cached models dropped first,
+light 4B encoder for H3-Image) with a warning and the apps to close. Before a heavy session, run it
+and tell the user what to close; never close their apps yourself. Details in
+`docs/PERFORMANCE-8GB.md`, "Automatic low-memory mode".
 
 The **8 GB optimization pass is done** (2026-11-20): measured peak VRAM, per-workflow flags,
 preview/standard/final step counts, the H3 4B text encoder, RelayVSR x2, and a speculative GTX

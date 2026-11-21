@@ -34,6 +34,7 @@ for key, label, path, name in specs:
         "workflow": j["wf"],
         "lora": j["nsfw_lora"],
         "strength": j["nsfw_strength"],
+        "motion_strength": j.get("motion_strength", 0.4),
         "width": j["width"],
         "height": j["height"],
         "length": j["length"],

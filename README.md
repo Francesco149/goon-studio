@@ -72,6 +72,10 @@ Double-click **Goon Studio**. A page opens in your browser at http://127.0.0.1:8
 - **Rounds**: test rounds the agent ran, with its notes.
 - **Guide**: the recipes, in plain language.
 
+If your PC is short on memory when you press Make, the page says so: it still makes the picture
+or clip in a slower low-memory mode and tells you which open apps would free the most (a browser,
+Steam, Discord...).
+
 ## Doing it by hand
 
 Each template needs some model files. If one is missing, the page says so under the template:
