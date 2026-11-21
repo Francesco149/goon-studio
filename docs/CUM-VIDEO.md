@@ -256,6 +256,8 @@ a **high twitch + medium amount** tier.
 | k17 | `jobs/k17.jsonl` | stronger glans wording on high and low | no effect - the residue tracks volume, not wording |
 
 Renders are git-ignored; the jobs are the recipe. Re-run any round with
-`python tools/lab.py --wf wf_h3vid_i2v_lora.json --jobs jobs/k10.jsonl --box ampere --sub gl/k10 --out gens/k10`.
+`python tools/lab.py --wf wf_h3vid_i2v_lora.json --jobs jobs/k10.jsonl --box local --sub gl/k10 --out gens/k10`.
+(The `k10` numbers above were measured on the author's ampere box; the same graph runs on the local
+8 GB card with the `_8gb` model names, just slower.)
 The `mk_*.py` generators in `tools/rounds/` carry the reasoning for each round and regenerate their
 `jobs/*.jsonl`.

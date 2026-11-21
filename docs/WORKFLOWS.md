@@ -11,6 +11,8 @@ repo.
 | `wf_krea2_nsfw_4step.json` | same, parameterised `steps` | 896x1344 | preview/refine test graph |
 | `wf_krea2_verite.json` | Krea 2 Turbo + Verite realism LoRA | 896x1344, 8 | older photoreal chain, plastic skin - superseded |
 | `wf_anima2.json` | Pink Alchemy Anima v2.9 (or anima-base) | 1248x832 / 832x1248, 30, cfg 4 | anime stills; seal prompt |
+| `wf_anima2_sig.json` | same + the late-prompt signature split | same | the `anime_ll_*` templates |
+| `wf_anima2_lora.json` | same + a character LoRA (`LoraLoaderModelOnly`, node 48) | 832x1248 / 1248x832, 30, cfg 4 | a LoRA character (the `anime_lz_*` templates); `lora` and `strength` come from the template or the job |
 | `wf_anima_hires.json` | same, img2img | 1152x1728, 20, denoise 0.30 | anime second pass |
 | `wf_anima_i2i.json` | same, img2img | 24 steps, denoise 0.45 | frame restyle (closed by owner verdict) |
 | `wf_h3img.json` | H3-Image | 896x1344, 6, cfg 1 | keyframes, cum material stills |

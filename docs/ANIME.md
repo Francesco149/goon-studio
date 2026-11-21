@@ -344,3 +344,43 @@ call the video recipe proven. See `docs/MIXED.md` for the stills, the pipeline a
 routes.
 - The mouth-purse/suction base is unchanged; the `k9` prompt plus the `anime_ll_*` video templates
   are the current library (headgrab, two hands, tip tease, slow, deepthroat, cum switch).
+
+## Character LoRA on Anima: Lanzhu Zhong (owner-approved 2026-11-21)
+
+The first character LoRA on our anime stack: `lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors`
+(Civitai 2708274, version 3042063, base Anima, 1000 images, dim 32). It runs on the Pink Alchemy
+checkpoint we already use, through a new graph with one `LoraLoaderModelOnly` node:
+`workflows/wf_anima2_lora.json` (a copy of the signature graph, node 48 between the unet and the
+KSampler). Model-only is right because the LoRA's text encoder was not trained.
+
+Settings: the normal Anima numbers - 30 steps, cfg 4.0, er_sde/simple, 832x1248 (POV) or
+1248x832 (side), **LoRA strength 1.0**. Measured on the local 5060 (8 GB): **36-38 s** per still,
+peak about 7.0 GB used, no new flags. Nothing about this needs the lab boxes.
+
+**Identity is the LoRA's job, style is ours.** Without an artist tag she goes generic (the same
+failure as the LL girl); `@murota yuuhei` in the prompt fixes the face while the LoRA keeps her
+hair, mole and outfit. Her series tag goes in the signature late pass, not Sunshine's:
+`kit/studio/core.py` now takes a per-template `series` for `"late": "signature"`, and the Lanzhu
+templates set `love live! nijigasaki high school idol club`.
+
+Two body readings, both approved as templates:
+
+- **curvy** (`anime_lz_pov`, `anime_lz_side`, `anime_lz_seal`, `anime_lz_paizuri`): add
+  `(curvy:1.8), (wide hips:1.5), thick thighs, large breasts` to the character block. This is our
+  adult body on her face.
+- **canon** (`anime_lz_canon_*`): the trigger words without body weighting - the LoRA's own
+  petite read. The owner's call (2026-11-21): it is a fictional character and anime girls look
+  petite; both are kept.
+
+**The POV mouth seal does not work with this LoRA** and the seal template is the side one
+(`anime_lz_seal`: her lips closed around the head, side view). What was tried and failed on the
+POV framing: the LL seal wording, `(penis in mouth:1.4)` / `(lips sealed around penis:1.4)`,
+strength 0.7/0.8/0.9, with and without `@murota yuuhei`, the deepthroat wording, and seeds 811,
+4242, 611, 9137. Every time the model drew the shaft in front of her closed lips. Her face prior
+beats the seal tags; do not spend another wording pass on it. The full recipe and the measured
+numbers live in `docs/LORAS.md`.
+
+**Verdict (owner, 2026-11-21):** "the gens are mostly good... the seal one is maybe a little bit
+deviating from the design and going into slightly generic territory, others are solid." POV
+cock-out, side gap and paizuri are approved; the sealed shot is the side head seal.
+

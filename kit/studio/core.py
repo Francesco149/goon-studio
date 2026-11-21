@@ -132,12 +132,15 @@ def build_prompt(job):
     return clean(fill_tags(base, fields))
 
 
-def build_late_prompt(prompt):
+def build_late_prompt(prompt, series=None):
     """The Love Live signature trick: the show's name only for the last 30% of the steps, and the
     eye colour weighted up so the name does not recolour her toward a canon character.
 
-    Used by templates that set "late": "signature" (see workflows/wf_anima2_sig.json)."""
-    late = (prompt or "").replace("anime screenshot, ", "anime screenshot, love live! sunshine!!, ", 1)
+    Used by templates that set "late": "signature" (see workflows/wf_anima2_sig.json). A template
+    from another show sets "series" (e.g. the Lanzhu character LoRA uses
+    "love live! nijigasaki high school idol club")."""
+    show = series or "love live! sunshine!!"
+    late = (prompt or "").replace("anime screenshot, ", "anime screenshot, %s, " % show, 1)
     return re.sub(r"(?<![(\w])([a-z]+ eyes)(?![:\w])", r"(\1:1.3)", late)
 
 
@@ -154,7 +157,7 @@ def build_fields(job):
     fields["prompt"] = build_prompt(job)
     late = t.get("late")
     if late == "signature":
-        late = build_late_prompt(fields["prompt"])
+        late = build_late_prompt(fields["prompt"], t.get("series"))
     elif late:
         late = clean(fill_tags(late, fields))
     if late:

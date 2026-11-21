@@ -118,6 +118,7 @@ only the public recipes.
 | photoreal facial / cum still | same, the `egirl_facial` and `egirl_cum` templates | `docs/FACIAL.md` |
 | anime stills | Pink Alchemy Anima v2.9 + `wf_anima2.json`, 20-30 steps, cfg 4, er_sde/simple | 12 preview / 20 standard / 30 final; `docs/ANIME.md` |
 | anime second pass | `wf_anima_hires.json`, denoise 0.30 | `docs/ANIME.md` |
+| anime stills with a character LoRA | Pink + `wf_anima2_lora.json` (`LoraLoaderModelOnly`, node 48), 30 steps, cfg 4, strength 1.0 | the `anime_lz_*` templates (Lanzhu Zhong); registry and prompt shape in `docs/LORAS.md` |
 | keyframes / photoreal stills | H3-Image `wf_h3img_4bte.json` (draft) / `wf_h3img_8gb.json` (final) | 4/6/8 steps, cfg 1 |
 | photoreal video | H3 FL2VA `wf_h3vid_i2v.json` (Pika 6-step), 768x1152, 124 f | 4-step preview in `wf_h3vid_i2v_4step.json`; `docs/FACIAL.md`, `docs/ANIME.md` |
 | video with an act LoRA | `wf_h3vid_i2v_lora.json` (node 21) | side deepthroat and titjob help; POV blowjob does not |
@@ -187,14 +188,17 @@ Foley pass or a dedicated audio tool is the likely answer.
 ## 6. Running a round
 
 1. Put jobs in `jobs/<round>.jsonl` (one JSON object per line, `name`, `prompt`, `seed`, ...).
-2. Run the batch: `python tools/lab.py --wf wf_...json --jobs jobs/<round>.jsonl --box ampere --sub gl/<round> --out gens/<round>`.
-   Boxes: `local` (127.0.0.1), `ampere` (10.0.10.240), `lame` (10.0.10.56). The box's ComfyUI
-   must be up; `tools/lab.py` cleans only its own outputs afterwards.
+2. Run the batch: `python tools/lab.py --wf wf_...json --jobs jobs/<round>.jsonl --box local --sub gl/<round> --out gens/<round>`.
+   **On the user's own machine the box is always `local`** (127.0.0.1:8188, the ComfyUI that
+   `kit\start.ps1` runs). `ampere` (10.0.10.240) and `lame` (10.0.10.56) only exist on the author's
+   home network for experiments - never assume them, never go looking for them on a normal install.
+   Every recipe in `docs/` must be runnable on `local` with 8 GB, which is the target; the boxes
+   are just faster ways to try a variant. `tools/lab.py` cleans only its own outputs afterwards.
 3. Make a sheet: `python tools/sheet.py analysis/<round>.jpg gens/<round> --cols 4 --thumb 420`.
 4. Look at the sheet, write down what changed in `docs/` (or the round log), keep the prompts in
    `jobs/`.
-5. Do not leave renders outside `gallery/`, `gens/`, `analysis/`, `sfw/` (Claude's neutral renders) or the boxes' `gl/` scratch
-   folders.
+5. Do not leave renders outside `gallery/`, `gens/`, `analysis/`, `sfw/` (Claude's neutral renders) or the local engine's
+   `gl/` scratch folders.
 
 ## 7. Quality bar
 
