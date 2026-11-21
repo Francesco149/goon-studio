@@ -1,1 +1,1 @@
-{"name": "mask_crop", "wf": "wf_bgremove.json", "image": "C:\\\\Users\\\\headpats\\\\Documents\\\\goon-studio\\\\analysis\\\\mixed\\\\cock_crop.jpg", "model": "birefnet.safetensors"}
+{"name": "mask_crop", "wf": "wf_bgremove.json", "image": "analysis\\\\mixed\\\\cock_crop.jpg", "model": "birefnet.safetensors"}

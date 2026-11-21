@@ -1,6 +1,8 @@
 __pycache__/
 *.pyc
 my/settings.json
+my/.civitai-token
+my/INSTALL.md
 my/history.jsonl
 my/feedback.jsonl
 my/library.json

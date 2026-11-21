@@ -20,7 +20,7 @@ P = ("integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel
 
 j = {"name": "k23_side_takein_clean", "wf": "wf_h3vid_i2v_lora2.json",
      "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
-     "image": "C:\\Users\\headpats\\Documents\\goon-studio\\gens\\a34\\n2_side_handjob_a_00001_.png",
+     "image": "gens\\a34\\n2_side_handjob_a_00001_.png",
      "width": 1152, "height": 768, "length": 124, "seed": 93020,
      "nsfw_lora": "h3nsfw/MM-H3-Blwjob-v3.safetensors", "nsfw_strength": 0.65,
      "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors", "motion_strength": 0.5,

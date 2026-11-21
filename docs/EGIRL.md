@@ -10,7 +10,7 @@ stack that hit it, and it is a different model from the earlier photoreal chain
 | | |
 |---|---|
 | file | `KREA 2TurboNSFW_v10-nvfp4.safetensors` (7.15 GB, "Star Ultimate Model Converter" nvfp4) |
-| where | ampere `/data/comfyui/models/unet/`, cutestation `F:\LLStudioTest\models\diffusion_models\`, loaded by the plain `UNETLoader` (no special node) |
+| where | `<engine_dir>\ComfyUI\models\diffusion_models\` (local), loaded by the plain `UNETLoader` (no special node) |
 | comfy | 0.45.0; runs on Ampere and on the 8 GB RTX 5060 (nvfp4 is dequantized at load) |
 | speed | cutestation 8 GB: 4 steps 10 s, 6 steps 16 s, 8 steps 20 s at 896x1344 |
 | settings | **6 steps standard** (4 preview / 8 final), cfg 1.0, euler / simple, denoise 1.0, no negative (ConditioningZeroOut) |

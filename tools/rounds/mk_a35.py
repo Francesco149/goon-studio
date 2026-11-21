@@ -20,7 +20,7 @@ P = ("integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel
 
 j = {"name": "k19_cum_switch_side", "wf": "wf_h3vid_i2v_lora2.json",
      "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
-     "image": "C:\\Users\\headpats\\Documents\\goon-studio\\gens\\a34\\n2_side_handjob_b_00001_.png",
+     "image": "gens\\a34\\n2_side_handjob_b_00001_.png",
      "width": 1152, "height": 768, "length": 124, "seed": 93015,
      "nsfw_lora": "h3nsfw/epic_cumshots.safetensors", "nsfw_strength": 0.55,
      "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors", "motion_strength": 0.5,

@@ -27,7 +27,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 JOBS = os.path.abspath(os.path.join(HERE, "..", "..", "jobs", "k11.jsonl"))
 
-P1 = r"C:\Users\headpats\Documents\goon-studio\gallery\refs\cumshot\p1_pose.png"
+P1 = r"gallery\refs\cumshot\p1_pose.png"
 
 HEAD = ("integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video, one fixed "
         "camera. A young adult Asian woman in her mid-twenties with long black hair in pink-streaked "

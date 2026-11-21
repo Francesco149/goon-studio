@@ -2,7 +2,7 @@
 """civitai.py - search, inspect and download Civitai models without a browser.
 
 The public API answers search and metadata without any auth. Downloads and the .red (NSFW)
-front end need a token: put one in ~/goonlab/.civitai-token (Account settings -> API Keys) or
+front end need a token: put one in my/.civitai-token (git-ignored) (Account settings -> API Keys) or
 export CIVITAI_TOKEN. A browser session cookie is not usable from here - Firefox encrypts its
 cookie store with NSS, so a token is the supported path.
 
@@ -20,7 +20,7 @@ import urllib.parse
 import urllib.request
 
 API = "https://civitai.com/api/v1"
-TOKEN_FILE = os.path.join(os.path.expanduser("~"), "goonlab", ".civitai-token")
+TOKEN_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "my", ".civitai-token")
 try:  # model names carry emoji and CJK; the Windows console defaults to cp1252
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -35,7 +35,7 @@ def token():
 
 
 def get(url, raw=False):
-    req = urllib.request.Request(url, headers={"User-Agent": "goonlab/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "goon-studio/1.0"})
     t = token()
     if t:
         req.add_header("Authorization", "Bearer " + t)
@@ -94,7 +94,7 @@ def cmd_download(a):
     if not t:
         sys.exit("no token: put one in %s (Civitai > Account settings > API Keys)" % TOKEN_FILE)
     url = "https://civitai.com/api/download/models/%s" % a.version
-    req = urllib.request.Request(url, headers={"Authorization": "Bearer " + t, "User-Agent": "goonlab/1.0"})
+    req = urllib.request.Request(url, headers={"Authorization": "Bearer " + t, "User-Agent": "goon-studio/1.0"})
     with urllib.request.urlopen(req, timeout=600) as r:
         name = (r.headers.get("Content-Disposition") or "").split("filename=")[-1].strip('"; ')
         name = name or str(a.version) + ".safetensors"

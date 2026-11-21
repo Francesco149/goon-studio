@@ -7,7 +7,7 @@
 #
 # Settings live in my\settings.json:
 #   { "comfy_url": "http://127.0.0.1:8188",
-#     "engine_dir": "F:\\LLStudioTest\\engine",       # ComfyUI checkout with python_embeded
+#     "engine_dir": "D:\\GoonStudio\\ComfyUI_windows_portable",  # ComfyUI folder with python_embeded
 #     "data_dir": "C:\\Users\\you\\Documents\\goon-studio\\gallery",
 #     "extra_flags": "" }
 param([switch]$NoBrowser, [switch]$Stop, [switch]$RestartEngine)

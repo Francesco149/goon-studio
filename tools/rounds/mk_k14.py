@@ -25,7 +25,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 JOBS = os.path.abspath(os.path.join(HERE, "..", "..", "jobs", "k14.jsonl"))
 
-P1 = r"C:\Users\headpats\Documents\goon-studio\gallery\refs\cumshot\p1_pose.png"
+P1 = r"gallery\refs\cumshot\p1_pose.png"
 WIDE = os.path.abspath(os.path.join(HERE, "..", "..", "gens", "k04", "k4_wide_clean_00001_.png"))
 
 HEAD_P1 = ("integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video, one fixed "

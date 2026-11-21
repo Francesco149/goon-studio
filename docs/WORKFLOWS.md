@@ -37,10 +37,11 @@ repo.
 
 ## Model names per box
 
-The graph files are portable, but the model filenames are not. cutestation has
-`minimax_h3_*_w4a8*.safetensors`; ampere has `*_int8_convrot.safetensors`. The `_8gb` H3 workflows
-default to the cutestation names. On ampere, override `unet` in the job or use the original
-workflow. LoRA names on Windows use `h3nsfw\name.safetensors`; the page and `tools/lab.py
+The graph files are portable, but the model filenames are not. An 8 GB install has
+`minimax_h3_*_w4a8*.safetensors`; a bigger card may have `*_int8_convrot.safetensors`. The `_8gb`
+H3 workflows default to the w4a8 names; the others still name `int8_convrot`. The page swaps to
+the quantization the engine has; a `tools/lab.py` job must set `unet` to the file this install
+has. LoRA names on Windows use `h3nsfw\name.safetensors`; the page and `tools/lab.py
 --box local` normalize them for a local Windows ComfyUI, but a hand-written ComfyUI API call
 must use the backslash form.
 

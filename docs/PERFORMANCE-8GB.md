@@ -177,9 +177,9 @@ already OOMs at load; on 8 GB it is not a candidate. See `docs/CUM-VIDEO.md`.
   local loader; `h3nsfw\epic_cumshots.safetensors` works. The page and `tools/lab.py --box local`
   now normalize this when they talk to a local Windows ComfyUI (`kit/studio/core.py`,
   `tools/lab.py`); the workflow JSONs keep the portable forward-slash form for the Linux boxes.
-- **Model filenames differ per box.** cutestation has `*_w4a8_mixed.safetensors`; ampere has
-  `*_int8_convrot.safetensors`. The `_8gb` workflows default to the cutestation names. On ampere
-  override `unet` or use the original workflow.
+- **Model filenames differ per install.** The 8 GB card has `*_w4a8_mixed.safetensors`; a bigger
+  card may have `*_int8_convrot.safetensors`. The `_8gb` workflows default to the w4a8 names; with
+  the other workflows set `unet` in the job (the page does it automatically).
 - The second ComfyUI instance needs `--disable-assets` (or its own `--database-url`), otherwise it
   refuses to start while the user's engine holds `ComfyUI/user/comfyui.db`.
 

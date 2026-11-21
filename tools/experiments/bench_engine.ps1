@@ -13,9 +13,13 @@ param(
     [int]$Port = 8189
 )
 $ErrorActionPreference = "Stop"
-$Engine = "F:\LLStudioTest\engine\ComfyUI_windows_portable"
-$Py = Join-Path $Engine "python_embeded\python.exe"
-$Data = "F:\LLStudioTest\bench"
+# The engine folder comes from my\settings.json (engine_dir); bench files go to <data_dir>\bench.
+$Repo = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$S = Get-Content (Join-Path $Repo "my\settings.json") -Raw | ConvertFrom-Json
+$Engine = $S.engine_dir
+$Py = if ($S.python) { $S.python } else { Join-Path $Engine "python_embeded\python.exe" }
+$Data = Join-Path $(if ($S.data_dir) { $S.data_dir } else { Join-Path $Repo "gallery" }) "bench"
+New-Item -ItemType Directory -Force $Data | Out-Null
 $Log = Join-Path $Data "comfyui-bench.log"
 $Err = Join-Path $Data "comfyui-bench.err.log"
 $PidFile = Join-Path $Data "comfyui-bench.pid"

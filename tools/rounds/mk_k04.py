@@ -28,7 +28,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 JOBS = os.path.abspath(os.path.join(HERE, "..", "..", "jobs", "k04.jsonl"))
-REF = r"C:\Users\headpats\Documents\goon-studio\gallery\refs\cumshot"
+REF = r"gallery\refs\cumshot"
 
 CHAR = ("a young adult Asian woman in her mid-twenties, e-girl with long black hair in "
         "pink-streaked twin tails, wispy bangs, winged eyeliner, glossy lips and a silver heart "

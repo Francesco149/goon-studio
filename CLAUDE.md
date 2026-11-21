@@ -27,7 +27,7 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
 
 - **Engineering, whatever the content.** The page (`kit/studio/`), the launcher (`kit/*.ps1`),
   setup and model downloads, ComfyUI plumbing, workflow wiring (nodes, model names, quantization,
-  memory flags), `tools/`, benchmarks, performance, the boxes. This code is content-neutral; treat
+  memory flags), `tools/`, benchmarks, performance (and, in author sessions, the lab boxes). This code is content-neutral; treat
   it like any other app.
 - **Prompts and pipeline.** Every agent may write, refine and review prompts, templates, presets,
   character blocks, workflows and jobs, under the rules above. There is no split between the
@@ -58,7 +58,10 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
 
 ## Practical notes
 
-- Owner's hardware target: one 8 GB GPU, 16 GB RAM. The failure mode on a desktop is Windows
-  commit charge, not VRAM (`docs/PERFORMANCE-8GB.md`).
+- Hardware target: one 8 GB GPU, 16 GB RAM, everything on the user's own PC (`--box local`,
+  127.0.0.1:8188); older cards such as a GTX 1070 are covered in `docs/PERFORMANCE-8GB.md`. The
+  failure mode on a desktop is Windows commit charge, not VRAM. ampere/lame/maximus/bunker are
+  the author's machines: only `AGENTS.local.md` (author sessions) points at them; never look for
+  them on another install.
 - The always-on copy of the rules is the Goon Scope output style; it is project-local and does not
   apply to other projects. If it is not active in Claude Code, run `/output-style` and pick it.

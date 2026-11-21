@@ -1,5 +1,5 @@
 import json, os
-base = os.path.expanduser("~/goonlab/jobs")
+base = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "jobs")
 out = []
 for name in ("e6.jsonl", "e7.jsonl"):
     with open(os.path.join(base, name), encoding="utf-8") as fh:

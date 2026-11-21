@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-A = os.path.expanduser("~/goonlab/analysis")
+A = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "analysis")
 
 
 def font(sz):
@@ -32,10 +32,10 @@ def pair(out, left, right, ll, rl, h=760):
 
 
 pair(A + "/HIRES_compare.jpg",
-     os.path.expanduser("~/goonlab/gens/pb/pb3_pov_seal_00001_.png"),
-     os.path.expanduser("~/goonlab/gens/h1/h1_d30_00001_.png"),
+     os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "gens/pb/pb3_pov_seal_00001_.png"),
+     os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "gens/h1/h1_d30_00001_.png"),
      "pb3 832x1248", "h1_d30 1152x1728 (denoise 0.30)")
 pair(A + "/RESTYLE_compare.jpg",
-     os.path.expanduser("~/goonlab/gens/restyle_full/f000.png"),
-     os.path.expanduser("~/goonlab/gens/r1/f000_00001_.png"),
+     os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "gens/restyle_full/f000.png"),
+     os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "gens/r1/f000_00001_.png"),
      "photoreal frame", "restyled Pink (denoise 0.45)")

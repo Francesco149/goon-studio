@@ -13,7 +13,7 @@ anime halves of `WINS.md` / `SEX-SCENES.md` for anything explicit.
 | base | Anima-Base v1.0 (same VAE `qwen_image_vae`, same TE `qwen_3_06b_base`) |
 | loaded as | `UNETLoader` in the normal Anima graph (`tools/wf_anima2.json`) |
 | source | Civitai model 2578175, v2.9-Anima1.0Base; a copy was fetched from the RunningHub HF mirror |
-| where | ampere `unet/` and cutestation `F:\LLStudioTest\models\diffusion_models\` |
+| where | `<engine_dir>\ComfyUI\models\diffusion_models\` (local) |
 
 Why it wins: `pa1`-`pa3` (same prompts and seeds as the base-model `a2a`-`a2c`) have the anime
 screenshot style, a real anime face, curvy proportions and a thick, veined cock with a defined

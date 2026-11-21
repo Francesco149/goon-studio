@@ -20,10 +20,12 @@ ITEMS = [
     ("RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet", "ramthrustsNSFWPINK_v29Anima10base.safetensors", "unet"),
 ]
 
-ROOT = sys.argv[1] if len(sys.argv) > 1 else "/data/comfyui/models"
+if len(sys.argv) < 2:
+    sys.exit("usage: h3dl.py <ComfyUI models dir>   (e.g. <engine_dir>/ComfyUI/models)")
+ROOT = sys.argv[1]
 
 def size(url):
-    req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "goonlab"})
+    req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "goon-studio"})
     with urllib.request.urlopen(req, timeout=60) as r:
         return int(r.headers.get("Content-Length") or 0), r.geturl()
 
@@ -37,7 +39,7 @@ def get(repo, path, destdir):
         print("skip", dest, flush=True)
         return
     have = os.path.getsize(dest) if os.path.exists(dest) else 0
-    req = urllib.request.Request(url, headers={"User-Agent": "goonlab"})
+    req = urllib.request.Request(url, headers={"User-Agent": "goon-studio"})
     if have:
         req.add_header("Range", "bytes=%d-" % have)
     t0 = time.time()

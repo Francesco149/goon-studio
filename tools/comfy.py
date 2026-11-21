@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""comfy.py — drive ComfyUI on lame (`comfyui` profile) or ampere (`ampere-comfyui`) from maximus (stdlib only).
+"""comfy.py — drive a ComfyUI engine (stdlib only).
 
-Vendored 2026-11-07 from the work repo's ai-ugc-lab tools/comfy.py (the lab does not depend on work).
-Pick the box with --box lame|ampere (or COMFY_URL).
+Defaults to this machine's engine (127.0.0.1:8188, the one kit/start.ps1 runs). COMFY_URL or
+--box picks another; ampere/lame are the author's lab machines and do not exist on a normal install.
 
-  comfy.py --box ampere run workflows/h3_t2v.json -p prompt="..." -p seed=7 -o out/ --log results.jsonl
+  comfy.py run workflows/h3_t2v.json -p prompt="..." -p seed=7 -o out/ --log results.jsonl
   tools/comfy.py upload persona/mia/ref.png          # into ComfyUI's input/ (images, audio, video)
   tools/comfy.py info UnetLoaderGGUF                 # a node's inputs, from /object_info
   tools/comfy.py free                                # unload models, free VRAM
@@ -31,8 +31,9 @@ import urllib.parse
 import urllib.request
 import uuid
 
-BOXES = {"lame": "http://10.0.10.56:8188", "ampere": "http://10.0.10.240:8188"}
-BASE = os.environ.get("COMFY_URL", BOXES["lame"])
+BOXES = {"local": "http://127.0.0.1:8188",
+         "lame": "http://10.0.10.56:8188", "ampere": "http://10.0.10.240:8188"}  # author-only
+BASE = os.environ.get("COMFY_URL", BOXES["local"])
 PH = re.compile(r"\{\{(\w+)\}\}")
 
 
@@ -57,7 +58,7 @@ def need_alive():
         if alive():
             return
         time.sleep(5)
-    sys.exit(f"comfy: {BASE} is not answering (lame: lame-profile use comfyui; ampere: systemctl start ampere-comfyui)")
+    sys.exit(f"comfy: {BASE} is not answering (local: start it with kit/start.ps1)")
 
 
 def coerce(v):
@@ -177,7 +178,7 @@ def run(args):
             if st.get("completed") or st.get("status_str") in ("success", "error"):
                 break
         if args.timeout and time.time() - t0 > args.timeout:
-            sys.exit(f"comfy: timed out after {args.timeout}s (still queued/running on lame)")
+            sys.exit(f"comfy: timed out after {args.timeout}s (still queued/running on {BASE})")
     took = time.time() - t0
     st = hist.get("status", {})
     if st.get("status_str") == "error":
@@ -185,7 +186,7 @@ def run(args):
             if m[0] == "execution_error":
                 d = m[1]
                 sys.exit(f"comfy: error in node {d.get('node_id')} ({d.get('node_type')}): {d.get('exception_message')}")
-        sys.exit("comfy: execution error (see `lame logs`)")
+        sys.exit("comfy: execution error (see the engine log, gallery/logs/comfyui.err.log for local)")
     saved = download(hist, args.out, args.prefix, args.temp)
     print(f"done in {took:.1f}s")
     for s in saved:
@@ -200,7 +201,7 @@ def run(args):
 def main():
     global BASE
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--box", choices=sorted(BOXES), help="lame or ampere (default: COMFY_URL, else lame)")
+    ap.add_argument("--box", choices=sorted(BOXES), help="default: COMFY_URL, else local (127.0.0.1:8188)")
     sub = ap.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run")
     r.add_argument("workflow")

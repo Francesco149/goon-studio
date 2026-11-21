@@ -26,7 +26,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 JOBS = os.path.abspath(os.path.join(HERE, "..", "..", "jobs", "k01.jsonl"))
-REF = r"C:\Users\headpats\Documents\goon-studio\gallery\refs\cumshot"
+REF = r"gallery\refs\cumshot"
 
 SOUND_ONE = ("\n\noverall_soundscape: one soft wet splat, one short male grunt, her sharp breath in, "
              "quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A")

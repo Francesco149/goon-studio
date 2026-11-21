@@ -20,8 +20,25 @@ import urllib.request
 import uuid
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def _local():
+    """The engine kit/start.ps1 runs on this machine: always 127.0.0.1:8188, with ComfyUI's
+    output/input folders at <data_dir>/outputs and <data_dir>/inputs (data_dir from my/settings.json,
+    default <repo>/gallery). Not comfy_url: that may point the page at another engine."""
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        with open(os.path.join(repo, "my", "settings.json"), encoding="utf-8-sig") as f:
+            s = json.load(f)
+    except (OSError, ValueError):
+        s = {}
+    return "http://127.0.0.1:8188", s.get("data_dir") or os.path.join(repo, "gallery")
+
+
+# `local` is the default and the only box on a normal install; ampere/lame are the author's lab
+# machines (AGENTS.md section 6) and do not exist anywhere else.
 BOXES = {
-    "local": ("http://127.0.0.1:8188", r"F:\LLStudioTest"),
+    "local": _local(),
     "ampere": ("http://10.0.10.240:8188", "/data/comfyui"),
     "lame": ("http://10.0.10.56:8188", "/lamedata/comfyui"),
 }

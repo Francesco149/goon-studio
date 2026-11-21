@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Night download queue for ampere. Resumable; skips files already the right size.
+# Download the H3 act LoRAs and Pink Alchemy Anima into a ComfyUI models folder. Resumable; skips
+# files already there.  Usage: bash tools/models/dl_h3.sh "<engine_dir>/ComfyUI/models"
 set -u
-M=/data/comfyui/models
+M="${1:?usage: dl_h3.sh <ComfyUI models dir>}"
 mkdir -p "$M/loras/h3nsfw" "$M/unet"
 dl() { # url dest
   local url="$1" dest="$2"

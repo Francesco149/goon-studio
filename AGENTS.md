@@ -50,8 +50,9 @@ are listed in `my/library.json`. Do not list the private directories looking for
   - is open to every agent.
 - If the user refers to a private picture, say so and ask them to press **share** in the gallery
   (that is the only way to make it visible). Do not work around it.
-- Never copy, upload, or paste NSFW pictures anywhere outside this repo and the two lab boxes
-  (the boxes are compute only; never send a render to a person or a service).
+- Never copy, upload, or paste NSFW pictures anywhere outside this repo (and, in an author
+  session only, the author's lab boxes, which are compute only); never send a render to a person
+  or a service.
 
 ## 1a. First session: set up from zero
 
@@ -59,7 +60,10 @@ The user may paste the README bootstrap: "download the Goon Studio and set it up
 AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go.
 
 1. **Confirm the folder**: the session's workspace is the Studio repo. Read the README and this
-   file first.
+   file first. **Everything runs on this one PC.** The engine is the ComfyUI you install here, at
+   127.0.0.1:8188; every tool defaults to it (`--box local`). Names like ampere, lame, maximus,
+   bunker, cutestation or nixlab in the docs are the author's own machines (measurements and
+   author-only notes): never look for them, scan the network or ssh anywhere on a user's install.
 1b. **Account**: DSH Desktop is signed in with the user's DeepSeek account and runs on their
    credits - there is **no API key** to handle. If a model call fails with an auth or balance
    error, send them to Settings â†’ Account and platform.deepseek.com billing; never ask for a key.
@@ -68,15 +72,21 @@ AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go
 2. **Check the PC**: GPU name and VRAM (`nvidia-smi` or `rocm-smi`), system RAM, free disk. The
    baseline is **8 GB VRAM + 16 GB RAM**; say plainly whether the machine is at, below or above
    it. Below 8 GB or below 16 GB RAM is not a no - it means smaller frames and more streaming
-   (`docs/HARDWARE.md`), and you should say so.
+   (`docs/HARDWARE.md`), and you should say so. Note the **architecture** too: a pre-Turing card
+   (GTX 10-series such as the 1070, compute capability 6.x) cannot run the current CUDA 13 stack
+   or the quantized models; follow "GTX 1070 8 GB" in `docs/PERFORMANCE-8GB.md` (older PyTorch,
+   Anima/Pink first, measure before promising anything) instead of the steps below as written.
 3. **Ask which drive** for the models and the gallery (they can be large), then create
    `my/settings.json` from `my/settings.example.json` with `engine_dir`, `data_dir`, `comfy_url`.
 4. **Install ComfyUI** (portable Windows build) if it is not already there; start it hidden and
    check `/system_stats`. Put the models in its `models/` folders.
 5. **Download the models in this order** (stop when disk or time runs out; each step is usable):
-   Pink Alchemy Anima v2.9 (4.2 GB) -> Krea 2 Turbo NSFW v10 (7.2 GB) -> H3-Image and H3 FL2VA
-   int8 + the 32B text encoder + VAEs (the big one, ~30 GB) -> the H3 act LoRAs (`h3nsfw/`).
-   `tools/models/` has the download helpers; verify file sizes after each.
+   Pink Alchemy Anima v2.9 (4.2 GB) -> Krea 2 Turbo NSFW v10 (7.2 GB) -> H3-Image and H3 FL2VA in
+   the **w4a8** quantization (the 8 GB variant) + the **P-H3 4B text encoder** + VAEs -> the H3
+   act LoRAs (`h3nsfw/`). The `int8_convrot` transformers and the 32B text encoder are for
+   bigger cards / more RAM; on 16 GB RAM the 4B encoder is the fix (`docs/PERFORMANCE-8GB.md`).
+   `tools/models/` has the download helpers - pass them this install's
+   `<engine_dir>/ComfyUI/models` folder; verify file sizes after each.
 6. **Test**: start the page (`kit\start.ps1`), make one `anime_pov` still and show it. If H3 is
    installed, make a short video (49 frames, 512x768) as a smoke test. Never claim the sound is
    good (section 4b).
@@ -124,7 +134,7 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
   with the same picker/paste/drop, LoRA + strength, length, size, seed, prompt. "Recent videos"
   sits next to it, and a clip's lightbox has **"Use the last frame as keyframe"** (PyAV, ffmpeg
   fallback) to chain the next one. Workflow model names fall back to the quantization the engine
-  has (`*_int8_convrot` on ampere vs `*_w4a8_mixed` on an 8 GB card).
+  has (`*_w4a8_mixed` on an 8 GB card, `*_int8_convrot` on a bigger one).
 - **My pictures**: filter (all, loved/liked, private, shared, by the agent, clips), search,
   Select with Shift+click ranges, share/lock, trash. The lightbox has rating (click again to
   clear), a note (private notes stay in `my/private/`), Use these settings, variations, **Make it

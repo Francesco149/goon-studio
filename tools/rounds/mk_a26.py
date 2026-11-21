@@ -13,8 +13,8 @@ OLD = ("She slides her mouth up until only the head stays between her lips, purs
        "deep rhythm.")
 assert OLD in BASE
 
-IMG_DEEP = "C:\\Users\\headpats\\Documents\\goon-studio\\gens\\a11\\j2_suction_seal_a_00001_.png"
-IMG_COCK = "C:\\Users\\headpats\\Documents\\goon-studio\\gens\\a04\\e1_fuzichoco_cockout_00001_.png"
+IMG_DEEP = "gens\\a11\\j2_suction_seal_a_00001_.png"
+IMG_COCK = "gens\\a04\\e1_fuzichoco_cockout_00001_.png"
 
 
 def mk(name, img, seed, prompt, lora="h3nsfw/MM-H3-Blwjob-v3.safetensors", strength=0.65):

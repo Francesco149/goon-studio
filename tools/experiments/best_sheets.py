@@ -1,8 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-G = os.path.expanduser("~/goonlab/gens")
-A = os.path.expanduser("~/goonlab/analysis")
+G = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "gens")
+A = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "analysis")
 
 
 def font(sz):

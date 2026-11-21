@@ -6,7 +6,7 @@ are world-readable over the LAN and a PNG keeps its prompt in the metadata, so t
 pulled to the private folder first and then deleted here. Only the prompt ids this run created
 are dropped from /history - the box's other history is not ours to erase.
 
-  python clean.py --box local|ampere --sub gl/g01 [--input-sub gl_up] [--ids id1,id2] [--keep-files]
+  python clean.py --box local --sub gl/g01 [--input-sub gl_up] [--ids id1,id2] [--keep-files]
 """
 import argparse
 import json
@@ -15,9 +15,24 @@ import subprocess
 import sys
 import urllib.request
 
+
+def _local():
+    """The engine kit/start.ps1 runs on this machine: always 127.0.0.1:8188, with ComfyUI's
+    output/input folders at <data_dir>/outputs and <data_dir>/inputs (data_dir from my/settings.json,
+    default <repo>/gallery). Not comfy_url: that may point the page at another engine."""
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        with open(os.path.join(repo, "my", "settings.json"), encoding="utf-8-sig") as f:
+            s = json.load(f)
+    except (OSError, ValueError):
+        s = {}
+    return "http://127.0.0.1:8188", s.get("data_dir") or os.path.join(repo, "gallery")
+
+
+# `local` is the only box on a normal install; ampere/lame are the author's lab machines.
 BOXES = {
     # url, root, output dir name, input dir name, path separator
-    "local": ("http://127.0.0.1:8188", r"F:\LLStudioTest", "outputs", "inputs", "\\"),
+    "local": _local() + ("outputs", "inputs", os.sep),
     "ampere": ("http://10.0.10.240:8188", "/data/comfyui", "output", "input", "/"),
     "lame": ("http://10.0.10.56:8188", "/lamedata/comfyui", "output", "input", "/"),
 }
@@ -52,6 +67,8 @@ def main():
 
     if a.keep_files:
         return
+    if a.sub.replace("\\", "/").strip("/").split("/")[0] in ("", "studio", "..") or ".." in a.sub:
+        sys.exit("clean: refusing --sub %r (outputs/studio is the user's private gallery)" % a.sub)
     dirs = [root + sep + outs + sep + a.sub.replace("/", sep)]
     if a.input_sub:
         dirs.append(root + sep + ins + sep + a.input_sub)

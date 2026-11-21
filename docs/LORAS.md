@@ -35,7 +35,7 @@ are not part of any recipe a user gets.
 | source | Civitai model **2708274** / version **3042063 "anime s2"**, author **nochekaiser** - the user's download link was `https://civitai.red/models/2708274/lanzhu-zhong-love-live-nijigasaki-high-school-idol-club` (the `.red` mirror of `https://civitai.com/models/2708274`) |
 | file | `lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors`, 87.6 MB |
 | sha256 | `8f61358453f529ca203d78544b69a16f6b50194f752f0e50897cfa2ff00e5e23` |
-| where | local `F:\LLStudioTest\models\loras\`; ampere `/data/comfyui/models/loras/` |
+| where | local `<engine_dir>\ComfyUI\models\loras\` |
 | training | base `anima_baseV10`, 1000 images, dim 32 / alpha 32, 4 epochs, 1024x1024, **text encoder not trained** |
 | load as | `LoraLoaderModelOnly` on the unet, node 48 of `workflows/wf_anima2_lora.json` |
 | strength | **1.0**; 0.9 keeps more of the base body with the same face; 0.8 is the floor |
@@ -120,7 +120,7 @@ POV cock-out, side gap and paizuri are approved; the POV mouth seal is the open 
 | source | Civitai model **2708250** / version **3042032 "anime s2"**, author **nochekaiser** - the user's download link was `https://civitai.red/models/2708250/kasumi-kasumin-kasukasu-nakasu-love-live-nijigasaki-high-school-idol-club` (the `.red` mirror of `https://civitai.com/models/2708250`) |
 | file | `kasumi-nakasu-s2-anima-lora-nochekaiser.safetensors`, 87.6 MB |
 | sha256 | `313c46aa584b87fe7b48c79557b03a74569bc2998d60b821a50bb318f14f3a1e` |
-| where | local `F:\LLStudioTest\models\loras\` |
+| where | local `<engine_dir>\ComfyUI\models\loras\` |
 | training | base `anima_baseV10`, 1000 images, dim 32 / alpha 32, 4 epochs, 1024x1024, text encoder not trained - the same recipe as the Lanzhu LoRA from the same author |
 | load as | `LoraLoaderModelOnly` on the unet, node 48 of `workflows/wf_anima2_lora.json` |
 | strength | **1.0**; no drift at 0.8, but 1.0 keeps the bob and the face |
@@ -224,7 +224,7 @@ draws the acts natively and the Verite skin is plastic. Kept for a fallback only
 
 1. Read the header before trusting the name: `python -c "import json,struct;f=open(P,'rb');n=struct.unpack('<Q',f.read(8))[0];print(json.loads(f.read(n)).get('__metadata__'))"`
    - base model, dim/alpha, whether the text encoder was trained.
-2. Copy it to `F:\LLStudioTest\models\loras\` (local). Refresh check:
+2. Copy it to `<engine_dir>\ComfyUI\models\loras\` (local). Refresh check:
    `/object_info/LoraLoaderModelOnly` must list it.
 3. Wire it: `LoraLoaderModelOnly` between `UNETLoader` and `KSampler`; Anima characters are
    unet-only, so model-only is correct. A new graph goes in `workflows/wf_anima2_lora.json` or a

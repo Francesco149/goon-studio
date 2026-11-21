@@ -312,7 +312,7 @@ def unet_names(s=None):
 
 def resolve_unet(name, s=None):
     """Same model, the quantization this box has: the workflows default to one box's file names
-    (ampere: *_int8_convrot, an 8 GB card: *_w4a8_mixed). Unknown or unmatched names pass through."""
+    (an 8 GB card: *_w4a8_mixed, a bigger one: *_int8_convrot). Unknown or unmatched names pass through."""
     have = unet_names(s)
     if not name or not have or name in have:
         return name
