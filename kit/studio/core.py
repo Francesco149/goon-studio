@@ -132,6 +132,15 @@ def build_prompt(job):
     return clean(fill_tags(base, fields))
 
 
+def build_late_prompt(prompt):
+    """The Love Live signature trick: the show's name only for the last 30% of the steps, and the
+    eye colour weighted up so the name does not recolour her toward a canon character.
+
+    Used by templates that set "late": "signature" (see workflows/wf_anima2_sig.json)."""
+    late = (prompt or "").replace("anime screenshot, ", "anime screenshot, love live! sunshine!!, ", 1)
+    return re.sub(r"(?<![(\w])([a-z]+ eyes)(?![:\w])", r"(\1:1.3)", late)
+
+
 def build_fields(job):
     P = presets()
     t = P.get("templates", {}).get(job.get("template") or "", {})
@@ -143,6 +152,13 @@ def build_fields(job):
         if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene"):
             fields[k] = v
     fields["prompt"] = build_prompt(job)
+    late = t.get("late")
+    if late == "signature":
+        late = build_late_prompt(fields["prompt"])
+    elif late:
+        late = clean(fill_tags(late, fields))
+    if late:
+        fields["late"] = late
     neg = job.get("negative") or t.get("negative") or P.get("negative", "")
     fields["negative"] = clean(neg)
     if not fields.get("seed"):

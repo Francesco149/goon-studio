@@ -49,3 +49,34 @@ Foley track.
 - `AGENTS.md` tells the agent not to claim the sound is solved.
 - The owner's verdict is the source of truth here; do not "fix" it by turning the audio off
   silently - say what was done.
+
+## Session 6 (2026-11-21): prompt wording test, still not solved by ear
+
+The owner asked for better sound prompts while the anime recreation clips were made. Three
+wordings were written for the same scene and used on H3 clips (`jobs/a10_clips.jsonl`):
+
+- **A - material + timing + negatives:** "close-miked Foley, loud and present, clearly audible
+  over a quiet bedroom room tone, no music and no speech: wet skin sliding, a soft suction hush
+  as her lips slide down the shaft, one small wet click as they leave the head, her nose
+  breathing, one short low male grunt on the spurt. No chewing, no crunching, no slurping, no
+  gulp, no pouring water."
+- **B - stroke timeline:** "one slow deep stroke: a soft wet hush as her mouth slides down, a
+  small swallow at the bottom, a light suction pop as her lips leave the head. One wet spurt
+  lands on her tongue with a soft tap, one low male groan... no chewing, no crunch, no noodle
+  slurp."
+- **C - subtractive:** "quiet bedroom room tone, her breath through her nose, the soft sound of
+  skin on skin, one low male grunt at the spurt. No mouth sounds, no wet suction, no slurping, no
+  chewing, no crunching, no music, no speech."
+
+`tools/sfx_report.py` gives the objective half: loudness, peak/clipping, silence, onset density,
+spectral centroid/band ratios, and the correlation between the audio envelope and the picture's
+motion at each lag. The previous clips measured: `k14` -27.5 dBFS, 82 clipped samples, sync
+r 0.49 at -2 frames; the owner's `img_00011` -30.9 dBFS, sync r 0.31 at 11 frames (i.e. the pop
+was late); the e-girl cum-first test -43.3 dBFS, sync r 0.17. "Quiet bedroom room tone" seems to
+pull the whole track down; "loud and present, clearly audible" raised the paizuri clip to
+-22.4 dBFS but it clipped 416 samples, while the k14 clip stayed at -45.8 dBFS. So the level
+wording moves the level, not the texture, and it is not monotonic.
+
+The texture verdict is the owner's ear: do not mark this solved from the measurements. The
+current clips ship A; B and C are written and ready for the comparison. The likely answer is
+still a separate Foley bed cut to the visual beats (section above), not the model's audio.

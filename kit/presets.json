@@ -82,6 +82,162 @@
       "scene": "bedroom, soft light, love live! sunshine!!",
       "negative": "extra hands, extra fingers, bad anatomy, fused limbs, censored, mosaic censoring, bar censor, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
     },
+    "anime_ll_fz_pov": {
+      "label": "Anime - LL fuzichoco (pale, painted), POV cock out",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @fuzichoco, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "cock out, (penis:1.2), (erection:1.1), detailed penis shaft, veins, defined glans, corona rim, uncensored, (penis focus:1.2), she holds his cock upright with one hand, the tip an inch below her open mouth, (mouth open:1.2), tongue out, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_kt_pov": {
+      "label": "Anime - LL kantoku (soft, detailed), POV cock out",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @kantoku, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "cock out, (penis:1.2), (erection:1.1), detailed penis shaft, veins, defined glans, corona rim, uncensored, (penis focus:1.2), she holds his cock upright with one hand, the tip an inch below her open mouth, (mouth open:1.2), tongue out, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_sig_pov": {
+      "label": "Anime - LL signature (clean Love Live), POV cock out",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "cock out, (penis:1.2), (erection:1.1), detailed penis shaft, veins, defined glans, corona rim, uncensored, (penis focus:1.2), she holds his cock upright with one hand, the tip an inch below her open mouth, (mouth open:1.2), tongue out, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_ikeda_pov": {
+      "label": "Anime - LL ikeda kazumi (KyoAni-like), POV cock out",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @ikeda kazumi, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "cock out, (penis:1.2), (erection:1.1), detailed penis shaft, veins, defined glans, corona rim, uncensored, (penis focus:1.2), she holds his cock upright with one hand, the tip an inch below her open mouth, (mouth open:1.2), tongue out, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_fz_paizuri": {
+      "label": "Anime - LL fuzichoco, paizuri",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @fuzichoco, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "paizuri, titjob, (breasts around penis:1.3), (penis between breasts:1.3), (glans above cleavage:1.2), detailed penis shaft, veins, uncensored, (penis focus:1.2), she presses her large breasts together with both hands, (tongue out:1.2) touching the glans, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_kt_paizuri": {
+      "label": "Anime - LL kantoku, paizuri",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @kantoku, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "paizuri, titjob, (breasts around penis:1.3), (penis between breasts:1.3), (glans above cleavage:1.2), detailed penis shaft, veins, uncensored, (penis focus:1.2), she presses her large breasts together with both hands, (tongue out:1.2) touching the glans, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_sig_paizuri": {
+      "label": "Anime - LL signature, paizuri (best)",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "paizuri, titjob, (breasts around penis:1.3), (penis between breasts:1.3), (glans above cleavage:1.2), detailed penis shaft, veins, uncensored, (penis focus:1.2), she presses her large breasts together with both hands, (tongue out:1.2) touching the glans, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_fz_wide": {
+      "label": "Anime - LL fuzichoco, wide gap",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @fuzichoco, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "cock out, (penis:1.2), detailed penis shaft, veins, defined glans, corona rim, uncensored, (penis focus:1.2), she holds his cock low between his thighs at the bottom of the frame, the tip a hand's width below her chin, head tilted down, (mouth wide open:1.2), tongue out, (eyes rolled up to viewer:1.15), bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_fz_deepthroat": {
+      "label": "Anime - LL fuzichoco, deepthroat (puffed cheeks)",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @fuzichoco, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "(penis in mouth:1.3), (lips sealed around penis:1.35), (cheeks hollow:1.4), (sunken cheeks:1.3), (cheek sucking:1.2), sucking, deepthroat, her lips around the middle of his shaft, her nose close to his body, no cheek bulge, uncensored, eyes on viewer, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, puffed cheeks, bulging cheeks, cheek bulge, throat bulge, tongue out, open mouth, glans outside mouth, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_fz_side": {
+      "label": "Anime - LL fuzichoco, side view cock out (visible gap)",
+      "workflow": "wf_anima2_sig.json",
+      "width": 1248,
+      "height": 832,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @fuzichoco, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, side view, profile, kneeling, leaning forward, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "cock out, (penis:1.2), detailed penis shaft, veins, defined glans, corona rim, uncensored, (penis focus:1.2), his cock is upright an inch in front of her open mouth, a clear gap between the tip and her lips, she leans toward it, tongue out, (mouth open:1.2), eyes on the cock, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, censored, mosaic censoring, bar censor, penis in mouth, lips touching the tip, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_fz_suction": {
+      "label": "Anime - LL fuzichoco, suction deepthroat (hollow cheeks)",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @fuzichoco, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "(penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, (cheeks sucked in:1.25), (sunken cheeks:1.2), sucking hard, his cock deep in her mouth, her lips around the middle of his shaft, her nose close to his body, uncensored, eyes on viewer, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, puffed cheeks, bulging cheeks, cheek bulge, round cheeks, full cheeks, throat bulge, tongue out, open mouth, glans outside mouth, cum, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
+    "anime_ll_fz_cum": {
+      "label": "Anime - LL fuzichoco, cum landed",
+      "workflow": "wf_anima2_sig.json",
+      "width": 832,
+      "height": 1248,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, year 2016, anime screenshot, {character}, @murota yuuhei, @fuzichoco, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+      "scene": "cock out, (penis:1.1), detailed penis shaft, veins, uncensored, (penis focus:1.1), (cum on cheek:1.2), (cum on tongue:1.2), (cum on lips:1.2), thick white semen, glossy, milky, (cum drip:1.2), (mouth open:1.2), tongue out, semen pooling on her tongue, a heavy drip from her chin, bedroom, soft light",
+      "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, male body, censored, mosaic censoring, bar censor, cum on face, cum on nose, cum string, strand across face, web, tears, long strand from mouth to cock, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
+    },
     "anime_hires": {
       "label": "Anime - second pass (hires, needs a picture)",
       "workflow": "wf_anima_hires.json",
@@ -123,7 +279,9 @@
   },
   "characters": {
     "egirl": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, a silver heart choker. She has full natural breasts that sit heavy with a soft slope, a narrow waist, wide hips and thick thighs.",
-    "anime_ll": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva"
+    "anime_ll": "short silver hair, single braid, purple eyes, @murota yuuhei, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+    "ll_sig": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, jitome, mole under eye, fang, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva",
+    "ll_soft": "1girl, 1boy, hetero, pov, from above, looking up at viewer, short silver hair, single braid, purple eyes, tareme, thick eyebrows, freckles, mole under eye, ahoge, hair intakes, (curvy:1.6), (wide hips:1.4), thick thighs, large breasts, mature female, half-closed eyes, blush, saliva"
   },
   "scenes": {
     "bedroom_led": "sitting on a bed in a dim bedroom lit by pink and purple LED strips",
@@ -257,6 +415,56 @@
       "label": "Anime POV bob (best anime)",
       "workflow": "wf_h3vid_i2v.json",
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style. POV from above: a young adult woman with short silver hair and purple eyes kneels between the viewer's legs, her large breasts on either side of an erect penis, her lips sealed around the head. She bobs her head up and down the shaft in a steady rhythm, her breasts bouncing with the motion, her braid swinging, her eyes lifting to the camera between strokes. Saliva gathers at the corner of her mouth. The camera shakes very slightly with her motion.\n\noverall_soundscape: wet suction, soft pops, her breath, a low male grunt, quiet room tone. No music.\n\nnon_diegetic_music: N/A"
+    },
+    "anime_ll_cumshot": {
+      "label": "Anime - LL cum shot (thin ropes, all three land)",
+      "workflow": "wf_h3vid_i2v_lora2.json",
+      "lora": "h3nsfw/epic_cumshots.safetensors",
+      "strength": 0.5,
+      "width": 768,
+      "height": 1152,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs, holding his erect cock upright with one hand an inch below her open mouth, her tongue out, her eyes on the camera. His cock pulses three times and no more. Each pulse sends one single thin white rope of semen straight up out of the slit at the tip. The rope is attached to the tip when it leaves and it never comes from above her head. The first rope lands high on her cheek, splashes and stays; the second lands on her tongue and lower lip and stays; the third lands on her chin and drips down her jaw. All three ropes are visible and all three stay on her skin. The ropes are thin, only a few millimetres wide, and short - each rope stops where it lands and does not continue past her face. The amount that lands on her face matches the amount that left the tip. She flinches hard at each pulse, her eyes squeeze shut for a moment, her head jerks, then she opens them and looks into the camera, half-lidded, flushed, her tongue still out. Her whole upper body flinches with the pulses and her breasts shake. The camera shakes slightly with her.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: three thin wet spurts about a second apart, each landing with a small wet tap, a soft hiss as the first rope crosses her cheek, one low male groan, her breath catching between them. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A"
+    },
+    "anime_ll_paizuri": {
+      "label": "Anime - LL paizuri (tongue stays under the glans)",
+      "workflow": "wf_h3vid_i2v_lora2.json",
+      "lora": "h3nsfw/Titjob-Titfuck-H3.safetensors",
+      "strength": 0.6,
+      "width": 768,
+      "height": 1152,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera, bright even lighting, flat clean colours and no film grain. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, leans over the viewer and presses her large breasts together around his erect cock, sliding them up and down the shaft in slow heavy strokes. On each up stroke the glans pushes out of the top of her cleavage and she licks the underside of the tip from below - her tongue stays under the shaft and never covers or crosses in front of the glans; the glans is always in front of her tongue. The breasts drag and catch on the shaft, the flesh squashes and jiggles, there is a small hitch at the top of each stroke; her shoulders and upper body work with the motion and her braid swings. She looks up into the camera, half-lidded, flushed, a sweat sheen on her chest. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: soft skin friction, a muffled wet squish at the top of each stroke, her breath, one low male grunt at about two seconds. No mouth sounds, no chewing, no crunch, no slurping.\n\nnon_diegetic_music: N/A"
+    },
+    "anime_ll_suction": {
+      "label": "Anime - LL suction blowjob POV (best blowjob POV so far)",
+      "workflow": "wf_h3vid_i2v_lora2.json",
+      "lora": "h3nsfw/MM-H3-Blwjob-v3.safetensors",
+      "strength": 0.65,
+      "width": 768,
+      "height": 1152,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock already deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. She slides her mouth up until only the head stays between her lips, then down again until her nose is close to his body, a steady deep rhythm, her cheeks hollow on every down stroke, a small swallow at the bottom. Saliva gathers at the corners of her mouth and a thin thread runs down her chin. Her eyes lift to the camera between strokes, half-lidded, flushed. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a soft suction hush as her mouth slides down the shaft, a quiet swallow at the bottom, a light suction pop as she pulls up, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A"
+    },
+    "anime_ll_cumshot_twitch": {
+      "label": "Anime - LL cum shot + one-kick twitch (test recipe)",
+      "workflow": "wf_h3vid_i2v_lora2.json",
+      "lora": "h3nsfw/epic_cumshots.safetensors",
+      "strength": 0.55,
+      "width": 768,
+      "height": 1152,
+      "length": 81,
+      "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs, holding his erect cock upright with one hand an inch below her open mouth, her tongue out, her eyes on the camera. His cock pulses three times and no more. On each pulse the whole shaft gives one sharp short upward kick of about ten degrees and then holds still; between pulses the shaft is perfectly still - it does not bounce, sway or vibrate. The veins swell and throb with each pulse and the glans jumps once and settles. Three kicks total, one per spurt, and no other cock motion. Each pulse sends one single thin white rope of semen straight up out of the slit at the tip. The first rope lands high on her cheek and stays; the second lands on her tongue and lower lip and stays; the third lands on her chin and drips down her jaw. The ropes are thin and short; each one ends where it hits and does not lie across her face. She flinches hard at each pulse, her eyes squeeze shut, then she opens them and looks into the camera, half-lidded, flushed, her tongue still out. The camera shakes slightly with her.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: three thin wet spurts about a second apart, each landing with a small wet tap, one low male groan, her breath catching between them. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A"
+    },
+    "anime_ll_suction_perf": {
+      "label": "Anime - LL suction blowjob POV + performance (eyes, expression, purse)",
+      "workflow": "wf_h3vid_i2v_lora2.json",
+      "lora": "h3nsfw/MM-H3-Blwjob-v3.safetensors",
+      "strength": 0.65,
+      "width": 768,
+      "height": 1152,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. She slides her mouth up until only the head stays between her lips, purses her lips tight around it and sucks with a small wet pop, then slides down again until her nose is close to his body, a steady deep rhythm. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a soft suction hush as her mouth slides down the shaft, a wet mouth-purse and a small pop as she pulls up, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A"
     }
   }
 }

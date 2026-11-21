@@ -146,3 +146,150 @@ unstable and not a good anime style. Treat that route as closed unless the style
 The model audio is a scratch track: the strokes crunch, the slurp sounds like noodles, and the
 events are not synced to the action. Do not present a clip as finished on the strength of its
 sound; the findings and the next routes are in docs/SOUND.md.
+
+## Anime recreations of the photoreal shots (2026-11-21 session 6)
+
+Goal: the three photoreal signatures, re-drawn in anime - the owner's `seed 824704499` cum-first
+POV blowjob, the `seed 2042927734` paizuri, and the `k14` cum-shot poses - with the public anime
+still (`gallery/studio/img_00006_.png`) as the face/cock/pose baseline and the Gemini art study
+(`ART-STUDY.md`) as the proportion source.
+
+**The generic face was a prompt problem, not a model problem.** The first anime pass (`a01`) used
+`year 2016, anime screenshot, @murota yuuhei` but no face details; the owner called it generic.
+The fix came from the Love Live Studio research (`../lovelive-studio/docs/guide/index.html` and
+`kit/presets.json`):
+
+- the designer tag `@murota yuuhei` + `year 2016` + `anime screenshot` carries the look;
+- the **signature trick**: the show name `love live! sunshine!!` is in the prompt only for the
+  last 30% of the steps (`ConditioningSetTimestepRange` 0.0-0.7 early, 0.7-1.0 late,
+  `ConditioningCombine`). Without it the name turns her into a canon character; with it she gets
+  the round eyes and blush while staying ours. `workflows/wf_anima2_sig.json` does this, and
+  `kit/studio/core.py` builds the late prompt from the filled prompt for templates that set
+  `"late": "signature"` (eye colour gets `:1.3`);
+- **face features** that a character designer would use: `jitome, mole under eye, fang, ahoge,
+  hair intakes`. Two or three of them are what stop the generic AI face;
+- a **second artist tag** blends a new look: `@fuzichoco` (pale, painted) and `@kantoku` (soft,
+  detailed) were the owner's picks, `@ikeda kazumi` decent; `@as109` and `@mizuryu kei` did
+  nothing useful. The 90s blend (`year 1995`, retro tags) was rejected: "too slop today because
+  it's been over-saturated by AI gens".
+
+The e-girl translated to anime read as generic and was dropped; the Love Live girl won. The best
+paizuri still so far is `gens/a05/e2_sig_paizuri_00001_.png` (signature style); `e2_fz` and
+`e2_kt` are close.
+
+**Poses that work as stills** (all 832x1248, 30 steps, cfg 4, er_sde/simple):
+POV cock-out (`a04`), paizuri (`a05`), wide gap (`a05`), suction deepthroat (`a09`),
+cum-on-tongue (`a09`). The owner wants the deepthroat **suction/hollow-cheek** look, not puffed
+cheeks: `(cheeks hollow:1.4), (sunken cheeks:1.3), (cheek sucking:1.2)` with `puffed cheeks,
+bulging cheeks, cheek bulge, throat bulge` in the negative.
+
+**Templates**: `kit/presets.json` now has `anime_ll_{fz,kt,sig,ikeda}_pov`,
+`anime_ll_{fz,kt,sig}_paizuri`, `anime_ll_fz_wide` and `anime_ll_fz_cum`, all on
+`wf_anima2_sig.json`; characters `ll_sig` and `ll_soft` carry two face sets. The page must be
+restarted once to load the `late` support in `core.py`.
+
+### End-frame route (failed - do not repeat)
+
+To force a deep stroke or a landed cum state we tried to author the last frame, then run H3
+first+last:
+
+- Qwen-Image-2.1 single-image edit: the deepthroat became a mouth artifact with the cock still at
+  her lips; the cum became a web of strands across her nose. Owner: "it just degrades the image
+  and makes it less clean without giving a good edit."
+- Pink img2img with the signature workflow (`wf_anima_i2i_sig.json`, denoise 0.5-0.65): the
+  deepthroat kept the cock outside the mouth; the cum became drool down the shaft.
+- Pink t2i end frames: the deepthroat still was decent but puffed-cheeked; the cum still drew
+  strands across the face from the `cum on face`/`cum on nose` wording.
+
+Reword a landed still with `cum on cheek, cum on tongue, cum on lips, thick white semen, cum
+drip, semen pooling on her tongue` and put `cum on face, cum on nose, cum string, strand across
+face, web` in the negative; that removed the face web but a mouth-to-chest drip string remains.
+For the video, the only route left is the model's own emission with a trajectory prompt.
+
+### The clip defects to beat (owner, 2026-11-21)
+
+- The first anime clips are **rigid** and unnaturally smooth next to the photoreal ones; the
+  face barely moves.
+- Paizuri at `Titjob-Titfuck-H3` 0.85: the motion idea is right, but it goes **dark and grainy**
+  after the first frames and the cock/tongue overlap badly. Try 0.6 and the motion booster.
+- `k14`: better, but the ropes are too thick and the cum pools **around** the mouth. The owner
+  wants thinner ropes that travel **across her face** or **into her mouth**, plus some **below
+  and dripping**.
+- Sound: see SOUND.md; the new wordings were tested this session.
+
+### New video route under test (a10)
+
+`workflows/wf_h3vid_i2v_lora2.json` chains an act LoRA and `H3_Motion_BoosterV2` (node 22), so the
+clip can get both the act and more motion. Jobs `jobs/a10_clips.jsonl`:
+
+- `k1_anime_k14_ropes`: epic_cumshots 0.5 + motion 0.5, thin-rope trajectory prompt (first rope
+  across the cheek/nose, second into the mouth, third below the lip and dripping), strong flinch
+  and camera shake; the negative idea "the ropes travel, they do not pool" is written positively.
+- `k2_anime_paizuri`: Titjob 0.6 + motion 0.4, bright even light, "the breasts drag and catch on
+  the shaft, the flesh squashes, a small hitch at the top of each stroke".
+- `k3_anime_deepthroat`: first+last (`wf_h3vid_i2v_fl.json`) from the cock-out still to the
+  suction deepthroat still, so the insertion is forced; hollow cheeks in both still and prompt.
+
+Judge at 1:1 for the cum and with `tools/vsheet.py --frames 8` for the motion.
+
+### Results of the a10-a17 clips (owner, live review)
+
+- **Best blowjob POV so far: `gens/a13/k4_anime_suction_00001_.mp4`.** Owner: "pretty solid ...
+  save as our best blowjob POV yet." It starts from `j2_suction_seal_a` (hollow cheeks), 124 f,
+  `MM-H3-Blwjob-v3` 0.65 + motion 0.5. It is still too static; the next pass should add more
+  dynamics/bounce, more saliva (a strand from her lips to the shaft, a drip from the chin),
+  **locking eyes with the camera**, a **slight change in expression** (eyebrows lift, lashes
+  flutter, blush deepens) and a **mouth-pursing suction pop** on the pull-up. `jobs/a19` is that
+  performance pass. Video template `anime_ll_suction`.
+- **Paizuri: `gens/a11/k2_anime_paizuri_00001_.mp4`** is "better than anything we did before"
+  (Titjob 0.6 + motion 0.4, bright prompt fixed the dark/grainy drift of the 0.85 pass). The one
+  defect is the tongue drawn in front of the glans; `k7` changes it to "her tongue stays under
+  the shaft and never covers the glans". Video template `anime_ll_paizuri`.
+- **k14 cum: dynamics are getting lifelike** with the motion booster, and the first rope lands
+  and stays. Two recurring defects: the shaft barely twitches and the veins barely swell, and the
+  rope reads as a line **over her face** that lands lower. `k6` adds a springy sideways kick,
+  throbbing veins, a hip jerk and "the rope ends where it hits, it does not lie across her face".
+- **The FL deepthroat (`k3`) failed**: the first still and the t2i end frame had different
+  framing and identity, so the clip morphed into a washed-out face instead of a clean insertion.
+  Do not combine two independently rolled stills as first+last; the pair must share the framing.
+- **Side-gap route (`a16`)**: a side-view keyframe with the cock upright an **inch in front of
+  her face and a visible gap** renders reliably (`m1_side_gap_a/b`). `k8` is the side-view cum
+  shot at 1152x768, where the ropes have a real gap to cross and can land on the cheek, the
+  tongue and the chin without a rope lying over the face.
+- Audio levels: `k1` -27.4 dBFS, `k2` -30.9, `k4` -42.7; no clipping on those. The k4 clip is
+  quiet by ear too. The "loud and present" wording helps sometimes, not monotonically.
+
+Templates added or updated after this round: 12 image templates (`anime_ll_*`, plus the side
+view), 3 video templates (`anime_ll_cumshot`, `anime_ll_paizuri`, `anime_ll_suction`), and the
+characters `ll_sig` / `ll_soft`. The page also keeps a template's own workflow now (`VWF` in
+`kit/studio/index.html`), so the `lora2` motion-booster workflow is not silently replaced by the
+plain LoRA one.
+
+### Twitch and tongue: what was tried after that verdict
+
+- `k6` (twitch wording, epic 0.6, motion 0.5): owner - "the dick now looks like a spring and
+  constantly bounces". The words `springy`, `dampened bounce`, `jerk` over-corrected; motion
+  dropped from 4.8 to 3.2. A continuously bouncing shaft is worse than a still one.
+- `t1_kick_once` and `t2_veins_only` (81 f) are the controlled recipes: t1 = one sharp ~10 degree
+  kick per pulse and *perfectly still between pulses*; t2 = the shaft does not move at all, only
+  the veins swell and the glans twitches. Owner on t1: "way better but a bit too extreme
+  expansion when twitching ... a slight side bob instead of too much expansion". t2 did not
+  remove the rope-from-above; it stayed static.
+- `t3_gemini_timing` (the Gemini cadence: slit flares, 0.8 s then 1.0 s then 1.2 s between
+  spurts, 10 degree snap in two frames, hold, dampened bob, still between) still drew the rope
+  from above and did not show a readable twitch. `t4_side_bob` (sideways bob, explicit "the cock
+  does not expand or change size") went the other way and became static (motion 1.9). The twitch
+  is still open; if it cannot be made natural, ship the still-shaft version (k1/k5) and drop it.
+- Paizuri tongue: the k7 wording ("her tongue stays under the shaft and never covers the glans")
+  changed nothing. The tongue is baked into the keyframe (`tongue out touching the glans`), so the
+  fix is structural - a keyframe with the tongue away from the tip, or no licking action - not
+  more prompt words.
+- Side-view cum (`k8`, 1152x768 from `m1_side_gap_b`): the gap renders, but the epic LoRA did
+  **not** emit at all and motion was 1.9, so the clip is static. The side keyframe is solid for a
+  blowjob; it is not a cum-shot keyframe on this recipe. Keep it for the side-view pose template.
+- `k9_anime_suction_perf` is the k4 performance pass: locking eyes with the camera, a slight
+  expression change (eyebrows, lashes, blush), a mouth-pursing suction pop, and more saliva.
+  Video template `anime_ll_suction_perf`.
+- Video templates now carry both cum flavours: `anime_ll_cumshot` (k5: thin ropes, all three
+  land, no twitch) and `anime_ll_cumshot_twitch` (t1: one kick and still between, the closest
+  twitch so far, but the shaft expands). Neither is finished.

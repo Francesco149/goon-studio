@@ -158,7 +158,7 @@ def main():
             params[k] = v
         if a.box == "local" and os.name == "nt":
             # Windows ComfyUI lists LoRAs with backslashes; the jobs keep the portable form.
-            for k in ("lora", "nsfw_lora"):
+            for k in ("lora", "nsfw_lora", "motion_lora"):
                 if isinstance(params.get(k), str):
                     params[k] = params[k].replace("/", "\\")
         prompt = subst(wf, params, name)
