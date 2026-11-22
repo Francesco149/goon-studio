@@ -269,9 +269,9 @@ drawn as a frame connecting them; name one area and say "uneven".
 - `os3_hard` (a93d, `hb` keyframe, seed 93001): the new wording, still three pulses, the first two
   fire harder. Everything lands in one area - a splash up one cheek that runs down in two drips,
   plus a pile on her tongue; the upper-lip band of `hb_oneside` is gone. Concentrated rather than
-  bigger. Pending the owner's pacing verdict.
+  bigger. **Owner: a93d are the best anime cum shots so far** - template `anime_ll_cumshot_hard`.
 - `fz_os` (a93d, fuzichoco keyframe, seed 93102): the new wording carries to the other keyframe -
-  one-sided, on her cheek by the mole, upper lip and tongue, no frame. Pending the owner.
+  one-sided, on her cheek by the mole, upper lip and tongue, no frame. Owner: among the best so far.
 
 What this round established:
 

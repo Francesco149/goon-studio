@@ -41,7 +41,7 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    (`hb_oneside`, a93b) is "the most natural one yet" and is now `anime_ll_cumshot` (old prompt:
    `anime_ll_cumshot_t4`). Bigger loads: more pulses is wrong (unnatural pacing, regular
    patterns, a93c) - keep three pulses, never thicker ropes; the open lead is force only
-   (`os3_hard`, a93d) and the new wording on other keyframes (`fz_os`), both awaiting verdicts.
+   (`os3_hard`, a93d, now `anime_ll_cumshot_hard`) and the new wording on other keyframes (`fz_os`) - owner: a93d are the best anime cum shots so far.
    Still unjudged: `ph_phys` and the anime cum switch pair (`asw_*`). The meter `tools/rounds/cum_mass.py` finds frames, it does not judge.
 2. **A convincing facial variant** (owner asked for it after the dynamics work): the photoreal
    facial pose is `egirl_facial` (owner-approved pose); the clip side needs the cum work above.
