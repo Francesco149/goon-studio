@@ -816,7 +816,8 @@
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style. POV from above: a young adult woman with short silver hair and purple eyes kneels between the viewer's legs, her large breasts on either side of an erect penis, her lips sealed around the head. She bobs her head up and down the shaft in a steady rhythm, her breasts bouncing with the motion, her braid swinging, her eyes lifting to the camera between strokes. Saliva gathers at the corner of her mouth. The camera shakes very slightly with her motion.\n\noverall_soundscape: wet suction, soft pops, her breath, a low male grunt, quiet room tone. No music.\n\nnon_diegetic_music: N/A",
       "width": 768,
       "height": 1152,
-      "length": 124
+      "length": 124,
+      "anime_timing": "on2"
     },
     "anime_ll_cumshot": {
       "label": "Anime - LL cum shot - most natural (a93b hb_oneside: uneven one-side landing)",
@@ -828,7 +829,8 @@
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs, holding his erect cock upright with one hand an inch below her open mouth, her tongue out, her eyes on the camera. His cock pulses three times and no more. On each pulse the shaft gives one small sideways bob - it sways slightly to one side and back, with a slight upward nod - and then holds still. Between pulses the shaft is still. The cock does not expand, grow, stretch or change size: its thickness stays exactly the same. Only the veins swell a little and the glans twitches once with each pulse. Three small bobs, one per spurt, and no continuous bouncing. Each pulse sends one single thin white rope of semen straight up out of the slit at the tip. The ropes land one after another in roughly the same place, a little to one side of her mouth, unevenly: the first across her lips and up onto one cheek, the second shorter onto her tongue, the third only a small dribble onto her lower lip. They do not sweep from side to side and they do not make a symmetrical pattern; each one ends where it hits and stays, and the white on her face is uneven and lopsided. She flinches at each spurt, her eyes squeeze shut for a moment, then she opens them and looks into the camera, half-lidded, flushed, her tongue still out. The camera shakes slightly with her.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: three thin wet spurts about a second apart, each landing with a small wet tap, one low male groan on the second, her breath catching between them. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
       "motion_strength": 0.4,
-      "about": "Round a93b (owner: the most natural one yet). Keyframe gens/a30/n1_handjob_b_00001_.png, seed 93001. The t4 landing plan (cheek, tongue, chin) drew a symmetric mask; this one lands the ropes unevenly in one place. Old prompt: anime_ll_cumshot_t4."
+      "about": "Round a93b (owner: the most natural one yet). Keyframe gens/a30/n1_handjob_b_00001_.png, seed 93001. The t4 landing plan (cheek, tongue, chin) drew a symmetric mask; this one lands the ropes unevenly in one place. Old prompt: anime_ll_cumshot_t4.",
+      "anime_timing": "on2"
     },
     "anime_ll_cumshot_hard": {
       "label": "Anime - LL cum shot - harder (a93d os3_hard: first two pulses harder, all in one area)",
@@ -840,7 +842,8 @@
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs, holding his erect cock upright with one hand an inch below her open mouth, her tongue out, her eyes on the camera. His cock pulses three times and no more. On each pulse the shaft gives one small sideways bob - it sways slightly to one side and back, with a slight upward nod - and then holds still. Between pulses the shaft is still. The cock does not expand, grow, stretch or change size: its thickness stays exactly the same. Only the veins swell a little and the glans twitches once with each pulse. Three small bobs, one per spurt, and no continuous bouncing. Each pulse sends one single thin white rope of semen straight up out of the slit at the tip. The ropes land one after another in roughly the same place, a little to one side of her mouth, unevenly: the first fires hard and lands across her lips and high up onto one cheek, the second also hard and a little shorter, onto her tongue and the same cheek, the third only a small dribble onto her lower lip. The ropes stay thin; only the first two hit harder. They do not sweep from side to side and they do not make a symmetrical pattern; each one ends where it hits and stays, and the white on her face is uneven and lopsided. She flinches at each spurt, her eyes squeeze shut for a moment, then she opens them and looks into the camera, half-lidded, flushed, her tongue still out. The camera shakes slightly with her.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: three thin wet spurts about a second apart, each landing with a small wet tap, one low male groan on the second, her breath catching between them. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
       "motion_strength": 0.4,
-      "about": "Round a93d (owner: a93d are the best anime cum shots so far). anime_ll_cumshot with the first two of three pulses firing harder; ropes stay thin. Keyframe gens/a30/n1_handjob_b_00001_.png, seed 93001."
+      "about": "Round a93d (owner: a93d are the best anime cum shots so far). anime_ll_cumshot with the first two of three pulses firing harder; ropes stay thin. Keyframe gens/a30/n1_handjob_b_00001_.png, seed 93001.",
+      "anime_timing": "on2"
     },
     "anime_ll_cumshot_t4": {
       "label": "Anime - LL cum shot - t4 (old: cheek/tongue/chin, can draw a symmetric mask)",
@@ -851,7 +854,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs, holding his erect cock upright with one hand an inch below her open mouth, her tongue out, her eyes on the camera. His cock pulses three times and no more. On each pulse the shaft gives one small sideways bob - it sways slightly to one side and back, with a slight upward nod - and then holds still. Between pulses the shaft is still. The cock does not expand, grow, stretch or change size: its thickness stays exactly the same. Only the veins swell a little and the glans twitches once with each pulse. Three small bobs, one per spurt, and no continuous bouncing. Each pulse sends one single thin white rope of semen straight up out of the slit at the tip. The first rope lands high on her cheek and stays; the second lands on her tongue and lower lip and stays; the third lands on her chin and drips down her jaw. The ropes are thin and short; each one ends where it hits and does not lie across her face. She flinches at each spurt, her eyes squeeze shut for a moment, then she opens them and looks into the camera, half-lidded, flushed, her tongue still out. The camera shakes slightly with her.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: three thin wet spurts about a second apart, each landing with a small wet tap, one low male groan on the second, her breath catching between them. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.4
+      "motion_strength": 0.4,
+      "anime_timing": "on2"
     },
     "anime_ll_paizuri": {
       "label": "Anime - LL paizuri, no tongue (a92; owner: solid, right penis type)",
@@ -863,7 +867,8 @@
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera, bright even lighting, flat clean colours and no film grain. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, leans over the viewer and presses her large breasts together around his erect cock, sliding them up and down the shaft in slow heavy strokes. On each up stroke the glans pushes out of the top of her cleavage just below her chin; she watches it with her lips closed and a small teasing smile, her tongue stays in her mouth. The breasts drag and catch on the shaft, the flesh squashes and jiggles, there is a small hitch at the top of each stroke; her shoulders and upper body work with the motion and her braid swings. She looks up into the camera, half-lidded, flushed, a sweat sheen on her chest. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: soft skin friction, a muffled wet squish at the top of each stroke, her breath, one low male grunt at about two seconds. No mouth sounds, no chewing, no crunch, no slurping.\n\nnon_diegetic_music: N/A",
       "motion_strength": 0.4,
-      "about": "Keyframe: the anime_ll_fz_paizuri_notongue still (seed 86012 was the clean one). Open: no saliva yet."
+      "about": "Keyframe: the anime_ll_fz_paizuri_notongue still (seed 86012 was the clean one). Open: no saliva yet.",
+      "anime_timing": "on2"
     },
     "anime_ll_suction": {
       "label": "Anime - LL suction blowjob POV - base recipe (best blowjob)",
@@ -874,7 +879,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. She slides her mouth up until only the head stays between her lips, purses her lips tight around it and sucks with a small wet pop, then slides down again until her nose is close to his body, a steady deep rhythm. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a soft suction hush as her mouth slides down the shaft, a wet mouth-purse and a small pop as she pulls up, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     },
     "anime_ll_cumshot_twitch": {
       "label": "Anime - LL cum shot - one-kick twitch (t1)",
@@ -885,7 +891,8 @@
       "height": 1152,
       "length": 81,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs, holding his erect cock upright with one hand an inch below her open mouth, her tongue out, her eyes on the camera. His cock pulses three times and no more. On each pulse the whole shaft gives one sharp short upward kick of about ten degrees and then holds still; between pulses the shaft is perfectly still - it does not bounce, sway or vibrate. The veins swell and throb with each pulse and the glans jumps once and settles. Three kicks total, one per spurt, and no other cock motion. Each pulse sends one single thin white rope of semen straight up out of the slit at the tip. The first rope lands high on her cheek and stays; the second lands on her tongue and lower lip and stays; the third lands on her chin and drips down her jaw. The ropes are thin and short; each one ends where it hits and does not lie across her face. She flinches hard at each pulse, her eyes squeeze shut, then she opens them and looks into the camera, half-lidded, flushed, her tongue still out. The camera shakes slightly with her.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: three thin wet spurts about a second apart, each landing with a small wet tap, one low male groan, her breath catching between them. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.4
+      "motion_strength": 0.4,
+      "anime_timing": "on2"
     },
     "anime_ll_suction_orig": {
       "label": "Anime - LL suction blowjob POV - original k4 (still shaft)",
@@ -896,7 +903,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock already deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. She slides her mouth up until only the head stays between her lips, then down again until her nose is close to his body, a steady deep rhythm, her cheeks hollow on every down stroke, a small swallow at the bottom. Saliva gathers at the corners of her mouth and a thin thread runs down her chin. Her eyes lift to the camera between strokes, half-lidded, flushed. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a soft suction hush as her mouth slides down the shaft, a quiet swallow at the bottom, a light suction pop as she pulls up, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     },
     "anime_ll_slow": {
       "label": "Anime - LL blowjob - slow strokes",
@@ -907,7 +915,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. She moves slowly: a long slow slide up until only the head stays between her lips, a held pause, then a slow slide down until her nose is close to his body; a slow, deep, deliberate rhythm, no fast bobbing. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a soft suction hush as her mouth slides down the shaft, a wet mouth-purse and a small pop as she pulls up, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     },
     "anime_ll_deepthroat": {
       "label": "Anime - LL blowjob - deepthroat hold",
@@ -918,7 +927,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. She slides down until her nose presses against his body, her lips at the base, and holds it deep while her throat works with a swallow; then she pulls back up slowly until only the head stays between her lips and goes down again. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a soft suction hush as her mouth slides down the shaft, a wet mouth-purse and a small pop as she pulls up, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     },
     "anime_ll_headgrab": {
       "label": "Anime - LL head grab: pushes her down, holds her still, she pushes back",
@@ -929,7 +939,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. His hand grabs the back of her head and pushes her down until her nose presses against his body. He holds her there, perfectly still, while she sucks; she braces her hands on his thighs and briefly tries to push back up against his hand, her shoulders tensing, but he keeps her down. Then he releases and she pulls back up until only the head stays between her lips, gasping through her nose. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, and her lips stay sealed around the shaft. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a wet muffled gag when he holds her deep, her muffled breath through her nose, the sound of his hand in her hair, a small pop as she pulls up, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     },
     "anime_ll_cumshot_soft": {
       "label": "Anime - LL cum shot - dialled-down t5",
@@ -940,7 +951,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs, holding his erect cock upright with one hand an inch below her open mouth, her tongue out, her eyes on the camera. His cock pulses three times and no more. On each pulse the shaft gives one very small sideways sway - it drifts slightly to one side and back, with a tiny upward nod - and then holds still. Between pulses the shaft is still. The cock does not expand, grow, stretch or change size: its thickness stays exactly the same. Only the veins swell faintly and the glans twitches once with each pulse. Three tiny sways, one per spurt, and no continuous bouncing. Each pulse sends one single thin white rope of semen straight up out of the slit at the tip. The first rope lands high on her cheek and stays; the second lands on her tongue and lower lip and stays; the third lands on her chin and drips down her jaw. The ropes are thin and short; each one ends where it hits and does not lie across her face. She flinches at each spurt, her eyes squeeze shut for a moment, then she opens them and looks into the camera, half-lidded, flushed, her tongue still out. The camera shakes slightly with her.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: three thin wet spurts about a second apart, each landing with a small wet tap, one low male groan on the second, her breath catching between them. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.35
+      "motion_strength": 0.35,
+      "anime_timing": "on2"
     },
     "anime_ll_two_hands": {
       "label": "Anime - LL blowjob - both hands on her head",
@@ -951,7 +963,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. Both of his hands come into frame, one on each side of her head, his fingers in her hair; he guides her up and down with both hands, then holds her deep with both hands, his thumbs on her temples, and lets her suck. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, and her lips stay sealed around the shaft, no smile, no open mouth. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a wet suction hush as her mouth slides down the shaft, both hands in her hair, a small pop as she pulls up, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     },
     "anime_ll_tip_tease": {
       "label": "Anime - LL blowjob - tip tease then take it deep (GOLDEN batch a26, k13)",
@@ -962,7 +975,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs and holds his cock upright with one hand, the tip an inch below her open mouth, her tongue out, her eyes on the camera. She licks the tip, kisses the glans, takes just the head between her lips and pulls off with a wet pop, teasing the slit with her tongue; then she opens wide and slides her mouth all the way down until her nose presses against his body, holds it deep, and looks up into the camera. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a soft suction hush as her mouth slides down the shaft, a wet mouth-purse and a small pop as she pulls up, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     },
     "anime_ll_headgrab_push": {
       "label": "Anime - LL head grab, pushes her down (GOLDEN batch a26, k11)",
@@ -974,7 +988,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. His hand grabs the back of her head and pushes her down; she takes him deeper until her nose presses against his body and holds it, her throat working. He pushes once more, holds her there for a beat, then releases and she pulls back up until only the head stays between her lips. He pushes her down again, harder, and holds her deep. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a wet suction hush as her mouth is pushed down the shaft, a muffled gag and a swallow when she is held deep, a small pop as she pulls up, his hand in her hair, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "about": "Golden batch a26 (owner: the gold standard for dynamics, poses and expressions). Keyframe: gens/a11/j2_suction_seal_a_00001_.png"
+      "about": "Golden batch a26 (owner: the gold standard for dynamics, poses and expressions). Keyframe: gens/a11/j2_suction_seal_a_00001_.png",
+      "anime_timing": "on2"
     },
     "anime_ll_two_hands_a26": {
       "label": "Anime - LL both hands on her head (GOLDEN batch a26, k12; fangs can pop at the end)",
@@ -986,7 +1001,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs with his cock deep in her mouth, her lips sealed around the shaft and her cheeks hollow and sucked in. Both of his hands come into frame, one on each side of her head, his fingers in her hair; he guides her up and down with both hands, then holds her deep with both hands, his thumbs on her temples, and lets her suck. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft; the suction makes a soft wet hush. Saliva gathers at the corners of her mouth and a thin thread runs from her lips to the shaft and down her chin. She looks up and locks eyes with the camera, holding the gaze; her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. Her breasts press against his thighs, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a wet suction hush as her mouth slides down the shaft, both hands in her hair, a small pop as she pulls up, a quiet swallow at the bottom, her nose breathing, one low short male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "about": "Golden batch a26 (owner: the gold standard for dynamics, poses and expressions). Keyframe: gens/a11/j2_suction_seal_a_00001_.png"
+      "about": "Golden batch a26 (owner: the gold standard for dynamics, poses and expressions). Keyframe: gens/a11/j2_suction_seal_a_00001_.png",
+      "anime_timing": "on2"
     },
     "anime_ll_cum_switch_a26": {
       "label": "Anime - LL stroke, shoot, take it in (GOLDEN batch a26, k14)",
@@ -998,7 +1014,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs and strokes his erect cock with her hand, slow and tight, her eyes on the camera, her mouth open. He starts to cum: the shaft jerks and the first spurt starts, and the moment it starts she takes the head into her mouth and holds it there, her lips sealed around the glans, as the cock twitches and pulses in her mouth. She keeps it in her mouth, her cheeks hollow, swallowing, her eyes locked on the camera; a little semen escapes at the corner of her lips and runs down her chin. She holds him in her mouth until the twitching stops, then slowly pulls off with a milky thread. Her breasts press against his thighs, her shoulders work, her braid swings. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a wet hand sliding on skin, a wet spurt and a muffled swallow as she takes him in her mouth, the soft wet pulses of the cock in her mouth, her breath through her nose, one low male groan. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
-      "about": "Golden batch a26 (owner: the gold standard for dynamics, poses and expressions). Keyframe: gens/a04/e1_fuzichoco_cockout_00001_.png"
+      "about": "Golden batch a26 (owner: the gold standard for dynamics, poses and expressions). Keyframe: gens/a04/e1_fuzichoco_cockout_00001_.png",
+      "anime_timing": "on2"
     },
     "anime_ll_cum_switch": {
       "label": "Anime - LL cum switch - side (k21: solid except the take-in)",
@@ -1009,7 +1026,8 @@
       "height": 768,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. Side view, profile: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels leaning forward and strokes his erect cock with her hand, her eyes locked on the camera. The cock pulses once and one short thick rope of semen shoots straight forward out of the tip, across the gap, into her open mouth and onto her lips - it goes forward, not sideways. The moment it lands she closes her lips around the head and sucks: her cheeks hollow and pull in, her lips purse around the shaft, her head gives two small sucking bobs, a swallow, and a little semen escapes at the corner of her lips and runs down her chin. She keeps sucking until the twitching stops, then slowly pulls off with a milky thread. Her breasts press against the bed, her braid swings, her shoulders work. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a wet hand sliding on skin, a soft wet spurt forward, a muffled swallow, a wet suction as she sucks the head, her breath through her nose, one low male groan. No chewing, no crunch, no slurp, no clicks.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     },
     "anime_ll_cum_switch_front": {
       "label": "Anime - LL cum switch - front, shoot then take it in (good)",
@@ -1020,7 +1038,8 @@
       "height": 1152,
       "length": 124,
       "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs and strokes his erect cock with her hand, slow and tight, her eyes locked on the camera. He starts to cum: the shaft kicks once and one short thick rope of semen shoots from the tip, over her hand and onto her cheek and lips. The moment it starts she takes the head into her mouth and holds it there, her lips sealed around the glans, her eyes never leaving the camera, as the cock twitches and pulses in her mouth. She keeps it in her mouth, swallowing, her cheeks hollow; a little semen escapes at the corner of her lips and runs down her chin. She holds him in her mouth until the twitching stops, then slowly pulls off with a milky thread. Her breasts press against his thighs, her shoulders work, her braid swings. The camera shakes very slightly with her motion.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a bedroom room tone, no music and no speech: a wet hand sliding on skin, a soft wet spurt, a muffled swallow as she takes him in her mouth, the soft wet pulses of the cock in her mouth, her breath through her nose, one low male groan. No chewing, no crunch, no slurp, no clicks.\n\nnon_diegetic_music: N/A",
-      "motion_strength": 0.5
+      "motion_strength": 0.5,
+      "anime_timing": "on2"
     }
   },
   "cocks": {

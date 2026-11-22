@@ -189,7 +189,7 @@ def build_fields(job):
         if "strength" in t:
             fields["nsfw_strength"] = t["strength"]
     for k, v in job.items():
-        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock"):
+        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing"):
             fields[k] = v
     fields["prompt"] = build_prompt(job)
     late = t.get("late")
@@ -371,12 +371,25 @@ def run(job, by="me", on_queued=None, on_note=None):
     hist = wait(pid, s)
     dest = os.path.join(s.get("data_dir", GALLERY), job.get("round") or "studio")
     files = pull(hist, dest)
+    # anime timing (docs/ANIME-TIMING.md): re-time a finished clip to hand-drawn cadence; the job's
+    # choice wins, else the template's default; the untouched clip stays next to it as <name>-raw
+    timing = job["anime_timing"] if "anime_timing" in job else t.get("anime_timing")
+    if timing and timing != "off":
+        try:
+            import anime_timing
+            for p in files:
+                anime_timing.apply_mode(p, timing)
+        except ImportError as e:
+            timing = "skipped (%s)" % e
+            if on_note:
+                on_note("anime timing skipped: this Python has no PyAV/numpy (%s)" % e, plan)
     rec = {"time": time.strftime("%Y-%m-%dT%H:%M:%S"), "by": by, "workflow": wf,
            "template": job.get("template"), "prompt": fields.get("prompt"), "negative": fields.get("negative"),
            "seed": fields.get("seed"), "width": fields.get("width"), "height": fields.get("height"),
            "steps": fields.get("steps"), "length": fields.get("length"),
            # the job as sent, so the page can "use these settings", remake in final quality, chain
            "job": {k: v for k, v in job.items() if k not in ("count",)},
+           "anime_timing": timing or "off",
            "memory": plan["profile"], "secs": round(time.time() - t0, 1), "files": [os.path.relpath(p, s.get("data_dir", GALLERY)).replace("\\", "/") for p in files]}
     append_jsonl(HIST if by != "me" else PHIST, rec)
     return rec

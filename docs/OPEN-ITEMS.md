@@ -58,6 +58,11 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    smooth motion compared with a hand-animated h-anime. Not bad, a different style. Future:
    prompt H3 for a more anime-like animation (held frames, limited animation, smears/impact
    frames, "animated on twos") as another style template.
+   **Round a95 (`docs/ANIME-TIMING.md`):** reference measured (slow strokes ~16 drawings/s on
+   2s/1s, 21-frame stroke; fast shots exact 14-frame loops on 1s). Wording does not change H3's
+   cadence; `kit/studio/anime_timing.py` re-times a clip (on 2s/3s, stoppers, sharpest frame, audio
+   kept). Owner: on 2s is the default (Video tab "Anime timing", on for every `anime_*` template).
+   Next: the other reference shots, and art styles/rendering typical of TV anime to go with it.
 6. Smaller:
    - photoreal veins come out as raised vine-like cords (inherited from the Krea + Verite keyframe);
    - HMPenis v2 is registered but untested (needs a Civitai login - the owner downloads it);

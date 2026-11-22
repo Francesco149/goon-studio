@@ -1,0 +1,2 @@
+{"name": "hook_pz_default", "template": "anime_ll_paizuri", "image": "gallery/a90/pz_key_notongue_s3_00001_.png", "seed": 93002, "width": 512, "height": 768, "length": 49, "_note": "template default (on2) through core.run"}
+{"name": "hook_pz_stop", "template": "anime_ll_paizuri", "image": "gallery/a90/pz_key_notongue_s3_00001_.png", "seed": 93002, "width": 512, "height": 768, "length": 49, "anime_timing": "on2_stop", "_note": "job override"}

@@ -154,6 +154,13 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <select id="vtpl"></select>
     <div id="vneeds"></div>
     <label class="h">Cock <small>(keep it the same as the keyframe's)</small></label><select id="vcock"></select>
+    <label class="h">Anime timing <small>(hand-drawn cadence instead of smooth live2d motion; the smooth clip is kept as -raw)</small></label>
+    <select id="vtiming">
+      <option value="off">off (smooth, as generated)</option>
+      <option value="on2">anime: on 2s</option>
+      <option value="on2_stop">anime: on 2s + holds at stroke ends</option>
+      <option value="on3_stop">anime: on 3s + holds (most limited)</option>
+    </select>
     <label class="h">Mode</label>
     <select id="vmode">
       <option value="i2v">image to video</option>
@@ -441,6 +448,7 @@ function fillVideo(){
   if(t.strength!=null)$("#vstrength").value=t.strength;
   const wf=t.workflow||"wf_h3vid_i2v.json";
   $("#vmode").value=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";
+  $("#vtiming").value=t.anime_timing||"off";
   if(t.width&&t.height&&t.length)setVsize(t.width,t.height,t.length);
   videoMode();
 }
@@ -468,7 +476,7 @@ $("#govideo").onclick=async()=>{
   const m=$("#vmode").value;
   if(!$("#vprompt").value.trim()){alert("Write the clip's script first.");return}
   const b={template:$("#vtpl").value,cock:$("#vcock").value,workflow:VWF||videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
-    width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value||1};
+    width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value||1,anime_timing:$("#vtiming").value};
   const seed=num("#vseed");if(seed!==undefined)b.seed=seed;
   if(m!=="t2v"){if(!SLOTS.v1){alert("Pick a keyframe first.");return}b.image=SLOTS.v1.path}
   if(m==="fl"){if(!SLOTS.v2){alert("First + last needs a last frame.");return}b.last=SLOTS.v2.path}
@@ -600,6 +608,7 @@ $("#lbReuse").onclick=()=>{const r=LBREC,j=r.job||{template:r.template};closeLb(
     const wf=j.workflow||"";$("#vmode").value=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";VWF=wf;
     if(j.nsfw_lora)$("#vlora").value=j.nsfw_lora;if(j.nsfw_strength!=null)$("#vstrength").value=j.nsfw_strength;
     slotFromPath("v1",j.image);slotFromPath("v2",j.last);slotFromPath("v3",j.image1);
+    $("#vtiming").value=j.anime_timing||((STATE.video_templates||{})[j.template]||{}).anime_timing||"off";
     if(j.width&&j.height&&j.length)setVsize(j.width,j.height,j.length);$("#vseed").value=r.seed??"";videoMode();return show("video")}
   if(j.template&&[...$("#template").options].some(o=>o.value===j.template)){$("#template").value=j.template;fillTemplate()}
   for(const k of ["character","scene","prompt","negative"])if(j[k]!=null)$("#"+k).value=j[k];
