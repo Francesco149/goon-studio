@@ -15,6 +15,7 @@ MODE: selfguide (pass-1 frames pinned as they are), repair (pass-1 frames repair
       script, + the repaired anchors pinned; repaired anchors from an earlier run are reused).
 A job key "ref" (path under data_dir) gives the picture the object is repaired toward, instead of the
 keyframe; the start frame is then repaired too (round a104: a better penis from another seed).
+"repair_prompt" replaces REPAIR (a104: a stricter one when the reference shows another pose).
 PICTURE is appended to the description for the Ref2VA modes: only reference slots reach the text
 encoder, AddGuide images do not (docs.comfy.org multiframe tutorial).
 Needs the engine's python (PyAV) for the frame extraction.
@@ -100,11 +101,12 @@ def main():
         # Picture 2 = what the object should look like: the job's "ref" picture (e.g. a better keyframe
         # from another seed), else the clip's own keyframe; core.run uploads it
         ref = job.pop("ref", None)
+        prompt = job.pop("repair_prompt", None) or REPAIR
         key = os.path.join(data, ref) if ref else job["image"]
         w, h = job.get("width", 768), job.get("height", 1152)
         fixed = []
         if ref:  # the clip must also start from the repaired object
-            job["image"] = run({"workflow": "wf_h3img_2ref.json", "image1": job["image"], "image2": key, "prompt": REPAIR,
+            job["image"] = run({"workflow": "wf_h3img_2ref.json", "image1": job["image"], "image2": key, "prompt": prompt,
                                 "width": w, "height": h, "seed": 98001, "round": rnd + "/anchors",
                                 "name": name + "_start_fix", "anime_timing": "off"})
         for p in anchors:
@@ -113,7 +115,7 @@ def main():
             if mode == "refrepair" and os.path.exists(done):
                 fixed.append(done)
                 continue
-            fixed.append(run({"workflow": "wf_h3img_2ref.json", "image1": p, "image2": key, "prompt": REPAIR,
+            fixed.append(run({"workflow": "wf_h3img_2ref.json", "image1": p, "image2": key, "prompt": prompt,
                               "width": w, "height": h, "seed": 98001, "round": rnd + "/anchors",
                               "name": stem + "_fix", "anime_timing": "off"}))
         anchors = fixed

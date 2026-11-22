@@ -193,3 +193,20 @@ the flattest look with the Nijigasaki series tag, a hotel room at night. 6 shots
   frame 24 the shot is already settling, so the freeze landed in the calm part. Check the frame
   differences of the clip (the big changes = the event) and put `at` on the peak: s5 now
   `{"at": 0.42, "frames": 12}`.
+- **s2 glans (the pull-out breaks the penis)**, a104 re-anchor tests (`tools/rounds/reanchor.py`, new job
+  keys `ref` = the picture the object is repaired toward, `repair_prompt`; `core.run` now uploads `image2`):
+  - `s2_old_repair` (the liked old clip, 5 anchors, ref = the 104303 keyframe): owner - the new penis made
+    it into the clip but deforms oddly between anchors (the a98 morph).
+  - Penis reference stills (`s2_penisref_*`: the same scene with the penis out of her mouth, fully visible,
+    defined glans): owner picked `s2_penisref_104601`.
+  - `s2_303_repair_dense` (11 anchors, ref = penisref): anatomy right on every frame, but the edits copied
+    the reference's pose (hand on the shaft, tip at her lips) - owner: motion completely wrong, the penis
+    pulled in and out unrealistically fast (pass 2 races between in-mouth frames and out-of-mouth anchors).
+    **An anchor edit must not change the pose**: `s2_303s` = the same with a strict repair prompt (Picture 2
+    only shows what the penis looks like; lips, depth and hands stay as in Picture 1).
+  - `s2_303s` (strict prompt): the edit model **still** adds her hand and pulls the penis partly out to show
+    the head, on every anchor - it reads "look like Picture 2" as the pose. Stopped before pass 2.
+  - Conclusion: anchor edits fail both ways on this shot - few anchors morph between them, and a reference
+    in another pose drags the anchors off the motion. Open leads: Ref2VA with the penis reference as a
+    named `<Picture N>` (identity on every step, no anchors to fight; a98 saw the object shrink with a
+    keyframe ref), or a masked edit (`wf_h3img_2ref_inpaint.json`) so only the penis area can change.
