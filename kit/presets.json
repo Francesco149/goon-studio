@@ -1072,5 +1072,21 @@
       "prose": "His cock is long with a slimmer shaft; the glans is a neat round dome with a clear rim, slightly wider than the shaft."
     }
   },
-  "default_cock_video": "template"
+  "default_cock_video": "template",
+  "breasts_video": {
+    "template": {
+      "label": "as the template (squeeze folds on the inner breasts)"
+    },
+    "smooth": {
+      "label": "smooth (no squeeze folds)",
+      "drop": [
+        "[Hh]er fingers sink into her breasts,\\s*",
+        "squashes and ",
+        "[Tt]he breasts drag and catch on the shaft,\\s*",
+        "[Hh]er breasts squash together,\\s*"
+      ],
+      "prose": "Her breasts stay smooth and round, the skin taut and even as she squeezes them."
+    }
+  },
+  "_note_breasts_video": "breasts_video: Video tab 'Breasts' option for H3 scripts (docs/ANIME-TIMING.md, round a97h). 'drop' are regexes removed from the script (the squeeze words that draw fold lines on the inner breasts); 'prose' is added before the soundscape. Describe the result, never name the folds."
 }

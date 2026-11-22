@@ -108,7 +108,7 @@ class H(BaseHTTPRequestHandler):
                                        "default_template": P.get("default_template"),
                                        "loras": P.get("loras", {}), "video": P.get("video", {}),
                                        "video_templates": P.get("video_templates", {}), "default_video": P.get("default_video"),
-                                       "bodies": P.get("bodies", {}), "framings": P.get("framings", {}), "cocks": P.get("cocks", {}), "default_cock_video": P.get("default_cock_video"),
+                                       "bodies": P.get("bodies", {}), "framings": P.get("framings", {}), "cocks": P.get("cocks", {}), "default_cock_video": P.get("default_cock_video"), "breasts_video": P.get("breasts_video", {}),
                                        "comfy_up": core.comfy_up(), "machine": {k: core.settings().get(k) for k in ("gpu", "data_dir")},
                                        "code_stamp": STARTED_STAMP, "code_now": code_stamp()})
             if p == "/api/jobs":

@@ -144,6 +144,18 @@ def build_prompt(job):
         if cock.get("prose"):
             cut = text.find("\n\noverall_soundscape")
             text = (text[:cut] + " " + cock["prose"] + text[cut:]) if cut > 0 else (text + " " + cock["prose"])
+        # breast detail (docs/ANIME-TIMING.md): drop the squeeze words that draw fold lines on the
+        # inner breasts and describe the smooth result instead (never name what to avoid)
+        br = P.get("breasts_video", {}).get(job.get("breasts") or "template") or {}
+        if br.get("drop") or br.get("prose"):
+            cut = text.find("\n\noverall_soundscape")
+            head, tail = (text[:cut], text[cut:]) if cut > 0 else (text, "")
+            for rx in br.get("drop", []):
+                head = re.sub(rx, "", head)
+            head = re.sub(r"([.!?]\s+)([a-z])", lambda m: m.group(1) + m.group(2).upper(), head)
+            if br.get("prose"):
+                head = head.rstrip() + " " + br["prose"]
+            text = head + tail
         return text
     if cock.get("tags") and is_tag_prompt(base):
         fields["scene"] = add_tags(fields["scene"], cock["tags"])
@@ -189,7 +201,7 @@ def build_fields(job):
         if "strength" in t:
             fields["nsfw_strength"] = t["strength"]
     for k, v in job.items():
-        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing"):
+        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing", "breasts"):
             fields[k] = v
     fields["prompt"] = build_prompt(job)
     late = t.get("late")

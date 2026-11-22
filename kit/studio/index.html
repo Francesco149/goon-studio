@@ -154,6 +154,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
     <select id="vtpl"></select>
     <div id="vneeds"></div>
     <label class="h">Cock <small>(keep it the same as the keyframe's)</small></label><select id="vcock"></select>
+    <label class="h">Breasts <small>(paizuri detail: squeeze folds on the inner breasts, or smooth)</small></label><select id="vbreasts"></select>
     <label class="h">Anime timing <small>(hand-drawn cadence instead of smooth live2d motion; the smooth clip is kept as -raw)</small></label>
     <select id="vtiming">
       <option value="off">off (smooth, as generated)</option>
@@ -338,6 +339,7 @@ async function init(){
   for(const k of Object.keys(STATE.framings||{}))$("#framing").add(new Option(k,k));
   for(const [k,v] of Object.entries(STATE.cocks||{template:{label:"as the template"}})){$("#cock").add(new Option(v.label||k,k));$("#vcock").add(new Option(v.label||k,k))}
   if(STATE.default_cock_video&&(STATE.cocks||{})[STATE.default_cock_video])$("#vcock").value=STATE.default_cock_video;
+  for(const [k,v] of Object.entries(STATE.breasts_video||{template:{label:"as the template"}}))$("#vbreasts").add(new Option(v.label||k,k));
   for(const [k,v] of Object.entries(STATE.loras||{}))$("#vlora").add(new Option(k,v||k));
   const vt=$("#vtpl");for(const [k,v] of Object.entries(STATE.video_templates||{}))vt.add(new Option(v.label||k,k));
   vt.value=STATE.default_video&&(STATE.video_templates||{})[STATE.default_video]?STATE.default_video:(vt.options[0]||{}).value;
@@ -476,7 +478,7 @@ $("#govideo").onclick=async()=>{
   const m=$("#vmode").value;
   if(!$("#vprompt").value.trim()){alert("Write the clip's script first.");return}
   const b={template:$("#vtpl").value,cock:$("#vcock").value,workflow:VWF||videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
-    width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value||1,anime_timing:$("#vtiming").value};
+    width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value||1,anime_timing:$("#vtiming").value,breasts:$("#vbreasts").value};
   const seed=num("#vseed");if(seed!==undefined)b.seed=seed;
   if(m!=="t2v"){if(!SLOTS.v1){alert("Pick a keyframe first.");return}b.image=SLOTS.v1.path}
   if(m==="fl"){if(!SLOTS.v2){alert("First + last needs a last frame.");return}b.last=SLOTS.v2.path}
@@ -608,6 +610,7 @@ $("#lbReuse").onclick=()=>{const r=LBREC,j=r.job||{template:r.template};closeLb(
     const wf=j.workflow||"";$("#vmode").value=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";VWF=wf;
     if(j.nsfw_lora)$("#vlora").value=j.nsfw_lora;if(j.nsfw_strength!=null)$("#vstrength").value=j.nsfw_strength;
     slotFromPath("v1",j.image);slotFromPath("v2",j.last);slotFromPath("v3",j.image1);
+    $("#vbreasts").value=j.breasts||"template";
     $("#vtiming").value=j.anime_timing||((STATE.video_templates||{})[j.template]||{}).anime_timing||"off";
     if(j.width&&j.height&&j.length)setVsize(j.width,j.height,j.length);$("#vseed").value=r.seed??"";videoMode();return show("video")}
   if(j.template&&[...$("#template").options].some(o=>o.value===j.template)){$("#template").value=j.template;fillTemplate()}
