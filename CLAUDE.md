@@ -52,6 +52,8 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
   check its base model, before rendering (`docs/LORAS.md` checklist).
 - Jobs: `jobs/<round>.jsonl`; renders: `gens/<round>/`; sheets and studies: `analysis/`; neutral
   work: `sfw/<round>/`; the page's own gallery stays in the app.
+- Longer animations (several shots, chained clips, per-shot cadence): stories in `kit/stories/`,
+  `tools/rounds/run_story.py`; method and lessons in `docs/STORY.md`.
 - The app's templates and approved prompt blocks: `kit/presets.json`; the user's own presets:
   `my/presets.json`.
 - Vague feedback ("make it better", "not quite"): read what templates and options exist now, offer

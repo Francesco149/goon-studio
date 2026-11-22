@@ -25,8 +25,8 @@ are not part of any recipe a user gets.
 | `h3nsfw/H3_Motion_BoosterV2.safetensors` | motion boost, H3 video | H3 FL2VA | 0.35-0.5 | best cum/twitch dynamics so far |
 | `h3nsfw/h3-sideview-deepthroat.safetensors` | side deepthroat, H3 video | H3 FL2VA | 0.6-0.8 | helps the side angle |
 | `h3nsfw/MM-H3-Blwjob-v3.safetensors` | POV blowjob, H3 video | H3 FL2VA | - | **no help** on the POV blowjob |
-| `rezero-emilia-s4-illustriousxl-lora-nochekaiser.safetensors` | Emilia (Re:Zero) design study, stills | Illustrious (WAI v17) | 0.6-1.0 | a100: identity on point, locks the style |
-| `anima_Emilia_2-30.safetensors` | Emilia (Re:Zero) design study, stills | Anima (Pink Alchemy v2.9) | 1.0 | a100: identity good, styles show through |
+| `rezero-emilia-s4-illustriousxl-lora-nochekaiser.safetensors` | Emilia (Re:Zero) design study, stills | Illustrious (WAI v17) | 0.6-1.0 | owner: solid but slightly off - usable alternative |
+| `anima_Emilia_2-30.safetensors` | Emilia (Re:Zero) design study, stills | Anima (Pink Alchemy v2.9) | 1.0 | **approved** 2026-11-22: art style and identity spot on |
 
 ## Emilia (Re:Zero), round a100 (2026-11-22)
 
@@ -271,3 +271,6 @@ draws the acts natively and the Verite skin is plastic. Kept for a fallback only
 7. If the owner approves it, add the templates to `kit/presets.json` with `lora` + `strength`
    (the page fills them from the template; there is no image-side LoRA dropdown), and restart the
    page once.
+
+**Owner verdict (a100):** Anima + `anima_Emilia_2-30` is spot on for art style and identity - the
+Emilia LoRA to use. Illustrious + nochekaiser s4 is solid but slightly off; keep it as an alternative.

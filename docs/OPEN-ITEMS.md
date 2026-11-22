@@ -83,7 +83,13 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    Open: owner verdict on the smoothed clips; BJ head travel on the h-game profile is small; the
    wide `hgf_99001` keyframe keeps a moving fold even with Breasts smooth (keyframe-specific); the
    front-on `hgk_pz_wide_hg_99002` has no fold (a99h) and seed 99101 keeps her mouth closed (a99i).
-6. Smaller:
+6. **Longer animations from chained shots** (`docs/STORY.md`, round a101): a story file (shared
+   character/partner/setting/style blocks, one entry per shot with the measured timing) ->
+   keyframes -> clips (long shots continue from the last frame) -> one cut with per-shot cadence,
+   freezes and audio. `emilia_meadow` after `emillia.mp4` (Emilia Anima LoRA, owner-approved a100):
+   25.3 s cut, cadence matches the ref, seams invisible, identity holds. Open: tag bleed between
+   the two people, s1's tease angle (her head should be in his lap), s5 motion; owner verdict.
+7. Smaller:
    - photoreal veins come out as raised vine-like cords (inherited from the Krea + Verite keyframe);
    - HMPenis v2 is registered but untested (needs a Civitai login - the owner downloads it);
    - `Verite_overcooked` (same Civitai version as Verite_realism) is said to be stronger for
