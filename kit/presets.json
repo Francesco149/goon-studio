@@ -50,6 +50,36 @@
       "lora": "Verite_realism.safetensors",
       "strength": 1.0
     },
+    "egirl_facial_tongue": {
+      "label": "Photoreal e-girl - tongue-out facial still (Krea 2 + Verite realism; a94)",
+      "workflow": "wf_krea2_lora_8gb.json",
+      "width": 896,
+      "height": 1344,
+      "steps": 8,
+      "cfg": 1.0,
+      "prompt": "A facial, close-up POV from above. {character} She kneels between a man's legs, her mouth open and her tongue out, right after he came on her face. His erect cock is out in front of her face, his hand wrapped around the shaft; it has a defined glans with a rim, the foreskin folded back behind it and a natural veined shaft. Milky white semen lies on her face where the ropes landed: a thick glossy rope across her lips and up onto one cheek, a smaller patch on her tongue, a heavy drip hanging from her chin, uneven and lumpy, wet and slightly translucent at the thin edges. Her hand rests on his thigh. Her eyes lift to the camera, half-lidded, light blush. Dim bedroom lit by pink and purple LED strips. Candid amateur phone photo.",
+      "character": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, a silver heart choker. She has full natural breasts that sit heavy with a soft slope, a narrow waist, wide hips and thick thighs.",
+      "scene": "",
+      "about": "Round a94 (owner: a recipe to keep - good angle, expression and splash pattern). egirl_bj_pov's model and character with a landed-facial caption in the Verite style. Seeds 94002/94003. If the semen comes out wrong, use egirl_facial_tongue_over.",
+      "unet": "krea2_turbo_int8_convrot.safetensors",
+      "lora": "Verite_realism.safetensors",
+      "strength": 1.0
+    },
+    "egirl_facial_tongue_over": {
+      "label": "Photoreal e-girl - tongue-out facial still, Verite overcooked (thinner, translucent semen; a94)",
+      "workflow": "wf_krea2_lora_8gb.json",
+      "width": 896,
+      "height": 1344,
+      "steps": 8,
+      "cfg": 1.0,
+      "prompt": "A facial, close-up POV from above. {character} She kneels between a man's legs, her mouth open and her tongue out, right after he came on her face. His erect cock is out in front of her face, his hand wrapped around the shaft; it has a defined glans with a rim, the foreskin folded back behind it and a natural veined shaft. Milky white semen lies on her face where the ropes landed: a thick glossy rope across her lips and up onto one cheek, a smaller patch on her tongue, a heavy drip hanging from her chin, uneven and lumpy, wet and slightly translucent at the thin edges. Her hand rests on his thigh. Her eyes lift to the camera, half-lidded, light blush. Dim bedroom lit by pink and purple LED strips. Candid amateur phone photo.",
+      "character": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, a silver heart choker. She has full natural breasts that sit heavy with a soft slope, a narrow waist, wide hips and thick thighs.",
+      "scene": "",
+      "about": "Round a94 (owner: still surprisingly realistic, the alternative when Verite_realism's semen is off). Same caption as egirl_facial_tongue; overcooked at 1.0 (0.8 is in between). Seeds 94002/94003.",
+      "unet": "krea2_turbo_int8_convrot.safetensors",
+      "lora": "Verite_overcooked.safetensors",
+      "strength": 1.0
+    },
     "egirl_cum": {
       "label": "Photoreal facial - cum landed (6 steps; 4 preview / 8 final)",
       "workflow": "wf_krea2_nsfw_8gb.json",

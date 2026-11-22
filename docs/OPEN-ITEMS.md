@@ -13,6 +13,7 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 | anime blowjob base | `anime_ll_suction` (k9) and family | back to the pre-a88 prompts (see "penis type" below) |
 | anime cum shot | `anime_ll_cumshot` (a93b `hb_oneside`) | "the most natural one yet"; keyframe `gens/a30/n1_handjob_b`, seed 93001 |
 | photoreal cum shot | `cumshot_medium` (a93 `pm_base`) | "the best default for this shot"; `p1_pose`, seed 970; `cumshot_high` = extreme preset |
+| photoreal facial still | `egirl_facial_tongue` / `egirl_facial_tongue_over` (a94) | tongue out: "good angle, expression and splash pattern"; overcooked = thinner translucent semen |
 | anime paizuri | still `anime_ll_fz_paizuri_notongue` -> clip `anime_ll_paizuri` (a92) | "solid, right penis type"; no saliva yet |
 | anime stills | `anime_pov` (retracted), `anime_pov_foreskin`, `anime_pov_mosaic` | style + nudity locks, round a86 |
 

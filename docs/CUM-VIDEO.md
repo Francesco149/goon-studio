@@ -267,6 +267,10 @@ Verite_realism does not make good semen.** Realism stays the default keyframe Lo
 overcooked (`lora: Verite_overcooked.safetensors`, 1.0 or 0.8) for a cum still whose semen came out
 wrong. Not for blowjob stills (seal).
 
+The tongue-out facial stills are a **recipe to keep** (owner: good angle, expression and splash
+pattern): templates `egirl_facial_tongue` (realism) and `egirl_facial_tongue_over` (overcooked),
+seeds 94002 / 94003.
+
 ### a93c / a93d: bigger anime loads
 
 - **More pulses is wrong** (`big5`, `big5_lora65`, `big4_hard`, a93c; owner: "not good"): extra
