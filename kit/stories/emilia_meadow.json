@@ -46,27 +46,15 @@
    }
   },
   {
-   "id": "s2a",
-   "seconds": 2.7,
+   "id": "s2",
+   "seconds": 5.45,
    "timing": "smooth",
    "template": "anime_ll_headgrab_push",
    "still": "{style}, {character}, {outfit}, {partner}, close-up, face focus, from above, three-quarter view, kneeling, leaning forward, fellatio, (penis in mouth:1.2), (saliva:1.2), saliva trail, (lips sealed around penis:1.3), (looking up:1.2), (eye contact:1.2), looking at another, sad eyebrows, furrowed brow, blush, red jacket at the left edge, grass background, outdoors, daylight",
    "still_job": {
     "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, tongue out, open mouth"
    },
-   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the green grass: {script_character} kneels with his cock in her mouth; the open red jacket of {script_partner} fills the left edge of the frame. She bobs her head quickly along the shaft, about two strokes a second, her lips sealed tight around it. She keeps her eyes locked on his face above her the whole time, looking up at him, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. Saliva glistens on the shaft; each time she pulls back a thin string of saliva stretches from her lip and drips from her chin. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over a quiet outdoor ambience with a light breeze, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
-   "seed": 101002
-  },
-  {
-   "id": "s2b",
-   "seconds": 2.75,
-   "timing": "smooth",
-   "template": "anime_ll_headgrab_push",
-   "still": "{style}, {character}, {outfit}, {partner}, close-up, face focus, from above, three-quarter view, kneeling, leaning forward, fellatio, (penis in mouth:1.2), (saliva:1.2), saliva trail, (lips sealed around penis:1.3), (looking at viewer:1.3), (eye contact:1.2), sad eyebrows, furrowed brow, blush, red jacket at the left edge, grass background, outdoors, daylight",
-   "still_job": {
-    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, tongue out, open mouth"
-   },
-   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the green grass: {script_character} kneels with his cock in her mouth; the open red jacket of {script_partner} fills the left edge of the frame. She bobs her head quickly along the shaft, about two strokes a second, her lips sealed tight around it. She looks straight into the camera the whole time, holding eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. Saliva glistens on the shaft; each time she pulls back a thin string of saliva stretches from her lip and drips from her chin. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over a quiet outdoor ambience with a light breeze, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the green grass: {script_character} kneels with his cock in her mouth; the open red jacket of {script_partner} fills the left edge of the frame. She bobs her head quickly along the shaft, about two strokes a second, her lips sealed tight around it. She looks up into his eyes as she sucks, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. Saliva glistens on the shaft, and a single trail of it runs slowly down from the corner of her mouth over her chin and falls away in drops into the grass. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over a quiet outdoor ambience with a light breeze, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
    "seed": 101002
   },
   {

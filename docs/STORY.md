@@ -145,3 +145,10 @@ troubled brows; s3 he stands, she kneels bent forward with her boots up behind h
   owner prefers the centred one, the hips cover the act like the ref), s2a/s2b gaze split works in both
   looks, s5 `solo` + negative `penis, 1boy, male, hand` (the flatter keyframe had put a penis in frame).
   Left: the hair flower jumps where his hand touches her head in s3; s5's collar drifts to the canon dress.
+- **Owner, after a103:** the gaze split was not needed - the single-clip gaze shift in the earlier cut
+  was fine; s2 is one shot again and both cuts use that earlier eye-contact s2 (restored with
+  `--cut-only`). Saliva looked decent but **swung back and forth on the side shot instead of dripping**:
+  "each time she pulls back a string stretches..." describes a repeating motion, so H3 loops it.
+  Reworded as one continuous result: "a single trail of it runs slowly down from the corner of her
+  mouth over her chin and falls away in drops into the grass" (a103s2, `--only s2` in its own round).
+  The "one gaze per clip" note above is withdrawn as a rule: a slow gaze shift inside one clip can work.
