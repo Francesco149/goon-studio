@@ -721,7 +721,7 @@
       "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video: a young adult Asian woman with pink-streaked twin tails leans over the viewer and gives him a titjob. She presses her large natural breasts together around his erect cock and slides them up and down the shaft in slow strokes; the glans pushes out through the top of her cleavage on each stroke, her tongue touches the head. The cock keeps its shape, a defined glans with a corona rim. She looks up into the lens, half-lidded, light blush, a sweat sheen on her chest. The camera does not move.\n\noverall_soundscape: soft skin friction, her breath, a low male grunt at about 2 seconds, quiet room tone. No music.\n\nnon_diegetic_music: N/A"
     },
     "cumshot_high": {
-      "label": "Cum shot - HIGH (maximum exaggeration: full ropes + shaft kicks)",
+      "label": "Cum shot - HIGH (extreme preset: exaggerated amount + shaft kicks, not realistic)",
       "workflow": "wf_h3vid_i2v_lora.json",
       "lora": "h3nsfw/epic_cumshots.safetensors",
       "strength": 0.6,
@@ -731,7 +731,7 @@
       "prompt": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video, one fixed camera. A young adult Asian woman in her mid-twenties with long black hair in pink-streaked twin tails and a silver choker kneels between the viewer's legs, holding his erect adult cock upright an inch below her open mouth, her tongue out, her eyes on the lens. The semen is glossy and milky white, slightly translucent where it spreads thin, and thin enough to run: it is a normal ropy fluid, not a dense cream and not a gel. His cock pulses three times and no more. Each pulse throws one single narrow rope of semen straight up into her face - one stream only, it never splits into two - and the rope hits her face and stops there, splashing a little against her lips, her chin and her nose where it lands, and staying there. It does not arc above her head and nothing lands behind her. The first pulse is the strongest and splashes the most; the next two are weaker and mostly just hit and stay. On each pulse the shaft kicks upward a little and settles back down, and the veins stand out. His glans stays bare and clean, no semen sits on the tip and none pools there. The ropes keep to her mouth and her chin and do not reach her eyes. Where the drops touch each other they merge into small glossy pools, and a slow heavy drip runs from her chin, dragging a thin translucent trail above it. She flinches at each pulse, then looks into the lens with half-lidded eyes and a light blush, flushed. The camera does not move.\n\noverall_soundscape: three soft wet spurts about a second apart, one low male groan, her breath catching between them, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A"
     },
     "cumshot_medium": {
-      "label": "Cum shot - MEDIUM (default: shorter thinner ropes, small twitch)",
+      "label": "Cum shot - MEDIUM (default, the most natural: shorter thinner ropes, small twitch)",
       "workflow": "wf_h3vid_i2v_lora.json",
       "lora": "h3nsfw/epic_cumshots.safetensors",
       "strength": 0.6,

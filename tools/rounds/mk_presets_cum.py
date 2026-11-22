@@ -51,9 +51,9 @@ def tmpl(label, prompt, strength=0.6):
 
 
 CUM = {
-    "cumshot_high": tmpl("Cum shot - HIGH (maximum exaggeration: full ropes + shaft kicks)",
+    "cumshot_high": tmpl("Cum shot - HIGH (extreme preset: exaggerated amount + shaft kicks, not realistic)",
                          k14["k14_direct_p1_06"]["prompt"]),
-    "cumshot_medium": tmpl("Cum shot - MEDIUM (default: shorter thinner ropes, small twitch)",
+    "cumshot_medium": tmpl("Cum shot - MEDIUM (default, the most natural: shorter thinner ropes, small twitch)",
                            k16["k16_medium"]["prompt"]),
     "cumshot_low": tmpl("Cum shot - LOW (two thin pulses, no kick; caveat: mists - see docs)",
                         k16["k16_low"]["prompt"]),

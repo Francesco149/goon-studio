@@ -28,6 +28,15 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    anime cum clips (`anime_ll_cumshot*`, `anime_ll_cum_switch*`). Rules learned: **do not add the
    glans-rigidity paragraph to cum clips** (k14 lost the cum, round a89); compare variants from
    the same keyframe and seed.
+   **Round a93 (2026-11-22, `docs/CUM-VIDEO.md` "Round a93"):** spelling the physics out in the
+   script (constant volume, aimed arc, cadence, recoil) made the photoreal spurts unnatural
+   (acceleration, travel) and caused no-cause glans drips. The owner's best default is the
+   **`cumshot_medium` template as is** (`pm_base`: `p1_pose`, seed 970, local engine);
+   `cumshot_high` is an extreme preset only. Revised rules: an occasional split into splashes is
+   realistic; white on the glans is fine only when a spurt visibly lands on it. Leads: `pm_land`'s
+   later spurts for a rebuilt `cumshot_low`; the anime cum shot sweeps two ropes side to side in a
+   symmetrical arch - round a93b tests seeds, gap keyframes (`gens/a30/n1_handjob_a|b`) and an
+   uneven one-side landing. The meter `tools/rounds/cum_mass.py` finds frames, it does not judge.
 2. **A convincing facial variant** (owner asked for it after the dynamics work): the photoreal
    facial pose is `egirl_facial` (owner-approved pose); the clip side needs the cum work above.
 3. **Paizuri saliva dynamics.** a92 has none. Add saliva wording to `anime_ll_paizuri` and test
@@ -46,7 +55,8 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    - photoreal veins come out as raised vine-like cords (inherited from the Krea + Verite keyframe);
    - HMPenis v2 is registered but untested (needs a Civitai login - the owner downloads it);
    - `Verite_overcooked` (same Civitai version as Verite_realism) is said to be stronger for
-     fluids - worth a try in the cum round on photoreal keyframes;
+     fluids - worth a try on photoreal keyframes; not in the store yet (Civitai login: the owner
+     downloads it), so round a93 skipped it;
    - the LL OC's fangs are awkward in blowjob scenes (character-specific);
    - anime still seal depth: the lips close over the top of the glans; wording does not change it;
    - paizuri shaft skin never moves (needs a LoRA or a first/last pair, not wording);

@@ -218,9 +218,46 @@ And a standing note on the glans: the rule is met by `cumshot_medium` and below,
 still paints the head, and no wording tested fixes it (see the dial section). The unrendered fix is
 a **high twitch + medium amount** tier.
 
+## Round a93 (2026-11-22): spelled-out physics vs the templates - owner verdicts
+
+Jobs `jobs/a93_cum_physics.jsonl` (`tools/rounds/mk_a93.py`), Rounds tab `my/rounds/a93.json`.
+Each template rendered as is and with a physics script (constant volume per spurt, short arc that
+lands where it aims, slowing 1 s / 1.5 s cadence, a few-degree recoil), same keyframe + seed, all
+on the local bench engine.
+
+| clip | what | owner |
+|---|---|---|
+| `pm_base` | `cumshot_medium` as is, `p1_pose`, seed 970 | **"best one we have so far", the best default for this shot.** The spurts are much more natural than earlier attempts, and the way a rope sometimes splits into splashes (not every spurt) is realistic |
+| `pm_phys` | medium + physics script | "quite unnatural - the way it accelerates and how far it travels"; a glans drip that makes no sense, no spurt landed on it |
+| `pm_land` | medium, landing-first (the end deposit sets the rope size) | first shot unnatural + the same no-cause glans drip; **the later shots are pretty realistic for a weaker-strength shot** |
+| `ph_base` | `cumshot_high` as is, seed 950 | too exaggerated amount and twitch, some slightly unnatural physics, overall somewhat works: an extreme preset, never the default |
+| `ph_phys` | high + physics script | pending; my read: the rope still reaches her forehead, then one thick even gel-like sheet |
+| `at4_base` / `at4_phys` | `anime_ll_cumshot` as is / + script, seed 93001 | saliva reads well; the cum shot does not feel natural - only two ropes stay on her face and they go across in a weird circular, side-to-side, abnormally symmetrical pattern. More seeds and starting frames: round a93b |
+| `asw_base` / `asw_phys` | `anime_ll_cum_switch_a26` as is / + small first rope, one drop escapes | pending; my read: the base froths far more out of her lips than went in, the variant leaks one drop |
+
+What this round established:
+
+- **Spelling the mechanics out makes the photoreal clip worse.** Velocity, distance and cadence
+  sentences gave an unnatural acceleration and travel (`pm_phys`). Wording changes physics in H3
+  (a87), but not toward realism here. Keep `cumshot_medium` as written.
+- **Mass conservation is not measured by the meter.** `tools/rounds/cum_mass.py` (peak vs final
+  added white) scored `pm_phys` better than `pm_base` (2.35 vs 3.41), and the owner picked the
+  opposite. Use it to find frames, not to judge. It is useless on anime (her motion moves the
+  flat cel whites).
+- **Splitting, revised.** An occasional split into splashes is realistic; the defect is a split on
+  every spurt, or two cords forking out of the tip.
+- **The glans rule, revised.** White on the glans is fine when a spurt visibly lands on it
+  (`pm_base`). It is a defect when it appears with no spurt putting it there: an ooze from the
+  tip, the rope's own base collapsing back onto it (`pm_land`), or a blob that grows there
+  (`pm_phys`). The old "glans stays bare and clean" sentences may be what pushes the model into the
+  no-cause kind - untested.
+- **The weak-shot lead.** `pm_land`'s later spurts are the best weak spurts so far; that wording
+  (minus its first shot) is the starting point for rebuilding `cumshot_low` (mist, defect 2).
+
 ## Next
 
-1. **Mass conservation** (defect 1 above). This is the one that decides whether the cum shot reads
+1. **Mass conservation** (defect 1 above). Round a93: the physics-script route failed on
+   photoreal; `pm_base` (the medium template, seed 970) is the reference to beat. This is the one that decides whether the cum shot reads
    as real, and it has had no work yet.
 2. Rebuild the low tier around *fewer pulses at medium amount* instead of less fluid, which should
    also fix the mist (defect 2).
@@ -254,6 +291,8 @@ a **high twitch + medium amount** tier.
 | k15 | `jobs/k15.jsonl` | explicit length bound ("an inch or two") | shorter, but not solved |
 | k16 | `jobs/k16.jsonl` | the medium / low tiers | the default dial; medium is the one with a clean glans |
 | k17 | `jobs/k17.jsonl` | stronger glans wording on high and low | no effect - the residue tracks volume, not wording |
+| a93 | `jobs/a93_cum_physics.jsonl` | physics script vs templates, photoreal + anime | the medium template is the best default; scripted physics reads unnatural |
+| a93b | `jobs/a93b_anime_cum.jsonl` | anime cum shot: seeds, gap keyframes, uneven one-side landing | see the a93 section |
 
 Renders are git-ignored; the jobs are the recipe. Re-run any round with
 `python tools/lab.py --wf wf_h3vid_i2v_lora.json --jobs jobs/k10.jsonl --box local --sub gl/k10 --out gens/k10`.
