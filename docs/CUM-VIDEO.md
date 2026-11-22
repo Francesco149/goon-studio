@@ -255,6 +255,17 @@ uneven and lopsided. **It is now the `anime_ll_cumshot` template** (keyframe
 `anime_ll_cumshot_t4`. Lesson: in anime, a landing plan that names three spots across the face is
 drawn as a frame connecting them; name one area and say "uneven".
 
+### a94: Verite_overcooked on photoreal keyframes (`jobs/a94_verite_overcooked.jsonl`)
+
+`egirl_bj_pov` (Krea 2 Turbo + Verite, 8 steps), same seeds, only the LoRA swapped. It is said to
+be stronger for fluids; here it is not. On a landed facial (two seeds) overcooked gives **less**
+semen: thinner, glossier, more translucent, with longer runny drips and a clean glans, where
+realism gives the heavier, lumpier pooled deposit. At 0.8 it sits in between. On the blowjob
+still it smooths the skin toward a beauty-filter look, drops the saliva and loses the lip seal
+(the glans sits outside her lips). **Verite_realism stays the keyframe LoRA**; overcooked is only
+a candidate for a deliberately thin, translucent fluid look. Owner expected as much (the extreme
+preset is extreme enough).
+
 ### a93c / a93d: bigger anime loads
 
 - **More pulses is wrong** (`big5`, `big5_lora65`, `big4_hard`, a93c; owner: "not good"): extra

@@ -61,8 +61,9 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    - photoreal veins come out as raised vine-like cords (inherited from the Krea + Verite keyframe);
    - HMPenis v2 is registered but untested (needs a Civitai login - the owner downloads it);
    - `Verite_overcooked` (same Civitai version as Verite_realism) is said to be stronger for
-     fluids - worth a try on photoreal keyframes; in the store since 2026-11-22 (fetched with
-     `store.py fetch --file`, sha256 verified; Civitai key in `my/.civitai-token`), untested;
+     fluids - worth a try on photoreal keyframes; in the store (`store.py fetch --file`, Civitai key in
+     `my/.civitai-token`). Round a94: NOT stronger for fluids - thinner, more translucent semen and
+     less of it, smoother beauty-filter skin, weaker lip seal; realism stays the keyframe LoRA;
    - the LL OC's fangs are awkward in blowjob scenes (character-specific);
    - anime still seal depth: the lips close over the top of the glans; wording does not change it;
    - paizuri shaft skin never moves (needs a LoRA or a first/last pair, not wording);
