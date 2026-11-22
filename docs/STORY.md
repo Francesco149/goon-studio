@@ -158,3 +158,8 @@ troubled brows; s3 he stands, she kneels bent forward with her boots up behind h
   transparent, saliva trail` instead of `(saliva:1.2)`. Result: a thin clear thread and small drops at
   the corner of the mouth, no brown. Side effects: the shaft reads wetter/glossier, and this keyframe's
   collar drifted to the canon dress.
+- a103 final pass: s2 = a103s2 take 2 (gaze shift + clear saliva, owner-approved), s3 re-rendered with
+  the clear-saliva wording, s5 collar fixed (`(off-shoulder shirt:1.3), (bare shoulders:1.3),
+  collarbone`, negative `high collar, brooch, gold trim, dress`): off-shoulder top with bare shoulders
+  like the other shots. Owner: "the new clips look good". Open: the hair flower still jumps in s3 where
+  his hand touches her head.

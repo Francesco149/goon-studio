@@ -101,11 +101,11 @@
    "clip_job": {
     "nsfw_strength": 0.4
    },
-   "still": "{style}, {character}, {outfit}, solo, (off-shoulder shirt:1.2), (bare shoulders:1.2), from below, close-up, face focus, head tilted back, (ahegao:1.1), rolling eyes, half-closed eyes, open mouth, (tongue out:1.2), (cum on tongue:1.2), cum in mouth, (cum string:1.1), cum on chin, upper teeth, panting, blush, blue sky, white clouds, daylight",
+   "still": "{style}, {character}, {outfit}, solo, (off-shoulder shirt:1.3), (bare shoulders:1.3), collarbone, from below, close-up, face focus, head tilted back, (ahegao:1.1), rolling eyes, half-closed eyes, open mouth, (tongue out:1.2), (cum on tongue:1.2), cum in mouth, (cum string:1.1), cum on chin, upper teeth, panting, blush, blue sky, white clouds, daylight",
    "script": "integrated_multimodal_description: [Shot 1] {script_style} A low angle from below her chin against the bright blue sky: {script_character} has her head tilted back, dazed, her eyes half closed and rolled up, her mouth hanging open with her tongue out, white cum pooled on her tongue and thin strings of it hanging from her lips down to her chin. She breathes slowly and shallowly, her chest and throat rising and falling; the strings sway and stretch, one thins out and a single drop falls. Otherwise she stays still. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over a quiet outdoor ambience with a light breeze, no music and no speech: her quiet shallow panting, a soft breeze, nothing else.\n\nnon_diegetic_music: N/A",
    "seed": 101005,
    "still_job": {
-    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, penis, 1boy, male, hand"
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, penis, 1boy, male, hand, high collar, brooch, gold trim, dress"
    }
   }
  ],
