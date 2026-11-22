@@ -210,3 +210,9 @@ the flattest look with the Nijigasaki series tag, a hotel room at night. 6 shots
     in another pose drags the anchors off the motion. Open leads: Ref2VA with the penis reference as a
     named `<Picture N>` (identity on every step, no anchors to fight; a98 saw the object shrink with a
     keyframe ref), or a masked edit (`wf_h3img_2ref_inpaint.json`) so only the penis area can change.
+  - **Ref2VA with the reference** (`wf_h3vid_ref2va_first2.json`: `<Picture 1>` = the s2 keyframe, also pinned
+    as frame 0; `<Picture 2>` = `s2_penisref_104601`, named in the script "His cock looks exactly like the one
+    in <Picture 2> ... also when it slides out of her lips"; round `a104r2`, seeds 104002/104701): the penis
+    is **consistent on every frame** (defined head, the reference's size and shape, no degrading or morph) -
+    but **the motion is gone** (median frame change 0.3 vs 4.2 for the i2v clip) and the act drifts to the
+    reference's pose (tip at her lips). The act/motion LoRAs are i2v (FL2VA) LoRAs and barely act on Ref2VA.
