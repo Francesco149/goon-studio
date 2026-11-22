@@ -31,7 +31,7 @@ climax; the last shot slow and quiet.
 | **Profile BJ** | side, his hand on her head | on 2s | 7-min ref s15 (`docs/ANIME-TIMING.md`) | `a96/v_bj_profile_00001_.mp4`; `a97/lz_f_bj_profile_00001_.mp4` | no cheek words in the script (a97f) |
 | **Paizuri POV, wide** | from above, she presses her breasts, glans at the top of the cleavage | slow: `off`; fast: smooth | 7-min ref s20 | `a97/lz_e_pz_wide_96101_00001_.mp4`; h-game `a99/tpl_hgame_paizuri_hg_99002_s99101_00001_.mp4` | squeeze words draw folds: Breasts "smooth" wording |
 | **Paizuri close** | on the cleavage, glans below her chin | on 2s | 7-min ref s21 | `a97/lz_e_pz_close_97102_00001_.mp4` | keyframe decides tongue/no tongue |
-| **Paizuri climax** | POV, spurts out of the cleavage onto chin/neck/breasts, she smiles at the camera | on 2s + freeze | - | `a104` s5 | testing |
+| **Paizuri climax** | continues from the fast paizuri shot (`start_from`); three thin ropes out of the cleavage landing unevenly on one side; she smiles at the camera | on 2s, **no freeze** | - | `a104/s5_c0_00003_.mp4` | owner: good continuity and dynamics; ropes still a little thick |
 | **Cum shot (face)** | close on her face, ropes landing unevenly on one side | on 2s | BlobCG refs (`docs/archive/REFS.md`) | templates `anime_ll_cumshot`, `anime_ll_cumshot_hard` (a93b/d) | three pulses, never thicker ropes (`docs/CUM-VIDEO.md`) |
 | **Golden BJ POV** | from above, head grab / two hands / tip tease | on 2s | - | templates `anime_ll_headgrab_push` ... (a26) | the dynamics gold standard |
 
@@ -49,7 +49,10 @@ pulls that show's own look.
 
 ## Dynamics and direction that work
 
-- Cadence per shot: `timing` on2/on3/off/smooth + `hold` freezes (`docs/STORY.md`); smooth = RIFE.
+- Cadence per shot: `timing` on2/on3/off/smooth (`docs/STORY.md`); smooth = RIFE.
+- **Freeze frames (`hold`) only for shots designed around one** (the meadow's oral climax, an impact
+  stopper) - owner: not a good fit for the sweet paizuri climax. Put `at` on the event (the frame-difference peak).
+- Bigger climaxes: never more pulses (faster twitching, a93c/a104); three pulses, vary where they land.
 - Micro-motion (jiggle, follow-through, breathing): Video tab **Dynamics** (`dynamics_video`).
 - A gaze shift inside one clip works when it is slow ("looks up into his eyes ..., then slowly turns
   her gaze to the camera"); sweet vibe: "looks into the camera with a soft, sweet smile, lips closed".

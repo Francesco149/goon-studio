@@ -23,7 +23,7 @@
   "seg_len": 49
  },
  "blocks": {
-  "style": "masterpiece, best quality, year 2020, anime screenshot, love live! nijigasaki high school idol club, anime coloring, (flat color:1.4), (no shading:0.8), (matte:1.2), (simple coloring:1.2), thin lineart, soft pastel colors, (diagonal-lined blush:1.1), (matte penis:1.2), (thick penis:1.1), veins, flat colored penis",
+  "style": "masterpiece, best quality, year 2020, anime screenshot, love live! nijigasaki high school idol club, anime coloring, (flat color:1.4), (no shading:0.8), (matte:1.2), (simple coloring:1.2), thin lineart, soft pastel colors, (diagonal-lined blush:1.1), (matte penis:1.2), (thick penis:1.1), (veins:0.6), flat colored penis",
   "character": "1girl, lanzhu zhong, long hair, bangs, blue eyes, pink hair, ahoge, sidelocks, mole, two side up, mole under eye, hair bun, mature female, (curvy:1.5), (wide hips:1.3), thick thighs, large breasts",
   "outfit": "(open bathrobe:1.2), white bathrobe, bare shoulders",
   "partner": "1boy, hetero, tan skin, (black hair:1.1)",
@@ -50,13 +50,13 @@
    "seconds": 5.45,
    "timing": "smooth",
    "template": "anime_ll_headgrab_push",
-   "still": "{style}, {character}, {outfit}, {partner}, close-up, face focus, from above, three-quarter view, kneeling, leaning forward, fellatio, (penis in mouth:1.2), saliva, (clear saliva:1.1), transparent, saliva trail, (lips sealed around penis:1.3), (looking up:1.2), (eye contact:1.2), looking at another, sad eyebrows, blush, bed, white bed sheet, warm lamp light",
+   "still": "{style}, {character}, {outfit}, {partner}, close-up, face focus, from above, three-quarter view, kneeling, leaning forward, fellatio, (penis in mouth:1.2), (long penis:1.2), (thick penis:1.2), large penis, glans the same color as the shaft, saliva, (clear saliva:1.1), transparent, saliva trail, (lips sealed around penis:1.3), (looking up:1.2), (eye contact:1.2), looking at another, sad eyebrows, blush, bed, white bed sheet, warm lamp light",
    "still_job": {
     "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, tongue out, open mouth"
    },
-   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the white sheets: {script_character} kneels on the bed with the cock of {script_partner} in her mouth. She bobs her head quickly along the shaft, about two strokes a second, her soft lips sealed tight around it. His cock stays very long and thick, exactly the size it is in the first frame, with most of the shaft visible outside her lips; its head is the same tan skin tone as the shaft. She looks up into his eyes as she sucks, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth over her chin and falls away in a few small drops. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
-   "key_image": "a104/s2_key_long_104211_00001_.png",
-   "_note": "keyframe: the a104 s2 key with the penis redrawn by an H3-Image edit (scratch edit_s2 prompt in docs/STORY.md a104) - the face kept exactly"
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the white sheets: {script_character} kneels on the bed with the cock of {script_partner} in her mouth. She bobs her head quickly along the shaft, about two strokes a second, her soft lips sealed tight around it. His cock stays long and thick, exactly the size it is in the first frame, with most of the shaft visible outside her lips; its head is the same tan skin tone as the shaft. She looks up into his eyes as she sucks, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth over her chin and falls away in a few small drops. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
+   "key_image": "a104/s2_key_s104303_00001_.png",
+   "_note": "keyframe: the s2 still re-rolled on seed 104303 (longer/thicker penis, fewer veins; owner pick from the five-seed sheet). Earlier: s2_key_mix_104402 (104304 with the first face), s2_key_long_104211 (edit)."
   },
   {
    "id": "s3",
@@ -84,12 +84,6 @@
    "id": "s5",
    "seconds": 3.5,
    "timing": "on2",
-   "hold": [
-    {
-     "at": 1.0,
-     "frames": 24
-    }
-   ],
    "template": "anime_ll_cumshot",
    "clip_job": {
     "nsfw_strength": 0.5
@@ -98,7 +92,7 @@
    "still_job": {
     "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, open mouth, tongue out, frown, crying"
    },
-   "script": "integrated_multimodal_description: [Shot 1] {script_style} The same close POV on her chest and face, continuing: {script_character} keeps her breasts pressed around the cock of {script_partner} as he climaxes. The first spurt shoots up out of her cleavage at an angle and lands across her left cheek and chin; a second, smaller one splashes onto her right breast a moment later; the last only wells out and runs down the shaft into her cleavage. The cum lands unevenly, more on one side than the other. She flinches happily at the first spurt, then looks into the camera with a sweet, delighted smile. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: his low groan of release, three soft wet spurts, her small surprised laugh.\n\nnon_diegetic_music: N/A",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} The same close POV on her chest and face, continuing: {script_character} keeps her breasts pressed around the cock of {script_partner} as he climaxes. His cock pulses three times and no more; between pulses it is still, and it does not grow or change size. Each pulse sends one single thin white rope of semen up out of the tip at the top of her cleavage. The ropes land one after another, unevenly and a little to one side: the first across her chin and up onto one cheek, the second shorter onto her neck, the third only a small dribble that runs down into her cleavage. The ropes stay thin; each one ends where it hits and stays, and the white on her is uneven and lopsided. She flinches happily at the first spurt, then looks into the camera with a sweet, delighted smile. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: his low groan of release, three soft wet spurts, her small surprised laugh.\n\nnon_diegetic_music: N/A",
    "start_from": "s4"
   },
   {
@@ -129,6 +123,66 @@
     "s2": {
      "clip_job": {
       "nsfw_strength": 0.0
+     }
+    }
+   }
+  },
+  "s2_shallow_a": {
+   "_note": "a104 v: 104303 key, shallow strokes, seed 104501",
+   "shots": {
+    "s2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the white sheets: {script_character} kneels on the bed with the cock of {script_partner} in her mouth. She bobs her head quickly in short strokes, about two a second: her lips slide back and forth along the front part of the shaft, and the head of his cock always stays inside her mouth. Her soft lips form a smooth, round seal around the shaft and her cheeks are drawn in softly by the suction. His cock stays long and thick, exactly the size it is in the first frame, with most of the shaft visible outside her lips; its head is the same tan skin tone as the shaft. She looks up into his eyes as she sucks, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth over her chin and falls away in a few small drops. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
+     "seed": 104501
+    }
+   }
+  },
+  "s2_shallow_b": {
+   "_note": "a104 v: 104303 key, shallow strokes, seed 104502",
+   "shots": {
+    "s2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the white sheets: {script_character} kneels on the bed with the cock of {script_partner} in her mouth. She bobs her head quickly in short strokes, about two a second: her lips slide back and forth along the front part of the shaft, and the head of his cock always stays inside her mouth. Her soft lips form a smooth, round seal around the shaft and her cheeks are drawn in softly by the suction. His cock stays long and thick, exactly the size it is in the first frame, with most of the shaft visible outside her lips; its head is the same tan skin tone as the shaft. She looks up into his eyes as she sucks, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth over her chin and falls away in a few small drops. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
+     "seed": 104502
+    }
+   }
+  },
+  "s2_mix3": {
+   "_note": "a104 v: mix3_104404 key (104303 body, first face), shallow strokes",
+   "shots": {
+    "s2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the white sheets: {script_character} kneels on the bed with the cock of {script_partner} in her mouth. She bobs her head quickly in short strokes, about two a second: her lips slide back and forth along the front part of the shaft, and the head of his cock always stays inside her mouth. Her soft lips form a smooth, round seal around the shaft and her cheeks are drawn in softly by the suction. His cock stays long and thick, exactly the size it is in the first frame, with most of the shaft visible outside her lips; its head is the same tan skin tone as the shaft. She looks up into his eyes as she sucks, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth over her chin and falls away in a few small drops. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
+     "key_image": "a104/s2_key_mix3_104404_00001_.png"
+    }
+   }
+  },
+  "s5_more": {
+   "_note": "a104 v: five very thin strands, scattered",
+   "shots": {
+    "s5": {
+     "key_image": "a104/s4_c0_last.png",
+     "start_from": null,
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} The same close POV on her chest and face, continuing: {script_character} keeps her breasts pressed around the cock of {script_partner} as he climaxes. His cock pulses five times, each pulse a little weaker; between pulses it is still, and it does not grow or change size. Each pulse sends one very thin white strand of semen up out of the tip at the top of her cleavage. The strands land one after another, scattered and uneven: across her chin, a thin line up one cheek, a short one on her neck, small drops on the top of one breast, the last a dribble into her cleavage. The strands stay very thin, like threads; each one ends where it hits and stays, and the white on her is uneven and lopsided. She flinches happily at the first spurt, then looks into the camera with a sweet, delighted smile. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: his low groan of release, three soft wet spurts, her small surprised laugh.\n\nnon_diegetic_music: N/A"
+    }
+   }
+  },
+  "s5_asym": {
+   "_note": "a104 v: one unbroken first rope to one side",
+   "shots": {
+    "s5": {
+     "key_image": "a104/s4_c0_last.png",
+     "start_from": null,
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} The same close POV on her chest and face, continuing: {script_character} keeps her breasts pressed around the cock of {script_partner} as he climaxes. His cock pulses three times and no more; between pulses it is still, and it does not grow or change size. The first pulse sends one single unbroken thin white rope up out of the tip that arcs to her right and lands in one line across her right cheek and chin; the second, shorter, lands on her neck on the same side; the third only dribbles down into her cleavage. The ropes stay thin; each one ends where it hits and stays, and the white on her is uneven and lopsided. She flinches happily at the first spurt, then looks into the camera with a sweet, delighted smile. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: his low groan of release, three soft wet spurts, her small surprised laugh.\n\nnon_diegetic_music: N/A"
+    }
+   }
+  },
+  "s5_asym_thin": {
+   "_note": "a104 v: s5_asym with string-thin ropes (owner: asym pattern more organic but too thick, esp. at the glans) and the cum LoRA at 0.3",
+   "shots": {
+    "s5": {
+     "key_image": "a104/s4_c0_last.png",
+     "start_from": null,
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} The same close POV on her chest and face, continuing: {script_character} keeps her breasts pressed around the cock of {script_partner} as he climaxes. His cock pulses three times and no more; between pulses it is still, and it does not grow or change size. Each rope leaves the tip as a fine thread, as thin as a string, and stays that thin in the air. The first pulse sends one single unbroken thread of white semen up out of the tip that arcs to her right and lands in one line across her right cheek and chin; the second, shorter, lands on her neck on the same side; the third only dribbles down into her cleavage. The threads stay thin all the way, at the tip and where they land; each one ends where it hits and stays, and the white on her is uneven and lopsided. She flinches happily at the first spurt, then looks into the camera with a sweet, delighted smile. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: his low groan of release, three soft wet spurts, her small surprised laugh.\n\nnon_diegetic_music: N/A",
+     "clip_job": {
+      "nsfw_strength": 0.3
      }
     }
    }

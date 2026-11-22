@@ -13,6 +13,8 @@ MODE: selfguide (pass-1 frames pinned as they are), repair (pass-1 frames repair
       ref2va (one pass: the keyframe as reference on every step + first frame),
       refrepair (ComfyUI's multiframe pattern: Ref2VA with the keyframe as <Picture 1>, named in the
       script, + the repaired anchors pinned; repaired anchors from an earlier run are reused).
+A job key "ref" (path under data_dir) gives the picture the object is repaired toward, instead of the
+keyframe; the start frame is then repaired too (round a104: a better penis from another seed).
 PICTURE is appended to the description for the Ref2VA modes: only reference slots reach the text
 encoder, AddGuide images do not (docs.comfy.org multiframe tutorial).
 Needs the engine's python (PyAV) for the frame extraction.
@@ -95,9 +97,16 @@ def main():
     anchors = frames_at(raw, anchors_at, adir, name)
     say("anchors %s" % [os.path.basename(p) for p in anchors])
     if mode in ("repair", "refrepair"):
-        key = core.upload_input(job["image"], s)
+        # Picture 2 = what the object should look like: the job's "ref" picture (e.g. a better keyframe
+        # from another seed), else the clip's own keyframe; core.run uploads it
+        ref = job.pop("ref", None)
+        key = os.path.join(data, ref) if ref else job["image"]
         w, h = job.get("width", 768), job.get("height", 1152)
         fixed = []
+        if ref:  # the clip must also start from the repaired object
+            job["image"] = run({"workflow": "wf_h3img_2ref.json", "image1": job["image"], "image2": key, "prompt": REPAIR,
+                                "width": w, "height": h, "seed": 98001, "round": rnd + "/anchors",
+                                "name": name + "_start_fix", "anime_timing": "off"})
         for p in anchors:
             stem = os.path.splitext(os.path.basename(p))[0]
             done = os.path.join(adir, stem + "_fix_00001_.png")

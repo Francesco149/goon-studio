@@ -380,6 +380,8 @@ def run(job, by="me", on_queued=None, on_note=None):
         fields["image"] = upload_input(job["image"], s)
     if job.get("image1"):
         fields["image1"] = upload_input(job["image1"], s)
+    if job.get("image2"):  # two-picture edits (wf_h3img_2ref): <Picture 2>
+        fields["image2"] = upload_input(job["image2"], s)
     if job.get("last"):
         fields["last"] = upload_input(job["last"], s)
     graph = subst(graph, fields)

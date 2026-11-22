@@ -185,3 +185,11 @@ the flattest look with the Nijigasaki series tag, a hotel room at night. 6 shots
   and chin; a second, smaller one splashes onto her right breast a moment later; the last only wells out
   ... The cum lands unevenly, more on one side". Result: one arc up and over to one side, uneven splashes
   - no longer the mirrored pattern of the first take.
+- s5 variants (`--variant s5_more|s5_asym`, own rounds `a104_s5_*`): **`s5_more` (five very thin strands)
+  failed** - owner: it just makes faster twitches with a similar shot. Same as a93c: more pulses means
+  faster twitching, not more ropes. Keep three pulses; vary where and how they land instead.
+- **Place a freeze on the event, not at a fixed time** (owner: an odd freeze at the climax in the cut,
+  not in the clip). s5 had `hold` at 1.0 s; after `start_from` the spurts come at frames 2-15 and by
+  frame 24 the shot is already settling, so the freeze landed in the calm part. Check the frame
+  differences of the clip (the big changes = the event) and put `at` on the peak: s5 now
+  `{"at": 0.42, "frames": 12}`.
