@@ -367,3 +367,8 @@ showed no fold at the checked frames), or reseed the still for one without arm c
   from ~f20 her smile opens and the tongue tip shows despite the closed-mouth line (the same open grin as
   the a97 Lanzhu paizuri - likely seed 96101), and her fingers move onto the nipples. Prefer this
   keyframe over `hgf_99001`; a reseed may close the mouth.
+- a99i (`jobs/a99i_template_seeds.jsonl`), same template and keyframe, two seeds: **99101 is the keeper** -
+  the closed smug smile holds to f123, no fold, H3 on 1s (`r` 0.94). 97102 opens the smile with the tongue
+  tip from ~f40 and draws small crease lines at the top of the cleavage around f80-100 (`r` 0.97). On all
+  three seeds her fingers move onto the nipples after the first stroke (the keyframe's hand placement).
+  Sheet: `analysis/a99i_seeds.jpg`.

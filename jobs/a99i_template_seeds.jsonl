@@ -1,0 +1,2 @@
+{"name": "tpl_hgame_paizuri_hg_99002_s97102", "template": "anime_lz_hgame_paizuri", "image": "gallery/a99/hgk_pz_wide_hg_99002_00001_.png", "seed": 97102, "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors", "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors"}
+{"name": "tpl_hgame_paizuri_hg_99002_s99101", "template": "anime_lz_hgame_paizuri", "image": "gallery/a99/hgk_pz_wide_hg_99002_00001_.png", "seed": 99101, "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors", "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors"}

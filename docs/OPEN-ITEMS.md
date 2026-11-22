@@ -15,7 +15,7 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 | photoreal cum shot | `cumshot_medium` (a93 `pm_base`) | "the best default for this shot"; `p1_pose`, seed 970; `cumshot_high` = extreme preset |
 | photoreal facial still | `egirl_facial_tongue` / `egirl_facial_tongue_over` (a94) | tongue out: "good angle, expression and splash pattern"; overcooked = thinner translucent semen |
 | anime paizuri | still `anime_ll_fz_paizuri_notongue` -> clip `anime_ll_paizuri` (a92) | "solid, right penis type"; no saliva yet |
-| anime h-game motion (smooth, jiggly) | `anime_lz_hgame_pz` -> `anime_lz_hgame_paizuri` (a99) | h-game keyframe = H3 on 1s; Breasts smooth fixes the moving fold; owner: "the recipe to force this style" |
+| anime h-game motion (smooth, jiggly) | `anime_lz_hgame_paizuri` on keyframe `gallery/a99/hgk_pz_wide_hg_99002`, seed 99101 (a99i) | h-game keyframe = H3 on 1s; no fold, closed smile; owner: "the recipe to force this style" |
 | anime stills | `anime_pov` (retracted), `anime_pov_foreskin`, `anime_pov_mosaic` | style + nudity locks, round a86 |
 
 ## Open items, in the owner's order
@@ -82,7 +82,7 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    RIFE 4.26 / FILM from the store) drops H3's copies and interpolates, clean on the checked frames.
    Open: owner verdict on the smoothed clips; BJ head travel on the h-game profile is small; the
    wide `hgf_99001` keyframe keeps a moving fold even with Breasts smooth (keyframe-specific); the
-   front-on `hgk_pz_wide_hg_99002` has no fold (a99h), but seed 96101 opens her smile from ~f20.
+   front-on `hgk_pz_wide_hg_99002` has no fold (a99h) and seed 99101 keeps her mouth closed (a99i).
 6. Smaller:
    - photoreal veins come out as raised vine-like cords (inherited from the Krea + Verite keyframe);
    - HMPenis v2 is registered but untested (needs a Civitai login - the owner downloads it);
