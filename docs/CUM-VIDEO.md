@@ -262,9 +262,10 @@ be stronger for fluids; here it is not. On a landed facial (two seeds) overcooke
 semen: thinner, glossier, more translucent, with longer runny drips and a clean glans, where
 realism gives the heavier, lumpier pooled deposit. At 0.8 it sits in between. On the blowjob
 still it smooths the skin toward a beauty-filter look, drops the saliva and loses the lip seal
-(the glans sits outside her lips). **Verite_realism stays the keyframe LoRA**; overcooked is only
-a candidate for a deliberately thin, translucent fluid look. Owner expected as much (the extreme
-preset is extreme enough).
+(the glans sits outside her lips). **Owner: still surprisingly realistic - a good alternative when
+Verite_realism does not make good semen.** Realism stays the default keyframe LoRA; swap in
+overcooked (`lora: Verite_overcooked.safetensors`, 1.0 or 0.8) for a cum still whose semen came out
+wrong. Not for blowjob stills (seal).
 
 ### a93c / a93d: bigger anime loads
 
