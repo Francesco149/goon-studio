@@ -1,0 +1,137 @@
+{
+ "name": "lanzhu_hotel",
+ "about": "Six-shot scene in a hotel room at night, Lanzhu (Anima LoRA), the flattest look: back tease, three-quarter blowjob with a gaze shift, paizuri slow -> fast -> climax with a sweet smile at the viewer, afterglow. The emilia_meadow sequence (docs/SCENES.md) with a paizuri climax. Round a104.",
+ "ref": "kit/stories/emilia_meadow.json (sequence); gallery/refs/art-study/refs/emillia.mp4",
+ "seed": 104001,
+ "still": {
+  "workflow": "wf_anima2_lora.json",
+  "lora": "lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors",
+  "strength": 1.0,
+  "width": 1248,
+  "height": 832,
+  "steps": 30,
+  "cfg": 4.0,
+  "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine"
+ },
+ "clip": {
+  "width": 1152,
+  "height": 768,
+  "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
+  "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+  "fps": 24,
+  "max_len": 124,
+  "seg_len": 49
+ },
+ "blocks": {
+  "style": "masterpiece, best quality, year 2020, anime screenshot, love live! nijigasaki high school idol club, anime coloring, (flat color:1.4), (no shading:0.8), (matte:1.2), (simple coloring:1.2), thin lineart, soft pastel colors, (diagonal-lined blush:1.1), (matte penis:1.2), (thick penis:1.1), veins, flat colored penis",
+  "character": "1girl, lanzhu zhong, long hair, bangs, blue eyes, pink hair, ahoge, sidelocks, mole, two side up, mole under eye, hair bun, mature female, (curvy:1.5), (wide hips:1.3), thick thighs, large breasts",
+  "outfit": "(open bathrobe:1.2), white bathrobe, bare shoulders",
+  "partner": "1boy, hetero, tan skin, (black hair:1.1)",
+  "setting": "indoors, hotel room, bed, white bed sheet, night, warm lamp light, window, city lights",
+  "script_style": "A 2D anime clip in the flat style of a TV anime: flat colours with no shading at all, matte skin and a matte penis with no shine, thin clean lines, hatched pink blush lines on her cheeks, warm lamp light, one fixed camera.",
+  "script_character": "a young adult woman with long pink hair tied in two small side loops, blue eyes and a mole under her eye, in an open white hotel bathrobe",
+  "script_partner": "a man",
+  "script_setting": "on a hotel bed with white sheets at night, warm lamp light and city lights in the window"
+ },
+ "shots": [
+  {
+   "id": "s1",
+   "seconds": 6.0,
+   "timing": "on3",
+   "template": "anime_ll_headgrab_push",
+   "still": "{style}, {character}, (bathrobe pulled up to her waist:1.2), (white panties:1.2), (bare ass:1.1), bare legs, {partner}, sitting, on bed, (back view:1.2), (from directly behind:1.2), (centered:1.2), symmetrical, kneeling, bent over, (facing away:1.3), from behind, from below, (back of head:1.2), (face not visible:1.2), head in his lap, fellatio, (ass focus:1.2), (huge ass:1.1), wide hips, {setting}",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, looking back, looking at viewer, face, eyes, profile, side view, three-quarter view, from side, penis, testicles, visible penis, long bathrobe covering legs"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A low angle from directly behind her, centred on her: {script_character} kneels {script_setting}, bent forward with her head in the lap of {script_partner} who sits on the edge of the bed in front of her; we only see the back of her head and her side loops, and her raised hips in white panties, the bathrobe hiked up to her waist, fill the frame. She sucks him in a slow, deep rhythm, about one bob every three quarters of a second: her head dips into his lap and comes back, and with every bob her hips rock back toward the camera and sway. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a muffled wet suction rhythm, the soft rustle of the sheets as her hips rock, her breath, one low male groan.\n\nnon_diegetic_music: N/A"
+  },
+  {
+   "id": "s2",
+   "seconds": 5.45,
+   "timing": "smooth",
+   "template": "anime_ll_headgrab_push",
+   "still": "{style}, {character}, {outfit}, {partner}, close-up, face focus, from above, three-quarter view, kneeling, leaning forward, fellatio, (penis in mouth:1.2), saliva, (clear saliva:1.1), transparent, saliva trail, (lips sealed around penis:1.3), (looking up:1.2), (eye contact:1.2), looking at another, sad eyebrows, blush, bed, white bed sheet, warm lamp light",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, tongue out, open mouth"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the white sheets: {script_character} kneels on the bed with the cock of {script_partner} in her mouth. She bobs her head quickly along the shaft, about two strokes a second, her soft lips sealed tight around it. His cock stays very long and thick, exactly the size it is in the first frame, with most of the shaft visible outside her lips; its head is the same tan skin tone as the shaft. She looks up into his eyes as she sucks, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth over her chin and falls away in a few small drops. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
+   "key_image": "a104/s2_key_long_104211_00001_.png",
+   "_note": "keyframe: the a104 s2 key with the penis redrawn by an H3-Image edit (scratch edit_s2 prompt in docs/STORY.md a104) - the face kept exactly"
+  },
+  {
+   "id": "s3",
+   "seconds": 5.0,
+   "timing": "off",
+   "template": "anime_ll_paizuri",
+   "still": "{style}, {character}, {outfit}, (bare breasts:1.2), {partner}, pov, from above, paizuri, (breasts around penis:1.2), (penis between breasts:1.2), glans above cleavage, she presses her breasts together with both hands, upper body, (looking at viewer:1.3), (gentle smile:1.2), closed mouth, blush, on bed, {setting}",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, open mouth, tongue out, licking penis, penis in mouth, oral, frown"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character}, the robe open, kneels {script_setting} between the legs of {script_partner} and presses her large breasts together around his cock with both hands, sliding them slowly up and down the shaft in long, heavy strokes, about one stroke every second and a half. On each up stroke the glans peeks out of the top of her cleavage. She looks straight into the camera with a soft, sweet smile, her lips closed, her blush warm; her breasts sway and settle with each stroke. Her breasts stay smooth and round, the skin even. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: soft skin friction on each slow stroke, her quiet happy breath, the sheets shifting.\n\nnon_diegetic_music: N/A"
+  },
+  {
+   "id": "s4",
+   "seconds": 4.0,
+   "timing": "smooth",
+   "template": "anime_ll_paizuri",
+   "still": "{style}, {character}, {outfit}, (bare breasts:1.2), {partner}, pov, close-up, paizuri, (breasts around penis:1.2), (penis between breasts:1.2), glans above cleavage, she presses her breasts together with both hands, (looking at viewer:1.3), (smile:1.2), happy, blush, sweat, bed, warm lamp light",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, open mouth, tongue out, licking penis, penis in mouth, oral, frown"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close POV on her chest and face: {script_character} pumps her large breasts quickly up and down the cock of {script_partner}, about two strokes a second, squeezing them together with both hands; the glans pops out of her cleavage on every up stroke. Her breasts bounce and jiggle with the fast rhythm. She keeps looking into the camera with a bright, happy smile, a little out of breath, her blush deepening. Her breasts stay smooth and round, the skin even. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quick soft slapping rhythm of skin, her short happy breaths, a rising male groan.\n\nnon_diegetic_music: N/A"
+  },
+  {
+   "id": "s5",
+   "seconds": 3.5,
+   "timing": "on2",
+   "hold": [
+    {
+     "at": 1.0,
+     "frames": 24
+    }
+   ],
+   "template": "anime_ll_cumshot",
+   "clip_job": {
+    "nsfw_strength": 0.5
+   },
+   "still": "{style}, {character}, {outfit}, (bare breasts:1.2), {partner}, pov, paizuri, (breasts around penis:1.2), ejaculation, (cum:1.2), cum on breasts, cum on face, (looking at viewer:1.3), (smile:1.2), closed eyes, happy, blush, bed, warm lamp light",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, open mouth, tongue out, frown, crying"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} The same close POV on her chest and face, continuing: {script_character} keeps her breasts pressed around the cock of {script_partner} as he climaxes. The first spurt shoots up out of her cleavage at an angle and lands across her left cheek and chin; a second, smaller one splashes onto her right breast a moment later; the last only wells out and runs down the shaft into her cleavage. The cum lands unevenly, more on one side than the other. She flinches happily at the first spurt, then looks into the camera with a sweet, delighted smile. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: his low groan of release, three soft wet spurts, her small surprised laugh.\n\nnon_diegetic_music: N/A",
+   "start_from": "s4"
+  },
+  {
+   "id": "s6",
+   "seconds": 4.5,
+   "timing": "on3",
+   "hold": [
+    {
+     "at": 3.0,
+     "frames": 10
+    }
+   ],
+   "template": "anime_ll_cumshot",
+   "clip_job": {
+    "nsfw_strength": 0.35
+   },
+   "still": "{style}, {character}, {outfit}, (bare breasts:1.2), solo, upper body, close-up, (looking at viewer:1.3), (smile:1.3), happy, head tilt, cum on breasts, cum on face, cum on neck, sweat, blush, sitting on bed, {setting}",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, penis, 1boy, male, open mouth, tongue out, frown, crying, ahegao"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A medium close-up: {script_character} sits on the bed {script_setting} with cum on her chin, neck and breasts. She looks into the camera with a warm, sweet smile, tilts her head a little, and breathes slowly, her shoulders and chest rising and falling; a drop of cum runs slowly down the curve of her breast. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: her soft, slow breathing, a small contented sigh, the quiet room.\n\nnon_diegetic_music: N/A"
+  }
+ ],
+ "variants": {
+  "bj_nolora": {
+   "_note": "a104s2 test: s2 without the blowjob act LoRA (the red flare on the pull-up comes with it)",
+   "shots": {
+    "s2": {
+     "clip_job": {
+      "nsfw_strength": 0.0
+     }
+    }
+   }
+  }
+ }
+}

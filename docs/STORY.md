@@ -163,3 +163,25 @@ troubled brows; s3 he stands, she kneels bent forward with her boots up behind h
   collarbone`, negative `high collar, brooch, gold trim, dress`): off-shoulder top with bare shoulders
   like the other shots. Owner: "the new clips look good". Open: the hair flower still jumps in s3 where
   his hand touches her head.
+
+## Round a104: `lanzhu_hotel` (2026-11-22)
+
+The meadow arc with a paizuri climax (slow -> fast -> climax, sweet smile at the viewer), Lanzhu LoRA,
+the flattest look with the Nijigasaki series tag, a hotel room at night. 6 shots, 28.5 s.
+- Owner: the tease (s1, robe hiked to the waist over white panties, centred) and the paizuri shots
+  are good; backdrop continuity between shots (lamp, window) is the next problem, after the penis.
+- **New story options**: `key_image` (a shot animates from a fixed, e.g. hand-edited keyframe) and
+  `start_from: "<shot id>"` (a shot continues from the last frame of that shot - no cut in the
+  staging; the cut drops the repeated frame).
+- s2 penis (owner: needs length and girth to match the paizuri, tip too red; the cute dynamics are
+  good): the keyframe was fixed with an **H3-Image one-picture edit** (`wf_h3img_1ref.json`, "keep her
+  exactly ... only change the man and his penis: his body further back at the right edge, a very
+  long, very thick veiny shaft ...") - the face stays identical. Two passes: thicker (`s2_key_edit_104201`),
+  then longer (`s2_key_long_104211`). In motion: length/girth right, but the veins came out as a net-like
+  texture and the head still turns dark red on the pull-up (the blowjob act LoRA; "its head is the same
+  tan skin tone as the shaft" did not override it). Without the act LoRA (a104s2 `bj_nolora`) there is no
+  red at all, but she barely moves.
+- s5 climax now `start_from: s4` and written as uneven: "the first spurt ... lands across her left cheek
+  and chin; a second, smaller one splashes onto her right breast a moment later; the last only wells out
+  ... The cum lands unevenly, more on one side". Result: one arc up and over to one side, uneven splashes
+  - no longer the mirrored pattern of the first take.

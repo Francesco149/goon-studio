@@ -11,7 +11,7 @@ A story file (kit/stories/*.json):
                                script_style, script_character, script_partner, script_setting
                                (H3 script prose); used as {name} placeholders in the shots
   seed                       - base seed; shot i uses seed + i unless the shot sets one
-  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...},
+  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from,
           timing: "off"|"on2"|"on3"|"smooth", hold: [{"at": s, "frames": n}], seed}]
 
 Long shots: a clip is at most `max_len` frames; a longer shot continues with more clips, each
@@ -86,7 +86,14 @@ def expand(story):
         still.update(name="%s_key" % sid, seed=seed, prompt=prompt)
         if "late" in still or still.get("workflow", "").startswith("wf_anima2"):
             still["late"] = prompt  # no signature split: the character LoRA carries the identity
-        jobs.append(still)
+        # key_image: a fixed keyframe (e.g. hand-edited, path under data_dir); start_from: "<shot id>" -
+        # the shot continues from the last frame of that shot's last clip (no keyframe of its own)
+        if not sh.get("key_image") and not sh.get("start_from"):
+            jobs.append(still)
+        prev = None
+        if sh.get("start_from"):
+            ref = next(s for s in story["shots"] if s["id"] == sh["start_from"])
+            prev = "%s_c%d" % (ref["id"], len(segments(story, ref)) - 1)
         script = fill(sh["script"], B)
         for k, n in enumerate(segments(story, sh)):
             clip = dict(story.get("clip", {}))
@@ -95,7 +102,11 @@ def expand(story):
             clip.update(sh.get("clip_job", {}))
             clip.update(name="%s_c%d" % (sid, k), template=sh.get("template", clip.get("template")), seed=seed,
                         prompt=script, length=n, anime_timing="off")
-            if k == 0:
+            if k == 0 and prev:
+                clip["image_last_from"] = prev
+            elif k == 0 and sh.get("key_image"):
+                clip["image_path"] = sh["key_image"]
+            elif k == 0:
                 clip["image_from"] = "%s_key" % sid
             else:
                 clip["image_last_from"] = "%s_c%d" % (sid, k - 1)
@@ -154,7 +165,7 @@ def _shot(story, sh, files, tmpdir):
             src = os.path.join(tmpdir, "smooth_%s_%d.mp4" % (sh["id"], k))
             anime_smooth.smooth(f, src)
         fr, rate, au, ar, lay = _read(src)
-        drop = 1 if k else 0
+        drop = 1 if (k or sh.get("start_from")) else 0  # a continuation repeats the frame it starts from
         frames += fr[drop:]
         if au is not None:
             arate, layout = ar, lay

@@ -60,8 +60,10 @@ def main():
                 continue
             if j["name"] in made and not redo:
                 continue  # made by an earlier run of this round (--redo renders it again)
-            job = {k: v for k, v in j.items() if k not in ("image_from", "image_last_from")}
+            job = {k: v for k, v in j.items() if k not in ("image_from", "image_last_from", "image_path")}
             job["round"] = rnd
+            if j.get("image_path"):
+                job["image"] = os.path.join(data, j["image_path"])
             if j.get("image_from"):
                 job["image"] = os.path.join(data, made[j["image_from"]])
             if j.get("image_last_from"):
