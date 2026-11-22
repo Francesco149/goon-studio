@@ -11,7 +11,7 @@ A story file (kit/stories/*.json):
                                script_style, script_character, script_partner, script_setting
                                (H3 script prose); used as {name} placeholders in the shots
   seed                       - base seed; shot i uses seed + i unless the shot sets one
-  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from,
+  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from, clip_file, clip_range, continues,
           timing: "off"|"on2"|"on3"|"smooth", hold: [{"at": s, "frames": n}], seed}]
 
 Long shots: a clip is at most `max_len` frames; a longer shot continues with more clips, each
@@ -80,6 +80,8 @@ def expand(story):
     for i, sh in enumerate(story["shots"]):
         seed = sh.get("seed", story.get("seed", 1) + i)
         sid = sh["id"]
+        if sh.get("clip_file"):  # an existing clip (path under data_dir), used as it is: nothing to render
+            continue
         still = dict(story.get("still", {}))
         still.update(sh.get("still_job", {}))
         prompt = tidy(fill(sh["still"], B))
@@ -165,7 +167,14 @@ def _shot(story, sh, files, tmpdir):
             src = os.path.join(tmpdir, "smooth_%s_%d.mp4" % (sh["id"], k))
             anime_smooth.smooth(f, src)
         fr, rate, au, ar, lay = _read(src)
-        drop = 1 if (k or sh.get("start_from")) else 0  # a continuation repeats the frame it starts from
+        if k == 0 and sh.get("clip_range"):  # [first, last] frame of an existing clip
+            a, b = sh["clip_range"]
+            fr = fr[a:b + 1]
+            if au is not None:
+                au = au[:, int(round(a * ar / rate)):int(round((b + 1) * ar / rate))]
+        # a continuation repeats the frame it starts from: start_from, or "continues" (key_image = the
+        # previous shot's last frame)
+        drop = 1 if (k or sh.get("start_from") or sh.get("continues")) else 0
         frames += fr[drop:]
         if au is not None:
             arate, layout = ar, lay

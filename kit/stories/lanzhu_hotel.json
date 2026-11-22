@@ -46,17 +46,31 @@
    "script": "integrated_multimodal_description: [Shot 1] {script_style} A low angle from directly behind her, centred on her: {script_character} kneels {script_setting}, bent forward with her head in the lap of {script_partner} who sits on the edge of the bed in front of her; we only see the back of her head and her side loops, and her raised hips in white panties, the bathrobe hiked up to her waist, fill the frame. She sucks him in a slow, deep rhythm, about one bob every three quarters of a second: her head dips into his lap and comes back, and with every bob her hips rock back toward the camera and sway. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a muffled wet suction rhythm, the soft rustle of the sheets as her hips rock, her breath, one low male groan.\n\nnon_diegetic_music: N/A"
   },
   {
-   "id": "s2",
-   "seconds": 5.45,
+   "id": "s2a",
+   "seconds": 1.875,
+   "timing": "off",
+   "clip_file": "a104r2/s2_ref2va_104002_00001_.mp4",
+   "clip_range": [
+    8,
+    52
+   ],
+   "still": "",
+   "script": "",
+   "_note": "the glans suck from Ref2VA (wf_h3vid_ref2va_first2: s2 key 104303 + penis ref s2_penisref_104601), frames 8-52 - the glans is right on every frame"
+  },
+  {
+   "id": "s2b",
+   "seconds": 3.575,
    "timing": "smooth",
    "template": "anime_ll_headgrab_push",
    "still": "{style}, {character}, {outfit}, {partner}, close-up, face focus, from above, three-quarter view, kneeling, leaning forward, fellatio, (penis in mouth:1.2), (long penis:1.2), (thick penis:1.2), large penis, glans the same color as the shaft, saliva, (clear saliva:1.1), transparent, saliva trail, (lips sealed around penis:1.3), (looking up:1.2), (eye contact:1.2), looking at another, sad eyebrows, blush, bed, white bed sheet, warm lamp light",
    "still_job": {
     "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, tongue out, open mouth"
    },
-   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up from slightly above, her face filling the frame against the white sheets: {script_character} kneels on the bed with the cock of {script_partner} in her mouth. She bobs her head quickly along the shaft, about two strokes a second, her soft lips sealed tight around it. His cock stays long and thick, exactly the size it is in the first frame, with most of the shaft visible outside her lips; its head is the same tan skin tone as the shaft. She looks up into his eyes as she sucks, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, the hatched blush on her cheeks deepening; her bangs bounce with every stroke. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth over her chin and falls away in a few small drops. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quick wet suction rhythm with a small pop at the top of each stroke, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
-   "key_image": "a104/s2_key_s104303_00001_.png",
-   "_note": "keyframe: the s2 still re-rolled on seed 104303 (longer/thicker penis, fewer veins; owner pick from the five-seed sheet). Earlier: s2_key_mix_104402 (104304 with the first face), s2_key_long_104211 (edit)."
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} The same close-up from slightly above, continuing: {script_character} has her lips around the head of the cock of {script_partner}. She slowly takes it deeper, sliding her sealed lips all the way down the long, thick shaft until her nose presses against his body, holds it deep for a moment with her eyes watering, then slides back up to the head and takes it all the way down again: slow, deep strokes, about one every one and a half seconds. His cock stays long and thick, exactly the size it is in the first frame; its head is the same tan skin tone as the shaft. Her soft lips stay sealed in a smooth, round ring around the shaft, her cheeks drawn in softly. She looks up into his eyes, then slowly turns her gaze to the camera and holds eye contact with the viewer, her brows tilted up in a shy, needy look, her blush deepening. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth over her chin and falls away in a few small drops. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, deep wet suction, a soft muffled gulp when she holds him deep, her nose breathing, one low male groan at about two seconds. No chewing, no crunch.\n\nnon_diegetic_music: N/A",
+   "key_image": "a104/s2_dt_key.png",
+   "_note": "continues from the deepest frame of the s2a glans suck (owner's trick): the penis anatomy is set by that frame, the i2v model + act LoRA bring the motion",
+   "continues": true
   },
   {
    "id": "s3",

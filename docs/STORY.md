@@ -216,3 +216,10 @@ the flattest look with the Nijigasaki series tag, a hotel room at night. 6 shots
     is **consistent on every frame** (defined head, the reference's size and shape, no degrading or morph) -
     but **the motion is gone** (median frame change 0.3 vs 4.2 for the i2v clip) and the act drifts to the
     reference's pose (tip at her lips). The act/motion LoRAs are i2v (FL2VA) LoRAs and barely act on Ref2VA.
+- **The fix (owner's trick): glans suck -> deep throat from its deepest frame.** The Ref2VA clip has a correct
+  glans and good suction but only sucks the glans. `s2a` uses it as it is (`clip_file` + `clip_range`
+  [8, 52]: frame 0 is the pinned keyframe and jumps; frame 52 = lips furthest down, past the rim); `s2b`
+  starts from frame 52 (`key_image` = that frame, `continues: true` so the cut drops the repeated frame)
+  with a deep-throat script on the normal i2v model + act LoRA. Result: the penis stays right (no pull-out
+  ever exposes the glans to a redraw, no red), real motion again (median frame change 6.4 vs 0.4), and the
+  seam is a normal motion step (7.8). New story options: `clip_file`, `clip_range`, `continues`.

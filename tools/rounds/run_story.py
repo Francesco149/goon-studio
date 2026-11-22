@@ -86,6 +86,9 @@ def main():
     for j in ST.expand(S):
         if "_c" in j["name"] and j["name"] in made:
             files.setdefault(j["name"].rsplit("_", 1)[0], []).append(os.path.join(data, made[j["name"]]))
+    for sh in S["shots"]:
+        if sh.get("clip_file"):
+            files[sh["id"]] = [os.path.join(data, sh["clip_file"])]
     out = os.path.join(outdir, "%s_cut.mp4" % S["name"])
     with tempfile.TemporaryDirectory() as tmp:
         r = ST.assemble(S, files, out, tmp)

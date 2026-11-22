@@ -24,6 +24,7 @@ climax; the last shot slow and quiet.
 | shot | camera / staging | cadence | reference | known-good gen | notes |
 |---|---|---|---|---|---|
 | **Back tease** | extreme low angle, centred, directly behind her kneeling; her head buried in his lap/crotch, hips cover the act; his legs/jacket frame her | on 3s | emillia shot 1 | `a103/s1_c0_00002_.mp4`; `a104` s1 | lock it: `(back view)`, `(from directly behind)`, `(centered)`, negative side view + penis; owner prefers centred over a 3/4 view |
+| **Glans suck -> deep throat** | the 3/4 close-up: Ref2VA glans suck, then a deep throat from its deepest frame | off -> smooth | - | `a104` s2a+s2b (`lanzhu_hotel_cut.mp4` 6.0-11.45 s) | the fix for a glans that degrades on the pull-out |
 | **3/4 BJ close-up** | face fills the frame from slightly above, plain background (grass/sheets), his jacket at one edge | smooth (24/s) | emillia shot 2 | `a103s2/s2_c0_00002_.mp4` | gaze shift in one clip (him -> camera) works; clear saliva wording |
 | **POV headpat** | from his chest straight down; he stands, she kneels bent forward, feet up; his hand strokes her head | H3's own (`off`) | emillia shot 3 | `a103/s3_c0_00003_.mp4` | her eyes close with each stroke; the hair flower jumps under the hand (open) |
 | **Profile climax** | side close-up, his hand on her head, overflow at the lips | on 2s + 28-frame freeze | emillia shot 4 | `a103/s4_c0_00001_.mp4` | `anime_ll_cumshot` LoRA at 0.5 |
@@ -52,6 +53,9 @@ pulls that show's own look.
 - Cadence per shot: `timing` on2/on3/off/smooth (`docs/STORY.md`); smooth = RIFE.
 - **Freeze frames (`hold`) only for shots designed around one** (the meadow's oral climax, an impact
   stopper) - owner: not a good fit for the sweet paizuri climax. Put `at` on the event (the frame-difference peak).
+- **Glans breaks on the pull-out?** Ref2VA with a penis reference (`wf_h3vid_ref2va_first2`) gives a correct
+  glans but only a glans suck; use it as it is, then cut to a deep throat started from its deepest frame
+  (`clip_file`/`clip_range` + `key_image`/`continues`, `lanzhu_hotel` s2a/s2b, a104). The penis never leaves her mouth.
 - Bigger climaxes: never more pulses (faster twitching, a93c/a104); three pulses, vary where they land.
 - Micro-motion (jiggle, follow-through, breathing): Video tab **Dynamics** (`dynamics_video`).
 - A gaze shift inside one clip works when it is slow ("looks up into his eyes ..., then slowly turns
