@@ -29,6 +29,7 @@ climax; the last shot slow and quiet.
 | **POV headpat** | from his chest straight down; he stands, she kneels bent forward, feet up; his hand strokes her head | H3's own (`off`) | emillia shot 3 | `a103/s3_c0_00003_.mp4` | her eyes close with each stroke; the hair flower jumps under the hand (open) |
 | **Profile climax** | side close-up, his hand on her head, overflow at the lips | on 2s + 28-frame freeze | emillia shot 4 | `a103/s4_c0_00001_.mp4` | `anime_ll_cumshot` LoRA at 0.5 |
 | **Low-angle afterglow** | from below her chin against the sky, head back, tongue out with strings | on 3s + short hold | emillia shot 5 | `a103/s5_c0_00003_.mp4` | `solo` + no penis/male in the negative |
+| **Lap pillow + nursing handjob** (sweet) | three stagings that make physical sense: **sofa** - she sits, he lies on his back along the sofa with his head in her lap, she leans her breast onto his face, strokes him with one hand, the other in his hair (refs `lap_pillow_sofa_pixel.png`); **bed** - she lies on her side curled over him (ref `lap_pillow_bed_ai.webp`); **on top** - she lies half on him, breasts on his face, reaching down (blob-present opening) | `off` (H3's own) | `gallery/refs/art-study/refs/lap_pillow_*`, blob-present 0-15 s | keyframes `a105/lap_sofa_105003`, `lap_bed_105001/105002`, `lap_ontop_10500*`; clips `a105/lapv2_*.mp4` | owner: a winning recipe. Tags `(lap pillow:1.3), (nursing handjob:1.3), breast sucking, her hand on his penis`; negative his own hand (sofa 105002 had him stroke himself); spell out both of his legs on the sofa (105001 lost one). No act LoRA - motion booster only. Script details: clear saliva thread between his lips and her nipple, his cock twitching in her hand, a bead of precum (owner; also fixed a dark blob at the mouth-breast contact). Keyframe tags/scripts: `jobs/a105_lap_keys.json`, `jobs/a105_lap_scripts_v2.json` |
 | **Profile BJ** | side, his hand on her head | on 2s | 7-min ref s15 (`docs/ANIME-TIMING.md`) | `a96/v_bj_profile_00001_.mp4`; `a97/lz_f_bj_profile_00001_.mp4` | no cheek words in the script (a97f) |
 | **Paizuri POV, wide** | from above, she presses her breasts, glans at the top of the cleavage | slow: `off`; fast: smooth | 7-min ref s20 | `a97/lz_e_pz_wide_96101_00001_.mp4`; h-game `a99/tpl_hgame_paizuri_hg_99002_s99101_00001_.mp4` | squeeze words draw folds: Breasts "smooth" wording |
 | **Paizuri close** | on the cleavage, glans below her chin | on 2s | 7-min ref s21 | `a97/lz_e_pz_close_97102_00001_.mp4` | keyframe decides tongue/no tongue |
@@ -48,6 +49,13 @@ climax; the last shot slow and quiet.
 The series tag of the character's show (`re:zero ...`, `love live! nijigasaki ...`) in the style block
 pulls that show's own look.
 
+## Optional style tweaks (ideas, untested)
+
+| tweak | where | note |
+|---|---|---|
+| a couple of stray pubic hairs at her lips during a blowjob | BJ shots, keyframe tags + one script sentence | some like the detail |
+| she shows the load in her open mouth, a stray pubic hair in it | an afterglow / "show" shot after an oral climax | |
+
 ## Dynamics and direction that work
 
 - Cadence per shot: `timing` on2/on3/off/smooth (`docs/STORY.md`); smooth = RIFE.
@@ -63,5 +71,9 @@ pulls that show's own look.
 - Fluids: describe one continuous result, never a repeated action (a looped "each time ..." swings
   back and forth); saliva "thin, clear, see-through, colourless like water, a small white glint".
 - In H3 scripts describe the result, never the thing to avoid (a97).
+- **Backdrop continuity (open, a104):** describe the room the same way in every shot and match it to the
+  angle - what sits behind her from this camera (window on the left from the front, the lamp behind her from
+  the side ...). Rarely noticed while the focus is on the characters, but a nice extra touch; lamps and
+  windows moved between shots in `lanzhu_hotel`.
 - Consistency: one character LoRA, shared blocks, one seed per shot; watch tag bleed between the two
   people (give him his own colours: black trousers, black hair).
