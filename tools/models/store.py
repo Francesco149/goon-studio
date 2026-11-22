@@ -7,6 +7,9 @@
   python tools/models/store.py check --all                 # every template and page workflow
   python tools/models/store.py fetch anime_pov [more ...]  # download what is missing (resumable)
   python tools/models/store.py fetch --workflow wf_h3vid_i2v_fl.json
+  python tools/models/store.py fetch --file loras/Verite_overcooked.safetensors   # any registry entry
+        (Civitai files need an API key: the CIVITAI_TOKEN variable or the git-ignored my/.civitai-token,
+         which the user creates at civitai.com > Account settings > API Keys; never asked for in chat)
   python tools/models/store.py adopt "C:/Users/me/Downloads/x.safetensors" --folder loras [--sub h3nsfw]
         [--name y.safetensors] [--url DOWNLOAD] [--page PAGE] [--what "what it is"]
   python tools/models/store.py audit                       # every template's files have a source (exit 1 if not)
@@ -101,7 +104,50 @@ def cmd_check(a):
     sys.exit(1 if bad and a.strict else 0)
 
 
+def sha256_of(path):
+    import hashlib
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest().upper()
+
+
+def fetch_files(a):
+    """fetch --file KEY: registry entries no template names yet (e.g. a LoRA to try)."""
+    reg, fails = M.registry(), 0
+    for key in a.file:
+        e = reg.get(key)
+        if not e:
+            sys.exit("no %r in kit/models.json (keys look like loras/x.safetensors)" % key)
+        folder, name = key.split("/", 1)
+        dest = M.dest_path(folder, name)
+        if os.path.exists(dest):
+            print("have %s" % dest)
+            continue
+        if not e.get("url"):
+            print("SKIP %s: no download link in kit/models.json" % key)
+            fails += 1
+            continue
+        if a.dry_run:
+            print("would get %s  %.2f GB%s" % (key, e.get("gb") or 0, "  (Civitai key needed)" if e.get("login") else ""))
+            continue
+        print("get %s" % key, flush=True)
+        try:
+            M.download(e["url"], dest, e.get("gb"), log=lambda m: print(m, flush=True))
+            if e.get("sha256") and sha256_of(dest) != e["sha256"].upper():
+                os.replace(dest, dest + ".bad")
+                raise RuntimeError("sha256 does not match the registry; kept as %s.bad" % os.path.basename(dest))
+            print("ok  %s" % dest, flush=True)
+        except Exception as ex:
+            print("FAIL %s: %s" % (key, ex), flush=True)
+            fails += 1
+    sys.exit(1 if fails else 0)
+
+
 def cmd_fetch(a):
+    if a.file:
+        return fetch_files(a)
     todo = {}
     for label, wf, rows in rows_for(a):
         for r in rows:
@@ -236,6 +282,7 @@ def main():
             p.add_argument("--strict", action="store_true", help="exit 1 when something is missing")
         else:
             p.add_argument("--dry-run", action="store_true")
+            p.add_argument("--file", action="append", help="a kit/models.json key, e.g. loras/x.safetensors")
         p.set_defaults(fn=fn)
     p = sub.add_parser("adopt")
     p.add_argument("path")

@@ -656,7 +656,7 @@ Template `paizuri`, workflow `wf_h3vid_i2v_lora.json`.
 
 Total if you have none of them: about 32.4 GB (most templates share files).
 
-### Cum shot - HIGH (maximum exaggeration: full ropes + shaft kicks)
+### Cum shot - HIGH (extreme preset: exaggerated amount + shaft kicks, not realistic)
 
 Template `cumshot_high`, workflow `wf_h3vid_i2v_lora.json`.
 
@@ -671,7 +671,7 @@ Template `cumshot_high`, workflow `wf_h3vid_i2v_lora.json`.
 
 Total if you have none of them: about 32.4 GB (most templates share files).
 
-### Cum shot - MEDIUM (default: shorter thinner ropes, small twitch)
+### Cum shot - MEDIUM (default, the most natural: shorter thinner ropes, small twitch)
 
 Template `cumshot_medium`, workflow `wf_h3vid_i2v_lora.json`.
 
@@ -760,9 +760,41 @@ Template `anime_pov_bob`, workflow `wf_h3vid_i2v.json`.
 
 Total if you have none of them: about 32.2 GB (most templates share files).
 
-### Anime - LL cum shot - best so far (t4)
+### Anime - LL cum shot - most natural (a93b hb_oneside: uneven one-side landing)
 
 Template `anime_ll_cumshot`, workflow `wf_h3vid_i2v_lora2.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` | `diffusion_models` | 12.54 GB | [download](https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3-experimental) |
+| `pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors` | `loras` | 0.56 GB | [download](https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3_comfy) |
+| `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `text_encoders` | 15.69 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3-Image) |
+| `minimax_h3_video_vae_int8_convrot.safetensors` | `vae` | 2.81 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `minimax_h3_audio_vae_fp32.safetensors` | `vae` | 0.61 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `epic_cumshots.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+| `H3_Motion_BoosterV2.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+
+Total if you have none of them: about 32.5 GB (most templates share files).
+
+### Anime - LL cum shot - harder (a93d os3_hard: first two pulses harder, all in one area)
+
+Template `anime_ll_cumshot_hard`, workflow `wf_h3vid_i2v_lora2.json`.
+
+| file | put it in | size | get it from |
+|---|---|---|---|
+| `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` | `diffusion_models` | 12.54 GB | [download](https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/main/minimax_h3_fl2va_pruned_w4a8_mixed.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3-experimental) |
+| `pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors` | `loras` | 0.56 GB | [download](https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors) - [page](https://huggingface.co/Kijai/MiniMax-H3_comfy) |
+| `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `text_encoders` | 15.69 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3-Image) |
+| `minimax_h3_video_vae_int8_convrot.safetensors` | `vae` | 2.81 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `minimax_h3_audio_vae_fp32.safetensors` | `vae` | 0.61 GB | [download](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) - [page](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `epic_cumshots.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+| `H3_Motion_BoosterV2.safetensors` | `loras/h3nsfw` | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |
+
+Total if you have none of them: about 32.5 GB (most templates share files).
+
+### Anime - LL cum shot - t4 (old: cheek/tongue/chin, can draw a symmetric mask)
+
+Template `anime_ll_cumshot_t4`, workflow `wf_h3vid_i2v_lora2.json`.
 
 | file | put it in | size | get it from |
 |---|---|---|---|
@@ -1033,6 +1065,7 @@ Total if you have none of them: about 32.5 GB (most templates share files).
 | `qwen_image_2.1_int8_convrot.safetensors` | `diffusion_models` | Qwen-Image 2.1 - identity-keeping edits | 7.26 GB | [download](https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/diffusion_models/qwen_image_2.1_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/Qwen-Image-2.1) |  |
 | `ramthrustsNSFWPINK_v29.safetensors` | `diffusion_models` | Pink Alchemy Anima v2.9 - the anime picture model (fits 8 GB) | 4.18 GB | [download](https://huggingface.co/RunningHubAI/rh-ramthrusts-nsfw-pink-alchemy-anima-v2.9-unet/resolve/main/ramthrustsNSFWPINK_v29Anima10base.safetensors) - [page](https://civitai.com/models/2578175?modelVersionId=3053107) | Same file as Civitai v2.9-Anima1.0Base (sha256 matches); the HF mirror needs no login. Save it under this name. |
 | `relayvsr_x2_lightx2v_int8_convrot.safetensors` | `diffusion_models` | RelayVSR x2 - video upscaler | 5.16 GB | [download](https://huggingface.co/Comfy-Org/RelayVSR/resolve/main/diffusion_models/relayvsr_x2_lightx2v_int8_convrot.safetensors) - [page](https://huggingface.co/Comfy-Org/RelayVSR) |  |
+| `Verite_overcooked.safetensors` | `loras` | Vérité V5 'Verite-overcooked' - the stronger sibling of Verite_realism (said to be stronger for fluids); Krea 2 LoRA | 0.46 GB | [download](https://civitai.com/api/download/models/3431552?fileId=3329232) - [page](https://civitai.com/models/2725430?modelVersionId=3431552) | Same Civitai version as Verite_realism (3431552), file Verite_overcooked; sha256 from the Civitai API. Untested here. Needs a Civitai login. |
 | `Verite_realism.safetensors` | `loras` | Vérité V5 'Verite-realism' - candid amateur realism NSFW LoRA for Krea 2 (the owner's Krea 2 LoRA; best photoreal BJ still e1e) | 0.46 GB | [download](https://civitai.com/api/download/models/3431552?fileId=3327545) - [page](https://civitai.com/models/2725430?modelVersionId=3431552) | Civitai 'Krea 2 NSFW V5 LORA' by 19doorsside884, version V5 (3431552), file Verite_realism - sha256 verified against the owner's copy. Author's notes: strength 0.8-1.2 (up to 2); prompt 'candid'/'amateur', camera tag last; for sex acts a long caption: the act, then her, then him ('a man, then his cock'), then legs/hands, then the setting. The same version ships Verite_overcooked (stronger for fluids). Needs a Civitai login. |
 | `h3nsfw/Astro-nsfw.safetensors` | `loras` | H3 LoRA: Astro NSFW (best photoreal blowjob motion) | 0.30 GB | [download](https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora/resolve/main/Astro%20nsfw.safetensors) - [page](https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora) | Published as 'Astro nsfw.safetensors'. |
 | `h3nsfw/H3_Motion_BoosterV2.safetensors` | `loras` | H3 LoRA: motion booster v2 | 0.16 GB | [download](https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors) - [page](https://huggingface.co/kimjob/h3_NSFW_lora) |  |

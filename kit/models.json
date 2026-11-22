@@ -88,6 +88,15 @@
    "url": "https://huggingface.co/Comfy-Org/RelayVSR/resolve/main/diffusion_models/relayvsr_x2_lightx2v_int8_convrot.safetensors",
    "page": "https://huggingface.co/Comfy-Org/RelayVSR"
   },
+  "loras/Verite_overcooked.safetensors": {
+   "gb": 0.46,
+   "page": "https://civitai.com/models/2725430?modelVersionId=3431552",
+   "what": "Vérité V5 'Verite-overcooked' - the stronger sibling of Verite_realism (said to be stronger for fluids); Krea 2 LoRA",
+   "url": "https://civitai.com/api/download/models/3431552?fileId=3329232",
+   "note": "Same Civitai version as Verite_realism (3431552), file Verite_overcooked; sha256 from the Civitai API. Untested here.",
+   "login": true,
+   "sha256": "E5F609B6F4DF6B81E2EA78E429D47B80786142ECA109933A0E1FE6C9A9EEE756"
+  },
   "loras/Verite_realism.safetensors": {
    "gb": 0.46,
    "page": "https://civitai.com/models/2725430?modelVersionId=3431552",
