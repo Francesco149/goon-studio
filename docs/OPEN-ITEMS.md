@@ -15,6 +15,7 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 | photoreal cum shot | `cumshot_medium` (a93 `pm_base`) | "the best default for this shot"; `p1_pose`, seed 970; `cumshot_high` = extreme preset |
 | photoreal facial still | `egirl_facial_tongue` / `egirl_facial_tongue_over` (a94) | tongue out: "good angle, expression and splash pattern"; overcooked = thinner translucent semen |
 | anime paizuri | still `anime_ll_fz_paizuri_notongue` -> clip `anime_ll_paizuri` (a92) | "solid, right penis type"; no saliva yet |
+| anime h-game motion (smooth, jiggly) | `anime_lz_hgame_pz` -> `anime_lz_hgame_paizuri` (a99) | h-game keyframe = H3 on 1s; Breasts smooth fixes the moving fold; owner: "the recipe to force this style" |
 | anime stills | `anime_pov` (retracted), `anime_pov_foreskin`, `anime_pov_mosaic` | style + nudity locks, round a86 |
 
 ## Open items, in the owner's order
@@ -63,6 +64,25 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    cadence; `kit/studio/anime_timing.py` re-times a clip (on 2s/3s, stoppers, sharpest frame, audio
    kept). Owner: on 2s is the default (Video tab "Anime timing", on for every `anime_*` template).
    Next: the other reference shots, and art styles/rendering typical of TV anime to go with it.
+   **Rounds a96-a98 (`docs/ANIME-TIMING.md`):** the `tv` style block + reference angles hold, also with
+   the Lanzhu LoRA (owner: strong); H3 script rule - describe the result, never name what to avoid;
+   Video tab "Breasts: smooth" option. **Mid-clip re-anchoring of the cock is parked:** pinned
+   (AddGuide) frames fight H3's own rendering and pop, denser anchors too; Ref2VA naming
+   `<Picture 1>` is steady but shrinks it; a crop reference is not robust. Needs research.
+   **Round a99 (`docs/ANIME-TIMING.md` "Smooth motion"), the opposite style: smooth h-game/live2d
+   jiggle on a flat keyframe.** H3 draws the TV clips on 2s by itself (exact duplicate pairs). An
+   "h-game, smooth and continuous" opener + a micro-motion paragraph flipped the silver-braid
+   keyframe to on 1s (`sv_pz_wide_l2d`); the Lanzhu keyframes stay on 2s on every seed/wording.
+   Owner: that wording is more physics for the anime clips (now the Video tab **Dynamics** option),
+   not live2d motion. **The switch is the keyframe's art style** (a99d-f): an h-game CG block
+   (`game cg, eroge, @fuzichoco, soft/gradient shading, oily skin`) with the Lanzhu LoRA puts the
+   paizuri clip on 1s by itself - owner: "we definitely have the recipe to force this style".
+   Templates `anime_lz_hgame_pz`/`_bj` (stills) and `anime_lz_hgame_paizuri`/`_bj_profile` (clips).
+   The profile BJ stays on 2s in every style: `kit/studio/anime_smooth.py` (Anime timing `smooth`,
+   RIFE 4.26 / FILM from the store) drops H3's copies and interpolates, clean on the checked frames.
+   Open: owner verdict on the smoothed clips; BJ head travel on the h-game profile is small; the
+   wide `hgf_99001` keyframe keeps a moving fold even with Breasts smooth (keyframe-specific; try
+   `hgk_pz_wide_hg_99002` or another seed).
 6. Smaller:
    - photoreal veins come out as raised vine-like cords (inherited from the Krea + Verite keyframe);
    - HMPenis v2 is registered but untested (needs a Civitai login - the owner downloads it);

@@ -146,16 +146,11 @@ def build_prompt(job):
             text = (text[:cut] + " " + cock["prose"] + text[cut:]) if cut > 0 else (text + " " + cock["prose"])
         # breast detail (docs/ANIME-TIMING.md): drop the squeeze words that draw fold lines on the
         # inner breasts and describe the smooth result instead (never name what to avoid)
-        br = P.get("breasts_video", {}).get(job.get("breasts") or "template") or {}
-        if br.get("drop") or br.get("prose"):
-            cut = text.find("\n\noverall_soundscape")
-            head, tail = (text[:cut], text[cut:]) if cut > 0 else (text, "")
-            for rx in br.get("drop", []):
-                head = re.sub(rx, "", head)
-            head = re.sub(r"([.!?]\s+)([a-z])", lambda m: m.group(1) + m.group(2).upper(), head)
-            if br.get("prose"):
-                head = head.rstrip() + " " + br["prose"]
-            text = head + tail
+        # dynamics (round a99): the micro-motion paragraph (soft-body jiggle, follow-through) and
+        # optionally the smooth h-game opener in place of the TV-anime one
+        for opt in (P.get("breasts_video", {}).get(job.get("breasts") or "template") or {},
+                    P.get("dynamics_video", {}).get(job.get("dynamics") or "template") or {}):
+            text = edit_script(text, opt)
         return text
     if cock.get("tags") and is_tag_prompt(base):
         fields["scene"] = add_tags(fields["scene"], cock["tags"])
@@ -166,6 +161,23 @@ def build_prompt(job):
         out = (out[:m.start()] + " " + cock["prose"] + out[m.start():]) if m else (out.rstrip() + " " + cock["prose"])
         return re.sub(r"\s+", " ", out).strip()
     return clean(out)
+
+
+def edit_script(text, opt):
+    """apply a Video tab script option to an H3 script: `replace` [[regex, text]] in the description,
+    `drop` regexes, then `prose` appended before the soundscape."""
+    if not (opt.get("drop") or opt.get("prose") or opt.get("replace")):
+        return text
+    cut = text.find("\n\noverall_soundscape")
+    head, tail = (text[:cut], text[cut:]) if cut > 0 else (text, "")
+    for rx, rep in opt.get("replace", []):
+        head = re.sub(rx, lambda m: rep, head)
+    for rx in opt.get("drop", []):
+        head = re.sub(rx, "", head)
+    head = re.sub(r"([.!?]\s+)([a-z])", lambda m: m.group(1) + m.group(2).upper(), head)
+    if opt.get("prose"):
+        head = head.rstrip() + " " + opt["prose"]
+    return head + tail
 
 
 def is_tag_prompt(text):
@@ -201,7 +213,7 @@ def build_fields(job):
         if "strength" in t:
             fields["nsfw_strength"] = t["strength"]
     for k, v in job.items():
-        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing", "breasts"):
+        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing", "breasts", "dynamics"):
             fields[k] = v
     fields["prompt"] = build_prompt(job)
     late = t.get("late")
@@ -388,13 +400,19 @@ def run(job, by="me", on_queued=None, on_note=None):
     timing = job["anime_timing"] if "anime_timing" in job else t.get("anime_timing")
     if timing and timing != "off":
         try:
-            import anime_timing
-            for p in files:
-                anime_timing.apply_mode(p, timing)
-        except ImportError as e:
+            if timing.startswith("smooth"):
+                # the opposite (round a99): drop H3's on-2s copies and interpolate (RIFE/FILM)
+                import anime_smooth
+                for p in files:
+                    anime_smooth.apply_mode(p, timing)
+            else:
+                import anime_timing
+                for p in files:
+                    anime_timing.apply_mode(p, timing)
+        except (ImportError, RuntimeError) as e:
             timing = "skipped (%s)" % e
             if on_note:
-                on_note("anime timing skipped: this Python has no PyAV/numpy (%s)" % e, plan)
+                on_note("anime timing skipped (needs PyAV/numpy, and torch + the interpolation model for smooth): %s" % e, plan)
     rec = {"time": time.strftime("%Y-%m-%dT%H:%M:%S"), "by": by, "workflow": wf,
            "template": job.get("template"), "prompt": fields.get("prompt"), "negative": fields.get("negative"),
            "seed": fields.get("seed"), "width": fields.get("width"), "height": fields.get("height"),

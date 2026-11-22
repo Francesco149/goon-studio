@@ -1,0 +1,695 @@
+{
+ "1": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "{{unet}}",
+   "weight_dtype": "default"
+  }
+ },
+ "2": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "lora_name": "pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors",
+   "strength_model": 1.0
+  }
+ },
+ "3": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+   "type": "minimax",
+   "device": "default"
+  }
+ },
+ "4": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+  }
+ },
+ "5": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+  }
+ },
+ "6": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{image}}"
+  }
+ },
+ "7": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "6",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "8": {
+  "class_type": "MiniMaxH3ImageToVideo",
+  "inputs": {
+   "clip": [
+    "3",
+    0
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "prompt": "{{prompt}}",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "length": "{{length}}",
+   "first_frame": [
+    "7",
+    0
+   ]
+  }
+ },
+ "21": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "2",
+    0
+   ],
+   "lora_name": "{{nsfw_lora}}",
+   "strength_model": "{{nsfw_strength}}"
+  }
+ },
+ "22": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "21",
+    0
+   ],
+   "lora_name": "{{motion_lora}}",
+   "strength_model": "{{motion_strength}}"
+  }
+ },
+ "20": {
+  "class_type": "ModelAttentionBackend",
+  "inputs": {
+   "model": [
+    "22",
+    0
+   ],
+   "attention": "comfy kitchen attention"
+  }
+ },
+ "9": {
+  "class_type": "BasicGuider",
+  "inputs": {
+   "model": [
+    "20",
+    0
+   ],
+   "conditioning": [
+    "g11a",
+    0
+   ]
+  }
+ },
+ "10": {
+  "class_type": "KSamplerSelect",
+  "inputs": {
+   "sampler_name": "lcm"
+  }
+ },
+ "11": {
+  "class_type": "ManualSigmas",
+  "inputs": {
+   "sigmas": "1.0, 0.972973, 0.923077, 0.8, 0.571429, 0.333333, 0.0"
+  }
+ },
+ "12": {
+  "class_type": "RandomNoise",
+  "inputs": {
+   "noise_seed": "{{seed}}"
+  }
+ },
+ "13": {
+  "class_type": "SamplerCustomAdvanced",
+  "inputs": {
+   "noise": [
+    "12",
+    0
+   ],
+   "guider": [
+    "9",
+    0
+   ],
+   "sampler": [
+    "10",
+    0
+   ],
+   "sigmas": [
+    "11",
+    0
+   ],
+   "latent_image": [
+    "8",
+    1
+   ]
+  }
+ },
+ "14": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "13",
+    0
+   ],
+   "vae": [
+    "4",
+    0
+   ]
+  }
+ },
+ "15": {
+  "class_type": "VAEDecodeAudio",
+  "inputs": {
+   "samples": [
+    "13",
+    0
+   ],
+   "vae": [
+    "5",
+    0
+   ]
+  }
+ },
+ "16": {
+  "class_type": "CreateVideo",
+  "inputs": {
+   "images": [
+    "14",
+    0
+   ],
+   "fps": 24.0,
+   "audio": [
+    "15",
+    0
+   ]
+  }
+ },
+ "17": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "16",
+    0
+   ],
+   "filename_prefix": "{{prefix}}",
+   "format": "mp4",
+   "codec": "h264"
+  }
+ },
+ "_params": {
+  "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
+  "width": 768,
+  "height": 1152,
+  "length": 124,
+  "seed": 1,
+  "prefix": "gl/x",
+  "nsfw_lora": "h3nsfw/Titjob-Titfuck-H3.safetensors",
+  "nsfw_strength": 0.6,
+  "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+  "motion_strength": 0.4,
+  "g1_idx": 12,
+  "g2_idx": 24,
+  "g3_idx": 36,
+  "g4_idx": 48,
+  "g5_idx": 60,
+  "g6_idx": 72,
+  "g7_idx": 84,
+  "g8_idx": 96,
+  "g9_idx": 108,
+  "g10_idx": 120,
+  "g11_idx": -1
+ },
+ "_note": "As wf_h3vid_i2v_lora2_g5 with eleven MiniMaxH3AddGuide anchors (every 12 frames + last) - round a98b.",
+ "g1l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g1}}"
+  }
+ },
+ "g1s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g1l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g1a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "8",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g1s",
+    0
+   ],
+   "frame_idx": "{{g1_idx}}"
+  }
+ },
+ "g2l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g2}}"
+  }
+ },
+ "g2s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g2l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g2a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g1a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g2s",
+    0
+   ],
+   "frame_idx": "{{g2_idx}}"
+  }
+ },
+ "g3l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g3}}"
+  }
+ },
+ "g3s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g3l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g3a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g2a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g3s",
+    0
+   ],
+   "frame_idx": "{{g3_idx}}"
+  }
+ },
+ "g4l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g4}}"
+  }
+ },
+ "g4s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g4l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g4a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g3a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g4s",
+    0
+   ],
+   "frame_idx": "{{g4_idx}}"
+  }
+ },
+ "g5l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g5}}"
+  }
+ },
+ "g5s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g5l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g5a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g4a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g5s",
+    0
+   ],
+   "frame_idx": "{{g5_idx}}"
+  }
+ },
+ "g6l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g6}}"
+  }
+ },
+ "g6s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g6l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g6a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g5a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g6s",
+    0
+   ],
+   "frame_idx": "{{g6_idx}}"
+  }
+ },
+ "g7l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g7}}"
+  }
+ },
+ "g7s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g7l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g7a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g6a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g7s",
+    0
+   ],
+   "frame_idx": "{{g7_idx}}"
+  }
+ },
+ "g8l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g8}}"
+  }
+ },
+ "g8s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g8l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g8a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g7a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g8s",
+    0
+   ],
+   "frame_idx": "{{g8_idx}}"
+  }
+ },
+ "g9l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g9}}"
+  }
+ },
+ "g9s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g9l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g9a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g8a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g9s",
+    0
+   ],
+   "frame_idx": "{{g9_idx}}"
+  }
+ },
+ "g10l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g10}}"
+  }
+ },
+ "g10s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g10l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g10a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g9a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g10s",
+    0
+   ],
+   "frame_idx": "{{g10_idx}}"
+  }
+ },
+ "g11l": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "{{g11}}"
+  }
+ },
+ "g11s": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "g11l",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": "{{width}}",
+   "height": "{{height}}",
+   "crop": "center"
+  }
+ },
+ "g11a": {
+  "class_type": "MiniMaxH3AddGuide",
+  "inputs": {
+   "positive": [
+    "g10a",
+    0
+   ],
+   "latent": [
+    "8",
+    1
+   ],
+   "vae": [
+    "4",
+    0
+   ],
+   "image": [
+    "g11s",
+    0
+   ],
+   "frame_idx": "{{g11_idx}}"
+  }
+ }
+}

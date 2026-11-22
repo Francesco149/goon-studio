@@ -88,6 +88,18 @@
    "url": "https://huggingface.co/Comfy-Org/RelayVSR/resolve/main/diffusion_models/relayvsr_x2_lightx2v_int8_convrot.safetensors",
    "page": "https://huggingface.co/Comfy-Org/RelayVSR"
   },
+  "frame_interpolation/film_net_fp16.safetensors": {
+   "what": "FILM - frame interpolation, better on large motion (smooth-motion post-pass)",
+   "gb": 0.07,
+   "url": "https://huggingface.co/Comfy-Org/frame_interpolation/resolve/main/frame_interpolation/film_net_fp16.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/frame_interpolation"
+  },
+  "frame_interpolation/rife_v4.26.safetensors": {
+   "what": "RIFE 4.26 - frame interpolation (smooth-motion post-pass: on-2s H3 clips to 24 fps)",
+   "gb": 0.02,
+   "url": "https://huggingface.co/Comfy-Org/frame_interpolation/resolve/main/frame_interpolation/rife_v4.26.safetensors",
+   "page": "https://huggingface.co/Comfy-Org/frame_interpolation"
+  },
   "loras/Verite_overcooked.safetensors": {
    "gb": 0.46,
    "page": "https://civitai.com/models/2725430?modelVersionId=3431552",

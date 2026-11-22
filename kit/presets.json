@@ -414,6 +414,40 @@
       "scene": "cock out, (penis:1.2), detailed penis shaft, veins, defined glans, corona rim, uncensored, (penis focus:1.2), his cock is upright an inch in front of her open mouth, a clear gap between the tip and her lips, she leans toward it, tongue out, (mouth open:1.2), eyes on the cock, bedroom, soft light",
       "negative": "extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, censored, mosaic censoring, bar censor, penis in mouth, lips touching the tip, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic"
     },
+    "anime_lz_hgame_pz": {
+      "label": "Anime - Lanzhu, h-game CG style, paizuri POV (smooth motion keyframe, a99)",
+      "workflow": "wf_anima2_lora.json",
+      "lora": "lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors",
+      "strength": 1.0,
+      "series": "love live! nijigasaki high school idol club",
+      "width": 1248,
+      "height": 832,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, newest, game cg, eroge, @fuzichoco, (soft shading:1.2), gradient shading, (shiny skin:1.2), oily skin, glossy skin, detailed skin, rim lighting, soft lighting, bloom, sweat drops, {character}, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, (completely nude:1.2), lanzhu zhong, long hair, bangs, blue eyes, pink hair, ahoge, sidelocks, mole, two side up, mole under eye, hair bun, mature female, breasts, (curvy:1.8), (wide hips:1.5), thick thighs, large breasts, half-closed eyes, blush, saliva",
+      "scene": "paizuri, titjob, (breasts around penis:1.2), (penis between breasts:1.2), glans above cleavage, detailed penis shaft, veins, uncensored, she presses her large breasts together with both hands, fingers sinking into breasts, upper body, from above, looking at viewer, smug, closed mouth, smile, sunset, (orange light:1.2), warm lighting, golden hour, bedroom",
+      "negative": "clothes, shirt, dress, foreskin, phimosis, uncircumcised, extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, censored, mosaic censoring, bar censor, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic, cum, tongue out, open mouth, licking penis, penis in mouth, oral, penis near mouth, flat color, cel shading, anime screenshot",
+      "about": "Round a99d (seed 99001): soft gradient h-game shading (@fuzichoco); on this style H3 animates on 1s by itself. Animate with anime_lz_hgame_paizuri. Without the artist tag (hgk_*_hg_*) is a little crisper."
+    },
+    "anime_lz_hgame_bj": {
+      "label": "Anime - Lanzhu, h-game CG style, blowjob side profile (a99)",
+      "workflow": "wf_anima2_lora.json",
+      "lora": "lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors",
+      "strength": 1.0,
+      "series": "love live! nijigasaki high school idol club",
+      "width": 1248,
+      "height": 832,
+      "steps": 30,
+      "cfg": 4.0,
+      "prompt": "masterpiece, best quality, newest, game cg, eroge, @fuzichoco, (soft shading:1.2), gradient shading, (shiny skin:1.2), oily skin, glossy skin, detailed skin, rim lighting, soft lighting, bloom, sweat drops, {character}, {scene}",
+      "late": "signature",
+      "character": "1girl, 1boy, hetero, (completely nude:1.2), lanzhu zhong, long hair, bangs, blue eyes, pink hair, ahoge, sidelocks, mole, two side up, mole under eye, hair bun, mature female, breasts, (curvy:1.8), (wide hips:1.5), thick thighs, large breasts, half-closed eyes, blush, saliva",
+      "scene": "blowjob, fellatio, (penis in mouth:1.2), (lips sealed around penis:1.35), mouth stretched, no tongue, cheeks hollowed, sucking, detailed penis shaft, circumcised, (exposed glans:1.1), veins, erection, uncensored, side view, profile, close-up, head focus, (hand on another's head:1.2), his hand on her head, eyes on his face, bedroom, window, blue sky, daylight",
+      "negative": "clothes, shirt, dress, foreskin, phimosis, uncircumcised, extra hands, extra fingers, third hand, bad anatomy, fused limbs, extra limbs, censored, mosaic censoring, bar censor, worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, 3d, realistic, cum, tongue out, open mouth, glans outside mouth, flat color, cel shading, anime screenshot",
+      "about": "Round a99d (seed 99001). The profile BJ clip stays on 2s even in this style; anime_lz_hgame_bj_profile smooths it with RIFE."
+    },
     "anime_lz_seal": {
       "label": "Anime - Lanzhu Zhong (curvy), side head seal",
       "workflow": "wf_anima2_lora.json",
@@ -870,6 +904,32 @@
       "about": "Keyframe: the anime_ll_fz_paizuri_notongue still (seed 86012 was the clean one). Open: no saliva yet.",
       "anime_timing": "on2"
     },
+    "anime_lz_hgame_paizuri": {
+      "label": "Anime - Lanzhu h-game paizuri, smooth jiggly motion (a99, live2d look)",
+      "workflow": "wf_h3vid_i2v_lora2.json",
+      "lora": "h3nsfw/Titjob-Titfuck-H3.safetensors",
+      "strength": 0.6,
+      "width": 1152,
+      "height": 768,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] A smooth, fluid 2D animation in the style of a high-frame-rate h-game scene, cel-shaded art with every movement soft and continuous, flat colours, hard-edged shadows and glossy white highlights on the skin, one fixed camera. Warm orange sunset light. POV from above: a young adult woman with long pink hair tied in two small side loops, blue eyes and a mole under her eye presses her large breasts together around his erect cock with both hands and slides them up and down the shaft in slow heavy strokes, about one stroke a second. On each up stroke the glans pushes out of the top of her cleavage; the flesh jiggles. She looks up into the camera with a smug, closed-mouth smile; her tongue stays in her mouth. The camera does not move. Her breasts stay smooth and round, the skin taut and even as she squeezes them. Her breasts are soft and heavy: they bounce on every stroke, wobble and keep rippling for a moment after each one before they settle, the near breast lagging a beat behind her hands. Her shoulders and upper body rock with the rhythm, her hair bounces and sways behind the motion, her chest rises and falls with her breath, and a sweat sheen glides over her skin.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: soft skin friction, a muffled wet squish at the bottom of each stroke, her breath, one low male grunt at about two seconds. No mouth sounds, no chewing, no crunch, no slurping.\n\nnon_diegetic_music: N/A",
+      "motion_strength": 0.4,
+      "about": "Keyframe: the anime_lz_hgame_pz still (gallery/a99/hgk_pz_wide_hgf_99001). Round a99e/f: on 1s by itself on the h-game keyframe; dynamics hgame_pz + Breasts smooth baked in (the squeeze words drew a moving fold). Anime timing 'smooth' is a safety net (no-op when H3 already draws on 1s). Owner (a99f): the fold stays on this keyframe even with Breasts smooth - keyframe-specific; prefer an anime_lz_hgame_pz still without arm creases on the breasts.",
+      "anime_timing": "smooth"
+    },
+    "anime_lz_hgame_bj_profile": {
+      "label": "Anime - Lanzhu h-game blowjob profile, smooth (a99; RIFE post-pass)",
+      "workflow": "wf_h3vid_i2v_lora2.json",
+      "lora": "h3nsfw/MM-H3-Blwjob-v3.safetensors",
+      "strength": 0.65,
+      "motion_strength": 0.5,
+      "width": 1152,
+      "height": 768,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, flat colours, hard-edged shadows and glossy white highlights on the skin, one fixed camera. Side profile, close on her head: a young adult woman with long pink hair tied in two small side loops, blue eyes and a mole under her eye has his cock in her mouth; his hand rests on the back of her head and guides her. Her lips are sealed tight around the shaft. She slides her mouth up until only the head stays between her lips and sucks with a small wet pop, then slides down again until her lips reach the middle of the shaft, long clearly visible strokes at about one stroke a second, her face drawn tight by the suction. Her blush deepens and saliva gathers at the corner of her mouth. His cock stays long and thick, exactly the size it is in the first frame, and most of the shaft stays visible outside her lips. Her hair sways with each stroke. At the bottom of a stroke he presses her head down for a moment, then lets her pull back. Her whole body moves with each stroke: her shoulders and back rock forward and back, her hair swings, bounces and settles a beat after her head stops, her breasts sway softly below her, and her throat and jaw shift as she swallows and breathes.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: a soft suction hush as her mouth slides down the shaft, a wet mouth-purse and a small pop as she pulls up, her nose breathing, one low male grunt. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
+      "about": "Keyframe: the anime_lz_hgame_bj still. a97f no-cheek script + jiggle_bj. H3 draws this angle on 2s even in the h-game style, so the smooth post-pass does the motion. Head travel is small; the hg (no artist tag) keyframe opened the seal mid-clip.",
+      "anime_timing": "smooth"
+    },
     "anime_ll_suction": {
       "label": "Anime - LL suction blowjob POV - base recipe (best blowjob)",
       "workflow": "wf_h3vid_i2v_lora2.json",
@@ -1088,5 +1148,29 @@
       "prose": "Her breasts stay smooth and round, the skin taut and even as she squeezes them."
     }
   },
+  "dynamics_video": {
+    "template": {
+      "label": "as the template"
+    },
+    "jiggle_pz": {
+      "label": "more dynamics: paizuri (bounce, wobble, settle)",
+      "prose": "Her breasts are soft and heavy: they bounce on every stroke, wobble and keep rippling for a moment after each one before they settle, the near breast lagging a beat behind her hands. Her shoulders and upper body rock with the rhythm, her hair bounces and sways behind the motion, her chest rises and falls with her breath, and a sweat sheen glides over her skin."
+    },
+    "jiggle_bj": {
+      "label": "more dynamics: blowjob (body rock, hair follow-through)",
+      "prose": "Her whole body moves with each stroke: her shoulders and back rock forward and back, her hair swings, bounces and settles a beat after her head stops, her breasts sway softly below her, and her throat and jaw shift as she swallows and breathes."
+    },
+    "hgame_pz": {
+      "label": "h-game motion + paizuri dynamics (bigger travel)",
+      "replace": [
+        [
+          "A 2D anime clip in a clean cel-shaded TV-anime style,",
+          "A smooth, fluid 2D animation in the style of a high-frame-rate h-game scene, cel-shaded art with every movement soft and continuous,"
+        ]
+      ],
+      "prose": "Her breasts are soft and heavy: they bounce on every stroke, wobble and keep rippling for a moment after each one before they settle, the near breast lagging a beat behind her hands. Her shoulders and upper body rock with the rhythm, her hair bounces and sways behind the motion, her chest rises and falls with her breath, and a sweat sheen glides over her skin."
+    }
+  },
+  "_note_dynamics_video": "dynamics_video: Video tab 'Dynamics' option for H3 scripts (docs/ANIME-TIMING.md 'Smooth motion', round a99). 'prose' is added before the soundscape; 'replace' swaps the TV-anime opener. Pairs with Anime timing 'smooth' for h-game motion, or on 2s for anime with more physics.",
   "_note_breasts_video": "breasts_video: Video tab 'Breasts' option for H3 scripts (docs/ANIME-TIMING.md, round a97h). 'drop' are regexes removed from the script (the squeeze words that draw fold lines on the inner breasts); 'prose' is added before the soundscape. Describe the result, never name the folds."
 }

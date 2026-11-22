@@ -297,6 +297,18 @@ Foley pass or a dedicated audio tool is the likely answer.
 5. Do not leave renders outside `gallery/`, `gens/`, `analysis/`, `sfw/` (neutral work) or the
    local engine's `gl/` scratch folders.
 
+## 6a. When the feedback is vague
+
+Users often don't know yet what they want ("make it better", "more anime", "not quite"). Then:
+
+- Look at what exists right now - `templates` and `video_templates` in `kit/presets.json`, the
+  Video tab options (`cocks`, `breasts_video`, `dynamics_video`, Anime timing), `my/presets.json`.
+  Never keep a copy of that list in the docs; it goes stale.
+- Offer the 2-4 closest fits, one short line each: what it would look like and how it differs from
+  what they have now.
+- Offer to tune a custom style from their pick and save it as a new template.
+- Keep it short and scannable: no walls of text, one question at the end.
+
 ## 7. Quality bar
 
 - Anatomy: a defined glans with a corona rim, the foreskin collar, veins, the scrotum behind the

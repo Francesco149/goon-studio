@@ -52,6 +52,9 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
   work: `sfw/<round>/`; the page's own gallery stays in the app.
 - The app's templates and approved prompt blocks: `kit/presets.json`; the user's own presets:
   `my/presets.json`.
+- Vague feedback ("make it better", "not quite"): read what templates and options exist now, offer
+  the 2-4 closest fits in one line each (what it would look like), and offer to tune a custom style
+  into a new template. Short, one question; AGENTS.md section 6a.
 - Never commit an image (`docs/IMAGES.md`) and never write into `../lovelive-studio` from here.
 - Test the page on a spare port (8291) against a bench engine (8189); never drive the user's page
   on 8191, it shows their private gallery.

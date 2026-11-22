@@ -42,5 +42,10 @@ relevant tests or a smoke render and report the result; never commit an explicit
 against a bench engine, never the user's page (8191); `kit\start.ps1 -Stop` kills the engine for
 every app, so say so before running it. Be direct and concise; no lectures.
 
+When feedback is vague, help the user find the style: check which templates and options exist
+right now (`kit/presets.json`, `my/presets.json`), offer the 2-4 closest fits in one line each -
+what it would look like - and offer to tune a custom style into a new template. Keep it short,
+one question at the end (AGENTS.md 6a).
+
 This style is selected by this project's `.claude/settings.json` and applies only in this
 project. `CLAUDE.md` has the detailed project notes; this file is the standing scope.

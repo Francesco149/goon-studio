@@ -179,3 +179,185 @@ does for a given style.
 - a97h result (agent read): the smooth wording works - no fold/crease lines on the inner breasts on any
   checked frame, her hands lie flat instead of digging in, a soft pink shading stays; the glans stays
   below her chin. Same open-mouth grin as the folds clip (seed/keyframe, not this option).
+
+## Re-anchoring the object mid-clip (round a98, 2026-11-22)
+
+Idea (owner, from r/StableDiffusion): keep showing H3 what the object should look like, with
+perfect continuity and no hand tuning. Tools: `MiniMaxH3AddGuide` pins an image at any frame index;
+`MiniMaxH3ReferenceToVideo` (Ref2VA) conditions every step on reference images. New graphs
+`wf_h3vid_i2v_lora2_g5.json` (i2v + act LoRA + booster + five guides) and `wf_h3vid_ref2va_first.json`
+(the keyframe as reference + first-frame guide + LoRAs); driver `tools/rounds/reanchor.py`.
+
+Method (`--mode repair`): pass 1 = the normal clip; its own frames 24/48/72/96/last become the
+anchors (poses the motion already passes through, so nothing is forced); each anchor gets an
+H3-Image two-picture edit (Picture 1 = the frame, Picture 2 = the keyframe; fixed instruction:
+"keep everything exactly, only redraw his penis like Picture 2"); pass 2 = same job and seed with
+the repaired anchors pinned at their own indices. ~150 s + 5 x 35 s + 185 s on ampere.
+
+Tested on two known-bad clips (`jobs/a98_reanchor.jsonl`, `analysis/a98_*`):
+
+| variant | paizuri, cock turns into a ribbed object (a97g) | profile BJ, red flare + shrink (a97b) |
+|---|---|---|
+| base | ribbed brown object from frame ~35 | red flare on every pull-up |
+| selfguide (raw pass-1 frames pinned) | same motion and same defect - pinning keeps continuity | same as base |
+| **repair** | right cock at the anchors, but it still morphs between them - owner: better than without, not usable | full shaft at the anchors; the flare still shows between anchors (36, 75) |
+| ref2va (one pass) | no morph but the cock shrinks to a small tip; tongue at the start | **cleanest: no flare, full shaft, flat cheek** (different motion from pass 1) |
+
+- The H3-Image repair edits are faithful: face, hands, light, background unchanged; only the object
+  redrawn (`gallery/a98/anchors/`).
+- Continuity: no new jumps at the anchors. H3's own clips already jump on frames 24/48/72/96
+  (per-frame change 8-17 vs a median of ~2, base clips) - the burst grid behind the "already
+  stepped" TV look; the anchors sit on it and the repaired clip's jumps are the same size.
+- Persistent defects (the morph) are fixed by repair; transient ones between anchors (a flare for a
+  few frames on each pull-up) are not - next: anchors every 12 frames, or repair + Ref2VA together.
+- **Owner verdict (a98):** the paizuri repair "just causes weird morphing with the penis - better than
+  non repair but still not very usable". The anchors hold the object at 5 frames; between them H3
+  still redraws it from the (bad) script. Same failure as the profile flare.
+
+### a98c: the documented pattern, and why the anchors morph
+
+Research (ComfyUI multiframe tutorial, the AddGuide PR, a community ref2va gist): **AddGuide images
+never reach H3's text encoder** - they pin composition at a frame, nothing else. Identity comes only
+from Ref2VA's `ref_images` slots, which the script can name as `<Picture N>`. ComfyUI's multiframe
+template combines both (identity picture in `ref_images` + first-frame guide + more AddGuides for
+timing). a98's repair ran on the i2v model (no identity reaching the encoder) and a98's ref2va
+never named `<Picture 1>`. New: `wf_h3vid_ref2va_g5.json`, `reanchor.py --mode refrepair` (Ref2VA,
+keyframe as `<Picture 1>` named in the script, + the repaired anchors) and `--mode ref2va` now
+names `<Picture 1>` too (`*_ref2va_pic`).
+
+Every 3rd frame from 26 to 70, cropped on the cleavage (`analysis/a98c_pz_dense.jpg`):
+- `repair` and `refrepair`: the cock **pops between two shapes** - the long angled shaft the edit
+  drew at the anchors (26-32, 47-50) and a small round dome H3 draws on its own between them. The
+  anchors do not fail to hold the object; they fight H3's own rendering of it. That is the morph
+  the owner saw, and denser anchors cannot remove it (more pops, not fewer).
+- `ref2va_pic` (Ref2VA, `<Picture 1>` named, no anchors): one steady shape on every frame, no
+  morph - but the cock stays small (a dome in the cleavage), and her face got the closed smile.
+- Profile BJ, `refrepair`: no red flare at 36/75, full shaft, flat cheek, same poses as pass 1.
+
+Conclusion so far: pinning edited frames only works when the edit agrees with what H3 would draw;
+consistency comes from the reference (identity every step), not from anchors. Next: Ref2VA with a
+reference that carries the size (a close crop of the cock from the keyframe as `<Picture 2>`), no
+anchors except the first frame.
+- a98b, 11 repaired anchors (every 12 frames, `--dense`, `wf_h3vid_i2v_lora2_g11.json`): the shaft
+  shows on more frames, but it still pops back to H3's small dome between anchors
+  (`analysis/a98b_dense.jpg`). Denser anchors do not fix the morph - owner predicted it.
+
+**Parked (owner, 2026-11-22):** needs more research. A cock crop as `<Picture 2>` was rejected as
+the next step: how clean the crop is varies per gen (hands, lips, breasts in the way). Open leads:
+how people actually keep an object consistent in H3 (the multiframe template
+`video_minimax_h3_r2v_addguides_v1.json` from the AddGuide PR, not yet read), an aligned-video
+ref2va LoRA (community gist, none published), or an H3 cock LoRA (open item 4).
+
+## Smooth motion: the h-game / live2d look on purpose (round a99, 2026-11-22)
+
+The opposite goal: the soft, continuous, jiggly motion of the painted clips (`gallery/a88/k2_phys`,
+the BlobCG refs) on a flat TV-style keyframe.
+
+**H3 has two cadence modes, and the TV clips are in the on-2s one.** Frame difference into even vs
+odd frames (`r` = the smaller median over the larger; ~1 = new drawing every frame, ~0.05 = every
+other frame an exact duplicate, the ~0.5 left is compression noise):
+
+| clips | mode |
+|---|---|
+| a88 `k2_phys`, a91/a92 paizuri, a89 k11-k13, a95b, every photoreal clip | on 1s (`r` 0.7-1.0), median change 5-10 |
+| a96 `v_*`, a97 `lz_v/c/e/g/h_*`, a88 `k9_phys`, a89 k14, a93 anime cum clips | **on 2s** (`r` 0.03-0.13): exact pairs, 12 drawings/s |
+| a97 `lz_s/f_bj_*` (same keyframe+seed as `lz_v_bj_*`, a different script) | on 1s, but almost no motion (median 0.4) |
+
+So the "already stepped" look of the a96/a97 raw clips is H3 drawing on 2s itself, not only
+bursts. The mode depends on the keyframe and the script, and it is not the style words alone:
+`k2_phys` and `k9_phys` have the same "2D anime ... TV-anime style" opener and land in different
+modes.
+
+Round a99 (`tools/rounds/mk_a99.py`, `jobs/a99_smooth.jsonl` + `a99b_smooth.jsonl`, ampere,
+anime timing off), same keyframes + seeds as known on-2s clips:
+- `phys`: the TV opener + a micro-motion paragraph ("breasts are soft and heavy: they bounce on every
+  stroke, wobble and keep rippling for a moment after each one before they settle, the near breast
+  lagging a beat behind her hands; shoulders and upper body rock with the rhythm, hair bounces and
+  sways behind the motion, chest rises and falls with her breath, a sweat sheen glides over her
+  skin"; BJ: shoulders/back rock, hair loops swing and settle a beat after her head stops, breasts
+  sway, throat and jaw shift).
+- `l2d`: `phys` + the opener "A smooth, fluid 2D animation in the style of a high-frame-rate h-game
+  scene, cel-shaded art with flat colours, hard-edged shadows and glossy white highlights on the
+  skin, every movement soft and continuous, one fixed camera."
+- `l2d2`: "A smooth, fluid 60 fps 2D animation like a Live2D h-game scene, soft-body physics, clean
+  anime art, every movement soft and continuous with gentle follow-through" (no cel/shadow words).
+
+| clip | keyframe / seed | mode | notes |
+|---|---|---|---|
+| `sv_pz_wide_l2d` | a96 silver braid `pz_wide_tv_2` / 96101 | **on 1s**, median 7.2, 0 held | control `v_pz_wide` is on 2s: the wording flipped it. Continuous motion, longer stroke (glans up to her chin at f40), TV look holds |
+| `lz_pz_wide_phys` / `_l2d` | a97 Lanzhu `pz_wide_2` / 96101 | on 2s | `l2d` doubles the motion (median 2.9 vs 1.2), breasts squash and travel more; open grin as in the control |
+| `lz_pz_wide_l2d_97102` / `_99101` | same, two seeds | on 2s | the seed is not the switch |
+| `lz_pz_wide_l2d2` | same / 96101 | on 2s | style holds without the cel words; the blotchy pink inner-breast band is back (f48, f72) |
+| `lz_bj_profile_phys` / `_l2d` / `_l2d2` | a97 `bj_profile_3` / 97101 | on 2s | built on the a97b script, so the red lip flare returns; head travel small |
+
+Read so far: **wording can flip a keyframe to on 1s, but the Lanzhu keyframes are locked on 2s**
+(three seeds, three openers). The micro-motion paragraph adds travel and squash, but on 2s it is
+still 12 drawings/s. Since the on-2s clips are exact duplicate pairs, the robust route is a
+post-pass that is the mirror of `anime_timing.py`: drop each duplicate and interpolate between the
+62 unique drawings (RIFE/FILM; the engine has the core `FrameInterpolate` node, but no model file in
+`models/frame_interpolation` and none in `kit/models.json` yet). Keep the micro-motion paragraph for
+the jiggle itself; interpolation smooths the timing, it does not add follow-through.
+
+**Owner on a99:** reads as more physics on the anime clips, not as live2d motion; the profile cock looks
+odd. So the micro-motion paragraphs are kept as an **anime option for more dynamics** (Video tab
+**Dynamics**: `jiggle_pz`, `jiggle_bj`, `hgame_pz` = the h-game opener + `jiggle_pz`; `dynamics_video`
+in `kit/presets.json`, job key `dynamics`; applied by `core.edit_script`, which now also runs the
+Breasts option).
+
+### The smooth post-pass: `kit/studio/anime_smooth.py` (round a99c)
+
+The mirror of `anime_timing.py`: finds H3's copies (the frame changes split into two groups on a log
+scale, Otsu; a clip that is already on 1s keeps every frame), drops them and redraws every
+in-between with a frame-interpolation model, using the engine's own code
+(`comfy_extras/nodes_frame_interpolation.py`), locally on the GPU. Length and audio unchanged.
+Models in the store: `frame_interpolation/rife_v4.26.safetensors` (default) and
+`film_net_fp16.safetensors` (Comfy-Org, `kit/models.json`; `frame_interpolation` is now a wired
+folder). ~30 s per 124-frame 1152x768 clip on an 8 GB card.
+
+```
+F:\LLStudioTest\engine\ComfyUI_windows_portable\python_embeded\python.exe -I kit/studio/anime_smooth.py in.mp4 out.mp4 [--model rife|film] [--mult 2]
+```
+
+On the page it is part of **Anime timing**: `smooth` (RIFE), `smooth_film`, `smooth_x2` (48 fps); the
+clip as generated stays as `-raw`. Results (`gallery/a99/*_smooth_*.mp4`, `analysis/a99c_interp_*.jpg`):
+- every on-2s clip comes out on 1s (61-63 drawings in, 124 frames out, `r` 0.98-1.0);
+- the in-betweens are clean at the fastest frames (paizuri f38-42, the profile head jump f26-30): no
+  double image, the glans keeps its shape between drawings; RIFE and FILM look alike there.
+- `lz_e_pz_wide_96101_smooth_rife` and `lz_e_pz_close_97102_smooth_rife` are the owner-approved a97 clips
+  smoothed; `lz_pz_wide_l2d_smooth_rife`/`_film` the a99 dynamics clip.
+- `hgv_bj_profile_*_smooth_rife`: the two h-game BJ clips below (on 2s from H3), smoothed.
+
+### The art style is the switch: h-game keyframes (rounds a99d-g)
+
+Lanzhu LoRA + identity tags on `anime_lz_side`'s graph, the `tv` block swapped for an h-game CG block
+(`jobs/a99d_hgame_keys.jsonl`; negative: the `painterly, thick painting` ban removed, `flat color,
+cel shading, anime screenshot` added):
+- `hgf`: `newest, game cg, eroge, @fuzichoco, (soft shading:1.2), gradient shading, (shiny skin:1.2),
+  oily skin, glossy skin, detailed skin, rim lighting, soft lighting, bloom, sweat drops` (the artist
+  of the smooth a05 `k2` keyframe) - softer, more painterly;
+- `hg`: the same without the artist, `(gradient shading:1.1)`, `(skin shine:1.1)`, `depth of field`.
+
+Both keep her design (pink side buns, blue eyes, mole) with soft gradient shading and glossy skin.
+Clips (`jobs/a99e_hgame_clips.jsonl`, the a97 scripts + Dynamics, timing off):
+
+| clip | mode (H3 itself) | notes |
+|---|---|---|
+| `hgv_pz_wide_hg_99002` (dynamics `hgame_pz`) | **on 1s** (`r` 0.82) | same seed as the on-2s TV clip |
+| `hgv_pz_wide_hgf_99001` (`hgame_pz`) | **on 1s** (`r` 0.98) | owner: good, but an odd moving fold in the front middle (a crease across the near breast, f20-40) |
+| `hgv_pz_wide_hgf_99001_smooth` (+ Breasts: smooth, a99f) | on 1s (`r` 1.00) | the fold is gone, the near breast stays one round shape |
+| `hgv_bj_profile_hg_99001` (a97f script + `jiggle_bj`) | on 2s | the seal opens around f20-40, glans in front of her open mouth |
+| `hgv_bj_profile_hgf_99001` | on 2s | lips stay on the glans, little head travel |
+
+**Owner (a99e): "we definitely have the recipe to force this style of animation."** The h-game
+keyframe puts H3 on 1s for paizuri; the profile BJ stays on 2s whatever the style, and the smooth
+post-pass covers it. Templates:
+- stills `anime_lz_hgame_pz`, `anime_lz_hgame_bj` (the `hgf` block, 1248x832; reproduce the a99d
+  keyframes exactly, a99g);
+- clips `anime_lz_hgame_paizuri` (`hgame_pz` + Breasts smooth baked in) and `anime_lz_hgame_bj_profile`
+  (a97f script + `jiggle_bj`), 1152x768, Anime timing `smooth` by default (a no-op when H3 is already
+  on 1s, the RIFE pass when it is not).
+
+**Owner on a99f:** the wide clip still has the fold with Breasts: smooth. Likely specific to this
+keyframe (`hgk_pz_wide_hgf_99001` already has squeeze creases where her arms press the breasts), not the
+wording. Next: animate another h-game keyframe (`hgk_pz_wide_hg_99002`, the front-on one, was on 1s and
+showed no fold at the checked frames), or reseed the still for one without arm creases.

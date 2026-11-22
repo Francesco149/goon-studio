@@ -27,11 +27,12 @@ FOLDER = {
     "CLIPVisionLoader": "clip_vision", "LoadBackgroundRemovalModel": "background_removal",
     "UpscaleModelLoader": "upscale_models", "CheckpointLoaderSimple": "checkpoints",
     "ModelPatchLoader": "model_patches",
+    "FrameInterpolationModelLoader": "frame_interpolation",
 }
 # older ComfyUI folder names that still work
 ALIASES = {"diffusion_models": ["diffusion_models", "unet"], "text_encoders": ["text_encoders", "clip"]}
 WIRED_FOLDERS = ["diffusion_models", "text_encoders", "vae", "loras", "clip_vision", "background_removal",
-                 "upscale_models", "checkpoints", "model_patches"]
+                 "upscale_models", "checkpoints", "model_patches", "frame_interpolation"]
 
 
 # ---- settings and places ----------------------------------------------------------------------
