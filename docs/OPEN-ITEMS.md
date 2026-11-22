@@ -1,4 +1,4 @@
-# Open items and how to pick them up (handoff, 2026-11-21)
+# Open items and how to pick them up (handoff, 2026-11-22)
 
 Read this before starting experiments. The canon is in `AGENTS.md` section 5; the measured
 details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGIRL.md`.
@@ -16,7 +16,28 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 | photoreal facial still | `egirl_facial_tongue` / `egirl_facial_tongue_over` (a94) | tongue out: "good angle, expression and splash pattern"; overcooked = thinner translucent semen |
 | anime paizuri | still `anime_ll_fz_paizuri_notongue` -> clip `anime_ll_paizuri` (a92) | "solid, right penis type"; no saliva yet |
 | anime h-game motion (smooth, jiggly) | `anime_lz_hgame_paizuri` on keyframe `gallery/a99/hgk_pz_wide_hg_99002`, seed 99101 (a99i) | h-game keyframe = H3 on 1s; no fold, closed smile; owner: "the recipe to force this style" |
+| **multi-shot scenes (stories)** | `kit/stories/emilia_meadow.json` (`--variant flatter`, cut `a103`), `kit/stories/lanzhu_hotel.json` (cut `a104`) | owner: good; plan new scenes from the recipe index `docs/SCENES.md`, run them with `docs/STORY.md` |
+| lap pillow + nursing handjob (sweet) | `docs/SCENES.md` row; clips `a105/lapv2_ontop`, `lapv2_bed`, `lapv5_sofa_105101` | owner: a winning recipe |
+| Emilia character | Anima + `anima_Emilia_2-30` (a100) | art style and identity spot on; Illustrious + nochekaiser s4 = usable alternative |
 | anime stills | `anime_pov` (retracted), `anime_pov_foreskin`, `anime_pov_mosaic` | style + nudity locks, round a86 |
+
+## Session 2026-11-22 handoff (stories, recipe index)
+
+- The scene workflow: `docs/SCENES.md` (index of arcs, shot types, looks -> the known-good gens; add a line
+  per approved shot) and `docs/STORY.md` (method + every lesson, rounds a101-a105). Tools:
+  `kit/studio/story.py`, `tools/rounds/run_story.py` (`--keys-only`, `--only`, `--redo`, `--variant`,
+  `--cut-only`; shot keys `timing`, `hold`, `key_image`, `start_from`, `clip_file`/`clip_range`, `continues`).
+- Open, next: **backdrop continuity** between shots (describe the room per camera angle, `docs/SCENES.md`);
+  a **consistent re-anchor method** for penis anatomy (the working trick so far: a Ref2VA glans suck with a
+  penis reference, then a deep throat started from its deepest frame - a104 s2a/s2b; anchor edits copy the
+  reference's pose; `tools/rounds/reanchor.py` has `ref`/`repair_prompt`); the hair flower jumping under his
+  hand in emilia s3; the optional pubes tweaks (untested); a masked anchor edit
+  (`wf_h3img_2ref_inpaint.json`) is untried.
+- Rules learned this session (all in `docs/SCENES.md`/`STORY.md`): flat look = series tag + no gloss words;
+  fluids/precum as one continuous result (a repeated or "glistening" action loops, evaporates or turns to
+  steam); never more pulses for bigger climaxes; freezes only for shots designed around one; never name
+  smoke/steam - reseed; give him his own colours against tag bleed; get a LoRA's trigger words first
+  (AGENTS.md 4a); vague feedback -> offer the closest current templates (AGENTS.md 6a).
 
 ## Open items, in the owner's order
 
