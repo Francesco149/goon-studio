@@ -7,6 +7,13 @@
    "url": "https://huggingface.co/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors",
    "page": "https://huggingface.co/Comfy-Org/BiRefNet"
   },
+  "checkpoints/WAI-Nsfw-Illustrious-17.safetensors": {
+   "what": "WAI-illustrious-SDXL v17 - Illustrious (SDXL) anime checkpoint, base for Illustrious character LoRAs",
+   "gb": 6.46,
+   "url": "https://civitai.com/api/download/models/2883731?type=Model&format=SafeTensor&size=pruned&fp=fp16",
+   "page": "https://civitai.com/models/827184?modelVersionId=2883731",
+   "login": true
+  },
   "diffusion_models/anima-aesthetic-v1.1.safetensors": {
    "what": "Anima aesthetic v1.1 - base anime model used by some older workflows",
    "gb": 4.18,
@@ -118,6 +125,13 @@
    "login": true,
    "sha256": "E947EBC07EE627796196B6DC551326C387CA81AF173A5DF72A789F135CD21F0B"
   },
+  "loras/anima_Emilia_2-30.safetensors": {
+   "what": "Character LoRA for Anima: Emilia (Re:Zero) design study (duongve13112002)",
+   "gb": 0.04,
+   "url": "https://civitai.com/api/download/models/3144656",
+   "page": "https://civitai.com/models/2790541?modelVersionId=3144656",
+   "login": true
+  },
   "loras/h3nsfw/Astro-nsfw.safetensors": {
    "what": "H3 LoRA: Astro NSFW (best photoreal blowjob motion)",
    "gb": 0.3,
@@ -207,6 +221,13 @@
    "gb": 0.55,
    "url": "https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_ref2va_v1_avg_rank_55_bf16.safetensors",
    "page": "https://huggingface.co/Kijai/MiniMax-H3_comfy"
+  },
+  "loras/rezero-emilia-s4-illustriousxl-lora-nochekaiser.safetensors": {
+   "what": "Character LoRA for Illustrious: Emilia (Re:Zero) design study (nochekaiser, anime s4)",
+   "gb": 0.21,
+   "url": "https://civitai.com/api/download/models/3047525",
+   "page": "https://civitai.com/models/1336055?modelVersionId=3047525",
+   "login": true
   },
   "text_encoders/p-h3-image_text_encoder_int8_convrot.safetensors": {
    "what": "P-H3 4B text encoder - the light H3-Image encoder for 16 GB RAM",

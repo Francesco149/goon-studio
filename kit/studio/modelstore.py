@@ -384,6 +384,16 @@ def civitai_token():
     return t
 
 
+class _DropAuthOnHostChange(urllib.request.HTTPRedirectHandler):
+    """Civitai redirects big files to a signed storage URL (Cloudflare R2) that rejects a request
+    still carrying the Civitai token (HTTP 400). Keep the token on civitai.com only."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        new = super().redirect_request(req, fp, code, msg, headers, newurl)
+        if new is not None and urllib.parse.urlsplit(newurl).hostname != urllib.parse.urlsplit(req.full_url).hostname:
+            new.remove_header("Authorization")
+        return new
+
+
 def download(url, dest, gb=None, log=print):
     """Resumable download to dest (via dest.part). Civitai links get the token when one is set."""
     os.makedirs(os.path.dirname(dest), exist_ok=True)
@@ -396,7 +406,7 @@ def download(url, dest, gb=None, log=print):
         headers["Range"] = "bytes=%d-" % have
     req = urllib.request.Request(url, headers=headers)
     try:
-        r = urllib.request.urlopen(req, timeout=60)
+        r = urllib.request.build_opener(_DropAuthOnHostChange).open(req, timeout=60)
     except urllib.error.HTTPError as e:
         if e.code == 416 and have:          # the .part is already complete
             os.replace(part, dest)

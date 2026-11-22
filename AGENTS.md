@@ -210,6 +210,8 @@ the video recipe proven.
   [--sub h3nsfw] [--name clean-name.safetensors] --url <download> --page <page> --what "..."`. Ask
   them for the link if you do not have it - a file without a source cannot go into a template.
   Then follow the LoRA checklist (`docs/LORAS.md`).
+- **Any LoRA the user wants used: find its trigger words first** (model page / Civitai API
+  `trainedWords`, the file header), or ask the user for them. Check its base model matches the graph.
 - **A template that is established as good must be usable by hand.** Every file it loads is in
   `kit/models.json` with a source, its workflow/LoRA/strength live in the template itself (no
   agent-only step), and the page shows a non-technical user what is missing, where to download it

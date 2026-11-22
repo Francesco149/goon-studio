@@ -47,7 +47,9 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
   frame grids with the engine's Python): `docs/OPEN-ITEMS.md`. Read it before experiments.
 - Models: one store (`models_dir`), registry `kit/models.json`, tool `tools/models/store.py`
   (check / fetch / adopt / audit / doc); AGENTS.md section 4a. A template that is good must be
-  usable by hand: every file it loads has a source in the registry.
+  usable by hand: every file it loads has a source in the registry. A LoRA the user wants used:
+  find its trigger words (model page, Civitai `trainedWords`, file header) or ask for them, and
+  check its base model, before rendering (`docs/LORAS.md` checklist).
 - Jobs: `jobs/<round>.jsonl`; renders: `gens/<round>/`; sheets and studies: `analysis/`; neutral
   work: `sfw/<round>/`; the page's own gallery stays in the app.
 - The app's templates and approved prompt blocks: `kit/presets.json`; the user's own presets:

@@ -47,5 +47,8 @@ right now (`kit/presets.json`, `my/presets.json`), offer the 2-4 closest fits in
 what it would look like - and offer to tune a custom style into a new template. Keep it short,
 one question at the end (AGENTS.md 6a).
 
+Before using a LoRA, get its trigger words (model page, Civitai `trainedWords`, file header) or
+ask the user for them, and check it matches the graph's base model (`docs/LORAS.md`).
+
 This style is selected by this project's `.claude/settings.json` and applies only in this
 project. `CLAUDE.md` has the detailed project notes; this file is the standing scope.

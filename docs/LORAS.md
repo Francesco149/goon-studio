@@ -25,6 +25,32 @@ are not part of any recipe a user gets.
 | `h3nsfw/H3_Motion_BoosterV2.safetensors` | motion boost, H3 video | H3 FL2VA | 0.35-0.5 | best cum/twitch dynamics so far |
 | `h3nsfw/h3-sideview-deepthroat.safetensors` | side deepthroat, H3 video | H3 FL2VA | 0.6-0.8 | helps the side angle |
 | `h3nsfw/MM-H3-Blwjob-v3.safetensors` | POV blowjob, H3 video | H3 FL2VA | - | **no help** on the POV blowjob |
+| `rezero-emilia-s4-illustriousxl-lora-nochekaiser.safetensors` | Emilia (Re:Zero) design study, stills | Illustrious (WAI v17) | 0.6-1.0 | a100: identity on point, locks the style |
+| `anima_Emilia_2-30.safetensors` | Emilia (Re:Zero) design study, stills | Anima (Pink Alchemy v2.9) | 1.0 | a100: identity good, styles show through |
+
+## Emilia (Re:Zero), round a100 (2026-11-22)
+
+Design study (adult, "mature female"). The linked LoRA (nochekaiser, Civitai 1336055, version
+3047525 "anime s4") exists only for **Illustrious**, so the repo gained an Illustrious stack:
+`checkpoints/WAI-Nsfw-Illustrious-17.safetensors` (Civitai 827184 v17) and
+`workflows/wf_illu_lora.json` (LoRA on model + CLIP, clip skip 2, Euler a, 28 steps, cfg 6;
+~9 s/still on ampere). Side by side: duongve13112002's Anima LoRA (Civitai 2790541, version
+3144656, trigger `emilia (re:zero)`) and plain Anima as a control. Trigger words: the s4 page's two
+blocks (identity: `rezero emilia, emilia (re:zero), ... x hair ornament, crown braid, pointy ears,
+purple eyes ...`; outfit: `cape, white cape, purple dress, purple bodysuit ...`).
+Jobs `jobs/a100_emilia_styles.jsonl` (`tools/rounds/mk_a100.py`), sheets `analysis/a100_*.jpg`;
+five style blocks (none / base / tv / hg / hgf) x outfit and nude upper body, seed 100001.
+
+- **Illustrious + s4**: the identity is on point and the most consistent of the three (s4 cape with the
+  gold brooch, white flower, X clip, purple ribbon, crown braid), nude too. But the style blocks barely
+  move it: all five read as the same anime screencap. a100b: strength 0.6/0.8 changes little (hgf adds
+  gloss and a pose); identity holds at 0.6. The look is WAI's plus the LoRA's.
+- **Anima + duongve**: identity good (flower, X clip, braid, ribbon, brooch); the style blocks show
+  through. `hgf` tints the hair blue/cyan on the nude shot.
+- **Anima, no LoRA**: the base already knows her (flower, X clip, braid, ears) but draws the older
+  outfit; follows the styles the most; same cyan drift with `hgf`.
+- Download fix found here: Civitai redirects big files to Cloudflare R2, which rejects the forwarded
+  token (HTTP 400); `modelstore.download` now drops `Authorization` on a cross-host redirect.
 
 ## Anime character LoRAs (Anima)
 
@@ -222,6 +248,10 @@ draws the acts natively and the Verite skin is plastic. Kept for a fallback only
 
 ## Adding a LoRA: the checklist
 
+0. **Get the trigger words before the first render.** A LoRA used without them barely works. Take
+   them from the model page (Civitai API: `https://civitai.com/api/v1/model-versions/<id>`,
+   `trainedWords`), the file header (`ss_tag_frequency`) or the user - ask if none of those has them.
+   Note the base model too (Anima, Illustrious, Pony...): a LoRA only works on its own base.
 1. Read the header before trusting the name: `python -c "import json,struct;f=open(P,'rb');n=struct.unpack('<Q',f.read(8))[0];print(json.loads(f.read(n)).get('__metadata__'))"`
    - base model, dim/alpha, whether the text encoder was trained.
 2. Put it in the store and register it: `python tools/models/store.py adopt <path> --folder loras

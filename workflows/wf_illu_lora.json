@@ -1,0 +1,13 @@
+{
+ "1": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": "{{ckpt}}"}},
+ "2": {"class_type": "LoraLoader", "inputs": {"model": ["1", 0], "clip": ["1", 1], "lora_name": "{{lora}}", "strength_model": "{{strength}}", "strength_clip": "{{strength}}"}},
+ "3": {"class_type": "CLIPSetLastLayer", "inputs": {"clip": ["2", 1], "stop_at_clip_layer": -2}},
+ "4": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["3", 0], "text": "{{prompt}}"}},
+ "5": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["3", 0], "text": "{{negative}}"}},
+ "6": {"class_type": "EmptyLatentImage", "inputs": {"width": "{{width}}", "height": "{{height}}", "batch_size": "1"}},
+ "7": {"class_type": "KSampler", "inputs": {"model": ["2", 0], "positive": ["4", 0], "negative": ["5", 0], "latent_image": ["6", 0], "seed": "{{seed}}", "steps": "{{steps}}", "cfg": "{{cfg}}", "sampler_name": "{{sampler}}", "scheduler": "{{sched}}", "denoise": 1.0}},
+ "8": {"class_type": "VAEDecode", "inputs": {"samples": ["7", 0], "vae": ["1", 2]}},
+ "9": {"class_type": "SaveImage", "inputs": {"images": ["8", 0], "filename_prefix": "{{prefix}}"}},
+ "_params": {"ckpt": "WAI-Nsfw-Illustrious-17.safetensors", "width": 1216, "height": 832, "seed": 1, "steps": 28, "cfg": 6.0, "prefix": "gl/x", "sampler": "euler_ancestral", "sched": "normal", "lora": "", "strength": 1.0},
+ "_note": "Illustrious (SDXL) t2i with a character/style LoRA on model + CLIP (Illustrious LoRAs train the text encoder), clip skip 2. WAI-illustrious defaults: Euler a, ~28 steps, cfg 5-7. Round a100."
+}
