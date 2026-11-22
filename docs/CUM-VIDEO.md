@@ -235,6 +235,30 @@ on the local bench engine.
 | `at4_base` / `at4_phys` | `anime_ll_cumshot` as is / + script, seed 93001 | saliva reads well; the cum shot does not feel natural - only two ropes stay on her face and they go across in a weird circular, side-to-side, abnormally symmetrical pattern. More seeds and starting frames: round a93b |
 | `asw_base` / `asw_phys` | `anime_ll_cum_switch_a26` as is / + small first rope, one drop escapes | pending; my read: the base froths far more out of her lips than went in, the variant leaks one drop |
 
+### a93b: the anime symmetric mask (`jobs/a93b_anime_cum.jsonl`)
+
+The template as is on two new seeds and two gap keyframes (`gens/a30/n1_handjob_a|b`), plus one
+wording change. Every render with the t4 landing plan ("the first lands high on her cheek, the
+second on her tongue, the third on her chin") drew the same thing: a thin rope stuck high on her
+face whose tail hangs back down as a loop, and on the centred gap keyframes a symmetric wire mask
+over the nose bridge and down both sides of the mouth (5 of 5 renders, 3 seeds, 3 keyframes). The
+owner: `fz_s93102` is a more organic pattern (base for bigger loads - more ropes and strength,
+**not thicker ropes, they are already borderline too thick**); `hb_s93001` has the nicer POV and
+expression but the symmetric pattern.
+
+**`hb_oneside` - owner: "the most natural one yet".** Same keyframe and seed as `hb_s93001`, only
+the landing sentence changed: the ropes land one after another in roughly the same place, a little
+to one side of her mouth, unevenly (across her lips and up one cheek, then shorter onto her tongue,
+then a dribble); they do not sweep from side to side or make a symmetric pattern; the white is
+uneven and lopsided. **It is now the `anime_ll_cumshot` template** (keyframe
+`gens/a30/n1_handjob_b_00001_.png`, seed 93001); the old t4 prompt is kept as
+`anime_ll_cumshot_t4`. Lesson: in anime, a landing plan that names three spots across the face is
+drawn as a frame connecting them; name one area and say "uneven".
+
+Bigger loads: `jobs/a93c_anime_bigload.jsonl` (five/four pulses on the organic seed with the old
+plan, epic 0.65, and the gap keyframe at epic 0.45) and `jobs/a93d_oneside_bigload.jsonl` (five
+pulses on the new wording, thin; epic 0.65; the new wording on the fuzichoco seed).
+
 What this round established:
 
 - **Spelling the mechanics out makes the photoreal clip worse.** Velocity, distance and cadence

@@ -11,6 +11,8 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 | photoreal blowjob clip | `pov_blowjob_anatomy` | physics wording + Male Anatomy 0.9 ("best photoreal video yet"); fallbacks `pov_blowjob`, `pov_blowjob_astro`, `pov_blowjob_fl` (all owner-valid) |
 | anime blowjob clips | the round a26 batch: `anime_ll_headgrab_push` (k11), `anime_ll_two_hands_a26` (k12), `anime_ll_tip_tease` (k13), `anime_ll_cum_switch_a26` (k14) | "gold standard for dynamics, poses and expressions"; exact a26 prompts, **no physics paragraph** |
 | anime blowjob base | `anime_ll_suction` (k9) and family | back to the pre-a88 prompts (see "penis type" below) |
+| anime cum shot | `anime_ll_cumshot` (a93b `hb_oneside`) | "the most natural one yet"; keyframe `gens/a30/n1_handjob_b`, seed 93001 |
+| photoreal cum shot | `cumshot_medium` (a93 `pm_base`) | "the best default for this shot"; `p1_pose`, seed 970; `cumshot_high` = extreme preset |
 | anime paizuri | still `anime_ll_fz_paizuri_notongue` -> clip `anime_ll_paizuri` (a92) | "solid, right penis type"; no saliva yet |
 | anime stills | `anime_pov` (retracted), `anime_pov_foreskin`, `anime_pov_mosaic` | style + nudity locks, round a86 |
 
@@ -34,9 +36,10 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    **`cumshot_medium` template as is** (`pm_base`: `p1_pose`, seed 970, local engine);
    `cumshot_high` is an extreme preset only. Revised rules: an occasional split into splashes is
    realistic; white on the glans is fine only when a spurt visibly lands on it. Leads: `pm_land`'s
-   later spurts for a rebuilt `cumshot_low`; the anime cum shot sweeps two ropes side to side in a
-   symmetrical arch - round a93b tests seeds, gap keyframes (`gens/a30/n1_handjob_a|b`) and an
-   uneven one-side landing. The meter `tools/rounds/cum_mass.py` finds frames, it does not judge.
+   later spurts for a rebuilt `cumshot_low`. Anime: the t4 landing plan (cheek/tongue/chin)
+   drew a symmetric mask on every seed and keyframe; landing the ropes unevenly in one place
+   (`hb_oneside`, a93b) is "the most natural one yet" and is now `anime_ll_cumshot` (old prompt:
+   `anime_ll_cumshot_t4`). Bigger loads (more ropes, never thicker): rounds a93c/a93d. The meter `tools/rounds/cum_mass.py` finds frames, it does not judge.
 2. **A convincing facial variant** (owner asked for it after the dynamics work): the photoreal
    facial pose is `egirl_facial` (owner-approved pose); the clip side needs the cum work above.
 3. **Paizuri saliva dynamics.** a92 has none. Add saliva wording to `anime_ll_paizuri` and test

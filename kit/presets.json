@@ -789,7 +789,19 @@
       "length": 124
     },
     "anime_ll_cumshot": {
-      "label": "Anime - LL cum shot - best so far (t4)",
+      "label": "Anime - LL cum shot - most natural (a93b hb_oneside: uneven one-side landing)",
+      "workflow": "wf_h3vid_i2v_lora2.json",
+      "lora": "h3nsfw/epic_cumshots.safetensors",
+      "strength": 0.55,
+      "width": 768,
+      "height": 1152,
+      "length": 124,
+      "prompt": "integrated_multimodal_description: [Shot 1] A 2D anime clip in a clean cel-shaded TV-anime style, one fixed camera. POV from above: a young adult woman with short silver hair in a single braid, a mole under her eye and a small fang, kneels between the viewer's legs, holding his erect cock upright with one hand an inch below her open mouth, her tongue out, her eyes on the camera. His cock pulses three times and no more. On each pulse the shaft gives one small sideways bob - it sways slightly to one side and back, with a slight upward nod - and then holds still. Between pulses the shaft is still. The cock does not expand, grow, stretch or change size: its thickness stays exactly the same. Only the veins swell a little and the glans twitches once with each pulse. Three small bobs, one per spurt, and no continuous bouncing. Each pulse sends one single thin white rope of semen straight up out of the slit at the tip. The ropes land one after another in roughly the same place, a little to one side of her mouth, unevenly: the first across her lips and up onto one cheek, the second shorter onto her tongue, the third only a small dribble onto her lower lip. They do not sweep from side to side and they do not make a symmetrical pattern; each one ends where it hits and stays, and the white on her face is uneven and lopsided. She flinches at each spurt, her eyes squeeze shut for a moment, then she opens them and looks into the camera, half-lidded, flushed, her tongue still out. The camera shakes slightly with her.\n\noverall_soundscape: close-miked Foley, loud and present, clearly audible over a quiet bedroom room tone, no music and no speech: three thin wet spurts about a second apart, each landing with a small wet tap, one low male groan on the second, her breath catching between them. No chewing, no crunch, no slurp.\n\nnon_diegetic_music: N/A",
+      "motion_strength": 0.4,
+      "about": "Round a93b (owner: the most natural one yet). Keyframe gens/a30/n1_handjob_b_00001_.png, seed 93001. The t4 landing plan (cheek, tongue, chin) drew a symmetric mask; this one lands the ropes unevenly in one place. Old prompt: anime_ll_cumshot_t4."
+    },
+    "anime_ll_cumshot_t4": {
+      "label": "Anime - LL cum shot - t4 (old: cheek/tongue/chin, can draw a symmetric mask)",
       "workflow": "wf_h3vid_i2v_lora2.json",
       "lora": "h3nsfw/epic_cumshots.safetensors",
       "strength": 0.55,
