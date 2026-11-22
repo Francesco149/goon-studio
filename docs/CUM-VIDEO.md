@@ -255,9 +255,23 @@ uneven and lopsided. **It is now the `anime_ll_cumshot` template** (keyframe
 `anime_ll_cumshot_t4`. Lesson: in anime, a landing plan that names three spots across the face is
 drawn as a frame connecting them; name one area and say "uneven".
 
-Bigger loads: `jobs/a93c_anime_bigload.jsonl` (five/four pulses on the organic seed with the old
-plan, epic 0.65, and the gap keyframe at epic 0.45) and `jobs/a93d_oneside_bigload.jsonl` (five
-pulses on the new wording, thin; epic 0.65; the new wording on the fuzichoco seed).
+### a93c / a93d: bigger anime loads
+
+- **More pulses is wrong** (`big5`, `big5_lora65`, `big4_hard`, a93c; owner: "not good"): extra
+  pulses only make the ropes shoot for longer, which is unnatural pacing, and paint abnormally
+  regular patterns on her face that do not match the spurts. With the old plan the organic
+  `fz_s93102` look turned back into nested symmetric arches. Epic 0.65 changed the amount (thicker
+  bands), not the pattern. **Keep three pulses; never add ropes and never thicken them.**
+- `hb_lora45` is confounded: it had no pinned prompt and rendered after the template switch, so it
+  is the new wording at epic 0.45 (same lopsided layout as `hb_oneside`, slightly smaller drips),
+  not the planned old-wording LoRA test. **Pin `prompt` in every job when templates may change
+  mid-queue.**
+- `os3_hard` (a93d, `hb` keyframe, seed 93001): the new wording, still three pulses, the first two
+  fire harder. Everything lands in one area - a splash up one cheek that runs down in two drips,
+  plus a pile on her tongue; the upper-lip band of `hb_oneside` is gone. Concentrated rather than
+  bigger. Pending the owner's pacing verdict.
+- `fz_os` (a93d, fuzichoco keyframe, seed 93102): the new wording carries to the other keyframe -
+  one-sided, on her cheek by the mole, upper lip and tongue, no frame. Pending the owner.
 
 What this round established:
 

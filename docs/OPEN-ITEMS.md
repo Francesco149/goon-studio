@@ -39,7 +39,10 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    later spurts for a rebuilt `cumshot_low`. Anime: the t4 landing plan (cheek/tongue/chin)
    drew a symmetric mask on every seed and keyframe; landing the ropes unevenly in one place
    (`hb_oneside`, a93b) is "the most natural one yet" and is now `anime_ll_cumshot` (old prompt:
-   `anime_ll_cumshot_t4`). Bigger loads (more ropes, never thicker): rounds a93c/a93d. The meter `tools/rounds/cum_mass.py` finds frames, it does not judge.
+   `anime_ll_cumshot_t4`). Bigger loads: more pulses is wrong (unnatural pacing, regular
+   patterns, a93c) - keep three pulses, never thicker ropes; the open lead is force only
+   (`os3_hard`, a93d) and the new wording on other keyframes (`fz_os`), both awaiting verdicts.
+   Still unjudged: `ph_phys` and the anime cum switch pair (`asw_*`). The meter `tools/rounds/cum_mass.py` finds frames, it does not judge.
 2. **A convincing facial variant** (owner asked for it after the dynamics work): the photoreal
    facial pose is `egirl_facial` (owner-approved pose); the clip side needs the cum work above.
 3. **Paizuri saliva dynamics.** a92 has none. Add saliva wording to `anime_ll_paizuri` and test

@@ -6,10 +6,11 @@ place, no side-to-side sweep) is "the most natural one yet" - it is now the anim
 template. Earlier: fz_s93102 is a more organic base for bigger loads (more ropes, more strength),
 and the rope thickness is already borderline too thick - do not increase it.
 
-a93c builds bigger loads on the OLD landing plan (cheek/tongue/chin, which drew the symmetric
-mask). This round builds them on the new wording instead:
-  os5          hb + seed 93001, five pulses landing unevenly in one place, thin
-  os5_lora65   the same + epic 0.65
+Owner on a93c (five/four pulses): not good - more pulses only make the ropes shoot for longer,
+which is unnatural pacing, and paint abnormally regular patterns on her face that do not match
+the spurts. So no extra pulses and no thicker ropes; a bigger load can only come from force:
+  os3_hard     hb + seed 93001, still three pulses, the first two fire harder and reach further
+               up her cheek, thin
   fz_os        the new template wording on the organic fuzichoco seed 93102 (does the wording
                carry to the other keyframe?)
 Writes jobs/a93d_oneside_bigload.jsonl.
@@ -32,18 +33,15 @@ OLD = ("The ropes land one after another in roughly the same place, a little to 
        "mouth, unevenly: the first across her lips and up onto one cheek, the second shorter onto "
        "her tongue, the third only a small dribble onto her lower lip.")
 NEW = ("The ropes land one after another in roughly the same place, a little to one side of her "
-       "mouth, unevenly: the first two fire hard, across her lips and up onto one cheek, the third "
-       "and fourth shorter onto her tongue and the corner of her lips, the fifth only a small "
-       "dribble onto her lower lip. Every rope is as thin as before; the load is bigger only "
-       "because there are more ropes.")
-os5 = sub(os1, OLD, NEW)
-os5 = sub(os5, "His cock pulses three times and no more.", "His cock pulses five times and no more.")
-os5 = sub(os5, "Three small bobs, one per spurt,", "Five small bobs, one per spurt,")
+       "mouth, unevenly: the first fires hard and lands across her lips and high up onto one "
+       "cheek, the second also hard and a little shorter, onto her tongue and the same cheek, the "
+       "third only a small dribble onto her lower lip. The ropes stay thin; only the first two "
+       "hit harder.")
+os3 = sub(os1, OLD, NEW)
 
 T = "anime_ll_cumshot"
 jobs = [
-    dict(name="os5", template=T, seed=93001, image=HB, prompt=os5, _note="five pulses, uneven one-side landing, thin"),
-    dict(name="os5_lora65", template=T, seed=93001, image=HB, prompt=os5, nsfw_strength=0.65, _note="the same + epic 0.65"),
+    dict(name="os3_hard", template=T, seed=93001, image=HB, prompt=os3, _note="three pulses, first two harder, thin"),
     dict(name="fz_os", template=T, seed=93102, image=FZ, _note="the new template on the organic fuzichoco seed"),
 ]
 out = os.path.join(ROOT, "jobs", "a93d_oneside_bigload.jsonl")
