@@ -361,3 +361,9 @@ post-pass covers it. Templates:
 keyframe (`hgk_pz_wide_hgf_99001` already has squeeze creases where her arms press the breasts), not the
 wording. Next: animate another h-game keyframe (`hgk_pz_wide_hg_99002`, the front-on one, was on 1s and
 showed no fold at the checked frames), or reseed the still for one without arm creases.
+- a99h (`jobs/a99h_template_clip.jsonl`): the `anime_lz_hgame_paizuri` template on the front-on
+  `hgk_pz_wide_hg_99002` keyframe, seed 96101, through the page code: **no fold** (both breasts round and
+  smooth f16-f64), H3 on 1s by itself (`r` 0.78, median 5.1; the smooth pass had nothing to do). Defect:
+  from ~f20 her smile opens and the tongue tip shows despite the closed-mouth line (the same open grin as
+  the a97 Lanzhu paizuri - likely seed 96101), and her fingers move onto the nipples. Prefer this
+  keyframe over `hgf_99001`; a reseed may close the mouth.

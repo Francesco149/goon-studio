@@ -81,8 +81,8 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
    The profile BJ stays on 2s in every style: `kit/studio/anime_smooth.py` (Anime timing `smooth`,
    RIFE 4.26 / FILM from the store) drops H3's copies and interpolates, clean on the checked frames.
    Open: owner verdict on the smoothed clips; BJ head travel on the h-game profile is small; the
-   wide `hgf_99001` keyframe keeps a moving fold even with Breasts smooth (keyframe-specific; try
-   `hgk_pz_wide_hg_99002` or another seed).
+   wide `hgf_99001` keyframe keeps a moving fold even with Breasts smooth (keyframe-specific); the
+   front-on `hgk_pz_wide_hg_99002` has no fold (a99h), but seed 96101 opens her smile from ~f20.
 6. Smaller:
    - photoreal veins come out as raised vine-like cords (inherited from the Krea + Verite keyframe);
    - HMPenis v2 is registered but untested (needs a Civitai login - the owner downloads it);
