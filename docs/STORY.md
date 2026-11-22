@@ -97,3 +97,51 @@ Keyframes on ampere in ~17 s each, clips 60-155 s each (13 jobs, ~20 min), the c
   and the shared blocks; the TV cel look too.
 - Open: tag bleed between the two people (outfit colours); s1's head should be buried in his lap;
   shot 3's mixed 1s/2s cadence (on 2s is close; `off` would keep H3's own); s5 needs a little motion.
+
+## Round a102: flatter style, s1-s3 angles (2026-11-22)
+
+Owner on a101: s1 does not read as a blowjob (she looks left, the pose is unnatural); s2/s3 have the
+generic AI-art look; s3 lies in the grass while in the ref he stands; push the style flatter.
+What the ref really is (key stills): almost no shading, matte skin, hatched blush lines, thin pale
+lines; s1 the back of her head buried at his crotch; s2 a tight close-up against grass, eyes aside,
+troubled brows; s3 he stands, she kneels bent forward with her boots up behind her.
+
+- **Style block** `flat`: `year 2020, anime screenshot, re:zero kara hajimeru isekai seikatsu, anime
+  coloring, (flat color:1.2), (minimal shading:1.1), matte skin, thin lineart, soft pastel colors,
+  (diagonal-lined blush:1.1)`, negative `shiny skin, glossy skin, oily skin, specular highlights,
+  gradient shading, detailed shading, rim lighting, bloom`; script style "flat colours with almost no
+  shading, matte skin with no shine, thin clean lines, hatched pink blush lines". The series tag pulls
+  the show's own look. `+ official style, (no shading:0.6)` (a102b) adds little.
+- **The gloss words were the "generic AI" look**: `shiny skin`, `glossy`, `specular highlights` from
+  the a96 `tv` block suit the h-game direction, not this ref.
+- s1: `(facing away:1.3), (back of head:1.2), (face not visible:1.2), head between his legs`, negative
+  `looking back, face, eyes, profile` - the act is hidden like the ref. s3: `(standing:1.1)` for him,
+  `(kneeling:1.2), bent forward, feet up`, negative `lying, on stomach, sky`.
+- Owner on the a102 keyframes: "a lot better in terms of style". Bleed fix: `(black pants:1.2)` in the
+  partner block (his trousers were purple from her leggings).
+- **a102 clips: the flat style holds in motion** (`analysis/a102_cut.jpg`). s1 now reads like the ref
+  (the back of her head dips into his crotch on each bob); s3 the hand strokes and her eyes close with
+  it; s4 his trousers black. Left: the hair flower jumps in s3 (f53-80); s5's collar still drifts to the
+  canon dress. s3's `timing` is now `off`: on 2s over H3's own on-2s thinned it to 7.5/s; H3's own
+  cadence gives 10.7/s (ref 18.3, a 1s/2s mix).
+- **Variants**: a story can carry named overlays (`variants` -> `blocks`/`still`/`clip` replaced,
+  `append` text added to e.g. the negative of every shot, `shots` {id: {...}}); `run_story.py
+  --variant <name>`, the cut is named `<story>_<variant>_cut.mp4`. `emilia_meadow` has `flatter`
+  (owner: "an even flatter look ... more like an actual h-anime; the shine on the penis gives the AI
+  vibe"): `(flat color:1.4), (no shading:0.8), (matte:1.2), (simple coloring:1.2), (matte penis:1.2),
+  (thick penis:1.1), veins, flat colored penis`, negative `shiny/glossy/wet penis, penis highlights,
+  glossy lips, shine`. a102c tried `simple penis` + `detailed penis, veiny penis` in the negative: the
+  veins went (owner: keep thick and veiny, only the colouring flat) - a102d is the fix.
+- **One gaze per clip.** Owner: s2's "looks up at him, then turns to the camera" did not lock eyes
+  with the camera. A change of gaze is a cut, not an instruction: s2 is now `s2a` (eyes on him) and
+  `s2b` (`(looking at viewer:1.3), (eye contact:1.2)` in the keyframe, "looks straight into the camera
+  the whole time" in the script), same seed so the framing matches. Same rule for any change H3 has to
+  "turn to": give it its own shot with the end state in the keyframe.
+- **Saliva** (owner): `(saliva:1.2), saliva trail` in the s2/s3 keyframes, and in the scripts saliva on
+  the shaft, a string stretching from her lip on the pull-back and dripping from her chin. The
+  `flatter` negative no longer bans `wet penis` (it fought the saliva); shiny/glossy/highlights stay.
+- a103 (`--variant flatter`) after the fixes: s1 centred from directly behind (`(back view:1.2), (from
+  directly behind:1.2), (centered:1.2), symmetrical`, negative side/three-quarter view and the penis -
+  owner prefers the centred one, the hips cover the act like the ref), s2a/s2b gaze split works in both
+  looks, s5 `solo` + negative `penis, 1boy, male, hand` (the flatter keyframe had put a penis in frame).
+  Left: the hair flower jumps where his hand touches her head in s3; s5's collar drifts to the canon dress.

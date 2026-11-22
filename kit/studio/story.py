@@ -27,9 +27,27 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 
-def load(path):
+def load(path, variant=None):
+    """the story, with a named variant applied: story["variants"][name] is an overlay - its
+    blocks/still/clip keys replace the story's, `append` adds text to them (e.g. a negative), and
+    `shots` {id: {...}} replaces keys of those shots."""
     with open(path, encoding="utf-8-sig") as f:
-        return json.load(f)
+        S = json.load(f)
+    if variant:
+        V = S.get("variants", {})[variant]
+        for part in ("blocks", "still", "clip"):
+            S.setdefault(part, {}).update(V.get(part, {}))
+        for part, adds in V.get("append", {}).items():
+            for k, txt in adds.items():
+                S[part][k] = S[part].get(k, "") + txt
+                if part == "still" and k == "negative":
+                    for sh in S["shots"]:
+                        if "negative" in sh.get("still_job", {}):
+                            sh["still_job"]["negative"] += txt
+        for sh in S["shots"]:
+            sh.update(V.get("shots", {}).get(sh["id"], {}))
+        S["name"] = "%s_%s" % (S["name"], variant)
+    return S
 
 
 def fill(text, blocks):

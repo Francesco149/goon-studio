@@ -2,7 +2,7 @@
 """run_story.py - render a story (kit/stories/*.json) through the page's own engine layer and cut it.
 
   python tools/rounds/run_story.py kit/stories/emilia_meadow.json <round> [--engine URL]
-         [--only s1,s3] [--keys-only] [--redo] [--cut-only]
+         [--variant flatter] [--only s1,s3] [--keys-only] [--redo] [--cut-only]
 
 Per shot: the keyframe, then its clip(s) - a continuation clip starts from the last frame of the
 one before. Then kit/studio/story.assemble cuts the shots together (per-shot timing, holds, audio)
@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.join(ROOT, "kit", "studio"))
 def main():
     args = sys.argv[1:]
     opt = {}
-    for k in ("--engine", "--only"):
+    for k in ("--engine", "--only", "--variant"):
         if k in args:
             i = args.index(k)
             opt[k] = args[i + 1]
@@ -32,7 +32,7 @@ def main():
         os.environ["GOON_COMFY_URL"] = opt["--engine"]
     story_path, rnd = args
     import core, story as ST
-    S = ST.load(story_path)
+    S = ST.load(story_path, opt.get("--variant"))
     only = set(opt["--only"].split(",")) if "--only" in opt else None
     data = core.settings().get("data_dir", core.GALLERY)
     outdir = os.path.join(data, rnd)
