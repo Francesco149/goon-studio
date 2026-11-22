@@ -152,3 +152,9 @@ troubled brows; s3 he stands, she kneels bent forward with her boots up behind h
   Reworded as one continuous result: "a single trail of it runs slowly down from the corner of her
   mouth over her chin and falls away in drops into the grass" (a103s2, `--only s2` in its own round).
   The "one gaze per clip" note above is withdrawn as a rule: a slow gaze shift inside one clip can work.
+- Saliva, owner on a103s2: right physics (it drips now), but **brown** (the shaft colour bled in) and a
+  bit much. Fix (a103s2 take 2): "a thin, clear, see-through thread of saliva, colourless like water and
+  visible only by a small white glint ... a few small drops"; keyframe `saliva, (clear saliva:1.1),
+  transparent, saliva trail` instead of `(saliva:1.2)`. Result: a thin clear thread and small drops at
+  the corner of the mouth, no brown. Side effects: the shaft reads wetter/glossier, and this keyframe's
+  collar drifted to the canon dress.
