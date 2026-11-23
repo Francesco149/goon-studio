@@ -95,6 +95,9 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
   block `kit/presets.json` character `gemma`, Illustrious / WAI v17 (owner pick over Anima).
 - Canon picture `gallery/a117/gm_lock_114001_00001_.png`; art style = base WAI (a118 artist tags and a119
   style LoRAs tried, owner: none beats it).
+- Then the owner picked the Xu Er style LoRA look (a121-a123): best picture `gallery/a123/gm_x3_114001_00001_.png`.
+  **Parked (owner):** prompt-only gens are not consistent enough for a LoRA; revisit with a better locking idea
+  (reference-driven variations, inpaint repair, bootstrap LoRA - `docs/OC.md` "Gemma status").
 - Locked: cold face, pink gem drop earrings, outfit (8/8). **Open: horn shape** (canon = a114 seed 114002,
   upward crescent) holds ~2/3 by prompt; plan is a varied dataset round + curation, then an SDXL LoRA
   (no training tooling in the repo yet).

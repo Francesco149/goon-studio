@@ -56,11 +56,50 @@ engine, `tools/sheet.py` for the full sheet and a head-crop sheet for the detail
   the design along with the look. **Any style change also redraws the horns** (the seed's composition
   moves), so restyling always means re-curating.
 
+- **Then the owner picked a style from a119 after all:** `gallery/a119/gm_sl_xuer_60_114001` (Xu Er thick
+  paint 0.6: heavy outlines, punchy cel with gloss, ornate gold filigree). a120 (base-look dataset) was stopped
+  at 27/72. a121 (`analysis/a121_xuer.jpg`, 8 seeds): the style holds on 24/24 at 0.5 and 0.6, and so does its
+  face (fanged cat-mouth smirk in place of the cold smile) and a bigger bust. It drops the butterfly wings
+  (none or small bat wings) unless weighted: `(butterfly wings:1.3), (pink wings:1.2)` brings them back 8/8 but
+  bleeds butterflies into the earrings and the collar brooch. Horns turn small, spiky or rocky (never the
+  canon crescent); weighting size makes them big but jagged.
+- Owner: no spiky horns; aim at `gallery/a121/gm_xu_A_114001` (a glossy segmented coil with a smooth point
+  rising from it). a122 (`analysis/a122_heads.jpg`): `ram horns, curled horns, large horns, segmented horns,
+  smooth horns, glossy horns` (with the old curl negative lifted, `spiked horns, jagged horns, spikes` in the
+  negative) = smooth coils 8/8, the rising point on 2/8. `butterfly earrings, butterfly brooch, butterfly
+  hair ornament` in the negative fixed the earring bleed (16/16 clean pink drops), but wings at 1.15 became
+  jagged bat wings. a123 (`analysis/a123_xuer_lock.jpg`, `tools/rounds/mk_a123.py` `BLOCK`/`NEG`): wings back
+  at `(butterfly wings:1.3), (pink wings:1.2)` + `bat wings, demon wings, dragon wings` in the negative ->
+  butterfly wings 7/8, horns smooth coils 8/8, earrings 8/8, style 8/8. Left: star/eyeliner marks under the
+  eyes on some seeds (`facial mark` in the negative only reduces them), the popped collar only on 1/8, a
+  bigger bust than the base look.
+
 **Locked block:** `kit/presets.json` character `gemma` = the a117 wording (`tools/rounds/mk_a117.py`
 `GEMMA`), which drew the canon picture at seed 114001 (Illustrious / WAI v17, 832x1216);
 negative add-on `GEMMA_NEG` there: `(ram horns:1.3), (goat horns:1.2), curled horns, spiral horns,
 horizontal horns, multiple girls`. Face, earrings and outfit
 held on 8/8 in a117.
+
+## Gemma status (2026-11-23): parked
+
+Gemma is the unfinished OC design experiment and the reference case for OC workflows: a new locking method
+is tried on her first, and once she renders consistently her recipe becomes the template for every OC.
+
+Owner verdict after a123: **the prompt-only gens are not consistent enough to train a LoRA** - each trait
+holds most of the time, but the combination (horn shape, collar, marks, wings) still varies picture to
+picture. Best pictures so far: `gallery/a123/gm_x3_114001_00001_.png` (Xu Er style, owner's best of a123) and
+`gallery/a117/gm_lock_114001_00001_.png` (base look). Curvy, big bust is right for her. Revisit when there is
+a better way to lock an OC. Ideas not tried yet:
+
+- **Reference-driven variations** instead of fresh text-to-image: new poses/angles from the best picture as
+  an identity reference (Qwen-Image 2.1 edit, `workflows/wf_qwen21_edit1.json`, is in the repo as the
+  identity-keeping editor; an IP-Adapter for Illustrious is not).
+- **Repair instead of reject**: inpaint the horns/collar of near-miss gens back to the canon picture.
+- **Bootstrap LoRA**: train a first small LoRA on the handful of best pictures (plus repaired ones),
+  generate with it, curate again, retrain.
+
+The a120 base-look dataset round was stopped at 27/72 when the style changed; those renders are in
+`gallery/a120/`.
 
 ## Making a LoRA of an OC (plan, not yet done)
 
