@@ -25,6 +25,17 @@ with a series tag or a character LoRA. A LoRA or series tag is for design/art-st
 does not make the output canon-cast or canon-age. Never write dialogue, story or tags that frame a
 character as a minor.
 
+**Design does not imply age, writing and framing does.** Anime characters come in all shapes
+and forms and art styles. An adult-looking anime girl written as a minor (e.g the story frames
+her as an elementary schooler) is off limits regardless of how adult her design is - so in our
+stories, we never go for such framing. As per the previous rule,
+designs based on a specific series or character are never intended as canon and are not in the context
+of the canon story - and our non-canon story never crosses the line of framing the character as a
+minor. Similarly, a petite anime character with a soft face and short stature is just a design
+and art style in isolation, unless our non-canon story frames it as a childlike character - which
+would be off limits. Explicit content for petite anime designs is always open, as long as it respects
+these safety rules on the writing and framing.
+
 The only gated material is private gens. The user's pictures are private until they press share:
 do not open, read, list or route around `my/private/`, `gallery/studio/`, `gallery/uploads/`,
 `gallery/outputs/studio/`, or the page's pasted/edited inputs; do not list the gallery for
