@@ -60,7 +60,7 @@ def main():
                 continue
             if j["name"] in made and not redo:
                 continue  # made by an earlier run of this round (--redo renders it again)
-            job = {k: v for k, v in j.items() if k not in ("image_from", "image_last_from", "image_path")}
+            job = {k: v for k, v in j.items() if k not in ("image_from", "image_last_from", "image_path", "restore_from", "restore_path")}
             job["round"] = rnd
             if j.get("image_path"):
                 job["image"] = os.path.join(data, j["image_path"])
@@ -69,6 +69,15 @@ def main():
             if j.get("image_last_from"):
                 png = os.path.join(outdir, "%s_last.png" % j["image_last_from"])
                 job["image"] = ST.last_frame(os.path.join(data, made[j["image_last_from"]]), png)
+                ref = os.path.join(data, j["restore_path"]) if j.get("restore_path") else (
+                    os.path.join(data, made[j["restore_from"]]) if j.get("restore_from") in made else None)
+                if ref:  # chained frames thicken the line art hop by hop: redraw the start frame clean
+                    w, h = job.get("width", 1152), job.get("height", 768)
+                    r = core.run({"workflow": "wf_h3img_2ref.json", "image1": job["image"], "image2": ref, "prompt": ST.RESTORE,
+                                  "width": w, "height": h, "seed": 1, "round": rnd, "name": "%s_start" % j["name"],
+                                  "anime_timing": "off"}, by="agent")
+                    job["image"] = os.path.join(data, r["files"][0])
+                    say("%s: start frame restored from %s" % (j["name"], os.path.basename(ref)))
             t0 = time.time()
             try:
                 rec = core.run(job, by="agent")

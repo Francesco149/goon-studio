@@ -1,0 +1,247 @@
+{
+ "name": "lanzhu_night",
+ "about": "Sweet night in a hotel room, Lanzhu, the flattest look: two beloved-style tease angles, the newjersey blowjob arc (lick -> suck eyes closed -> eye contact -> speed-ups -> climax inside then outside -> tongue show), front cowgirl (blob present part 2) with a breast grab, his speed-up and her taking over, and a legs-grabbed missionary. Round a106.",
+ "ref": "gallery/refs/art-study/refs/ref2_blob_newjersey.mp4, ref1_blob_beloved.mp4, blob-present-dialogue-focus-and-new-acts-to-analyze.mp4",
+ "seed": 106001,
+ "still": {
+  "workflow": "wf_anima2_lora.json",
+  "lora": "lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors",
+  "strength": 1.0,
+  "width": 1248,
+  "height": 832,
+  "steps": 30,
+  "cfg": 4.0,
+  "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine"
+ },
+ "clip": {
+  "width": 1152,
+  "height": 768,
+  "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
+  "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+  "fps": 24,
+  "max_len": 124,
+  "seg_len": 49
+ },
+ "blocks": {
+  "style": "masterpiece, best quality, year 2020, anime screenshot, love live! nijigasaki high school idol club, anime coloring, (flat color:1.4), (no shading:0.8), (matte:1.2), (simple coloring:1.2), thin lineart, soft pastel colors, (diagonal-lined blush:1.1), (matte penis:1.2), (thick penis:1.1), (veins:0.6), flat colored penis",
+  "character": "1girl, lanzhu zhong, long hair, bangs, blue eyes, pink hair, ahoge, sidelocks, mole, two side up, mole under eye, hair bun, mature female, (curvy:1.5), (wide hips:1.3), thick thighs, large breasts",
+  "outfit": "(open bathrobe:1.2), white bathrobe, bare shoulders",
+  "partner": "1boy, hetero, tan skin, (black hair:1.1), nude male",
+  "setting": "indoors, hotel room, bed, white bed sheet, night, warm lamp light",
+  "script_style": "A 2D anime clip in the flat style of a TV anime: flat colours with no shading at all, matte skin and a matte penis with no shine, thin clean lines, hatched pink blush lines on her cheeks, warm lamp light, one fixed camera.",
+  "script_character": "a young adult woman with long pink hair tied in two small side loops, blue eyes and a mole under her eye, in an open white hotel bathrobe",
+  "script_partner": "a man",
+  "script_setting": "on a hotel bed with white sheets at night, in warm lamp light"
+ },
+ "shots": [
+  {
+   "id": "t1",
+   "seconds": 4.0,
+   "timing": "on3",
+   "template": "anime_ll_paizuri",
+   "clip_job": {
+    "nsfw_strength": 0.0,
+    "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+    "motion_strength": 0.5
+   },
+   "still": "{style}, {character}, (bathrobe hanging open:1.3), (nipples:1.1), (bare breasts:1.4), (hanging breasts:1.4), (breasts focus:1.2), all fours, on top, {partner}, from below, pov, (looking down at viewer:1.2), (gentle smile:1.2), blush, breasts above the camera, ceiling, warm lamp light, {setting}",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A low angle from right underneath her: {script_character}, the robe open, is on all fours above the camera {script_setting}, her large breasts hanging just above the lens. She rocks her whole body slowly forward and back on her hands and knees, her shoulders and hips moving with it, and her breasts swing softly with each rock. She looks down past them into the camera with a gentle, playful smile, her blush warm. Her skin is one even pale tone all over. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: the soft rustle of the sheets, her quiet happy breath.\n\nnon_diegetic_music: N/A",
+   "seed": 106101
+  },
+  {
+   "id": "t1b",
+   "seconds": 4.5,
+   "timing": "off",
+   "template": "anime_ll_paizuri",
+   "start_from": "t1",
+   "clip_job": {
+    "nsfw_strength": 0.0,
+    "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+    "motion_strength": 0.5
+   },
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing: {script_character} slides slowly down the man's body on her hands and knees until her face is over his erect cock, smiling at the camera. She lets a thin, clear thread of saliva drip from her lips onto the tip, wraps her hand around the shaft and strokes it slowly, spreading the wetness so the shaft glistens. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: the rustle of the sheets as she slides down, a soft wet drip, the slow wet sound of her hand.\n\nnon_diegetic_music: N/A"
+  },
+  {
+   "id": "t2",
+   "seconds": 4.0,
+   "timing": "on3",
+   "template": "anime_ll_paizuri",
+   "clip_job": {
+    "nsfw_strength": 0.0
+   },
+   "still": "{style}, {character}, (open bathrobe:1.1), (white panties:1.2), bare breasts, sitting on lap, straddling, 1boy, hetero, tan skin, his stomach under her, from below, (between thighs:1.2), thighs, crotch, (looking down at viewer:1.2), (smile:1.2), blush, {setting}",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, penis, sex, pussy, penis, erection, testicles"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A low angle between her thighs: {script_character} sits astride the man's lap in white panties, the robe open, and slowly rocks her hips back and forth, her thighs shifting at the edges of the frame. Above, she looks down into the camera with a sweet, teasing smile. Her skin is one even pale tone all over. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: the soft rustle of fabric as her hips rock, her quiet giggle.\n\nnon_diegetic_music: N/A",
+   "seed": 106102
+  },
+  {
+   "id": "b1",
+   "seconds": 4.5,
+   "timing": "off",
+   "template": "anime_ll_headgrab_push",
+   "still": "{style}, {character}, (open bathrobe:1.1), (bare breasts:1.1), {partner}, pov, from above, lying on stomach, between legs, (ass up:1.1), her hips raised behind her, (licking penis:1.1), tongue out, tongue touching the tip of the penis, (looking at viewer:1.2), (smile:1.2), blush, penis, (long penis:1.1), (thick penis:1.1), uncensored, {setting}",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, penis in mouth, frown"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs {script_setting}, her hips raised behind her, holding his cock up with one hand. She teases only the very tip with the tip of her tongue, slowly circling it and flicking it, never moving her mouth down the shaft, and looks up into the camera with a cute, playful smile; then she gives the tip one soft kiss. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: small wet flicks of her tongue, a soft kiss, her happy hum.\n\nnon_diegetic_music: N/A"
+  },
+  {
+   "id": "b2",
+   "seconds": 5.0,
+   "timing": "off",
+   "template": "anime_ll_headgrab_push",
+   "still": "{style}, {character}, (open bathrobe:1.1), (bare breasts:1.1), {partner}, pov, from above, lying on stomach, between legs, (ass up:1.1), her hips raised behind her, fellatio, (penis in mouth:1.2), (closed eyes:1.2), lips sealed around penis, blush, saliva, (clear saliva:1.1), uncensored, {setting}",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, tongue out, open mouth, frown"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs, her hips raised behind her, with his cock in her mouth and her eyes closed. She slides her mouth slowly down the shaft and back up until only the head stays between her lips, sucking with a small wet pop at the top. Her lips stay softly sealed around the shaft and are drawn a little forward along it as she pulls back, her cheeks drawn in slightly by the suction. After a few strokes she opens her eyes and looks up into the camera, keeping the eye contact as she sucks, a sweet smile in her eyes. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, soft wet suction with a small pop at the top, her nose breathing.\n\nnon_diegetic_music: N/A"
+  },
+  {
+   "id": "b3",
+   "seconds": 4.0,
+   "timing": "smooth",
+   "template": "anime_ll_headgrab_push",
+   "start_from": "b2",
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing: {script_character} speeds up, sliding her mouth down the shaft and back up to the head about two strokes a second, her eyes on the camera with the same sweet eye contact. Her lips stay softly sealed around the shaft and are drawn a little forward along it as she pulls back, her cheeks drawn in slightly by the suction. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a quicker wet suction rhythm, her breath through her nose.\n\nnon_diegetic_music: N/A",
+   "restore": "b2"
+  },
+  {
+   "id": "b4",
+   "seconds": 4.0,
+   "timing": "smooth",
+   "template": "anime_ll_headgrab_push",
+   "start_from": "b3",
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing: {script_character} goes faster still, her whole body rocking with each stroke, her raised hips and her breasts bouncing with the rhythm, her eyes on the camera with the same sweet eye contact. Her lips stay softly sealed around the shaft and are drawn a little forward along it as she pulls back, her cheeks drawn in slightly by the suction. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a fast wet suction rhythm, the sheets rustling, his rising groan.\n\nnon_diegetic_music: N/A",
+   "restore": "b2"
+  },
+  {
+   "id": "b5",
+   "seconds": 4.0,
+   "timing": "on2",
+   "template": "anime_ll_cumshot",
+   "start_from": "b4",
+   "clip_job": {
+    "nsfw_strength": 0.45
+   },
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing: his cock pulses in her mouth; she holds still for the first pulse, then pulls back off it, and the next two pulses send one thin white rope each onto her chin and the top of her breast, landing unevenly on one side and staying where they hit. She looks up into the camera, surprised and smiling. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: his groan of release, a soft wet pop as she pulls off, two soft spurts.\n\nnon_diegetic_music: N/A",
+   "restore": "b2"
+  },
+  {
+   "id": "b6",
+   "seconds": 4.0,
+   "timing": "on3",
+   "template": "anime_ll_cumshot",
+   "clip_job": {
+    "nsfw_strength": 0.3
+   },
+   "still": "{style}, {character}, (open bathrobe:1.1), (bare breasts:1.1), solo, close-up, face focus, (open mouth:1.2), (tongue out:1.2), (cum on tongue:1.2), cum in mouth, cum on chin, (looking at viewer:1.3), (smile:1.2), happy, blush, {setting}",
+   "still_job": {
+    "negative": "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, bad anatomy, extra fingers, extra hands, third hand, fused limbs, censored, mosaic censoring, bar censor, shiny skin, glossy skin, oily skin, specular highlights, gradient shading, detailed shading, rim lighting, bloom, shiny penis, glossy penis, penis highlights, glossy lips, shine, penis, 1boy, male, frown, crying, ahegao"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up on her face: {script_character} shows the camera her tongue with the white cum on it, her mouth open, smiling with her eyes, then closes her mouth and swallows with a happy little smile. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a soft giggle, a small swallow.\n\nnon_diegetic_music: N/A"
+  },
+  {
+   "id": "c1",
+   "seconds": 5.0,
+   "timing": "off",
+   "template": "anime_ll_paizuri",
+   "clip_job": {
+    "nsfw_lora": "h3nsfw/HMNSFW_AIO_V2.safetensors",
+    "nsfw_strength": 0.6,
+    "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+    "motion_strength": 0.5
+   },
+   "still": "{style}, {character}, (open bathrobe:1.1), (bare breasts:1.2), {partner}, (cowgirl position:1.2), girl on top, straddling, sex, vaginal, penis in pussy, uncensored, from below, pov, his legs at the bottom of the frame, (looking at viewer:1.2), (smile:1.2), blush, (breasts bouncing:1.1), {setting}",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A low angle from between his legs: {script_character} rides the man in the cowgirl position, the robe slipping off her shoulders, bouncing up and down on him in a steady rhythm, about one bounce a second; her large breasts bounce and sway with every move. She looks down into the camera with a sweet, happy smile, her blush warm. Her skin is one even pale tone all over. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a soft rhythmic slap of skin, the bed creaking, her happy breathless sighs.\n\nnon_diegetic_music: N/A",
+   "cut": false,
+   "_note": "owner: rigid - she bounces without propping herself up; the chain starts the edit at c2 (squat), c3, c4 (perfect)"
+  },
+  {
+   "id": "c2",
+   "seconds": 4.0,
+   "timing": "off",
+   "template": "anime_ll_paizuri",
+   "clip_job": {
+    "nsfw_lora": "h3nsfw/HMNSFW_AIO_V2.safetensors",
+    "nsfw_strength": 0.6,
+    "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+    "motion_strength": 0.5
+   },
+   "start_from": "c1",
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing: as she keeps riding, his hand comes up from the bottom of the frame and grabs one of her bouncing breasts, squeezing it softly; the breast squishes between his fingers and she giggles, still riding, smiling into the camera. Her skin is one even pale tone all over. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: the rhythmic slap of skin, her giggle, the bed creaking.\n\nnon_diegetic_music: N/A",
+   "restore": "c1"
+  },
+  {
+   "id": "c3",
+   "seconds": 4.0,
+   "timing": "smooth",
+   "template": "anime_ll_paizuri",
+   "clip_job": {
+    "nsfw_lora": "h3nsfw/HMNSFW_AIO_V2.safetensors",
+    "nsfw_strength": 0.6,
+    "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+    "motion_strength": 0.5
+   },
+   "start_from": "c2",
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing: his hands take her hips and he thrusts up into her fast; she bounces quicker on top of him, her breasts bouncing hard, her mouth falling open in a surprised, delighted gasp. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a fast slap of skin, her surprised gasps, his grunts.\n\nnon_diegetic_music: N/A",
+   "restore": "c1"
+  },
+  {
+   "id": "c4",
+   "seconds": 5.0,
+   "timing": "smooth",
+   "template": "anime_ll_paizuri",
+   "clip_job": {
+    "nsfw_lora": "h3nsfw/HMNSFW_AIO_V2.safetensors",
+    "nsfw_strength": 0.6,
+    "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+    "motion_strength": 0.5
+   },
+   "start_from": "c3",
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing: she puts both hands down flat on his chest, leans forward over him and takes over, riding him hard and fast on her own, her hips slamming down, her breasts swinging between her arms. She looks down into the camera with a teasing, confident smile. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a hard fast slap of skin, the bed creaking, her breathless laugh.\n\nnon_diegetic_music: N/A",
+   "restore": "c1"
+  },
+  {
+   "id": "m1",
+   "seconds": 5.0,
+   "timing": "off",
+   "template": "anime_ll_paizuri",
+   "clip_job": {
+    "nsfw_lora": "h3nsfw/HMNSFW_AIO_V2.safetensors",
+    "nsfw_strength": 0.6,
+    "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+    "motion_strength": 0.5
+   },
+   "still": "{style}, {character}, (open bathrobe:1.1), (bare breasts:1.2), {partner}, missionary, on back, lying on bed, (legs up:1.2), spread legs, (hands on another's thighs:1.3), he holds her thighs, sex, vaginal, penis in pussy, uncensored, from below, low angle between his legs, (looking at viewer:1.2), (smile:1.1), blush, {setting}",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A low angle from between his legs: {script_character} lies on her back on the bed with her legs raised and spread, the man's hands holding her thighs up, as he thrusts into her in a steady rhythm; her breasts bounce with each thrust. She looks down past her breasts into the camera with a flushed, sweet smile. Her skin is one even pale tone all over. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a steady slap of skin, the bed creaking, her soft moans.\n\nnon_diegetic_music: N/A"
+  }
+ ],
+ "variants": {
+  "b1_under": {
+   "_note": "owner on b1_c0_00003: nice; nicer with the tongue behind",
+   "shots": {
+    "b1": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs {script_setting}, her hips raised behind her, holding his cock up with one hand. She licks the underside of the tip, the side facing away from the camera, with slow strokes of her tongue, so her tongue stays mostly hidden behind the head of his cock, and looks up into the camera with a cute, playful smile; then she gives the tip one soft kiss. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: small wet flicks of her tongue, a soft kiss, her happy hum.\n\nnon_diegetic_music: N/A"
+    }
+   }
+  },
+  "b1_side": {
+   "_note": "owner alternative: sucking on the side, sliding up and down",
+   "shots": {
+    "b1": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs {script_setting}, her hips raised behind her, holding his cock up with one hand. She turns her head and presses her soft lips sideways against the side of the shaft, sliding them slowly up and down along it in a gentle kiss, and looks up into the camera with a cute, playful smile; then she gives the tip one soft kiss. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: small wet flicks of her tongue, a soft kiss, her happy hum.\n\nnon_diegetic_music: N/A",
+     "still": "{style}, {character}, (open bathrobe:1.1), (bare breasts:1.1), {partner}, pov, from above, lying on stomach, between legs, (ass up:1.1), her hips raised behind her, (kissing penis:1.2), lips on the side of the shaft, sideways, (looking at viewer:1.2), (smile:1.2), blush, penis, (long penis:1.1), (thick penis:1.1), uncensored, {setting}"
+    }
+   }
+  }
+ }
+}

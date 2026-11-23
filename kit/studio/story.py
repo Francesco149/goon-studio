@@ -11,7 +11,7 @@ A story file (kit/stories/*.json):
                                script_style, script_character, script_partner, script_setting
                                (H3 script prose); used as {name} placeholders in the shots
   seed                       - base seed; shot i uses seed + i unless the shot sets one
-  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from, clip_file, clip_range, continues,
+  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from, restore, clip_file, clip_range, continues, cut,
           timing: "off"|"on2"|"on3"|"smooth", hold: [{"at": s, "frames": n}], seed}]
 
 Long shots: a clip is at most `max_len` frames; a longer shot continues with more clips, each
@@ -25,6 +25,11 @@ import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+
+
+RESTORE = ("Edit <Picture 1>. Keep <Picture 1> exactly as it is: the same pose, framing, expression, hands, bodies, "
+           "fluids, room and composition. Only redraw it in the exact art style of <Picture 2>: the same thin clean line "
+           "art and line weight, the same flat colours and shading, the same crispness.")
 
 
 def load(path, variant=None):
@@ -106,6 +111,12 @@ def expand(story):
                         prompt=script, length=n, anime_timing="off")
             if k == 0 and prev:
                 clip["image_last_from"] = prev
+                if sh.get("restore"):  # redraw the start frame with that shot's keyframe line art first
+                    ref = next(s for s in story["shots"] if s["id"] == sh["restore"])
+                    if ref.get("key_image"):
+                        clip["restore_path"] = ref["key_image"]
+                    else:
+                        clip["restore_from"] = "%s_key" % ref["id"]
             elif k == 0 and sh.get("key_image"):
                 clip["image_path"] = sh["key_image"]
             elif k == 0:
@@ -202,7 +213,7 @@ def assemble(story, files_by_shot, out, tmpdir):
     V, A, arate, layout = [], [], None, None
     for sh in story["shots"]:
         fs = files_by_shot.get(sh["id"])
-        if not fs:
+        if not fs or sh.get("cut") is False:  # cut: false keeps a shot in the story but out of the edit
             continue
         fr, au, ar, lay = _shot(story, sh, fs, tmpdir)
         if V and fr[0].shape != V[0].shape:

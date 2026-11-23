@@ -223,3 +223,24 @@ the flattest look with the Nijigasaki series tag, a hotel room at night. 6 shots
   with a deep-throat script on the normal i2v model + act LoRA. Result: the penis stays right (no pull-out
   ever exposes the glans to a redraw, no red), real motion again (median frame change 6.4 vs 0.4), and the
   seam is a normal motion step (7.8). New story options: `clip_file`, `clip_range`, `continues`.
+
+## Round a106: `lanzhu_night` (2026-11-23)
+
+Tease angles (beloved), the newjersey blowjob arc, front cowgirl with a breast grab and the switch to her
+taking over, a legs-grabbed missionary - 13 shots, Lanzhu, flattest look, on ampere. Act LoRA for the sex
+shots: `HMNSFW_AIO_V2` (HearmemanAI, Civitai 2834417, no trigger words; on ampere, not yet in the registry).
+`Minimax3_BoobPhysics_v1` on ampere is a 15-byte "Entry not found" file (a failed download) - the real one is
+Civitai version 3245935.
+- **Chained clips degrade** (owner): each `start_from` hop starts from a frame H3 already redrew, and the line
+  art thickens hop by hop (b3 slightly, b4 clearly). New shot key `restore: "<shot id>"`: the start frame of a
+  continuation is first redrawn by a two-picture H3-Image edit in the art style of that shot's keyframe
+  (`story.RESTORE`: same pose and composition, the keyframe's line weight and flat colours).
+- t1 (under the breasts): her body stood still while the breasts bounced - the script now rocks her whole body.
+  b1 (lick): best expression and pose, but the short laps of the tongue looked unreal and cut the penis oddly -
+  one long slow lick up the shaft and a kiss on the tip instead. b2/b3 sucking dynamics were weak - the golden
+  a26 wording ("slides her mouth up until only the head stays between her lips, purses ... small wet pop").
+- a106 after the fixes: `restore` kept the BJ chain's line art flat (b2-b5, ink share 19-22%, no climb); b2 eyes
+  closed -> eye contact works; b5 holds the first pulse then pulls off smiling. Owner: b6 (tongue show) very cute;
+  cowgirl: c4 perfect (she leads, hands on his chest), c2 least rigid (squats on her legs), c1 rigid (no driver for
+  the bounce) - `cut: false` keeps c1 out of the edit, the sex part opens on c2. b1 tip tease + kiss: nice; variants
+  `b1_under` (tongue behind the tip) and `b1_side` (lips sliding along the side of the shaft).
