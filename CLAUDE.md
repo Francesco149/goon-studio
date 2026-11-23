@@ -56,6 +56,11 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
   `tools/rounds/run_story.py`; method and lessons in `docs/STORY.md`. To plan a new scene, start from
   the recipe index `docs/SCENES.md` (arcs, shot types, looks -> the known-good gens); add to it
   when a new shot or look is approved.
+- If a request describes more than one short shot (a sequence of beats, "then ... after that",
+  an escalation, a camera change, a long video), treat it as a story, not one clip: break it into
+  individual shots (one action, framing and cadence each, carrying over from the previous shot's
+  last frame), list the shot plan back in one line per shot, and render it with the story workflow
+  above rather than trying to fit everything into a single generation.
 - The app's templates and approved prompt blocks: `kit/presets.json`; the user's own presets:
   `my/presets.json`.
 - Vague feedback ("make it better", "not quite"): read what templates and options exist now, offer
