@@ -67,6 +67,18 @@ pulls that show's own look.
 - **Glans breaks on the pull-out?** Ref2VA with a penis reference (`wf_h3vid_ref2va_first2`) gives a correct
   glans but only a glans suck; use it as it is, then cut to a deep throat started from its deepest frame
   (`clip_file`/`clip_range` + `key_image`/`continues`, `lanzhu_hotel` s2a/s2b, a104). The penis never leaves her mouth.
+- **The anchoring rule (owner):** whenever the penis is pulled out (shaft or glans visible), something must tell H3
+  what it looks like at that moment - otherwise it shortens, the glans warps, and the lip shape is lost. Four ways:
+  1. prompt + keyframe for the lip shape (the suction face below + its script line);
+  2. a reference that carries everything: Ref2VA with the keyframe as `<Picture 1>` and a penis reference as
+     `<Picture 2>` (`wf_h3vid_ref2va_first2.json`; steady object, less motion - a104r2, a106 `b2_r2va`: owner "pretty good" -
+     the suction keyframe as Picture 1 keeps the lips; give the man reciprocating motion to make up for the calmer
+     Ref2VA motion);
+  3. re-anchor what it should look like pulled out (`reanchor.py` with `ref`) - only with a reference in the
+     same pose, or the anchors drag the motion (a104);
+  4. chain the pull-out: a clip that shows the penis out starts from a frame where it is out and correct (a
+     keyframe that shows the whole penis, or the last frame of such a clip - a106 `b2_chain`); the inverse trick
+     - glans suck -> deep throat from the deepest frame - keeps it from ever coming out (a104 s2a/s2b).
 - **The suction face (owner-approved recipe, a106k)** - the look to aim for in every sucking shot: lips sealed and
   pushed forward along the shaft, a small visible pout around it, cheeks a little hollow, eyes up at the camera.
   Unedited keyframes on the overhead lying-on-her-stomach POV (Lanzhu, flattest look), seeds 106201/106202/106203:
@@ -76,6 +88,7 @@ pulls that show's own look.
   `(vacuum fellatio:0.6/0.9)` gave a weaker version; drawing the lips in with an H3-Image edit was too exaggerated.
   Script side: "Her lips stay softly sealed around the shaft and are drawn a little forward along it as she pulls
   back, her cheeks drawn in slightly by the suction." Start sucking shots from such a keyframe (`key_image`).
+- **Dominant BJ keyframe** (owner): `gallery/a106/b2_key_00001_.png` - eyes closed, her hand resting on his leg; "makes it hotter".
 - **Cheek puff = cum in her mouth** (idea, owner): `gallery/a106k/suck_v06_106202_00001_.png` - a slight cheek puff
   with the shaft in her mouth; a good first frame for an oral climax that fills her mouth, then she pulls out and it
   drips.

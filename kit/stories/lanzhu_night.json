@@ -293,6 +293,58 @@
      }
     }
    }
+  },
+  "b2_r2va": {
+   "_note": "owner: penis shortens, glans goes weird and the suction lips are lost in motion - Ref2VA with the suction keyframe + a penis reference",
+   "shots": {
+    "b2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs, her hips raised behind her, with his cock in her mouth. She sucks him with slow, steady strokes, sliding her lips down the shaft and back up toward the head. Her face and her lips look exactly like in <Picture 1> in every frame: her lips pushed forward and sealed around the shaft, her cheeks drawn in slightly. His cock looks exactly like the one in <Picture 2> - the same length, thickness, skin tone and head. She looks up into the camera with a sweet smile in her eyes. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, soft wet suction with a small pop at the top, her nose breathing.\n\nnon_diegetic_music: N/A",
+     "clip_job": {
+      "workflow": "wf_h3vid_ref2va_first2.json",
+      "image1": "gallery/a106k/b1_key_s106502_00001_.png"
+     }
+    }
+   }
+  },
+  "b2_shallow": {
+   "_note": "same problem - short strokes, the head never leaves her mouth",
+   "shots": {
+    "b2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs, her hips raised behind her, with his cock in her mouth. She sucks him in short, steady strokes along the front part of the shaft; the head of his cock always stays inside her mouth. Her lips stay pushed forward and sealed around the shaft the whole time, exactly as in the first frame, and her cheeks stay drawn in slightly. His cock stays long and thick, exactly the size it is in the first frame. She looks up into the camera with a sweet smile in her eyes. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, soft wet suction with a small pop at the top, her nose breathing.\n\nnon_diegetic_music: N/A"
+    }
+   }
+  },
+  "b2_chain": {
+   "_note": "anchoring way 4: b2 starts from the last frame of b1t (tip suck from a keyframe that shows the whole penis)",
+   "shots": {
+    "b2": {
+     "start_from": "b1t",
+     "key_image": null
+    }
+   }
+  },
+  "b2_r2va2": {
+   "_note": "owner on b2_r2va: pretty good, more dynamic if the male reciprocated - his hips meet her strokes",
+   "shots": {
+    "b2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs, her hips raised behind her, with his cock in her mouth. She sucks him with slow, steady strokes, sliding her lips down the shaft and back up toward the head. His hips move with her, pushing up gently to meet each stroke as she slides down, so the two of them rock together in one rhythm. Her face and her lips look exactly like in <Picture 1> in every frame: her lips pushed forward and sealed around the shaft, her cheeks drawn in slightly. His cock looks exactly like the one in <Picture 2> - the same length, thickness, skin tone and head. She looks up into the camera with a sweet smile in her eyes. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, soft wet suction with a small pop at the top, her nose breathing.\n\nnon_diegetic_music: N/A",
+     "clip_job": {
+      "workflow": "wf_h3vid_ref2va_first2.json",
+      "image1": "gallery/a106k/b1_key_s106502_00001_.png"
+     }
+    }
+   }
+  },
+  "b2_chain_lips": {
+   "_note": "owner: b1t last frame seeds a flat mouth (\"sucking on a sheet of paper\") - chain from b1t but give the start frame the lips of the suction keyframe first",
+   "shots": {
+    "b2": {
+     "start_from": "b1t",
+     "key_image": null,
+     "restore_image": "a106k/suck_lips_106201_00001_.png",
+     "restore_prompt": "Edit <Picture 1>. Keep <Picture 1> exactly as it is: the same pose, framing, face, eyes, hair, hands, bathrobe, his penis and the colours, in the same flat anime style. Only change her mouth around the penis so it looks like the mouth in <Picture 2>: soft lips with volume, pushed forward and sealed around the shaft, cheeks drawn in slightly."
+    }
+   }
   }
  }
 }

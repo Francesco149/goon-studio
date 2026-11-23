@@ -11,7 +11,7 @@ A story file (kit/stories/*.json):
                                script_style, script_character, script_partner, script_setting
                                (H3 script prose); used as {name} placeholders in the shots
   seed                       - base seed; shot i uses seed + i unless the shot sets one
-  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from, restore, clip_file, clip_range, continues, cut,
+  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from, restore, restore_image, restore_prompt, clip_file, clip_range, continues, cut,
           timing: "off"|"on2"|"on3"|"smooth", hold: [{"at": s, "frames": n}], seed}]
 
 Long shots: a clip is at most `max_len` frames; a longer shot continues with more clips, each
@@ -111,6 +111,10 @@ def expand(story):
                         prompt=script, length=n, anime_timing="off")
             if k == 0 and prev:
                 clip["image_last_from"] = prev
+                if sh.get("restore_image"):  # or redraw it toward a given picture with a given instruction
+                    clip["restore_path"] = sh["restore_image"]
+                    if sh.get("restore_prompt"):
+                        clip["restore_prompt"] = sh["restore_prompt"]
                 if sh.get("restore"):  # redraw the start frame with that shot's keyframe line art first
                     ref = next(s for s in story["shots"] if s["id"] == sh["restore"])
                     if ref.get("key_image"):
