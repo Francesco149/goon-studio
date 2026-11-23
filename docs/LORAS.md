@@ -311,8 +311,8 @@ looks none/flat x outfit/nude x seeds 108001/108002.
 
 ## Ilulu (Miss Kobayashi's Dragon Maid), round a129 (2026-11-23)
 
-**Reference first: `gallery/refs/characters/ilulu_scale_official.png`** (official anime screenshot, local only -
-`gallery/` is git-ignored). It shows her canon scale next to Tohru (adult) and Kanna (a child): Ilulu stands at
+**Reference first: `docs/img/ilulu_scale_official.png`** (official anime screenshot, committed as the one fair-use
+exception in `docs/IMAGES.md`). It shows her canon scale next to Tohru (adult) and Kanna (a child): Ilulu stands at
 about Tohru's shoulder, far taller than Kanna, with an adult figure - **a petite young woman, not a child-sized
 character.** An agent once refused her on a wrong memory of a smaller depiction; look at this picture before
 judging her. Same rules as every design study (`CLAUDE.md`): never frame her as a minor, keep `mature female`

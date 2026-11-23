@@ -30,6 +30,11 @@ References are kept, organised and **never committed**:
 - If a reference must be shared with another local agent, describe it in text; do not attach the
   file, and never send it to a remote service.
 
+**The one exception (owner, 2026-11-23):** `docs/img/ilulu_scale_official.png`, a single official anime
+screenshot (not a generation, nothing explicit) committed as a fair-use character reference: it shows Ilulu's
+canon scale next to Tohru and Kanna, which an agent once misjudged (`docs/LORAS.md` "Ilulu"). Metadata stripped.
+Any other reference stays in `gallery/refs/` unless the owner makes another exception by name.
+
 ## Why
 
 The repo is public-shaped: it can be cloned, pushed or shown without leaking the user's material.

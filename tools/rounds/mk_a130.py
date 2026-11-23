@@ -2,7 +2,7 @@
 
 Keyframes: il_ontop_129001, il_sofa_129001 (dragon-ilulu s2 on WAI v17). Recipe = a128 (Uzaki, owner: clean):
 H3 i2v w4a8, motion booster 0.4, no act LoRA, 1152x768, 124 frames, style line keeps the first frame's look.
-Reference for her scale: gallery/refs/characters/ilulu_scale_official.png (docs/LORAS.md "Ilulu"). Adult design study.
+Reference for her scale: docs/img/ilulu_scale_official.png (docs/LORAS.md "Ilulu"). Adult design study.
 """
 import json, os, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

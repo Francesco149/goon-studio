@@ -779,7 +779,7 @@
     },
     "illu_ilulu": {
       "label": "Anime - Ilulu design study (Illustrious + nochekaiser s2, a129)",
-      "about": "Ilulu design study: a petite young woman - look at gallery/refs/characters/ilulu_scale_official.png first (docs/LORAS.md 'Ilulu'). Stock look, identity 8/8 in a129. Outfit chips: the second and third trigger blocks.",
+      "about": "Ilulu design study: a petite young woman - look at docs/img/ilulu_scale_official.png first (docs/LORAS.md 'Ilulu'). Stock look, identity 8/8 in a129. Outfit chips: the second and third trigger blocks.",
       "workflow": "wf_illu_lora.json",
       "lora": "dragon-ilulu-s2-illustriousxl-lora-nochekaiser.safetensors",
       "strength": 1.0,
@@ -795,7 +795,7 @@
     },
     "illu_ilulu_lap_sofa": {
       "label": "Anime - Ilulu, lap pillow sofa (a129)",
-      "about": "Ilulu design study: a petite young woman - look at gallery/refs/characters/ilulu_scale_official.png first (docs/LORAS.md 'Ilulu'). a129 keyframe, a130 clip awaiting the owner's verdict.",
+      "about": "Ilulu design study: a petite young woman - look at docs/img/ilulu_scale_official.png first (docs/LORAS.md 'Ilulu'). a129 keyframe, a130 clip awaiting the owner's verdict.",
       "workflow": "wf_illu_lora.json",
       "width": 1216,
       "height": 832,
@@ -811,7 +811,7 @@
     },
     "illu_ilulu_lap_ontop": {
       "label": "Anime - Ilulu, lap pillow on top (a129)",
-      "about": "Ilulu design study: a petite young woman - look at gallery/refs/characters/ilulu_scale_official.png first (docs/LORAS.md 'Ilulu'). a129 keyframe, a130 clip awaiting the owner's verdict.",
+      "about": "Ilulu design study: a petite young woman - look at docs/img/ilulu_scale_official.png first (docs/LORAS.md 'Ilulu'). a129 keyframe, a130 clip awaiting the owner's verdict.",
       "workflow": "wf_illu_lora.json",
       "width": 1216,
       "height": 832,
