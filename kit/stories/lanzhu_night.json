@@ -345,6 +345,22 @@
      "restore_prompt": "Edit <Picture 1>. Keep <Picture 1> exactly as it is: the same pose, framing, face, eyes, hair, hands, bathrobe, his penis and the colours, in the same flat anime style. Only change her mouth around the penis so it looks like the mouth in <Picture 2>: soft lips with volume, pushed forward and sealed around the shaft, cheeks drawn in slightly."
     }
    }
+  },
+  "b1t_simple": {
+   "_note": "the plain Emilia-style mouth line (no pop / pull-out / lip mechanics)",
+   "shots": {
+    "b1t": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs {script_setting}, her hips raised behind her, with the head of his cock in her mouth, and bobs her head slowly and gently on the tip, her lips sealed around it. She looks up into the camera with a cute, teasing smile in her eyes. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: soft wet sucks on the tip, her happy hum.\n\nnon_diegetic_music: N/A"
+    }
+   }
+  },
+  "b2_simple": {
+   "_note": "the plain Emilia-style mouth line (no pop / pull-out / lip mechanics)",
+   "shots": {
+    "b2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs, her hips raised behind her, with his cock in her mouth and her eyes closed. She bobs her head slowly and steadily along the shaft, her lips sealed tight around it. After a few strokes she opens her eyes and looks up into the camera, keeping the eye contact as she sucks, a sweet smile in her eyes. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, soft wet suction with a small pop at the top, her nose breathing.\n\nnon_diegetic_music: N/A"
+    }
+   }
   }
  }
 }

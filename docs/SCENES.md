@@ -67,6 +67,13 @@ pulls that show's own look.
 - **Glans breaks on the pull-out?** Ref2VA with a penis reference (`wf_h3vid_ref2va_first2`) gives a correct
   glans but only a glans suck; use it as it is, then cut to a deep throat started from its deepest frame
   (`clip_file`/`clip_range` + `key_image`/`continues`, `lanzhu_hotel` s2a/s2b, a104). The penis never leaves her mouth.
+- **BJ scripts: one plain mouth line** (a106, from comparing the good Emilia/hotel BJ shots with the weaker ones):
+  the good ones say only "She bobs her head slowly and steadily along the shaft, her lips sealed tight around it" -
+  no mouth mechanics. Spelling the mechanics out (a wet pop at the top, lips pulled forward, the head sliding back
+  out, cheeks drawing in) makes H3 animate each literally: odd lip shapes, flat open mouths, and pull-outs that expose
+  the glans to a redraw. Plain wording kept the shaft in her mouth and the seal steady (`a106_b1t_simple`,
+  `a106_b2_simple`). Put the look in the keyframe (`(lips sealed around penis:1.3)`, the suction tags), keep the
+  script plain, and add only gaze, expression, saliva and pacing.
 - **The anchoring rule (owner):** whenever the penis is pulled out (shaft or glans visible), something must tell H3
   what it looks like at that moment - otherwise it shortens, the glans warps, and the lip shape is lost. Four ways:
   1. prompt + keyframe for the lip shape (the suction face below + its script line);
