@@ -15,6 +15,8 @@ Gens are under `<data_dir>/<round>/` (the agent's gallery, `gallery/<round>/` he
 | **Meadow arc** - tease, act, intimacy, climax freeze, afterglow | back tease -> 3/4 BJ close-up (gaze him -> camera) -> POV headpat -> profile oral climax + freeze -> low-angle afterglow | `emilia_meadow` (a103 flatter cut) | owner: good |
 | **Sweet paizuri arc** - same opening, paizuri build to a smiling climax | back tease -> 3/4 BJ (gaze shift) -> paizuri slow -> paizuri fast -> paizuri climax -> smiling afterglow | `lanzhu_hotel` (a104) | **owner: with the meadow arc, the golden standard** |
 | **Sweet night** - tease, newjersey BJ arc, cowgirl, missionary | over-him tease -> tip lick -> tip suck -> suck (eyes closed -> eye contact) -> speed-up -> faster (fresh keyframe) -> cum in her mouth, pull off (cheek-puff keyframe) -> tongue show -> cowgirl (squat, his speed-up, her hands on his chest) -> missionary | `lanzhu_night` (a106) | owner: solid after fixes, less smooth than the two above; good new poses |
+| **Goddess evening** - tip tease, slow suck, deep throat, oral climax, tongue show + wink | lick -> take the tip in (transition script) -> slow suck (suction face) -> deep throat (`extend`) -> climax held deep: twitch, veins, cum seeps (`extend` hop 2) -> tongue show, swallow, wink | `aqua_evening` (a109/a110, Illustrious keyframes) | a110 owner: pretty good (t1 phasing, s2 shorter); v3 a113 (P5 t1, s2-s4 extended from it, suction script) awaiting owner |
+| **Photoreal night** - lick tease, golden BJ + faster, side deep throat, cum shot, afterglow | POV lick -> golden POV BJ -> faster (`extend`) -> side-profile deep throat -> `cumshot_medium` on her own keyframe -> licks her lips and smiles (`extend`) | `egirl_night` (a111) | **owner: solid** (both cuts); the own-girl cum-shot pose is a recipe |
 
 Pacing that works (from `emillia.mp4`, measured in `docs/STORY.md`): 5-6 shots in ~25 s, 3-6 s each;
 alternate slow (on 3s, ~8 drawings/s) and fast (on 1s, 24/s) shots; a long freeze (~1.2 s) on the
@@ -68,6 +70,31 @@ pulls that show's own look.
 - **Glans breaks on the pull-out?** Ref2VA with a penis reference (`wf_h3vid_ref2va_first2`) gives a correct
   glans but only a glans suck; use it as it is, then cut to a deep throat started from its deepest frame
   (`clip_file`/`clip_range` + `key_image`/`continues`, `lanzhu_hotel` s2a/s2b, a104). The penis never leaves her mouth.
+- **Photoreal cum shot inside a scene** (a111 r5, owner: solid, as aesthetically pleasing as `p1_pose`): `cumshot_medium`
+  seed 970 as is, on a Krea 2 + Verite keyframe of the scene's own girl (the BJ character block, still in
+  `kit/stories/egirl_night.json` r5; seed 111503): kneeling, holding him upright under her open mouth, her tongue on the
+  tip. Keeps her identity; `p1_pose` is a different woman. Then an `extend` afterglow (r6).
+- **No tears** (owner, a113: "odd, doesn't look good"): never write watering or teary eyes into a BJ script, even for a
+  deep throat; H3 draws heavy streaming tears.
+- **Suction on an extension** (a112s): an `extend` beat has no keyframe for the lip shape - write the seal into the
+  script: "stops smiling, closes her lips tight around the shaft and begins to suck", then the plain bob line and the
+  a106 suction line; no smile, no saliva sentence (`aqua_evening` s2).
+- **Size continuity between beats** (owner-confirmed fix: extend, a112): a fresh keyframe per beat redraws his size - s2 came out shorter than
+  t1. Keyframe tags do not fix it (a112: size tags, composition tags, "sucking the tip" - 12 keyframes, none kept the
+  length). **Same angle: start the next beat as an `extend` of the previous clip** (`start_from` + `"extend": 22`), not a
+  fresh keyframe - a112 `C_ext_t1` held t1's length for the whole clip. A new angle is still open (reference, probe D).
+- **Lick -> take it in (no cheek phasing)** (a110p, owner asked for a recipe): **the script must start from what the
+  keyframe shows and describe the transition.** A lick keyframe with a script that opens "with the head of his cock in
+  her mouth" makes H3 sweep the glans across her cheek/nose into her mouth in ~6 frames (a109 t1, a110p P1). Writing
+  "with her tongue out, licking the underside of the head of his cock. She gives it two slow licks, then lifts her head a
+  little, moves her open mouth over the tip, closes her lips around the head of his cock and bobs ..." moves her head to
+  the penis instead - clean on the cheek-side keyframe (P2), the tip-at-her-lips one (P3) and an upright centred shaft
+  (P4, used in `aqua_evening` t1; owner: still phases a little through her upper lip at ~f50-56 as the tip goes in).
+  a112 P5 swaps the take-in for "raises her head until her mouth is above the tip, opens her mouth wide and lowers it
+  down onto the tip from above, closing her lips around the head of his cock": the upper lip stays above the glans
+  (`a112/P5_lower`, one seed, awaiting owner).
+  The keyframe geometry matters less than the script. General rule: never let the script's
+  first state contradict frame 0.
 - **BJ scripts: one plain mouth line** (a106, from comparing the good Emilia/hotel BJ shots with the weaker ones):
   the good ones say only "She bobs her head slowly and steadily along the shaft, her lips sealed tight around it" -
   no mouth mechanics. Spelling the mechanics out (a wet pop at the top, lips pulled forward, the head sliding back
@@ -87,6 +114,22 @@ pulls that show's own look.
   4. chain the pull-out: a clip that shows the penis out starts from a frame where it is out and correct (a
      keyframe that shows the whole penis, or the last frame of such a clip - a106 `b2_chain`); the inverse trick
      - glans suck -> deep throat from the deepest frame - keeps it from ever coming out (a104 s2a/s2b).
+- **Anime BJ keyframe recipe - use this first for every anime BJ scene** (owner, a112k: "exactly what we want for
+  suction", all 12 keyframes, including the ones sucking the side of the shaft and the balls; other approaches often
+  missed the mouth look). Illustrious (WAI) + the character LoRA at 1.0 (`wf_illu_lora.json`, 1216x832, 28 steps,
+  cfg 6), the flat TV look, generator `tools/rounds/mk_a112.py` (`still()`), blocks from `kit/stories/aqua_evening.json`:
+  - positive: `{style}` (flat look + `(matte penis:1.2), (thick penis:1.1), (veiny penis:1.2), (veins:1.1), flat colored
+    penis`), `{character}`, `{outfit}`, `1boy, hetero, nude male, (long penis:1.2), (large penis:1.1)`, `pov, from above,
+    lying on stomach, between legs, (ass up:1.1), her hips raised behind her, fellatio, (penis in mouth:1.2), (protruding
+    lips:1.3), (lips stretched along the shaft:1.2), sealed lips, (sucking:1.2), (hollow cheeks:1.0), (looking at
+    viewer:1.2), blush, uncensored, {setting}`;
+  - negative: the usual list + `shiny penis, glossy penis, penis highlights, glossy lips, tongue out, open mouth, frown,
+    cum, white liquid, saliva`;
+  - variants that also worked: KB adds `(shaft visible:1.2), (penis between her lips and his body:1.1), upper body,
+    (centered:1.1)` (closer framing); KC swaps `(lips stretched along the shaft:1.2)` for `(sucking the tip:1.2), (glans in
+    mouth:1.1), (long shaft visible below her lips:1.2), (penis upright:1.1)`. The seed decides deep / side-of-shaft /
+    balls (a112k seeds 110101-110104: 01/03 deep, 02/04 side and balls).
+  - Size between beats is not carried by these tags: a beat at the same angle after another clip is an `extend` of it.
 - **The suction face (owner-approved recipe, a106k)** - the look to aim for in every sucking shot: lips sealed and
   pushed forward along the shaft, a small visible pout around it, cheeks a little hollow, eyes up at the camera.
   Unedited keyframes on the overhead lying-on-her-stomach POV (Lanzhu, flattest look), seeds 106201/106202/106203:

@@ -286,3 +286,110 @@ luma 90/60, Y = mean luma). Renders `gallery/a107/`, jobs `jobs/a107_*.jsonl`.
   too; the clip is 17 frames longer and the cut drops the 22 repeated frames), keep it to 2-3 hops, start new beats from fresh
   keyframes; never `restore`. `kit/studio/core.py` no longer pulls a LoadVideo input preview as an output.
 
+## Round a109: `aqua_evening`, the first scene on extension chaining (2026-11-23)
+
+Aqua (Illustrious s2 keyframes on WAI, `docs/LORAS.md` a108), the a106 BJ arc on the overhead POV: t1 tip tease, s2 slow
+suck (suction face), s3 speed-up and s4 faster as `extend: 22` hops from s2, s5 tongue show + wink. Keyframes picked from
+3-4 seeds (`gallery/a109k/`, `analysis/a109k_*.jpg`); clips `gallery/a109/`, cut `aqua_evening_cut.mp4` (22.1 s).
+Local bench: ~7 min per 124-frame clip, ~10 min per 141-frame extension.
+
+- Extension seams: s2->s3 frame step 7.2 (the shot's median 5.1), s3->s4 14.0 (s4's own steps ~8-10, it speeds up);
+  overlaps reproduce the previous tail (~3.9/255). Line width s2 3.42 -> s3 3.60 -> s4 3.60 (w90; w60 3.09 -> 3.28 ->
+  3.5). s4 moves more than s3 (mean step 6.5 vs 4.0).
+- A source shot's `seconds` should cover its whole clip (s2 5.17 s, s3 4.96 s = the 119 new frames), or the cut skips
+  the frames between the trimmed end and where the extension starts.
+- Defects: **t1 penis phases through her cheek** (frames 3-9: the lick keyframe has the glans beside her cheek, the
+  script opens with it in her mouth; owner: common, probe next - `docs/OPEN-ITEMS.md`); s5 the cum drip on her chin and
+  cleavage fades out after ~1.5 s (evaporating fluid, as before).
+- Frame sheets: `tools/rounds/clipsheet.py out.jpg clip.mp4 [first last count]` - check the first ~20 frames densely
+  (a sheet that jumps 0 -> 20 missed the t1 phasing).
+
+## Round a110: `aqua_evening` v2 (owner notes on a109) and the cheek-phasing probe (2026-11-23)
+
+Owner on a109: the workflow did its job; refinements: veins on the penis, t1 still phases through her cheek, s3/s4 "speed
+up" made her sway her hips instead of bobbing - make it a more intense deep throat that ends with twitching, bulging veins
+and a cum drip, then the tongue show (already perfect). Cut `gallery/a110/aqua_evening_cut.mp4` (23.3 s).
+
+- Veins: `(veiny penis:1.2), (veins:1.1)` in the style block + "with clear veins along the shaft" in every script; new
+  keyframes `gallery/a110k/` (s2 seed 110101).
+- s3 deep throat (`extend` hop 1, script from the hotel s2b wording + "Only her head moves", no hips/body words): no hip
+  sway, but from straight overhead the extra depth barely reads. s4 climax held deep (`anime_ll_cumshot` 0.45, `extend`
+  hop 2): cheeks puff, eyes water, cum seeps down the shaft - a lot of it; the bulging veins are hidden by the fluid.
+- New s2: the saliva builds into a curtain of white-ish strings from ~f60 (a109's take had one clear thread) and her brows
+  read teary; s3/s4 inherit it. Reseed s2 if the owner dislikes it.
+- t1 = phasing probe P4 (`a110p/p4_upright_trans`), see "Lick -> take it in" in `docs/SCENES.md`.
+- **Owner verdict:** otherwise a pretty good gen. Defects: t1 still phases a bit through the top of her mouth (the
+  glans overlaps her upper lip ~f50-56 as she takes it in, `analysis/a110p_p4_phase2.jpg`); in s2 his size is
+  inconsistently shorter than in t1 (`analysis/a110_t1_vs_s2.jpg`: s2's fresh keyframe is mirrored, closer and has no
+  length tag) - size anchoring across beats/angles is the next experiment (`docs/OPEN-ITEMS.md`).
+- Clip sheets: `tools/rounds/clipsheet.py`; t1 and s5 come in through `clip_file`.
+
+## Round a111: `egirl_night`, extension chaining on photoreal (2026-11-23)
+
+The photoreal e-girl from the golden recipes plus new angles: r1 POV lick tease (new), r2 the golden BJ (`egirl_bj_pov`
+keyframe a86 `verite_base_s3`, `pov_blowjob_anatomy` seed 86301), r3 `extend` from r2 (faster, deeper), r4 side-profile
+deep throat (new angle, `side_deepthroat`), r5 `cumshot_medium` seed 970, r6 afterglow `extend` from r5 (new). Krea 2 +
+Verite keyframes from 3 seeds (`gallery/a111k/`). Cut `gallery/a111/egirl_night_cut.mp4` (27.8 s).
+
+- **The golden clips reproduce bit for bit** on the local bench engine (r2 = a87 `phys_anat09`, the first r5 = a93
+  `pm_base`, mean abs diff 0.0), so an extension continues exactly the approved clip.
+- **Extension works on photoreal:** r3 overlap 2.8-3.8/255, seam steps <= 5 (median 3.9); r6 overlap 2.7-3.7, seam
+  steps < 4. Identity, LED room, choker and skin hold through both. r3 strokes stay head-to-mid-shaft (the "deeper"
+  barely shows); r6 follows the script (licks her lips, swallows, smiles).
+- **The golden cum-shot keyframe is another woman.** `refs/cumshot/p1_pose.png` has a different face, straight hair with
+  red streaks and a ring choker: r4 -> r5 changed character (that cut kept as `egirl_night_cut_p1pose.mp4`). Fix: an r5
+  keyframe of the scene's own girl in the cumshot pose (Krea 2 + Verite, the BJ character block, seed 111503; her tongue
+  touches the tip on all 3 seeds instead of an inch gap), same template and seed. The ropes land across her nose, cheek and
+  lips; a white cap sits on the glans after the last pulse (the template asks for a clean glans).
+- r1 did not stay a lick: by ~f35 she wraps her tongue and lips around the glans (a tip suck); no phasing.
+- r4 is the strongest new beat: a real deep throat in profile, nose to his skin at ~f70.
+- **Owner verdict:** both cuts solid. The new climax pose (own girl, tongue on the tip) is kept as a recipe, equally
+  as aesthetically pleasing as `p1_pose` (`docs/SCENES.md` "Photoreal cum shot inside a scene").
+- Choker continuity: the Verite keyframes alternate a chain heart choker and a leather heart choker; pin one in the
+  character block ("a black leather choker with a silver heart").
+
+
+## Round a112: size continuity between beats + t1 upper-lip phasing (2026-11-23)
+
+Owner on a110: t1 phases a bit through the top of her mouth; s2 his size is shorter than in t1. Generator
+`tools/rounds/mk_a112.py`; keyframes `gallery/a112k/` (`analysis/a112k_keys.jpg`, `a112k_KC.jpg`), clips `gallery/a112/`.
+
+- **Keyframe tags do not carry the size.** s2 keyframes on the a110k seeds 110101-110104: KA `(long penis:1.2), (large
+  penis:1.1)` in the partner block; KB + `(shaft visible:1.2), (penis between her lips and his body:1.1), upper body`;
+  KC with `(sucking the tip:1.2), (glans in mouth:1.1), (long shaft visible below her lips:1.2)` instead of "lips
+  stretched along the shaft". In all 12 either her lips sit at the base (seeds 01/03: as short as a110) or the shaft
+  lies beside her cheek, not in her mouth (02/04). KB's "upper body" moved the camera closer, the opposite of t1.
+- **Extension carries it (C):** s2's script as `extend: 22` from the t1 clip (`C_ext_t1`, seed 109002, 141 frames):
+  the shaft stays ~1.5x her face height and she bobs on its upper half, seamless from t1 (`analysis/a112_C.jpg`).
+  Costs: no fresh suction-face keyframe (her lips keep t1's open smile around the shaft), and the saliva line again
+  builds into a white curtain of strings from ~f38 - drop or soften the saliva sentence if reused.
+- **P5 phasing:** t1 keyframe `a110k/t1c_110112`, seed 109001, take-in rewritten as "raises her head until her mouth is
+  above the tip, opens her mouth wide and lowers it down onto the tip from above". P4 slides the glans over her upper
+  lip at f52-54; P5 keeps the upper lip above the glans from f48 on (`analysis/a112_P4_vs_P5_mouth.jpg`). One seed.
+- Open: a new camera angle between beats (probe D: a reference crop of the first beat's penis, Ref2VA or on the
+  keyframe); P5 on more seeds.
+- **Owner on a112:** the extension keeps size and shape consistent (confirmed), but C shows zero suction (her lips keep
+  t1's open smile). All a112k keyframes are the suction look wanted (recipe in `docs/SCENES.md`).
+- **Suction on an extension (a112s, `mk_a112.py suck`):** no keyframe carries the lip shape into an extension, so the
+  script closes the seal itself: "{character} stops smiling, closes her lips tight around the shaft and begins to suck.
+  She bobs her head slowly and steadily along the upper half of the shaft, her lips sealed tight around it" + the a106
+  suction line, no smile, no saliva sentence. All three takes (S1; S2 = S1 + "strong, tight wet suction on every stroke,
+  a soft slurp as she pulls back" in the sound line; S3 = S2 on seed 109012) seal into a round ring from ~f30 and keep
+  the length; S1 vs S2 differ little (mean abs diff 4.4). S2 used.
+
+## Round a113: `aqua_evening` v3 cut (2026-11-23)
+
+t1 = a112 P5 (`clip_file`), s2 = a112s S2 (`clip_file` + `start_from: t1`, `extend: 22`), s3/s4 re-rendered as
+extensions of the new s2 (3 hops after t1), s5 as before. Cut `gallery/a113/aqua_evening_cut.mp4` (23.1 s, 554 frames).
+`run_story.py` now lets a `clip_file` shot be a `start_from` source; run it with the engine's Python (PyAV).
+
+- Seams t1->s2->s3->s4 are not visible in the frame steps (cut median 1.6; the only big step is the hard cut to s5
+  at f458). The length holds through all four shots.
+- s3 goes deep to the base; heavy streaming tears ("eyes watering" in s3) and the s3 saliva sentence builds white strings
+  again from ~f80, carried into s4 with the cum. If disliked: drop "with her eyes watering" and the saliva line in s3.
+- Possible hair-ornament drift: from s2 on the hair ring reads as a blue ribbon on top (view from the front).
+- **Owner: the tears look odd - remove them.** They came from "with her eyes watering" (s3) and "wide and watering"
+  (s4); both removed, s3/s4 re-rendered (same seeds, `s3_c0_00002_`, `s4_c0_00002_`): no tears in either. The cut
+  `gallery/a113/aqua_evening_cut.mp4` is the tearless one; the first is kept as `aqua_evening_cut_tears.mp4`. Rule:
+  never write watering/teary eyes into an anime BJ script. Still there: a saliva drip from ~s3 f60 (the s3 saliva
+  line) and the hair ring reads as a big blue ribbon on top from s3 ~f100.

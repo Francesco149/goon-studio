@@ -1,0 +1,109 @@
+{
+ "name": "aqua_evening",
+ "about": "Cute evening BJ arc, Aqua (KonoSuba) design study, Illustrious LoRA (owner pick, a108): tip tease -> slow suck with the suction face -> deep throat and an oral climax with twitching, bulging veins as two `extend` hops -> tongue show + wink. Rounds a109/a110. a113: t1 = P5, s2 extended from t1 (size continuity), s3/s4 re-extended.",
+ "ref": "lanzhu_night b1t/b2/b3/b4/b6 (a106); docs/SCENES.md",
+ "seed": 109001,
+ "still": {
+  "workflow": "wf_illu_lora.json",
+  "lora": "konosuba-aqua-s2-illustriousxl-lora-nochekaiser.safetensors",
+  "strength": 1.0,
+  "width": 1216,
+  "height": 832,
+  "steps": 28,
+  "cfg": 6.0,
+  "negative": "lowres, worst quality, low quality, bad anatomy, bad hands, extra fingers, extra hands, third hand, fused limbs, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, censored, mosaic censoring, bar censor, shiny penis, glossy penis, penis highlights, glossy lips"
+ },
+ "clip": {
+  "width": 1152,
+  "height": 768,
+  "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
+  "motion_lora": "h3nsfw/H3_Motion_BoosterV2.safetensors",
+  "fps": 24,
+  "max_len": 124,
+  "seg_len": 49
+ },
+ "blocks": {
+  "style": "masterpiece, best quality, amazing quality, year 2020, anime screenshot, kono subarashii sekai ni shukufuku wo!, anime coloring, (flat color:1.4), (no shading:0.8), (matte:1.2), (simple coloring:1.2), thin lineart, soft pastel colors, (diagonal-lined blush:1.1), (matte penis:1.2), (thick penis:1.1), (veiny penis:1.2), (veins:1.1), flat colored penis",
+  "character": "1girl, aqua (konosuba), long hair, blue eyes, hair ornament, very long hair, blue hair, hair rings, single hair ring, hair bobbles, mature female, breasts",
+  "outfit": "detached sleeves, white sleeves, blue shirt, sleeveless shirt, green bow, (shirt pulled down:1.1), (breasts out:1.1), nipples",
+  "partner": "1boy, hetero, nude male",
+  "setting": "indoors, bedroom, wooden wall, bed, white bed sheet, evening, warm lamp light",
+  "script_style": "A 2D anime clip in the flat style of a TV anime: flat colours with no shading at all, matte skin and a matte penis with no shine, thin clean lines, hatched pink blush lines on her cheeks, warm lamp light, one fixed camera.",
+  "script_character": "a young adult woman with very long light-blue hair held by a single hair ring and a blue hair ornament, blue eyes, in a sleeveless blue top with a green bow and white detached sleeves, the top pulled down off her breasts",
+  "script_setting": "on a bed in a cosy wooden bedroom in the evening, in warm lamp light"
+ },
+ "shots": [
+  {
+   "id": "t1",
+   "seconds": 5.17,
+   "timing": "off",
+   "template": "anime_ll_headgrab_push",
+   "still": "{style}, {character}, {outfit}, {partner}, pov, from above, lying on stomach, between legs, (ass up:1.1), her hips raised behind her, (licking penis:1.1), tongue out, (tip of the penis at her lips:1.2), (penis in front of her mouth:1.1), her tongue under the tip, (centered:1.1), (looking at viewer:1.2), (smug:1.1), (smile:1.2), blush, penis, (long penis:1.1), (thick penis:1.1), uncensored, {setting}",
+   "still_job": {
+    "negative": "lowres, worst quality, low quality, bad anatomy, bad hands, extra fingers, extra hands, third hand, fused limbs, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, censored, mosaic censoring, bar censor, shiny penis, glossy penis, penis highlights, glossy lips, penis in mouth, frown"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs {script_setting}, her hips raised behind her, with her tongue out, licking the underside of the head of his cock. She gives it two slow licks, then raises her head until her mouth is above the tip, opens her mouth wide and lowers it down onto the tip from above, closing her lips around the head of his cock and bobs her head slowly and gently on the tip, her lips sealed around it. She looks up into the camera with a smug, teasing little smile in her eyes. His cock stays long and thick, with clear veins along the shaft; its head is the same skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet of a wooden bedroom in the evening, no music and no speech: soft wet sucks on the tip, her pleased hum.\n\nnon_diegetic_music: N/A",
+   "_note": "a112 P5: take-in rewritten (raises her head above the tip, lowers her open mouth onto it from above): no upper-lip phasing (P4 phased at f52-54); keyframe a110k/t1c_110112, seed 109001",
+   "key_image": "a110k/t1c_110112_00001_.png",
+   "clip_file": "a112/P5_lower_00001_.mp4"
+  },
+  {
+   "id": "s2",
+   "seconds": 4.96,
+   "timing": "off",
+   "template": "anime_ll_headgrab_push",
+   "still": "{style}, {character}, {outfit}, {partner}, pov, from above, lying on stomach, between legs, (ass up:1.1), her hips raised behind her, fellatio, (penis in mouth:1.2), (protruding lips:1.3), (lips stretched along the shaft:1.2), sealed lips, (sucking:1.2), (hollow cheeks:1.0), (looking at viewer:1.2), blush, uncensored, {setting}",
+   "still_job": {
+    "negative": "lowres, worst quality, low quality, bad anatomy, bad hands, extra fingers, extra hands, third hand, fused limbs, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, censored, mosaic censoring, bar censor, shiny penis, glossy penis, penis highlights, glossy lips, tongue out, open mouth, frown, cum, white liquid, saliva"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing, the same view: {script_character} stops smiling, closes her lips tight around the shaft and begins to suck. She bobs her head slowly and steadily along the upper half of the shaft, her lips sealed tight around it. Her lips stay softly sealed around the shaft and are drawn a little forward along it as she pulls back, her cheeks drawn in slightly by the suction. She looks up into the camera with sweet, needy eye contact, her brows tilted up, blushing. His cock stays long and thick, with clear veins along the shaft; its head is the same skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet of a wooden bedroom in the evening, no music and no speech: strong, tight wet suction on every stroke, a soft slurp as she pulls back, her nose breathing.\n\nnon_diegetic_music: N/A",
+   "_note": "a112s: extension of t1 (size and shape carry over; owner confirmed) with a sealed-lips suction script (C showed no suction: lips kept the open smile); seed 109002; no saliva line (it built a curtain)",
+   "_note_a110": "a110: fresh keyframe a110k/s2_110101 - his size came out shorter than t1 (owner)",
+   "start_from": "t1",
+   "extend": 22,
+   "clip_file": "a112s/S2_seal_snd_00001_.mp4"
+  },
+  {
+   "id": "s3",
+   "seconds": 4.96,
+   "timing": "off",
+   "template": "anime_ll_headgrab_push",
+   "start_from": "s2",
+   "extend": 22,
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing, the same view: {script_character} slowly takes him deeper, sliding her sealed lips all the way down the long, thick shaft until her lips touch the base, holds him deep for a moment, then slides back up and takes him all the way down again: slow, deep strokes, about one every one and a half seconds. Only her head moves. Her lips stay sealed in a smooth, round ring around the shaft. She keeps her eyes on the camera, her brows tilted up in a needy look, her blush deepening. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. His cock stays long and thick, with clear veins along the shaft; its head is the same skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet of a wooden bedroom in the evening, no music and no speech: deep, slow wet sucks, a soft gag at the bottom of each stroke, her breath through her nose.\n\nnon_diegetic_music: N/A",
+   "_note": "was 'speed-up' (a109: she swayed her hips instead of bobbing); now a slow deep throat, extension hop 1"
+  },
+  {
+   "id": "s4",
+   "seconds": 4.0,
+   "timing": "off",
+   "template": "anime_ll_cumshot",
+   "start_from": "s3",
+   "extend": 22,
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} Continuing, the same view: {script_character} holds him deep in her mouth, her lips sealed at the base. His cock twitches in her mouth and the veins along the shaft swell and bulge; it pulses three times as he comes in her mouth, her cheeks puffing a little, her eyes on the camera, wide. A thin white line of cum seeps out from the corners of her lips and runs slowly down the shaft. She keeps her lips around him. His cock stays long and thick, with clear veins along the shaft; its head is the same skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet of a wooden bedroom in the evening, no music and no speech: his groan of release, three soft pulses, her muffled hum.\n\nnon_diegetic_music: N/A",
+   "_note": "was 'faster' (hips swayed); now the climax deep in her mouth: twitch, veins bulge, cum seeps out - extension hop 2, the penis never leaves her mouth",
+   "clip_job": {
+    "nsfw_strength": 0.45
+   }
+  },
+  {
+   "id": "s5",
+   "seconds": 4.0,
+   "timing": "on3",
+   "template": "anime_ll_cumshot",
+   "clip_job": {
+    "nsfw_strength": 0.3
+   },
+   "still": "{style}, {character}, {outfit}, solo, close-up, face focus, (open mouth:1.2), (tongue out:1.2), (cum on tongue:1.2), cum in mouth, cum on chin, (looking at viewer:1.3), (smile:1.2), happy, blush, {setting}",
+   "still_job": {
+    "negative": "lowres, worst quality, low quality, bad anatomy, bad hands, extra fingers, extra hands, third hand, fused limbs, blurry, jpeg artifacts, watermark, text, subtitles, 3d, realistic, censored, mosaic censoring, bar censor, shiny penis, glossy penis, penis highlights, glossy lips, penis, 1boy, male, frown, crying, ahegao"
+   },
+   "script": "integrated_multimodal_description: [Shot 1] {script_style} A close-up on her face: {script_character} shows the camera her tongue with the white cum on it, her mouth open, smiling with her eyes, then closes her mouth, swallows and gives the camera a cheeky little wink. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet of a wooden bedroom in the evening, no music and no speech: a soft giggle, a small swallow.\n\nnon_diegetic_music: N/A",
+   "key_image": "a109k/s5_109101_00001_.png",
+   "_note": "owner: already perfect (a109); keyframe a109k/s5_109101",
+   "clip_file": "a109/s5_c0_00001_.mp4"
+  }
+ ]
+}

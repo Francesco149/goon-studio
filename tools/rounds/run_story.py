@@ -43,6 +43,9 @@ def main():
         for l in open(rec_path, encoding="utf-8"):
             r = json.loads(l)
             made[r["name"]] = r["file"]
+    for sh in S["shots"]:  # a clip_file shot can be a start_from source (an extension of an existing clip)
+        if sh.get("clip_file"):
+            made["%s_c0" % sh["id"]] = sh["clip_file"]
     log = open(os.path.join(ROOT, "jobs", "%s_story.log" % rnd), "a", encoding="utf-8")
 
     def say(msg):

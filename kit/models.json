@@ -197,6 +197,20 @@
    "page": "https://civitai.com/models/2708250?modelVersionId=3042032",
    "login": true
   },
+  "loras/konosuba-aqua-s2-anima-lora-nochekaiser.safetensors": {
+   "what": "Character LoRA for Anima: Aqua (KonoSuba) design study (nochekaiser, anime s2)",
+   "gb": 0.12,
+   "url": "https://civitai.com/api/download/models/2978564",
+   "page": "https://civitai.com/models/2652645?modelVersionId=2978564",
+   "login": true
+  },
+  "loras/konosuba-aqua-s2-illustriousxl-lora-nochekaiser.safetensors": {
+   "what": "Character LoRA for Illustrious: Aqua (KonoSuba) design study (nochekaiser, anime s2)",
+   "gb": 0.21,
+   "url": "https://civitai.com/api/download/models/1555410",
+   "page": "https://civitai.com/models/1376640?modelVersionId=1555410",
+   "login": true
+  },
   "loras/lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors": {
    "what": "Character LoRA for Anima: Lanzhu Zhong design study (nochekaiser, anime s2)",
    "gb": 0.09,

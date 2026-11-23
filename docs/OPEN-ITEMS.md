@@ -10,9 +10,11 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 | photoreal blowjob keyframe | `egirl_bj_pov` | Krea 2 Turbo + Verite 1.0, Verite-style caption ("excellent") |
 | photoreal blowjob clip | `pov_blowjob_anatomy` | physics wording + Male Anatomy 0.9 ("best photoreal video yet"); fallbacks `pov_blowjob`, `pov_blowjob_astro`, `pov_blowjob_fl` (all owner-valid) |
 | anime blowjob clips | the round a26 batch: `anime_ll_headgrab_push` (k11), `anime_ll_two_hands_a26` (k12), `anime_ll_tip_tease` (k13), `anime_ll_cum_switch_a26` (k14) | "gold standard for dynamics, poses and expressions"; exact a26 prompts, **no physics paragraph** |
+| **anime BJ keyframe (suction face)** | a112k recipe, `docs/SCENES.md` "Anime BJ keyframe recipe" (Illustrious + character LoRA, flat look, the a106 suction tags + size tags) | owner: "exactly what we want for suction" incl. side-of-shaft and balls variants; use first for every anime BJ scene |
 | anime blowjob base | `anime_ll_suction` (k9) and family | back to the pre-a88 prompts (see "penis type" below) |
 | anime cum shot | `anime_ll_cumshot` (a93b `hb_oneside`) | "the most natural one yet"; keyframe `gens/a30/n1_handjob_b`, seed 93001 |
 | photoreal cum shot | `cumshot_medium` (a93 `pm_base`) | "the best default for this shot"; `p1_pose`, seed 970; `cumshot_high` = extreme preset |
+| photoreal cum shot, in a scene | `cumshot_medium` seed 970 on a keyframe of the scene's own girl (a111 r5, `a111k/r5_111503`, her tongue touching the tip) | owner: "solid", the pose is as good as `p1_pose`; use it whenever the cum shot follows other beats (keeps her identity) |
 | photoreal facial still | `egirl_facial_tongue` / `egirl_facial_tongue_over` (a94) | tongue out: "good angle, expression and splash pattern"; overcooked = thinner translucent semen |
 | anime paizuri | still `anime_ll_fz_paizuri_notongue` -> clip `anime_ll_paizuri` (a92) | "solid, right penis type"; no saliva yet |
 | anime h-game motion (smooth, jiggly) | `anime_lz_hgame_paizuri` on keyframe `gallery/a99/hgk_pz_wide_hg_99002`, seed 99101 (a99i) | h-game keyframe = H3 on 1s; no fold, closed smile; owner: "the recipe to force this style" |
@@ -55,6 +57,34 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
   **Owner verdict:** solid - the extension chain is unnoticeable up to the second hop (`x3_ext22`), the single-frame
   hop 2 (`x4_hop2`) is noticeable; scenes will not chain more than ~4 clips without a hard cut. Open: 39-frame context,
   a second scene/seed.
+- **Cheek phasing on lick -> tip suck: solved (a110p, `docs/SCENES.md` "Lick -> take it in").** Cause: the script
+  opened with the tip already in her mouth while the keyframe shows a lick, and H3 resolved the mismatch by sliding the
+  shaft through her cheek. Describing the transition from the keyframe's state fixed it on all three keyframes tried
+  (same clip seed); one seed each - confirm on more.
+- **Owner verdicts (2026-11-23):** `egirl_night` (a111) - both cuts solid; the own-girl cum-shot pose (tongue on the
+  tip) is kept as a recipe, as good as `p1_pose`. `aqua_evening` v2 (a110) - "pretty good", two defects: t1 still phases
+  a little through her upper lip as she takes the tip in (`a110p/p4_upright_trans` ~f50-56, `analysis/a110p_p4_phase2.jpg`),
+  and **his size is inconsistent: shorter in s2 than in t1** (`analysis/a110_t1_vs_s2.jpg`).
+- **a112 result (size + phasing, `docs/STORY.md` round a112):** keyframe tags do not carry the size (A size tags,
+  B + composition, C' lips on the upper shaft: 12 s2 keyframes, all either lips at the base or the shaft beside her
+  cheek). **Extending the next beat from the previous clip does** (`a112/C_ext_t1`: s2 as `extend: 22` from t1, the
+  long shaft holds for all 141 frames). Same angle -> extend; open: a new angle (probe D, a reference from the first
+  beat). Phasing: P5 lead-in (she raises her head above the tip and lowers her open mouth onto it) keeps her upper lip
+  above the glans (`analysis/a112_P4_vs_P5_mouth.jpg`); one seed, awaiting owner.
+- **Awaiting owner:** `gallery/a113/aqua_evening_cut.mp4` (v3: P5 t1, suction s2 extended from it, s3/s4 re-extended;
+  tears removed on owner request - re-rendered s3/s4; saliva drip in s3, hair ring reads as a blue ribbon from s3). Owner confirmed: extension keeps size/shape.
+- **Penis size consistency across beats and angles (owner: worth experimenting).** Seen in a110: t1 (lick, wide
+  framing) shows a long shaft, about 1.5x her face height; the s2 keyframe (fresh, mirrored, closer camera, her lips
+  near the base) reads much shorter, and the `extend` hops s3/s4 inherit s2's size. Likely cause: every beat's keyframe
+  is drawn fresh with nothing carrying the size over - t1's still asks `(long penis:1.1), (thick penis:1.1)`, s2's has
+  no length tag (only the style block's `thick penis`), and once the shaft is in her mouth the model has no length cue.
+  Probe (one keyframe seed set, same clip seed, measure the visible shaft against her face height at the top of a stroke):
+  A. size tags in the shared `{partner}`/style block for every shot, not per shot; B. relative-scale wording in still +
+  script ("his cock is long: even at the bottom of each stroke more than half of the shaft stays outside her lips");
+  C. same angle: start the next beat from the previous clip (`extend`) or img2img its keyframe from the previous clip's
+  last frame, so the size is copied, not redrawn; D. new angle: a penis reference cropped from the first beat
+  (Ref2VA `wf_h3vid_ref2va_first2`, or a reference on the keyframe). Rank A/B (free) before C/D. Also fix the t1
+  upper-lip phasing (P4 lead-in: describe her lowering her open mouth down over the tip from above; try P3 tip-at-lips).
 - Act LoRAs on ampere not yet in the registry: `HMNSFW_AIO_V2` (sex positions, used for cowgirl/missionary);
   `Minimax3_BoobPhysics_v1` there is a 15-byte failed download (real file: Civitai version 3245935).
 

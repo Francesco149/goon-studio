@@ -1,0 +1,92 @@
+{
+ "name": "egirl_night",
+ "about": "Photoreal e-girl scene from the golden recipes (egirl_bj_pov + pov_blowjob_anatomy, cumshot_medium pm_base) plus new angles (a POV lick tease, a side-profile deep throat, an afterglow), with two `extend` hops (BJ, after the cum shot). Round a111 - the extension workflow on photoreal.",
+ "ref": "docs/EGIRL.md, docs/FACIAL.md (a86/a87 golden BJ), docs/CUM-VIDEO.md (a93 pm_base)",
+ "seed": 111001,
+ "still": {
+  "workflow": "wf_krea2_lora_8gb.json",
+  "unet": "krea2_turbo_int8_convrot.safetensors",
+  "lora": "Verite_realism.safetensors",
+  "strength": 1.0,
+  "width": 896,
+  "height": 1344,
+  "steps": 8,
+  "cfg": 1.0
+ },
+ "clip": {
+  "width": 768,
+  "height": 1152,
+  "fps": 24,
+  "max_len": 124,
+  "seg_len": 49
+ },
+ "blocks": {
+  "character": "a young adult Asian woman in her mid-twenties, e-girl: long black hair in twin tails with pink streaks, wispy bangs, winged eyeliner, glossy lips, a silver heart choker. She has full natural breasts that sit heavy with a soft slope, a narrow waist, wide hips and thick thighs."
+ },
+ "shots": [
+  {
+   "id": "r1",
+   "seconds": 4.0,
+   "timing": "off",
+   "template": "pov_blowjob",
+   "still": "A blowjob tease, close-up POV from above. {character} She kneels between a man's legs, holding his erect cock upright by the base, her tongue out flat against the underside of the shaft, licking it from the base toward the tip; her lips are not around it. The man sits on the edge of the bed; his cock has a defined glans with a rim, the foreskin folded back behind it, a natural veined shaft and his balls at the base behind her hand. Her other hand rests on his thigh. Her eyes lift to the camera with a playful smile, light blush. Dim bedroom lit by pink and purple LED strips. Candid amateur phone photo.",
+   "script": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video: a young adult Asian woman with long black hair in pink-streaked twin tails and a silver choker kneels between the viewer's legs, holding his erect adult penis upright by the base. With her tongue flat against the underside of the shaft she licks slowly up from the base to just below the head, then goes back down and licks up again; her lips never close around it and the head never goes into her mouth. The penis is a firm, rigid erection: it never bends, stretches or changes length. The glans is a firm, smooth dome with a clear rim, and it keeps exactly the same round shape and size the whole time - her lips never pull it longer or thinner. Her soft lips do all the moving: on the way up they stretch and slide forward over the glans instead of dragging it, and the moment they pass the rim the glans is fully round again. Only the loose skin of the shaft moves with her lips, sliding a few millimetres up and down and settling back after each stroke; the head itself never changes shape. Soft veins sit flat under the skin. She keeps her eyes on the lens with a playful little smile and a light blush. The camera does not move.\n\noverall_soundscape: soft wet licks, her amused breath through her nose; quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
+   "_note": "new beat: a lick only (no taking it in: the a110 phasing probe says lick -> suck in one clip phases); keyframe seed 111101 of 3 (a111k)",
+   "key_image": "a111k/r1_111101_00001_.png"
+  },
+  {
+   "id": "r2",
+   "seconds": 5.17,
+   "timing": "off",
+   "template": "pov_blowjob_anatomy",
+   "seed": 86301,
+   "still": "",
+   "key_image": "a86/verite_base_s3_00001_.png",
+   "script": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video: a young adult Asian woman with long black hair in pink-streaked twin tails kneels between the viewer's legs. Her lips are sealed around the shaft of an erect adult penis. She slides her mouth slowly down the shaft until her lips are past the middle, holds there for a beat with a small swallow, then draws back up until only the head stays between her lips; her lips stay sealed the whole way. The penis is a firm, rigid erection: it never bends, stretches or changes length. The glans is a firm, smooth dome with a clear rim, and it keeps exactly the same round shape and size the whole time - her lips never pull it longer or thinner. Her soft lips do all the moving: on the way up they stretch and slide forward over the glans instead of dragging it, and the moment they pass the rim the glans is fully round again. Only the loose skin of the shaft moves with her lips, sliding a few millimetres up and down and settling back after each stroke; the head itself never changes shape. Soft veins sit flat under the skin. A thin string of saliva stretches from her lower lip and breaks. She looks up into the lens with half-closed eyes and a light blush. The camera does not move.\n\noverall_soundscape: soft wet suction and a quiet pop as her lips pass the head; her breathing through her nose; one low, short male grunt about halfway through; quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
+   "_note": "the golden pair as is: keyframe egirl_bj_pov seed 86403 (a86 verite_base_s3, the one the a87 golden clips used), clip pov_blowjob_anatomy seed 86301 (a87). seconds = the whole clip (r3 extends it)"
+  },
+  {
+   "id": "r3",
+   "seconds": 4.5,
+   "timing": "off",
+   "template": "pov_blowjob_anatomy",
+   "start_from": "r2",
+   "extend": 22,
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video, continuing: a young adult Asian woman with long black hair in pink-streaked twin tails and a silver choker kneels between the viewer's legs with her lips sealed around the shaft of his erect adult penis. She goes a little faster and deeper, sliding her sealed lips down the shaft until they almost reach her hand at the base, then back up until only the head stays between her lips, about one stroke a second; only her head moves. The penis is a firm, rigid erection: it never bends, stretches or changes length. The glans is a firm, smooth dome with a clear rim, and it keeps exactly the same round shape and size the whole time - her lips never pull it longer or thinner. Her soft lips do all the moving: on the way up they stretch and slide forward over the glans instead of dragging it, and the moment they pass the rim the glans is fully round again. Only the loose skin of the shaft moves with her lips, sliding a few millimetres up and down and settling back after each stroke; the head itself never changes shape. Soft veins sit flat under the skin. A thin string of saliva stretches from her lower lip and breaks. She keeps her eyes on the lens, half-closed, her blush deepening. The camera does not move.\n\noverall_soundscape: quicker wet suction, a soft pop at the top of each stroke, her breathing through her nose, his low groan; quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
+   "_note": "extension hop 1 from the golden clip"
+  },
+  {
+   "id": "r4",
+   "seconds": 5.0,
+   "timing": "off",
+   "template": "side_deepthroat",
+   "still": "A blowjob, side view in profile. {character} She kneels on the bed over a man's lap, seen exactly from the side, his erect cock deep in her mouth, her lips sealed around the shaft close to the base, her twin tails hanging down, one hand on his thigh. The man lies back on the bed, only his hips and thighs in frame; his cock has a defined glans with a rim, a natural veined shaft. Her eyes are half closed, cheeks flushed. Dim bedroom lit by pink and purple LED strips. Candid amateur phone photo.",
+   "script": "integrated_multimodal_description: [Shot 1] Photorealistic side-view video: a young adult Asian woman with long black hair in pink-streaked twin tails and a silver choker kneels over a man's lap in profile. Her lips are sealed around his erect cock; she takes him deeper, her lips travelling down the shaft toward the base until her nose is close to his skin, holds for a beat with a swallow, then pulls back up until only the head stays between her lips, and goes down again. The cock stays thick and rigid with a defined glans and corona rim; it never bends or changes length. Her eyes are half closed, cheeks flushed. The camera does not move.\n\noverall_soundscape: wet suction, a small gag and swallow at the deepest point, her breath, a low male grunt; quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
+   "_note": "new angle: side profile, template side_deepthroat (act LoRA 0.75); keyframe seed 111103 of 3 (a111k)",
+   "key_image": "a111k/r4_111103_00001_.png"
+  },
+  {
+   "id": "r5",
+   "seconds": 5.17,
+   "timing": "off",
+   "template": "cumshot_medium",
+   "seed": 970,
+   "still": "A cum shot, close-up POV from above. {character} She kneels between a man's legs, holding his erect cock upright an inch below her open mouth, her tongue out, her eyes on the camera, a light blush; her face is still clean. The man sits on the edge of the bed; his cock has a defined glans with a rim, the foreskin folded back behind it and a natural veined shaft. Dim bedroom lit by pink and purple LED strips. Candid amateur phone photo.",
+   "key_image": "a111k/r5_111503_00001_.png",
+   "script": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video, one fixed camera. A young adult Asian woman in her mid-twenties with long black hair in pink-streaked twin tails and a silver choker kneels between the viewer's legs, holding his erect adult cock upright an inch below her open mouth, her tongue out, her eyes on the lens. The semen is glossy and milky white, slightly translucent where it spreads thin, and thin enough to run: it is a normal ropy fluid, not a dense cream and not a gel. His cock pulses three times and no more. Each pulse throws one single short thin rope of semen straight up into her face - one stream only, it never splits into two - and each rope is only an inch or two long: it leaves the tip, crosses the small gap and lands on her lips and her chin, and stops there. The first rope splashes a little where it hits; the next two are weaker and barely reach her lips. The amount is modest and the ropes are narrow. The rope never goes past her face and nothing lands behind her. The shaft gives a small twitch on each pulse and barely moves, and the veins swell a little. His glans stays bare and clean, no semen sits on the tip and none pools there. Where the drops touch each other they merge into small glossy pools on her lips and chin, and a slow heavy drip runs from her chin, dragging a thin translucent trail above it. She flinches at each pulse, then looks into the lens with half-lidded eyes and a light blush, flushed. The camera does not move.\n\noverall_soundscape: soft wet spurts about a second apart, one low male groan, her breath catching between them, quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
+   "_note": "cumshot_medium as is (seed 970) on a keyframe of the scene's own girl (a111k seed 111503; Krea 2 + Verite, the BJ character block): the golden pm_base keyframe refs/cumshot/p1_pose.png is a different-looking woman (cut kept as egirl_night_cut_p1pose.mp4). seconds = the whole clip (r6 extends it)"
+  },
+  {
+   "id": "r6",
+   "seconds": 4.0,
+   "timing": "off",
+   "template": "pov_blowjob",
+   "start_from": "r5",
+   "extend": 22,
+   "still": "",
+   "script": "integrated_multimodal_description: [Shot 1] Photorealistic amateur POV video, one fixed camera, continuing: a young adult Asian woman with long black hair in pink-streaked twin tails and a silver choker kneels between the viewer's legs with semen on her lips and chin. His cock is still and no more semen comes out. She slowly licks the semen from her lower lip, closes her mouth and swallows, then smiles up into the lens with half-lidded eyes and a deep blush. The semen on her chin stays where it is and a slow drip runs down from it. The camera does not move.\n\noverall_soundscape: a soft wet lick, a small swallow, a happy little hum; quiet bedroom room tone. No music.\n\nnon_diegetic_music: N/A",
+   "_note": "new beat: afterglow, extension hop 1 from the golden cum shot"
+  }
+ ]
+}

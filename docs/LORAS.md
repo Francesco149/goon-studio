@@ -27,6 +27,8 @@ are not part of any recipe a user gets.
 | `h3nsfw/MM-H3-Blwjob-v3.safetensors` | POV blowjob, H3 video | H3 FL2VA | - | **no help** on the POV blowjob |
 | `rezero-emilia-s4-illustriousxl-lora-nochekaiser.safetensors` | Emilia (Re:Zero) design study, stills | Illustrious (WAI v17) | 0.6-1.0 | owner: solid but slightly off - usable alternative |
 | `anima_Emilia_2-30.safetensors` | Emilia (Re:Zero) design study, stills | Anima (Pink Alchemy v2.9) | 1.0 | **approved** 2026-11-22: art style and identity spot on |
+| `konosuba-aqua-s2-illustriousxl-lora-nochekaiser.safetensors` | Aqua (KonoSuba) design study, stills | Illustrious (WAI v17) | 1.0 | **owner pick** a108: best identity, reads flat; story `aqua_evening` |
+| `konosuba-aqua-s2-anima-lora-nochekaiser.safetensors` | Aqua (KonoSuba), same s2 for Anima | Anima (Pink) | 1.0 | a108: identity good, eyes drift teal, ignores framing (odd low angles); not used |
 
 ## Emilia (Re:Zero), round a100 (2026-11-22)
 
@@ -274,3 +276,21 @@ draws the acts natively and the Verite skin is plastic. Kept for a fallback only
 
 **Owner verdict (a100):** Anima + `anima_Emilia_2-30` is spot on for art style and identity - the
 Emilia LoRA to use. Illustrious + nochekaiser s4 is solid but slightly off; keep it as an alternative.
+
+## Aqua (KonoSuba), round a108 (2026-11-23)
+
+Design study (adult, "mature female"). Owner's links: nochekaiser Pony (Civitai 352605, three versions; no Pony
+checkpoint here, untested) and Illustrious (1376640 v1555410 "anime s2"); also tested nochekaiser's Anima s2
+(2652645 v2978564) and plain Anima as a control. Trigger words: the s2 page's two blocks (identity `aqua (konosuba),
+long hair, blue eyes, hair ornament, very long hair, blue hair, hair rings, single hair ring, hair bobbles, mature
+female, breasts`; outfit `skirt, shirt, thighhighs, bare shoulders, detached sleeves, white thighhighs, blue skirt, blue
+shirt, green bow`). Jobs `jobs/a108_aqua_lora.jsonl` (`tools/rounds/mk_a108.py`), sheets `analysis/a108_*.jpg`;
+looks none/flat x outfit/nude x seeds 108001/108002.
+
+- **Illustrious s2 (owner pick):** the most exact and consistent identity (eyes, hair ring + gem + bobbles, bow,
+  collar), steady framing; owner: reads flat-shaded, the nudes are fine (the nose shading is the lighting).
+- **Anima s2:** identity good, but eyes drift teal and it ignores "upper body" (odd low angles, a leg in the foreground).
+- **Anima, no LoRA:** the base knows Aqua; owner: goes generic art style on the outfit shots.
+- In the scene keyframes (a109k) the Illustrious `saliva, (clear saliva)` tags drew an opaque white blob at the lips
+  (reads as cum): leave them out of the keyframe, the H3 script's clear-saliva line gives a clear thread.
+
