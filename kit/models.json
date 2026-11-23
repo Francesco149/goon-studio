@@ -14,6 +14,12 @@
    "page": "https://civitai.com/models/827184?modelVersionId=2883731",
    "login": true
   },
+  "checkpoints/ponyDiffusionV6XL_v6.safetensors": {
+   "gb": 6.94,
+   "url": "https://civitai.com/api/download/models/290640?type=Model&format=SafeTensor",
+   "page": "https://civitai.com/models/257749?modelVersionId=290640",
+   "what": "Pony Diffusion V6 XL - SDXL anime/NSFW finetune, base for Pony character LoRAs (clip skip 2, score_9... prefix)"
+  },
   "diffusion_models/anima-aesthetic-v1.1.safetensors": {
    "what": "Anima aesthetic v1.1 - base anime model used by some older workflows",
    "gb": 4.18,
@@ -271,6 +277,14 @@
    "page": "https://civitai.com/models/768917?modelVersionId=1278054",
    "login": true,
    "note": "Published as '绪儿 厚涂构图光影质感增强V3.safetensors'. Author: DPM++ 2M = thicker paint, Euler a = clearer 2.5D anime."
+  },
+  "loras/uzaki_il_v2.safetensors": {
+   "what": "Character LoRA for Illustrious: Uzaki Hana design study (v2.0; trigger 'uzaki', 0.8-1; dim 32, 41 captioned images)",
+   "gb": 0.22,
+   "url": "https://civitai.com/api/download/models/1620490",
+   "page": "https://civitai.com/models/1410199?modelVersionId=1620490",
+   "login": true,
+   "sha256": "6DF406A0099D68BBFB0C019CCC17131229185F4263643BF2ED772B4CC98E0E48"
   },
   "text_encoders/p-h3-image_text_encoder_int8_convrot.safetensors": {
    "what": "P-H3 4B text encoder - the light H3-Image encoder for 16 GB RAM",
