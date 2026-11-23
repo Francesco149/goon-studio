@@ -178,8 +178,8 @@ strand in that position as tears, but a rope with volume reads as cum. So:
 
 | job | box | time |
 |---|---|---|
-| 768x1152 / 124 f, 6 steps, i2v + LoRA | ampere (3080) | ~145 s |
-| 768x1152 / 81 f, 6 steps, i2v + LoRA | ampere | ~95 s |
+| 768x1152 / 124 f, 6 steps, i2v + LoRA | RTX 3080 (10 GB) | ~145 s |
+| 768x1152 / 81 f, 6 steps, i2v + LoRA | RTX 3080 (10 GB) | ~95 s |
 | Krea2 still 896x1344, 6 steps | cutestation (5060) | ~17 s |
 | Qwen-Image-2.1 edit 896x1344 | cutestation | ~110 s |
 
@@ -350,7 +350,7 @@ What this round established:
 
 Renders are git-ignored; the jobs are the recipe. Re-run any round with
 `python tools/lab.py --wf wf_h3vid_i2v_lora.json --jobs jobs/k10.jsonl --box local --sub gl/k10 --out gens/k10`.
-(The `k10` numbers above were measured on the author's ampere box; the same graph runs on the local
+(The `k10` numbers above were measured on the author's lab machine; the same graph runs on the local
 8 GB card with the `_8gb` model names, just slower.)
 The `mk_*.py` generators in `tools/rounds/` carry the reasoning for each round and regenerate their
 `jobs/*.jsonl`.

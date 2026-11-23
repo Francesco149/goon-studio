@@ -120,7 +120,11 @@
    "url": "https://civitai.com/api/download/models/3431552?fileId=3329232",
    "note": "Same Civitai version as Verite_realism (3431552), file Verite_overcooked; sha256 from the Civitai API. Round a94: thinner, more translucent semen with runny drips; owner: still surprisingly realistic - a good alternative when Verite_realism does not make good semen. Smoother skin and a weaker lip seal on blowjob stills.",
    "login": true,
-   "sha256": "E5F609B6F4DF6B81E2EA78E429D47B80786142ECA109933A0E1FE6C9A9EEE756"
+   "sha256": "E5F609B6F4DF6B81E2EA78E429D47B80786142ECA109933A0E1FE6C9A9EEE756",
+   "base": "krea2",
+   "trigger": [
+    "candid, amateur"
+   ]
   },
   "loras/Verite_realism.safetensors": {
    "gb": 0.46,
@@ -129,34 +133,58 @@
    "url": "https://civitai.com/api/download/models/3431552?fileId=3327545",
    "note": "Civitai 'Krea 2 NSFW V5 LORA' by 19doorsside884, version V5 (3431552), file Verite_realism - sha256 verified against the owner's copy. Author's notes: strength 0.8-1.2 (up to 2); prompt 'candid'/'amateur', camera tag last; for sex acts a long caption: the act, then her, then him ('a man, then his cock'), then legs/hands, then the setting. The same version ships Verite_overcooked (stronger for fluids).",
    "login": true,
-   "sha256": "E947EBC07EE627796196B6DC551326C387CA81AF173A5DF72A789F135CD21F0B"
+   "sha256": "E947EBC07EE627796196B6DC551326C387CA81AF173A5DF72A789F135CD21F0B",
+   "base": "krea2",
+   "trigger": [
+    "candid, amateur"
+   ]
   },
   "loras/anima_Emilia_2-30.safetensors": {
    "what": "Character LoRA for Anima: Emilia (Re:Zero) design study (duongve13112002)",
    "gb": 0.04,
    "url": "https://civitai.com/api/download/models/3144656",
    "page": "https://civitai.com/models/2790541?modelVersionId=3144656",
-   "login": true
+   "login": true,
+   "base": "anima",
+   "trigger": [
+    "emilia (re:zero), mature female"
+   ]
+  },
+  "loras/dragon-ilulu-s2-illustriousxl-lora-nochekaiser.safetensors": {
+   "what": "Character LoRA for Illustrious: Ilulu (Miss Kobayashi's Dragon Maid) design study (nochekaiser, anime s2; dim 32, 1000 images)",
+   "gb": 0.23,
+   "url": "https://civitai.com/api/download/models/1656218",
+   "page": "https://civitai.com/models/1464409?modelVersionId=1656218",
+   "login": true,
+   "sha256": "DB00413DCB6C5FF42F189634BF734935CD1CEF36D27DB912937F807C5C59108B",
+   "trigger": [
+    "ilulu, ilulu (maidragon), curled horns, horns, long hair, multicolored hair, purple hair, red eyes, red hair, slit pupils, mature female, breasts, anime screencap",
+    "black shirt, long shirt, black thighhighs, collarbone, shirt, short sleeves, thighhighs, wide sleeves, zettai ryouiki",
+    "shirt, short sleeves, apron, blue shirt, black apron, pants"
+   ]
   },
   "loras/h3nsfw/Astro-nsfw.safetensors": {
    "what": "H3 LoRA: Astro NSFW (best photoreal blowjob motion)",
    "gb": 0.3,
    "url": "https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora/resolve/main/Astro%20nsfw.safetensors",
    "page": "https://huggingface.co/RunningHubAI/rh-minimax-h3-astro-nsfw-lora",
-   "note": "Published as 'Astro nsfw.safetensors'."
+   "note": "Published as 'Astro nsfw.safetensors'.",
+   "base": "h3video"
   },
   "loras/h3nsfw/H3_Motion_BoosterV2.safetensors": {
    "what": "H3 LoRA: motion booster v2",
    "gb": 0.16,
    "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/H3_Motion_BoosterV2.safetensors",
-   "page": "https://huggingface.co/kimjob/h3_NSFW_lora"
+   "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
+   "base": "h3video"
   },
   "loras/h3nsfw/MM-H3-Blwjob-v3.safetensors": {
    "what": "H3 act LoRA: blowjob v3",
    "gb": 0.31,
    "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/MM-H3%20-%20Blowjob%20v3.safetensors",
    "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
-   "note": "Published as 'MM-H3 - Blowjob v3.safetensors'."
+   "note": "Published as 'MM-H3 - Blowjob v3.safetensors'.",
+   "base": "h3video"
   },
   "loras/h3nsfw/Male_Anatomy-v2.02-ep4.safetensors": {
    "what": "H3 LoRA: male anatomy (penis, glans, testicles) - aimed at a stable glans shape",
@@ -164,7 +192,8 @@
    "url": "https://civitai.com/api/download/models/3250559?fileId=3133640",
    "page": "https://civitai.com/models/2839513?modelVersionId=3250559",
    "sha256": "E639C295694309801173A7E6818BE970B5535411AC0821AD0ED11578BEADE276",
-   "note": "Author: start at 0.9 (works 0.4-1.5); trained t2v, not on motion; triggers 'penis', 'glans', 'testicles'. Cannot control cut/uncut."
+   "note": "Author: start at 0.9 (works 0.4-1.5); trained t2v, not on motion; triggers 'penis', 'glans', 'testicles'. Cannot control cut/uncut.",
+   "base": "h3video"
   },
   "loras/h3nsfw/PenisV2_minimax-h3_epoch60.safetensors": {
    "what": "H3 LoRA: HMPenis v2 - penis shape (trigger HMPenis)",
@@ -173,102 +202,151 @@
    "page": "https://civitai.com/models/2849923?modelVersionId=3247473",
    "sha256": "017DD1ADDDC1BE3EC0605DD2E7DE97138EB2C6C6BA24BE402CF47F103AC1F1B3",
    "login": true,
-   "note": "Trigger 'HMPenis', lead with it; state the direction (front/POV); medium-large; 'circumcised', 'pink glans'."
+   "note": "Trigger 'HMPenis', lead with it; state the direction (front/POV); medium-large; 'circumcised', 'pink glans'.",
+   "base": "h3video",
+   "trigger": "HMPenis"
   },
   "loras/h3nsfw/Titjob-Titfuck-H3.safetensors": {
    "what": "H3 act LoRA: paizuri",
    "gb": 0.16,
    "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/Titjob%20-%20Titfuck%20ComfyTinker%20Minimax%20V0.9safetensors.safetensors",
    "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
-   "note": "Published as 'Titjob - Titfuck ComfyTinker Minimax V0.9safetensors.safetensors'."
+   "note": "Published as 'Titjob - Titfuck ComfyTinker Minimax V0.9safetensors.safetensors'.",
+   "base": "h3video"
   },
   "loras/h3nsfw/epic_cumshots.safetensors": {
    "what": "H3 act LoRA: cum shot (the cum-shot dial)",
    "gb": 0.16,
    "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors",
    "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
-   "note": "Published as 'epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors'."
+   "note": "Published as 'epic_cumshots-MiniMaxH3-ALPHA-CUMSH0T.safetensors'.",
+   "base": "h3video"
   },
   "loras/h3nsfw/h3-sideview-deepthroat.safetensors": {
    "what": "H3 act LoRA: side-view deepthroat",
    "gb": 0.6,
    "url": "https://huggingface.co/kimjob/h3_NSFW_lora/resolve/main/loras/H3/test/h3-sideview-deepthroat-step00007800-k3nk.safetensors",
    "page": "https://huggingface.co/kimjob/h3_NSFW_lora",
-   "note": "Published as 'h3-sideview-deepthroat-step00007800-k3nk.safetensors'."
+   "note": "Published as 'h3-sideview-deepthroat-step00007800-k3nk.safetensors'.",
+   "base": "h3video"
   },
   "loras/kasumi-nakasu-s2-anima-lora-nochekaiser.safetensors": {
    "what": "Character LoRA for Anima: Kasumi Nakasu design study (nochekaiser, anime s2)",
    "gb": 0.09,
    "url": "https://civitai.com/api/download/models/3042032",
    "page": "https://civitai.com/models/2708250?modelVersionId=3042032",
-   "login": true
+   "login": true,
+   "base": "anima",
+   "trigger": [
+    "kasumi nakasu, nakasu kasumi, short hair, bangs, brown hair, pink eyes, bob cut, light brown hair, asymmetrical hair, mature female, small breasts, anime screencap",
+    "skirt, long sleeves, jacket, red ribbon, black jacket, blazer"
+   ]
   },
   "loras/konosuba-aqua-s2-anima-lora-nochekaiser.safetensors": {
    "what": "Character LoRA for Anima: Aqua (KonoSuba) design study (nochekaiser, anime s2)",
    "gb": 0.12,
    "url": "https://civitai.com/api/download/models/2978564",
    "page": "https://civitai.com/models/2652645?modelVersionId=2978564",
-   "login": true
+   "login": true,
+   "base": "anima",
+   "trigger": [
+    "aqua (konosuba), long hair, blue eyes, hair ornament, very long hair, blue hair, hair rings, single hair ring, hair bobbles, mature female, medium breasts, anime screencap",
+    "skirt, shirt, thighhighs, bare shoulders, detached sleeves, white thighhighs, blue skirt, blue shirt, green bow"
+   ]
   },
   "loras/konosuba-aqua-s2-illustriousxl-lora-nochekaiser.safetensors": {
    "what": "Character LoRA for Illustrious: Aqua (KonoSuba) design study (nochekaiser, anime s2)",
    "gb": 0.21,
    "url": "https://civitai.com/api/download/models/1555410",
    "page": "https://civitai.com/models/1376640?modelVersionId=1555410",
-   "login": true
+   "login": true,
+   "base": "sdxl",
+   "trigger": [
+    "aqua (konosuba), long hair, blue eyes, hair ornament, very long hair, blue hair, hair rings, single hair ring, hair bobbles, mature female, breasts, anime screencap",
+    "skirt, shirt, thighhighs, bare shoulders, detached sleeves, white thighhighs, blue skirt, blue shirt, green bow"
+   ]
   },
   "loras/lanzhu-zhong-s2-anima-lora-nochekaiser.safetensors": {
    "what": "Character LoRA for Anima: Lanzhu Zhong design study (nochekaiser, anime s2)",
    "gb": 0.09,
    "url": "https://civitai.com/api/download/models/3042063",
    "page": "https://civitai.com/models/2708274?modelVersionId=3042063",
-   "login": true
+   "login": true,
+   "base": "anima",
+   "trigger": [
+    "lanzhu zhong, long hair, bangs, blue eyes, pink hair, ahoge, sidelocks, mole, two side up, mole under eye, mature female, breasts, anime screencap",
+    "skirt, shirt, ribbon, collared shirt, plaid, black shirt, neck ribbon, plaid skirt, white skirt, cardigan, red jacket, checkered skirt"
+   ]
   },
   "loras/p-h3-image_lora_bf16.safetensors": {
    "what": "P-H3 connector LoRA (goes with the 4B encoder)",
    "gb": 1.96,
    "url": "https://huggingface.co/yachiyo8080/P-H3-Image-Comfy/resolve/main/loras/p-h3-image_lora_bf16.safetensors",
-   "page": "https://huggingface.co/yachiyo8080/P-H3-Image-Comfy"
+   "page": "https://huggingface.co/yachiyo8080/P-H3-Image-Comfy",
+   "base": "h3image",
+   "picker": false
   },
   "loras/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors": {
    "what": "Pika Flex 6-step LoRA for H3 video (the speed-up every video recipe uses)",
    "gb": 0.56,
    "url": "https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_fl2va_v1_avg_rank_56_bf16.safetensors",
-   "page": "https://huggingface.co/Kijai/MiniMax-H3_comfy"
+   "page": "https://huggingface.co/Kijai/MiniMax-H3_comfy",
+   "base": "h3video",
+   "picker": false
   },
   "loras/pika_h3_flex_ref2va_v1_avg_rank_55_bf16.safetensors": {
    "what": "Pika Flex LoRA for H3 Ref2VA",
    "gb": 0.55,
    "url": "https://huggingface.co/Kijai/MiniMax-H3_comfy/resolve/main/loras/Pika/pika_h3_flex_ref2va_v1_avg_rank_55_bf16.safetensors",
-   "page": "https://huggingface.co/Kijai/MiniMax-H3_comfy"
+   "page": "https://huggingface.co/Kijai/MiniMax-H3_comfy",
+   "base": "h3video",
+   "picker": false
   },
   "loras/rezero-emilia-s4-illustriousxl-lora-nochekaiser.safetensors": {
    "what": "Character LoRA for Illustrious: Emilia (Re:Zero) design study (nochekaiser, anime s4)",
    "gb": 0.21,
    "url": "https://civitai.com/api/download/models/3047525",
    "page": "https://civitai.com/models/1336055?modelVersionId=3047525",
-   "login": true
+   "login": true,
+   "base": "sdxl",
+   "trigger": [
+    "rezero emilia, emilia (re:zero), long hair, hair ornament, braid, flower, hair flower, french braid, crown braid, pointy ears, white flower, grey hair, purple eyes, x hair ornament, white hair, hair ribbon, elf, breasts, blunt bangs, mature female, medium breasts, anime screencap",
+    "cape, dress, ribbon, purple ribbon, white cape, purple dress, cloak, long sleeves, covered navel, purple bodysuit",
+    "bare shoulders, purple ribbon, ribbon, dress, detached sleeves, purple dress, purple bodysuit"
+   ]
   },
   "loras/style/RealisticAnimeIXL_v2.safetensors": {
    "what": "Illustrious style LoRA: Citron 'Real Anime IXL' (semi-real glossy anime); triggers 'bokeh, luminescent background'",
    "gb": 0.22,
    "url": "https://civitai.com/api/download/models/1169083",
    "page": "https://civitai.com/models/362745?modelVersionId=1169083",
-   "login": true
+   "login": true,
+   "base": "sdxl",
+   "trigger": [
+    "bokeh, luminescent background"
+   ]
   },
   "loras/style/illustrious_style_painterly_v1.1.safetensors": {
    "what": "Illustrious style LoRA: painterly (impasto, impressionism, chiaroscuro); triggers 'painterly, impasto, brushstroke, chiaroscuro'",
    "gb": 0.19,
    "url": "https://civitai.com/api/download/models/1676714",
    "page": "https://civitai.com/models/1478417?modelVersionId=1676714",
-   "login": true
+   "login": true,
+   "base": "sdxl",
+   "trigger": [
+    "painterly, impasto, brushstroke, impressionism, oil painting \\(medium\\), chiaroscuro"
+   ]
   },
   "loras/style/retro_scifi_artstyle_illustriousXL-000021.safetensors": {
    "what": "Illustrious style LoRA: retro sci-fi 90s anime; triggers 'retro_artstyle, retro, cyberpunk', 0.7-1.0 (start 0.8)",
    "gb": 0.22,
    "url": "https://civitai.com/api/download/models/1021743",
    "page": "https://civitai.com/models/912942?modelVersionId=1021743",
-   "login": true
+   "login": true,
+   "base": "sdxl",
+   "trigger": [
+    "retro_artstyle, retro, cyberpunk"
+   ]
   },
   "loras/style/xuer_thickpaint_il_v3.safetensors": {
    "what": "Illustrious style LoRA: Xu Er thick paint / light & texture (2.5D painterly, 'less AI'); trigger 'XUER guangying', 0.8-0.9",
@@ -276,7 +354,11 @@
    "url": "https://civitai.com/api/download/models/1278054",
    "page": "https://civitai.com/models/768917?modelVersionId=1278054",
    "login": true,
-   "note": "Published as '绪儿 厚涂构图光影质感增强V3.safetensors'. Author: DPM++ 2M = thicker paint, Euler a = clearer 2.5D anime."
+   "note": "Published as '绪儿 厚涂构图光影质感增强V3.safetensors'. Author: DPM++ 2M = thicker paint, Euler a = clearer 2.5D anime.",
+   "base": "sdxl",
+   "trigger": [
+    "XUER guangying"
+   ]
   },
   "loras/uzaki_il_v2.safetensors": {
    "what": "Character LoRA for Illustrious: Uzaki Hana design study (v2.0; trigger 'uzaki', 0.8-1; dim 32, 41 captioned images)",
@@ -284,7 +366,14 @@
    "url": "https://civitai.com/api/download/models/1620490",
    "page": "https://civitai.com/models/1410199?modelVersionId=1620490",
    "login": true,
-   "sha256": "6DF406A0099D68BBFB0C019CCC17131229185F4263643BF2ED772B4CC98E0E48"
+   "sha256": "6DF406A0099D68BBFB0C019CCC17131229185F4263643BF2ED772B4CC98E0E48",
+   "base": "sdxl",
+   "trigger": [
+    "uzaki, an anime girl, uzaki hana, short hair, grey hair, hair between eyes, bangs, blue eyes, fang, large breasts, mature female",
+    "shirt, clothes writing, romaji text, raglan sleeves, skirt, denim skirt, black pantyhose",
+    "gloves, ribbon, black gloves, fingerless gloves, apron, maid, maid headdress, white apron",
+    "swimsuit, bikini, striped bikini"
+   ]
   },
   "text_encoders/p-h3-image_text_encoder_int8_convrot.safetensors": {
    "what": "P-H3 4B text encoder - the light H3-Image encoder for 16 GB RAM",

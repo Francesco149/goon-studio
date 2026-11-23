@@ -1,9 +1,7 @@
 # Session summary - 2026-11-20 (overnight run 2)
 
 What changed tonight, what the owner needs to rate, and what to try next. Everything lives
-under `~/goonlab` (refs, gens, jobs, tools, notes). The porn-specific writeup went to
-`bunker:/opt/src/bunker/docs/SEX-SCENES-2.md` (commit `04684a8`); the sanitised method note to
-`nix-lab` (`research/local-gen/ROUND-2026-11-20-egirl-and-restyle.md`, commit `ee53ff2`, pushed).
+under `~/goonlab` (refs, gens, jobs, tools, notes). Copies for the author's other machines are in `docs/archive.local/` (author sessions only).
 
 ## The three big results
 
@@ -54,7 +52,7 @@ framing), not an independent generation. `v7a`/`v7b` show what happens otherwise
 
 1. Longer scenes: stitch `v3a` -> an edit of its last frame -> a cum edit, all first+last i2v.
 2. Anime: replace the frame restyle with a native 2D video model if one appears; until then the
-   restyle is the route. A 16 GB box (lame) can run Pink at 1536 for cleaner restyle frames.
+   restyle is the route. A 16 GB card can run Pink at 1536 for cleaner restyle frames.
 3. Photoreal: try the `krea2 sex` per-act LoRA set on Krea 2 for the acts that still drift
    (needs a Civitai token or an owner-side download).
 4. Train an Anima anatomy LoRA only if the owner wants a specific drawing style; Pink + the

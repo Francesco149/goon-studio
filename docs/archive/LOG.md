@@ -27,16 +27,16 @@ a cumshot drawable.
 - `i_nobody` (male body in the negative): removes the ass, but the cock enters her mouth at a
   strange sideways angle and her chin is drowned in saliva. Better, still not there.
 
-## p01 - which model actually draws it, ampere (4 images)
+## p01 - which model actually draws it, 3080 (4 images)
 
 One prompt, four models, photoreal except p2:
 - `p1_h3img_photo`: **fully correct anatomy**, clean POV, her hands at the base, saliva strand.
 - `p2_h3img_anime`: same, in clean 2D anime. Best anime keyframe of the day.
 - `p3_krea2_photo`: **refused** - drew a softcore pose with no genitals at all.
 - `p4_qwen21_photo`: the most detailed anatomy of the four; the body arrangement below is muddled.
-- Runtime on ampere: 17.6 s, 26.8 s, 45 s, 63 s (including model loads).
+- Runtime on a 3080: 17.6 s, 26.8 s, 45 s, 63 s (including model loads).
 
-## v01 - the critical test: can H3 video draw it? (ampere, 512x768, 5 s)
+## v01 - the critical test: can H3 video draw it? (3080, 512x768, 5 s)
 
 - `v1_t2v_photo`, text only, anatomy spelled out: **yes**. A correct, detailed cock for the whole
   clip, her lips sealing and sliding, a real stroke, a saliva string. This is the finding the
@@ -45,14 +45,14 @@ One prompt, four models, photoreal except p2:
   background has a dark band; the audio is quiet wet suction with one short vocalisation and no
   speech (spectrogram in `analysis/v01_spec.png`).
 
-## v01b - i2v from the two H3-Image keyframes (ampere, 512x768)
+## v01b - i2v from the two H3-Image keyframes (3080, 512x768)
 
 - `v2_i2v_anime`: the anatomy **softens and drifts** - the rim goes, the shaft becomes a rounded
   cylinder. 512 px is too coarse for a 896x1344 keyframe.
 - `v3_i2v_photo`: the anatomy holds (rim, veins, foreskin), the mouth slides and the shaft comes
   out wet; the stroke is small and the cock stays stiffly vertical.
 
-## v02 - 768x1152, i2v and t2v from the photo prompt (ampere)
+## v02 - 768x1152, i2v and t2v from the photo prompt (3080)
 
 - `v4_i2v_photo_768` (144 s): the rim and the veins survive, her mouth seals and slides, she comes
   off at the end with a strand. The best-motion clip of the day (owner: the motion "doesn't look
@@ -61,7 +61,7 @@ One prompt, four models, photoreal except p2:
   stroke with a held bottom; the face drifts across the 5 s, and this is the clip where the balls
   first came out in front of the shaft (see b01).
 
-## b01 - the scrotum on the wrong side (ampere, same seed, 512x768)
+## b01 - the scrotum on the wrong side (3080, same seed, 512x768)
 
 - `b1_baseline` (`a scrotum below her hand`): sac in front of the shaft.
 - `b2_no_scrotum` (word removed): no sac, the base dissolves into pubic hair - the right look for a POV.
@@ -73,17 +73,17 @@ One prompt, four models, photoreal except p2:
 `prop_photo_side`, 28 s: a clean, isolated, photoreal erect penis on white with a correct glans and
 corona rim. Good enough to anchor from.
 
-## a02 - inserting the prop with H3-Image edit (ampere)
+## a02 - inserting the prop with H3-Image edit (3080)
 
 `ins1_photo` / `ins2_anime`: the anatomy does transfer, but the edit repaints the whole frame with a
 crusty, over-sharpened skin and wiry hair. H3-Image is for making pictures, not editing them.
 
-## a03 - inserting the prop with Qwen-Image-2.1 edit (ampere)
+## a03 - inserting the prop with Qwen-Image-2.1 edit (3080)
 
 `q1_qwen_insert` (25 steps): the right tool. The woman, skin, hair, light and pose survive; the penis
 takes the prop's glans and collar. Slightly prosthetic (the collar reads as a ring), but correct.
 
-## w02 - side view and the cum continuation (ampere)
+## w02 - side view and the cum continuation (3080)
 
 - `w1_side_photo` (1024x768): the ref3 composition works - body, hips, breasts resting on his thigh,
   his hand on her back. The mouth/shaft junction stays a blob for the whole clip because it was a
@@ -100,7 +100,7 @@ takes the prop's glans and collar. Slightly prosthetic (the collar reads as a ri
   best cum still of the day.
 - `c2_cum_tits`: strands down the cleavage and drips; the body layout below is muddled.
 
-## ve01 - the owner's Krea 2 LoRA (ampere, 8 steps, 896x1344)
+## ve01 - the owner's Krea 2 LoRA (3080, 8 steps, 896x1344)
 
 `Verite_realism` at strength 1.0 / 1.0 / 1.3, prompted act-first with the man described before his
 cock:
@@ -108,7 +108,7 @@ cock:
   natural shaft, scrotum at the base behind her hand. No prop, no mosaic.
 - ve3 (strength 1.3, flash) is the cleanest anatomy of the whole session.
 
-## pv01 - i2v from those stills (ampere, 768x1152)
+## pv01 - i2v from those stills (3080, 768x1152)
 
 - `pvid_ve1` (146 s): the anatomy survives the clip better than any prompt-only keyframe did - head,
   rim and foreskin hold for most of the 5 s, her mouth slides down and up with a held bottom.
@@ -119,7 +119,7 @@ cock:
 
 ## Session 2 - 2026-11-20, overnight: e-girl, Pink Alchemy, act LoRAs
 
-### e1 - photoreal e-girl with Krea 2 + Verite (ampere, 8 steps, 896x1344)
+### e1 - photoreal e-girl with Krea 2 + Verite (3080, 8 steps, 896x1344)
 
 First e-girl set. The aesthetic and the body read (twin tails with pink streaks, choker,
 oversized tee, LED bedroom), but the skin is the old plasticky Verite look and the bust runs
@@ -177,7 +177,7 @@ a defined head - better than base on every axis. The model card's own settings
 - `pb7_cum_face`: anime cum is correct (strands, drips, gloss). Confirms: cum is a still-image
   strength and a video weakness.
 
-### v3 - H3 act-LoRA survey (ampere, 768x1152, 124 f, 5.2 s)
+### v3 - H3 act-LoRA survey (3080, 768x1152, 124 f, 5.2 s)
 
 Same keyframe (`e1e`) and seed 61 for the POV clips:
 

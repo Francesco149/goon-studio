@@ -23,7 +23,7 @@ stack that hit it, and it is a different model from the earlier photoreal chain
 |---|---|
 | file | `KREA 2TurboNSFW_v10-nvfp4.safetensors` (7.15 GB, "Star Ultimate Model Converter" nvfp4) |
 | where | `<engine_dir>\ComfyUI\models\diffusion_models\` (local), loaded by the plain `UNETLoader` (no special node) |
-| comfy | 0.45.0; runs on Ampere and on the 8 GB RTX 5060 (nvfp4 is dequantized at load) |
+| comfy | 0.45.0; runs on a 3080 and on the 8 GB RTX 5060 (nvfp4 is dequantized at load) |
 | speed | cutestation 8 GB: 4 steps 10 s, 6 steps 16 s, 8 steps 20 s at 896x1344 |
 | settings | **6 steps standard** (4 preview / 8 final), cfg 1.0, euler / simple, denoise 1.0, no negative (ConditioningZeroOut) |
 | workflow | `workflows/wf_krea2_nsfw_8gb.json` on cutestation (kitchen attention), `wf_krea2_nsfw.json` otherwise |
@@ -96,7 +96,7 @@ applies to chest.
   place (`pb4`); mosaic draws one large block that does cover the shaft (`pb5`) but its
   placement is luck. Post-process with ffmpeg is the reliable route.
 - **Video** starts from these stills well (see the `v3`-`v6` rounds): the e1e keyframe gives a
-  clean 5 s stroke at 768x1152 in 145 s on ampere. That clip is the new best photoreal
+  clean 5 s stroke at 768x1152 in 145 s on a 3080. That clip is the new best photoreal
   blowjob motion.
 
 ## The e-girl stills that define the look

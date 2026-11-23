@@ -114,6 +114,13 @@ pulls that show's own look.
   4. chain the pull-out: a clip that shows the penis out starts from a frame where it is out and correct (a
      keyframe that shows the whole penis, or the last frame of such a clip - a106 `b2_chain`); the inverse trick
      - glans suck -> deep throat from the deepest frame - keeps it from ever coming out (a104 s2a/s2b).
+- **General (model-agnostic) stills, round a131** - every Anima scene template has an Illustrious version on plain WAI
+  (`illu_pov_bj`, `_mosaic`, `_foreskin`, `illu_side_bj`, `illu_pov_cockout`, `illu_side_gap`, `illu_paizuri`, `illu_wide_gap`,
+  `illu_suction`, `illu_cum_face`, `illu_side_handjob`, plus `illu_lap_sofa`/`_ontop`): neutral character, act and camera in
+  Scene, any SDXL character LoRA added on the page (`docs/LORAS.md` checklist 7-8). Tested neutral x2 + Uzaki LoRA
+  (`analysis/a131_a.jpg`, `_b.jpg`): solid - pov_bj (+mosaic), suction, paizuri, cum_face, side_handjob, pov_cockout; weak -
+  side_gap (gap only held with the LoRA), wide_gap (no gap), foreskin (barely shows), side_bj (one broken seed). Without a
+  LoRA the girl is WAI's default glossy look; with one she takes the LoRA's look. Model-specific templates still win where they exist.
 - **Anime BJ keyframe recipe - use this first for every anime BJ scene** (owner, a112k: "exactly what we want for
   suction", all 12 keyframes, including the ones sucking the side of the shaft and the balls; other approaches often
   missed the mouth look). Illustrious (WAI) + the character LoRA at 1.0 (`wf_illu_lora.json`, 1216x832, 28 steps,

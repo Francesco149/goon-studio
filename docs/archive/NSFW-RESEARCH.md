@@ -51,7 +51,7 @@ All are SD1.5/SDXL-era or Flux/Qwen; none of them are H3 or Anima.
   prompt. This is the direct replacement for our "spell the anatomy out in words" workaround.
 3. **Anime (Anima):** nothing exists for Anima - it is a 2B model nobody trains on. Two options,
   both already possible here: train an anatomy LoRA on Anima with the lab's existing
-  `research/style-lock/scripts/train_anima_lora.sh` (40 min on lame, curated from the owner's
+  `research/style-lock/scripts/train_anima_lora.sh` (40 min on a 16 GB card, curated from the owner's
   references), or keep using the prop + Qwen-Image-2.1 edit insert from `SEX-SCENES.md` A1.
 4. **The second pass is not optional in the community either:** every realistic workflow above
   finishes with a regional inpaint/detailer over the genitals. Our equivalent is the prop insert
@@ -63,7 +63,7 @@ All are SD1.5/SDXL-era or Flux/Qwen; none of them are H3 or Anima.
   any non-personal use - several are `Image` only, and some are `RentCivit`-only.
 - Downloading them puts NSFW weights into a shared model directory on a lab box, which per
   `docs/LAB-PRIVACY.md` is persistent and visible to the lab. That is a decision for the owner, not
-  a thing to do quietly; bunker's own array (`/data/models/comfyui/`) is the cleaner home.
+  a thing to do quietly.
 
 ---
 

@@ -13,6 +13,10 @@ Endpoints:
   POST /api/headroom    {template, workflow?} -> memory profile for it (ok / lean / critical), what to close
   POST /api/needs       {template, workflow?, nsfw_lora?...} -> the model files it loads, which are
                         missing, where they go and where to download them (kit/models.json)
+  GET  /api/loras       the LoRA picker: the store's LoRAs and the user's private ones (my/private/loras)
+  POST /api/loranote    {name, base, trigger, strength, about} -> the user's note on a private LoRA
+  POST /api/mytemplate  {kind, id, template | delete} -> the user's own templates (my/presets.json)
+  GET  /api/scenes      scene starters (kit/stories) and the user's scenes; POST /api/scene/* (scenes.py)
   GET  /img/<path>      a picture in the gallery
 """
 import base64, json, mimetypes, os, queue, threading, time, traceback, urllib.parse
@@ -20,9 +24,21 @@ import sys
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# start.ps1 passes --engine (the engine it started or found; WMI-started processes do not inherit its
+# environment) and --port; tests use GOON_COMFY_URL / GOON_STUDIO_PORT the same way
+for _flag, _env in (("--engine", "GOON_COMFY_URL"), ("--port", "GOON_STUDIO_PORT"), ("--sandbox", "GOON_STUDIO_SANDBOX")):
+    if _flag in sys.argv[1:-1]:
+        os.environ[_env] = sys.argv[sys.argv.index(_flag) + 1]
+# Only the user's own page (8191) shows their pictures. Any other port is a test page and always runs
+# sandboxed (its own empty history, gallery and private folder), so testing never shows private gens.
+if os.environ.get("GOON_STUDIO_PORT", "8191") != "8191" and not os.environ.get("GOON_STUDIO_SANDBOX"):
+    import tempfile
+    os.environ["GOON_STUDIO_SANDBOX"] = os.path.join(tempfile.gettempdir(), "goon-studio-sandbox")
 import core  # noqa: E402
 import modelstore  # noqa: E402
 import headroom  # noqa: E402
+import loras  # noqa: E402
+import scenes  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PORT = int(os.environ.get("GOON_STUDIO_PORT", "8191"))
@@ -40,8 +56,11 @@ def worker():
         e["status"] = "running"
         e["started_at"] = time.time()
         try:
-            e["record"] = core.run(e["job"], by="me", on_queued=lambda pid: e.__setitem__("prompt_id", pid),
-                                   on_note=lambda txt, plan: e.update(note=txt, memory=plan["profile"]))
+            if e.get("run"):
+                e["record"] = e.pop("run")(e)
+            else:
+                e["record"] = core.run(e["job"], by="me", on_queued=lambda pid: e.__setitem__("prompt_id", pid),
+                                       on_note=lambda txt, plan: e.update(note=txt, memory=plan["profile"]))
             if e["status"] != "cancelled":
                 e["status"] = "done"
         except Exception as ex:
@@ -56,11 +75,12 @@ def worker():
 
 def code_stamp():
     """Newest mtime of the page's own code: the page offers a reload when it changes."""
-    names = ("index.html", "server.py", "core.py")
+    names = ("index.html", "server.py", "core.py", "loras.py", "scenes.py")
     return max(os.path.getmtime(os.path.join(HERE, n)) for n in names)
 
 
 STARTED_STAMP = code_stamp()
+PRIVATE_LORAS = {"status": "not checked"}
 
 
 def safe_join(base, rel):
@@ -111,9 +131,16 @@ class H(BaseHTTPRequestHandler):
                                        "bodies": P.get("bodies", {}), "framings": P.get("framings", {}), "cocks": P.get("cocks", {}), "default_cock_video": P.get("default_cock_video"), "breasts_video": P.get("breasts_video", {}), "dynamics_video": P.get("dynamics_video", {}),
                                        "comfy_up": core.comfy_up(), "machine": {k: core.settings().get(k) for k in ("gpu", "data_dir")},
                                        "code_stamp": STARTED_STAMP, "code_now": code_stamp()})
+            if p == "/api/loras":
+                s = core.settings()
+                return self.send(200, {"private": loras.private_list(), "store": loras.store_list(s),
+                                       "families": loras.FAMILIES, "private_dir": loras.PRIVATE_DIR,
+                                       "private_status": PRIVATE_LORAS["status"]})
+            if p == "/api/scenes":
+                return self.send(200, scenes.listing())
             if p == "/api/jobs":
                 with LOCK:
-                    return self.send(200, JOBS[-60:])
+                    return self.send(200, [{k: v for k, v in e.items() if k != "run"} for e in JOBS[-60:]])
             if p == "/api/history":
                 q = urllib.parse.parse_qs(u.query)
                 scope = (q.get("scope") or ["all"])[0]
@@ -178,6 +205,20 @@ class H(BaseHTTPRequestHandler):
                 return self.send(200, pl)
             if p == "/api/preview":
                 return self.send(200, {"prompt": core.build_prompt(b), "negative": core.build_fields(b).get("negative", "")})
+            if p == "/api/loranote":
+                loras.save_note(b["name"], b)
+                return self.send(200, {"ok": True})
+            if p == "/api/mytemplate":
+                # {id: an existing "my_..." id to overwrite/delete, or a name for a new one}
+                kind = "video_templates" if b.get("kind") == "video" else "templates"
+                given = str(b.get("id") or "")
+                tid = given if given.startswith("my_") else "my_" + core.re.sub(r"[^a-z0-9_]+", "_", given.lower()).strip("_")[:40]
+                if tid == "my_":
+                    return self.send(400, {"error": "give the template a name"})
+                core.save_my_template(kind, tid, None if b.get("delete") else b["template"])
+                return self.send(200, {"id": tid})
+            if p.startswith("/api/scene/"):
+                return self.send(200, scenes.post(p[len("/api/scene/"):], b, enqueue))
             if p == "/api/cancel":
                 jid = b.get("id")
                 hit = []
@@ -222,7 +263,24 @@ class H(BaseHTTPRequestHandler):
             return self.send(500, {"error": str(e)})
 
 
+def enqueue(job, label=None, run=None):
+    """Queue one job (or a callable `run(e)` for multi-step work such as a scene) on the page's worker."""
+    e = {"id": "%d-%d" % (int(time.time() * 1000), len(JOBS)), "job": job, "status": "queued", "queued_at": time.time()}
+    if label:
+        e["label"] = label
+    if run:
+        e["run"] = run
+    with LOCK:
+        JOBS.append(e)
+    Q.put(e)
+    return e["id"]
+
+
 def main():
+    try:
+        PRIVATE_LORAS["status"] = loras.wire_private(core.settings())
+    except Exception as ex:  # never keep the page from starting
+        PRIVATE_LORAS["status"] = "could not link the private folder: %s" % ex
     threading.Thread(target=worker, daemon=True).start()
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), H)
     print("Goon Studio on http://127.0.0.1:%d" % PORT, flush=True)

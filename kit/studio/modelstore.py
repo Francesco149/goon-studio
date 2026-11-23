@@ -16,6 +16,9 @@ import json, os, re, shutil, sys, time, urllib.error, urllib.parse, urllib.reque
 KIT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(KIT)
 REGISTRY = os.path.join(KIT, "models.json")
+# the user's private LoRAs (kit/studio/loras.py): the engine sees them as loras/private/<name> through
+# a folder link; the store's listings skip that link (the agent never lists the user's private files)
+PRIVATE_LORAS = os.path.join(ROOT, "my", "private", "loras")
 PH = re.compile(r"\{\{(\w+)\}\}")
 EXT = (".safetensors", ".gguf", ".pth", ".ckpt", ".pt", ".bin", ".onnx")
 QUANT = re.compile(r"_(int8_convrot|w4a8_mixed|w4a8|nvfp4|int8|fp8\w*|bf16|fp16|fp32)$")
@@ -235,6 +238,8 @@ def disk_files(folder, s=None):
         if not os.path.isdir(d):
             continue
         for base, _dirs, files in os.walk(d):
+            if folder == "loras" and base == d and "private" in _dirs:
+                _dirs.remove("private")
             for fn in files:
                 if fn.lower().endswith(EXT):
                     have.add(norm(os.path.relpath(os.path.join(base, fn), d)))
@@ -330,6 +335,9 @@ def resolve_graph(graph, s=None):
     win = os.name == "nt" and is_local(s)
     cache, swaps = {}, []
     for nid, ct, k, name, folder in graph_files(graph):
+        if is_private_lora(folder, name):
+            graph[nid]["inputs"][k] = name.replace("/", "\\") if win else name
+            continue
         if folder not in cache:
             cache[folder] = available(folder, s)
         if not cache[folder]:
@@ -345,12 +353,21 @@ def resolve_graph(graph, s=None):
     return swaps
 
 
+def is_private_lora(folder, name):
+    return folder == "loras" and norm(name).startswith("private/")
+
+
 def graph_missing(graph, s=None):
     """check() rows for the files a filled graph loads that this install does not have."""
     s = s or settings()
     reg = registry()
     cache, rows = {}, []
     for _nid, _ct, _k, name, folder in graph_files(graph, reg):
+        if is_private_lora(folder, name):
+            if not os.path.isfile(os.path.join(PRIVATE_LORAS, *name.split("/")[1:])):
+                rows.append({"folder": folder, "file": name, "present": False, "fetch": name,
+                             "dest": os.path.join(PRIVATE_LORAS, *name.split("/")[1:]), "url": None, "page": None, "gb": None})
+            continue
         if folder not in cache:
             cache[folder] = available(folder, s)
         if cache[folder] and pick(folder, name, cache[folder]) is None:

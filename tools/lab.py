@@ -38,13 +38,11 @@ def _local():
     return "http://127.0.0.1:8188", s.get("data_dir") or os.path.join(repo, "gallery")
 
 
-# `local` is the default and the only box on a normal install; ampere/lame are the author's lab
-# machines (AGENTS.md section 6) and do not exist anywhere else.
-BOXES = {
-    "local": _local(),
-    "ampere": ("http://10.0.10.240:8188", "/data/comfyui"),
-    "lame": ("http://10.0.10.56:8188", "/lamedata/comfyui"),
-}
+# `local` (this PC) is the default and the only box on a normal install; more engines only come
+# from the git-ignored tools/boxes.local.json (tools/localboxes.py)
+import localboxes  # noqa: E402
+BOXES = {"local": _local()}
+BOXES.update({k: (v["url"], v.get("root", "")) for k, v in localboxes.load().items()})
 PH = re.compile(r"\{\{(\w+)\}\}")
 IMG_KEYS = ("image", "image1", "image2", "image3", "mask", "last", "video")
 T0 = time.time()

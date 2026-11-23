@@ -19,9 +19,8 @@ file wins.
 | `STATUS.md` | session-1 status and open questions |
 | `LOG.md` | round-by-round log of sessions 1-2 |
 | `SUMMARY.md` | the session-2 handover |
-| `BUNKER-SEX-SCENES.md`, `-2`, `-3` | the copies pushed to bunker's docs (same knowledge, bunker form) |
-| `nixlab-round.md`, `nixlab-round-2.md` | the sanitised method notes pushed to nix-lab |
 
 The goonlab folder itself (`~/goonlab`) still holds `gens/`, `jobs/`, `analysis/` and `refs/`; it
 is the source of every example named in these notes. The reference clips are not copied here -
-see `AGENTS.local.md` for where they live and who may use them.
+see `AGENTS.local.md` for where they live and who may use them. The copies made for the author's other
+machines are in the git-ignored `docs/archive.local/` (author sessions only).

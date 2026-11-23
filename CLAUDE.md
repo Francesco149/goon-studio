@@ -79,7 +79,12 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
   into a new template. Short, one question; AGENTS.md section 6a.
 - Never commit an image (`docs/IMAGES.md`) and never write into `../lovelive-studio` from here.
 - Test the page on a spare port (8291) against a bench engine (8189); never drive the user's page
-  on 8191, it shows their private gallery.
+  on 8191, it shows their private gallery. Any port other than 8191 runs **sandboxed** (own empty
+  history, gallery and private folder under `%TEMP%\goon-studio-sandbox`, or `--sandbox <dir>`), so a
+  test page never shows private gens:
+  `python kit\studio\server.py --engine http://127.0.0.1:8189 --port 8291`.
+- `kit\start.ps1` always uses the engine on this PC (127.0.0.1, port from `comfy_url`), stops only
+  a ComfyUI that holds the port without answering, and passes the engine to the page with `--engine`.
 - `kit\start.ps1 -Stop` kills every python.exe from the engine folder, including an engine another
   app may be using. Say so before running it.
 - Never tell the user the generated sound is fine (`AGENTS.md` 4b).
@@ -90,8 +95,8 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
 
 - Hardware target: one 8 GB GPU, 16 GB RAM, everything on the user's own PC (`--box local`,
   127.0.0.1:8188); older cards such as a GTX 1070 are covered in `docs/PERFORMANCE-8GB.md`. The
-  failure mode on a desktop is Windows commit charge, not VRAM. ampere/lame/maximus/bunker are
-  the author's machines: only `AGENTS.local.md` (author sessions) points at them; never look for
-  them on another install.
+  failure mode on a desktop is Windows commit charge, not VRAM. The Studio and every tool use the
+  engine on this PC; the author's lab machines are named only in `AGENTS.local.md` and the
+  git-ignored `tools/boxes.local.json` (author sessions); never look for them on another install.
 - The always-on copy of the rules is the Goon Scope output style; it is project-local and does not
   apply to other projects. If it is not active in Claude Code, run `/output-style` and pick it.

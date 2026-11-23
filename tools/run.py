@@ -26,7 +26,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--wf", required=True)
     ap.add_argument("--jobs", required=True)
-    ap.add_argument("--box", default="local", choices=["local", "ampere"])
+    import localboxes
+    boxes = {"local": "http://127.0.0.1:8188"}
+    boxes.update({k: v["url"] for k, v in localboxes.load().items()})
+    ap.add_argument("--box", default="local", choices=sorted(boxes))
     ap.add_argument("--sub", required=True, help="ComfyUI subfolder prefix, e.g. gl/g01")
     ap.add_argument("--out", required=True)
     ap.add_argument("--log", default=None)
@@ -34,7 +37,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
 
-    base = {"local": "http://127.0.0.1:8188", "ampere": "http://10.0.10.240:8188"}[a.box]
+    base = boxes[a.box]
     env = dict(os.environ, COMFY_URL=base)
     os.makedirs(a.out, exist_ok=True)
     jobs = [json.loads(l) for l in open(a.jobs, encoding="utf-8") if l.strip() and not l.startswith("#")]

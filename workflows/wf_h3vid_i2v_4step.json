@@ -203,5 +203,5 @@
   "seed": 1,
   "prefix": "gl/x"
  },
- "_note": "H3 FL2VA + Pika, 4-step (lossy speed test; LoRA is distilled for 6). cutestation default: w4a8 transformer; override unet for ampere int8."
+ "_note": "H3 FL2VA + Pika, 4-step (lossy speed test; LoRA is distilled for 6). cutestation default: w4a8 transformer; on a card with more VRAM, override unet with the int8 file."
 }

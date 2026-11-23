@@ -85,7 +85,7 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
   last frame, so the size is copied, not redrawn; D. new angle: a penis reference cropped from the first beat
   (Ref2VA `wf_h3vid_ref2va_first2`, or a reference on the keyframe). Rank A/B (free) before C/D. Also fix the t1
   upper-lip phasing (P4 lead-in: describe her lowering her open mouth down over the tip from above; try P3 tip-at-lips).
-- Act LoRAs on ampere not yet in the registry: `HMNSFW_AIO_V2` (sex positions, used for cowgirl/missionary);
+- Act LoRAs on the author's lab machine, not yet in the registry: `HMNSFW_AIO_V2` (sex positions, used for cowgirl/missionary);
   `Minimax3_BoobPhysics_v1` there is a 15-byte failed download (real file: Civitai version 3245935).
 
 ## Session 2026-11-23 (OC design lock: Gemma, a114-a117)
@@ -188,8 +188,8 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 
 ## How the rounds in this session were run (reuse it)
 
-- **Engine:** the owner's `my/settings.json` `comfy_url` points at the lab box (ampere). For local
-  work start the bench engine: `powershell -File tools\experiments\bench_engine.ps1 -Action start
+- **Engine:** the Studio uses the engine on this PC (8188, the user's). For experiments start the
+  bench engine: `powershell -File tools\experiments\bench_engine.ps1 -Action start
   -Flags "--use-ck-attention --fast fp16_accumulation"` (port 8189; `-Action stop` after) and set
   `GOON_COMFY_URL=http://127.0.0.1:8189` for any tool (`modelstore`, `headroom`, `store.py`).
   Never drive the user's page on 8191.

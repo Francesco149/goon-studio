@@ -12,6 +12,9 @@ my/rounds/
 my/studio-errors.log
 gallery/
 *.local.md
+*.local.json
+tools/boxes.local/
+docs/archive.local/
 *.tmp
 *.log
 

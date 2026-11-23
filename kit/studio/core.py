@@ -16,6 +16,7 @@ A job is a dict:
 import json, os, random, re, shutil, subprocess, threading, time, urllib.parse, urllib.request
 
 import headroom
+import loras
 import modelstore
 
 KIT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,6 +29,15 @@ FEED = os.path.join(MY, "feedback.jsonl")
 PHIST = os.path.join(PRIVATE, "history.jsonl")    # the user's own pictures (private unless made public)
 PFEED = os.path.join(PRIVATE, "feedback.jsonl")
 LIB = os.path.join(MY, "library.json")
+# GOON_STUDIO_SANDBOX=<dir>: a test page (port 8291) with its own history, library, private folder and
+# gallery under <dir>, so testing the page never shows or touches the user's private pictures.
+# my/settings.json (engine, models) and kit/ are still the real ones.
+SANDBOX = os.environ.get("GOON_STUDIO_SANDBOX")
+if SANDBOX:
+    MY = os.path.join(SANDBOX, "my")
+    PRIVATE = os.path.join(MY, "private")
+    HIST, FEED, LIB = (os.path.join(MY, n) for n in ("history.jsonl", "feedback.jsonl", "library.json"))
+    PHIST, PFEED = (os.path.join(PRIVATE, n) for n in ("history.jsonl", "feedback.jsonl"))
 WLOCK = threading.RLock()
 PH = re.compile(r"\{\{(\w+)\}\}")
 
@@ -41,9 +51,11 @@ def load_json(path, default=None):
 
 
 def settings():
-    s = load_json(os.path.join(MY, "settings.json"), {}) or {}
+    s = load_json(os.path.join(ROOT, "my", "settings.json"), {}) or {}
     s.setdefault("comfy_url", "http://127.0.0.1:8188")
     s.setdefault("data_dir", GALLERY)
+    if SANDBOX:
+        s["data_dir"] = os.path.join(SANDBOX, "gallery")
     if os.environ.get("GOON_COMFY_URL"):          # a bench engine (tests), never the user's setting
         s["comfy_url"] = os.environ["GOON_COMFY_URL"]
     return s
@@ -52,9 +64,28 @@ def settings():
 def presets():
     P = load_json(os.path.join(KIT, "presets.json"), {}) or {}
     mine = load_json(os.path.join(MY, "presets.json"), {}) or {}
-    for k in ("templates", "characters", "scenes", "negatives"):
+    for k in ("templates", "characters", "scenes", "negatives", "video_templates"):
         P.setdefault(k, {}).update(mine.get(k, {}))
+    # the page marks the user's own templates ("Save as my template")
+    for k in ("templates", "video_templates"):
+        for tid in mine.get(k, {}):
+            P[k][tid] = dict(P[k][tid], mine=True)
     return P
+
+
+def save_my_template(kind, tid, t):
+    """Write (or with t=None delete) one of the user's own templates in my/presets.json."""
+    path = os.path.join(MY, "presets.json")
+    mine = load_json(path, {}) or {}
+    sec = mine.setdefault(kind, {})
+    if t is None:
+        sec.pop(tid, None)
+    else:
+        sec[tid] = {k: v for k, v in t.items() if k != "mine" and v not in (None, "")}
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(mine, f, indent=2, ensure_ascii=False)
+    os.replace(tmp, path)
 
 
 def workflow_names():
@@ -213,7 +244,7 @@ def build_fields(job):
         if "strength" in t:
             fields["nsfw_strength"] = t["strength"]
     for k, v in job.items():
-        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing", "breasts", "dynamics"):
+        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing", "breasts", "dynamics", "extra_loras"):
             fields[k] = v
     fields["prompt"] = build_prompt(job)
     late = t.get("late")
@@ -413,6 +444,8 @@ def run(job, by="me", on_queued=None, on_note=None):
     graph = subst(graph, fields)
     if job.get("ctx_len"):
         graph = extend_graph(graph, int(job.get("ctx_start", 0)), int(job["ctx_len"]))
+    # LoRAs picked on the page (the store's or the user's private ones), after the template's own
+    loras.inject(graph, job.get("extra_loras"))
     # same model in the quantization this engine has; a missing file stops here with where to get it
     modelstore.resolve_graph(graph, s)
     miss = modelstore.graph_missing(graph, s)

@@ -1,6 +1,6 @@
 # Sex scenes on the lab's local models
 
-How to get a consistent, well-formed explicit scene out of H3-Image + H3 video (FL2VA) on ampere
+How to get a consistent, well-formed explicit scene out of H3-Image + H3 video (FL2VA) on a 3080
 or cutestation, without the usual failure shapes. Written 2026-11-20 from the rounds in
 `~/goonlab` (cutestation) - owner-sourced references, 6 clips, ~30 renders.
 
@@ -155,7 +155,7 @@ Owner, 2026-11-20: the anime renders are "all competent but generic AI slop" - s
 whether a *specific* look survives an explicit scene. It does, two ways.
 
 **With H3-Image (plain English, no tags).** Put the look in the first sentence, concretely, and keep
-it out of the scene description (`s02/ll_h3img_style`, 19 s on ampere):
+it out of the scene description (`s02/ll_h3img_style`, 19 s on a 3080):
 
 ```
 A screenshot from a 2016 Japanese TV anime in the art style of Love Live! Sunshine!!, character
@@ -182,7 +182,7 @@ sentence, because the same model then gives you the composition as well.
 
 ## 3. Which model draws what (round p01, one prompt, four models)
 
-| model | explicit anatomy | speed on ampere | use it for |
+| model | explicit anatomy | speed on a 3080 | use it for |
 |---|---|---|---|
 | **H3-Image** int8, 6 steps | correct and detailed, in photo **and** 2D anime | 17-27 s a picture | **the keyframe workhorse** |
 | Qwen-Image-2.1 int8 | the most detailed anatomy of the four | 45-63 s | a second opinion; messy body layout |
@@ -344,7 +344,7 @@ which need a new pipeline:
 | photoreal keyframe | **`krea2 sex 淫模`** on Krea 2, sub-LoRA `BJ` / `SBJ` (trigger `kreablowjob`, `krea2blow`), and `cum` / `FC` for the money shot | not downloaded |
 | video | **`DR34ML4Y_H3_P1`** - a MiniMax H3 LoRA (`bl0wj0b`, `m15510n4ry`, `d0gg1e`, `d0wg1rl`), one more `LoraLoaderModelOnly` in our graph | not downloaded |
 | photoreal edit / anchor | Qwen-Image-2.1 NSFW LoRAs (`NSFW LORA | Qwen Image 2.1`, `NSFW Qwen Image Edit Rapid AIO`) on the a03 insert step | not downloaded |
-| anime (Anima) | nothing exists - train one with `research/style-lock/scripts/train_anima_lora.sh` (40 min on lame) or keep the prop insert | proposal |
+| anime (Anima) | nothing exists - train one with `research/style-lock/scripts/train_anima_lora.sh` (40 min on a 16 GB card) or keep the prop insert | proposal |
 
 Until one of those is in place, the prompt-level workarounds in section 1 are what we have, and they
 do work - just expensively.
@@ -356,7 +356,7 @@ do work - just expensively.
 - **Ref2VA two-reference anchoring** (the girl + the prop, straight into the video model) - the
   prop route works for the still (A1) but has not been tried through the clip.
 - **RelayVSR x2** on a finished clip (keeps the audio) to get the rim back after a 512-wide take.
-  The workflow is on ampere; the first attempt died on an input path, not on the model.
+  The workflow is on the 3080; the first attempt died on an input path, not on the model.
 - **The cum material wording** in B (translucency, sag, beading) - written, not yet rendered.
 - **Multi-shot scenes**: the same girl in a 3-shot sequence (reveal / stroke / cumshot) with the
   keyframe of shot N+1 made by Qwen-Image-2.1 edit from the last frame of shot N.

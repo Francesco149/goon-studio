@@ -2,8 +2,7 @@
 
 Owner verdict is the source of truth: **the only thing right so far is the prompting for blowjob
 motion and the still-level detail.** Everything else is staged as not solved. Nothing here has been
-written to nix-lab or bunker; the two doc commits I made earlier were reverted (`nix-lab` back to
-`bf38355`, `bunker` back to `db6ef53`), so neither repo carries any trace of this session.
+written to the author's other repos; the two doc commits made earlier were reverted.
 
 ## Right (owner-approved)
 
@@ -40,7 +39,7 @@ The LoRA author's own rule, which is what made the stills work:
 1. Is `gens/ve01/ve1` or `ve2` good enough as a realistic still, or still not?
 2. Cum: is the next test `Verite-overcooked` (needs the second file from the same Civitai version)?
 3. Anime anatomy: prefer borrowing the real shape into the drawing (`lf01`), or training a small
-   anatomy LoRA on Anima (~40 min on lame), or a Pony/Illustrious anatomy LoRA then restyle?
+   anatomy LoRA on Anima (~40 min on a 16 GB card), or a Pony/Illustrious anatomy LoRA then restyle?
 4. Civitai access: an API key in `~/goonlab/.civitai-token` unlocks `tools/civitai.py download`
    (search, metadata and example images already work without it; downloads return 401).
 
@@ -68,7 +67,7 @@ The LoRA author's own rule, which is what made the stills work:
   Ref2VA (`minimax_h3_ref2va` + the `pika_h3_flex_ref2va` LoRA), Picture 1 = last frame of clip 1,
   Picture 2 = the cock crop from the keyframe.
 
-## Update: the two-clip pull-off (round `rc01`, ampere)
+## Update: the two-clip pull-off (round `rc01`, 3080)
 
 The owner's idea - do the pull-off as a second clip that is told what the cock must look like coming
 out - works, two ways:
@@ -117,8 +116,8 @@ Everything here is **staged, not owner-rated**. The session-1 approvals still st
 ### Current best chains
 
 ```
-photoreal still   Krea 2 Turbo NSFW v10 nvfp4, 8 steps, cfg 1, euler/simple        ampere, 12-20 s
-anime still       Pink Alchemy Anima v2.9, 30 steps, cfg 4, er_sde/simple          ampere/cutestation
+photoreal still   Krea 2 Turbo NSFW v10 nvfp4, 8 steps, cfg 1, euler/simple        3080, 12-20 s
+anime still       Pink Alchemy Anima v2.9, 30 steps, cfg 4, er_sde/simple          3080/cutestation
 video             H3 FL2VA + Pika 6-step, i2v from the still, 768x1152, 124 f
                   - POV blowjob: no act LoRA, detailed stroke prompt (v3a)
                   - side deepthroat: + h3-sideview-deepthroat 0.75 (v3g)

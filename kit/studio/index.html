@@ -81,6 +81,29 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 .pill{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:1px 9px;font-size:12px;color:var(--mute);margin-right:4px}
 .selbar{position:sticky;top:58px;z-index:4;margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .round{margin-bottom:22px}
+details.lvl{margin-top:14px;border-top:1px solid var(--line);padding-top:8px}
+details.lvl>summary{font-weight:600;color:var(--ink)}details.lvl>summary small{font-weight:400;color:var(--mute)}
+details.card.lvl{border-top:1px solid var(--line);padding-top:14px}
+#lp{position:fixed;inset:0;background:rgba(10,5,15,.7);display:none;z-index:26;padding:24px}#lp.on{display:block}
+.loras .lrow{display:flex;gap:8px;align-items:center;padding:5px 0;border-bottom:1px dashed var(--line);font-size:14px;flex-wrap:wrap}
+.loras .lrow .nm{flex:1 1 200px;overflow-wrap:anywhere}.loras .lrow input{width:80px;flex:0 0 80px}
+.warn{color:#b07a10;font-size:12px}
+.lpi{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px}
+.lpi .top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.lpi .top b{overflow-wrap:anywhere}
+.lpi.off{opacity:.55}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:12px;padding:0 7px;font-size:12px;margin:2px 3px 0 0;cursor:pointer;background:var(--bg)}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.loras .tw{flex:1 1 100%;margin-top:2px}.loras .chips{margin:2px 0}
+button.lnk{padding:0 6px;font-size:12px;margin-left:2px}
+.shot{border-left:4px solid var(--accent)}
+.shot .head{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.shot .head input[type=text]{width:70px;flex:0 0 70px}.shot .head input[type=number]{width:80px;flex:0 0 80px}
+.shot .head select{width:auto;flex:0 1 auto}
+.shot .res{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.shot .res .pic{width:150px}.shot .res .pic img,.shot .res .pic video{width:150px;aspect-ratio:3/2;object-fit:cover;background:#000;border-radius:8px;display:block;cursor:pointer}
+.shot .res .pic .hint{font-size:12px}
+.shot .tools{margin-left:auto;display:flex;gap:4px}.shot .tools button{padding:2px 8px}
 .round h3{margin:0 0 4px}
 </style>
 </head>
@@ -90,6 +113,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
   <nav>
     <button data-p="create" class="on">Create</button>
     <button data-p="video">Video</button>
+    <button data-p="scene">Scene</button>
     <button data-p="gallery">My pictures</button>
     <button data-p="rounds">Rounds</button>
     <button data-p="trash" id="trashtab">Trash</button>
@@ -103,26 +127,35 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 <section id="create" class="panel on">
  <div class="grid2">
   <div class="card">
-    <label class="h">Template <small>(the recipe; then change anything you like)</small></label>
+    <label class="h">What to make <small>pick a recipe, then change anything you like</small></label>
     <select id="template"></select>
     <div class="hint" id="tplAbout"></div>
     <div id="needs"></div>
-    <div class="row" style="margin-top:6px">
-      <div><label class="h">Body type</label><select id="body"></select></div>
-      <div><label class="h">Framing</label><select id="framing"></select></div>
-      <div><label class="h">Cock</label><select id="cock"></select></div>
-    </div>
     <label class="h">Character <small>who: hair, eyes, body, face</small></label>
     <textarea id="character"></textarea>
     <label class="h">Scene <small>where, what she does</small></label>
     <textarea id="scene"></textarea>
+    <div id="loraSum" class="hint" style="margin-top:6px"></div>
     <div class="row" style="margin-top:6px">
       <div><label class="h">Quality</label><select id="quality">
         <option value="preview">Preview (quick look)</option><option value="standard">Standard</option><option value="final">Final (finest detail)</option></select></div>
-      <div><label class="h">How many</label><input type="number" id="count" value="1" min="1" max="8"></div>
-      <div><label class="h">Seed <small>blank = new</small></label><input type="text" id="seed" placeholder="random"></div>
+      <div style="flex:0 0 110px"><label class="h">How many</label><input type="number" id="count" value="1" min="1" max="8"></div>
     </div>
-    <details><summary>Size and steps</summary>
+    <details class="lvl" data-keep="more"><summary>More options <small>LoRAs, body, framing, reference, seed</small></summary>
+      <label class="h">LoRAs <small>add a character or style LoRA to any recipe - yours from <code>my\private\loras</code> too</small></label>
+      <div id="loras-c" class="loras" data-k="c"></div>
+      <div class="row" style="margin-top:6px">
+        <div><label class="h">Body type</label><select id="body"></select></div>
+        <div><label class="h">Framing</label><select id="framing"></select></div>
+        <div><label class="h">Cock</label><select id="cock"></select></div>
+      </div>
+      <div class="row">
+        <div><label class="h">Seed <small>blank = new each time</small></label><input type="text" id="seed" placeholder="random"></div>
+      </div>
+      <label class="h">Reference picture <small>needed for hires; optional elsewhere</small></label>
+      <div class="slot" id="slot-ref" data-k="ref"></div>
+    </details>
+    <details class="lvl" data-keep="expert"><summary>Expert <small>prompt, size and steps, workflow, save as my template</small></summary>
       <div class="row" style="margin-top:6px">
         <div><label class="h">Width</label><input type="number" id="width"></div>
         <div><label class="h">Height</label><input type="number" id="height"></div>
@@ -130,12 +163,14 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
         <div><label class="h">CFG</label><input type="number" step="0.1" id="cfg"></div>
       </div>
       <div class="hint">Blank = the workflow's own default. Quality sets the steps for you.</div>
+      <div id="styleBox"><label class="h">Style <small>the {style} block of this recipe</small></label><textarea id="style"></textarea></div>
+      <label class="h">Prompt template <small>{character}, {scene} and {style} are filled in</small></label><textarea id="prompt" rows="6"></textarea>
+      <label class="h">Things to avoid (negative)</label><textarea id="negative"></textarea>
+      <label class="h">Workflow <small>the ComfyUI graph; "as the recipe" unless you know you want another</small></label><select id="workflow"></select>
+      <details id="pvBox" open><summary>What the model reads (full prompt)</summary><div class="mono" id="preview"></div></details>
+      <label class="h">Save as my template <small>everything above, under a name of yours (my\presets.json)</small></label>
+      <div class="row"><input type="text" id="myName" placeholder="name, e.g. soft evening look"><button class="s" id="mySave" style="flex:0 0 auto">Save</button><button class="s danger" id="myDel" style="flex:0 0 auto" hidden>Delete this template</button></div>
     </details>
-    <details><summary>Prompt template <small>({character} and {scene} are filled in)</small></summary><textarea id="prompt" rows="8"></textarea></details>
-    <details><summary>Things to avoid (negative)</summary><textarea id="negative"></textarea></details>
-    <details id="pvBox"><summary>What the model reads (full prompt)</summary><div class="mono" id="preview"></div></details>
-    <label class="h">Reference picture <small>needed for hires; optional elsewhere</small></label>
-    <div class="slot" id="slot-ref" data-k="ref"></div>
     <div id="mem"></div>
     <button class="go" id="gogen">Make pictures</button>
     <div class="hint" id="eta" style="margin-top:6px"></div>
@@ -150,22 +185,10 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 <section id="video" class="panel">
  <div class="grid2">
   <div class="card">
-    <label class="h">Video recipe <small>(fills the prompt and the LoRA)</small></label>
+    <label class="h">Video recipe <small>fills the script and the LoRA</small></label>
     <select id="vtpl"></select>
+    <div class="hint" id="vAbout"></div>
     <div id="vneeds"></div>
-    <label class="h">Cock <small>(keep it the same as the keyframe's)</small></label><select id="vcock"></select>
-    <label class="h">Breasts <small>(paizuri detail: squeeze folds on the inner breasts, or smooth)</small></label><select id="vbreasts"></select>
-    <label class="h">Dynamics <small>(micro-motion: jiggle, follow-through, breathing)</small></label><select id="vdynamics"></select>
-    <label class="h">Anime timing <small>(hand-drawn cadence, or smooth h-game motion; the clip as generated is kept as -raw)</small></label>
-    <select id="vtiming">
-      <option value="off">off (as generated)</option>
-      <option value="on2">anime: on 2s</option>
-      <option value="on2_stop">anime: on 2s + holds at stroke ends</option>
-      <option value="on3_stop">anime: on 3s + holds (most limited)</option>
-      <option value="smooth">smooth: h-game motion (RIFE in-betweens)</option>
-      <option value="smooth_film">smooth: FILM in-betweens (large motion)</option>
-      <option value="smooth_x2">smooth: RIFE, 48 fps</option>
-    </select>
     <label class="h">Mode</label>
     <select id="vmode">
       <option value="i2v">image to video</option>
@@ -180,10 +203,8 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
       <div class="slot" id="slot-v2" data-k="v2"></div></div>
     <div id="v3box" hidden><label class="h">Second reference</label>
       <div class="slot" id="slot-v3" data-k="v3"></div></div>
-    <div id="lorarow" class="row" hidden>
-      <div><label class="h">Act LoRA</label><select id="vlora"></select></div>
-      <div style="flex:0 0 120px"><label class="h">Strength</label><input type="number" id="vstrength" step="0.05" value="0.8"></div>
-    </div>
+    <label class="h">Script <small>what happens; keep the section names (integrated_multimodal_description, overall_soundscape)</small></label>
+    <textarea id="vprompt" rows="9"></textarea>
     <div class="row">
       <div><label class="h">Size and length</label><select id="vsize">
         <option value="512x768x85">Draft: 512x768, 85 frames (3.5 s)</option>
@@ -191,23 +212,96 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
         <option value="768x1152x124">Final: 768x1152, 124 frames (5 s)</option>
         <option value="custom">Custom</option></select></div>
       <div style="flex:0 0 90px"><label class="h">How many</label><input type="number" id="vcount" value="1" min="1" max="4"></div>
-      <div style="flex:0 0 130px"><label class="h">Seed</label><input type="text" id="vseed" placeholder="random"></div>
     </div>
     <div class="row" id="vcustom" hidden>
       <div><label class="h">Width</label><input type="number" id="vwidth" value="768"></div>
       <div><label class="h">Height</label><input type="number" id="vheight" value="1152"></div>
       <div><label class="h">Frames</label><input type="number" id="vlength" value="124"></div>
     </div>
-    <label class="h">Prompt <small>the MiniMax script; keep the section names</small></label>
-    <textarea id="vprompt" rows="10"></textarea>
-    <details><summary>Soundscape / negative (appended if set)</summary><textarea id="vnegative"></textarea></details>
+    <details class="lvl" data-keep="vmore"><summary>More options <small>LoRAs, cock, breasts, motion, cadence, seed</small></summary>
+      <div id="lorarow" class="row" hidden>
+        <div><label class="h">Act LoRA <small>(the recipe's)</small></label><select id="vlora"></select></div>
+        <div style="flex:0 0 120px"><label class="h">Strength</label><input type="number" id="vstrength" step="0.05" value="0.8"></div>
+      </div>
+      <label class="h">Extra LoRAs <small>H3 video LoRAs only - an image LoRA does nothing here</small></label>
+      <div id="loras-v" class="loras" data-k="v"></div>
+      <label class="h">Cock <small>(keep it the same as the keyframe's)</small></label><select id="vcock"></select>
+      <label class="h">Breasts <small>(paizuri detail: squeeze folds on the inner breasts, or smooth)</small></label><select id="vbreasts"></select>
+      <label class="h">Dynamics <small>(micro-motion: jiggle, follow-through, breathing)</small></label><select id="vdynamics"></select>
+      <label class="h">Anime timing <small>(hand-drawn cadence, or smooth h-game motion; the clip as generated is kept as -raw)</small></label>
+      <select id="vtiming">
+        <option value="off">off (as generated)</option>
+        <option value="on2">anime: on 2s</option>
+        <option value="on2_stop">anime: on 2s + holds at stroke ends</option>
+        <option value="on3_stop">anime: on 3s + holds (most limited)</option>
+        <option value="smooth">smooth: h-game motion (RIFE in-betweens)</option>
+        <option value="smooth_film">smooth: FILM in-betweens (large motion)</option>
+        <option value="smooth_x2">smooth: RIFE, 48 fps</option>
+      </select>
+      <div class="row"><div><label class="h">Seed <small>blank = new each time</small></label><input type="text" id="vseed" placeholder="random"></div></div>
+    </details>
+    <details class="lvl" data-keep="vexpert"><summary>Expert <small>negative / soundscape, workflow</small></summary>
+      <label class="h">Soundscape / negative <small>appended if set</small></label><textarea id="vnegative"></textarea>
+      <label class="h">Workflow <small>"from the mode" unless you know you want another</small></label><select id="vworkflow"></select>
+    </details>
     <div id="vmem"></div>
     <button class="go" id="govideo">Make video</button>
     <div class="hint" id="veta" style="margin-top:6px"></div>
+    <div class="hint" style="margin-top:6px">Several shots in a row (a scene)? Use the <a href="#scene">Scene</a> tab: one card per shot, each continuing from the last.</div>
   </div>
   <div>
     <div class="card jobsCard" style="display:none"><div class="row" style="justify-content:space-between"><b style="flex:0 0 auto">Working on</b><button class="s" style="flex:0 0 auto" onclick="stopJob()">&#9632; Stop all</button></div><div class="jobs"></div></div>
     <div class="card"><b>Recent videos</b> <span class="hint">click to play and rate; <b>Use as keyframe</b> chains the next clip from the last frame</span><div class="thumbs" id="recentv" style="margin-top:10px"></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="scene" class="panel">
+ <div class="card">
+  <div class="row">
+    <div style="flex:2"><label class="h">Scene <small>several shots cut together; each shot can continue from the one before</small></label>
+      <select id="scOpen"></select></div>
+    <div style="flex:0 0 auto;align-self:flex-end"><button class="s" id="scLoad">Open</button></div>
+    <div style="flex:1.2"><label class="h">Name</label><input type="text" id="scName"></div>
+    <div style="flex:0 0 auto;align-self:flex-end"><button class="s" id="scSave">Save</button> <button class="s danger" id="scDel" hidden>Delete</button></div>
+  </div>
+  <div class="hint" id="scAbout" style="margin-top:6px"></div>
+  <details style="margin-top:6px"><summary>How it works</summary><div class="hint" style="margin-top:4px">Each shot makes a <b>keyframe</b> (a still) and a <b>clip</b> from it - or continues the shot before it
+    (<b>extend</b> keeps the look and the size best; <b>last frame</b> is a plain chain). Make one shot at a time and look at it, then the next.
+    <b>Cut</b> joins the clips, trimmed to each shot's seconds, with their sound. A starter opens as your own private copy; its shots that already
+    have a finished clip use it until you press <b>Make my own</b>. Text in {braces} is filled from <b>Cast and look</b>. Keep extend chains to about 3 hops, then start a shot from a fresh keyframe.</div></details>
+ </div>
+ <div class="grid2" style="grid-template-columns:1fr minmax(300px,400px)">
+  <div>
+   <details class="card lvl" data-keep="sccast"><summary><b>Cast and look</b> <small>the {blocks} every shot uses, the keyframe model and LoRAs, clip size</small></summary>
+     <div id="scBlocks"></div>
+     <div class="row" style="margin-top:6px"><input type="text" id="scNewBlock" placeholder="new block name, e.g. outfit"><button class="s" id="scAddBlock" style="flex:0 0 auto">+ block</button></div>
+     <div class="row" style="margin-top:8px">
+       <div><label class="h">Keyframe workflow</label><select id="scStillWf"></select></div>
+       <div style="flex:0 0 100px"><label class="h">Width</label><input type="number" id="scStillW"></div>
+       <div style="flex:0 0 100px"><label class="h">Height</label><input type="number" id="scStillH"></div>
+     </div>
+     <div id="scStillLora" class="hint"></div>
+     <label class="h">Keyframe LoRAs <small>added to the keyframe workflow</small></label>
+     <div id="loras-s" class="loras" data-k="s"></div>
+     <label class="h">Keyframe negative</label><textarea id="scStillNeg"></textarea>
+     <div class="row">
+       <div style="flex:0 0 100px"><label class="h">Clip width</label><input type="number" id="scClipW"></div>
+       <div style="flex:0 0 100px"><label class="h">Clip height</label><input type="number" id="scClipH"></div>
+       <div><label class="h">Base seed <small>shot n uses seed + n</small></label><input type="number" id="scSeed"></div>
+     </div>
+   </details>
+   <div id="scShots"></div>
+   <button class="s" id="scAddShot">+ Add a shot</button>
+  </div>
+  <div>
+   <div class="card" style="position:sticky;top:70px">
+     <button class="go" id="scAll" style="margin-top:0">Make everything missing</button>
+     <div class="row" style="margin-top:8px"><button class="s" id="scKeys">Only the missing keyframes</button><button class="s" id="scCut">&#9986; Cut the scene</button></div>
+     <div class="hint" id="scEta" style="margin-top:6px"></div>
+     <div id="scCutBox" style="margin-top:10px"></div>
+   </div>
+   <div class="card jobsCard" style="display:none"><div class="row" style="justify-content:space-between"><b style="flex:0 0 auto">Working on</b><button class="s" style="flex:0 0 auto" onclick="stopJob()">&#9632; Stop all</button></div><div class="jobs"></div></div>
   </div>
  </div>
 </section>
@@ -273,6 +367,12 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
   </div>
 </div>
 
+<div id="lp"><div class="card pkbox">
+  <div class="row" style="justify-content:space-between"><b>Add a LoRA</b><button class="s" style="flex:0" onclick="closeLoraPicker()">Close &#10005;</button></div>
+  <div class="row" style="margin-top:8px"><input type="text" id="lpQ" placeholder="search names, triggers, notes"><label style="flex:0 0 auto"><input type="checkbox" id="lpAll"> show every base model</label></div>
+  <div class="hint" id="lpHint" style="margin-top:6px"></div>
+  <div id="lpList" style="margin-top:8px"></div></div></div>
+
 <div id="pk"><div class="card pkbox">
   <div class="row" style="justify-content:space-between"><b id="pkTitle">Pick one of your pictures</b><button class="s" style="flex:0" onclick="closePicker()">Close &#10005;</button></div>
   <div class="thumbs" id="pkList" style="margin-top:10px"></div></div></div>
@@ -292,9 +392,9 @@ const pathOf=rel=>dataDir()+"/"+rel;
 const relOf=p=>{const d=dataDir();p=String(p||"").replace(/\\/g,"/");return d&&p.toLowerCase().startsWith(d.toLowerCase()+"/")?p.slice(d.length+1):null};
 
 /* ---------- quality: the measured 8 GB step counts and times (docs/PERFORMANCE-8GB.md) ---------- */
-const FAMILY=wf=>!wf?null:/anima_hires/.test(wf)?"hires":/anima/.test(wf)?"anima":/krea/.test(wf)?"krea":/h3img/.test(wf)?"h3img":/qwen/.test(wf)?"qwen":null;
-const STEPS={anima:{preview:12,standard:20,final:30},krea:{preview:4,standard:6,final:8},h3img:{preview:4,standard:6,final:8},qwen:{preview:12,standard:25,final:25}};
-const SECS={anima:{12:23,20:26,30:36},krea:{4:10,6:16,8:20},h3img:{4:7,6:10,8:14},hires:{20:60},qwen:{12:29,25:37}};
+const FAMILY=wf=>!wf?null:/anima_hires/.test(wf)?"hires":/illu|pony/.test(wf)?"illu":/anima/.test(wf)?"anima":/krea/.test(wf)?"krea":/h3img/.test(wf)?"h3img":/qwen/.test(wf)?"qwen":null;
+const STEPS={illu:{preview:16,standard:28,final:36},anima:{preview:12,standard:20,final:30},krea:{preview:4,standard:6,final:8},h3img:{preview:4,standard:6,final:8},qwen:{preview:12,standard:25,final:25}};
+const SECS={illu:{16:25,28:37,36:45},anima:{12:23,20:26,30:36},krea:{4:10,6:16,8:20},h3img:{4:7,6:10,8:14},hires:{20:60},qwen:{12:29,25:37}};
 const tplOf=k=>(STATE.templates||{})[k]||{};
 /* which model files a template loads, what is missing, where to put it and where to get it */
 let NEEDQ={};
@@ -319,13 +419,23 @@ async function showNeeds(el,body){
     ${r.local?"":`<span class="hint">The engine is not on this PC: put the files in its models folder instead.</span>`}
     <span class="hint">Every template's files: <a href="/docs/MODELS.md" target="_blank">docs/MODELS.md</a></span></div>`;
 }
-const curWf=()=>tplOf($("#template").value).workflow||"";
+const curWf=()=>($("#workflow")&&$("#workflow").value)||tplOf($("#template").value).workflow||"";
 function qualityFor(wf,steps){const S=STEPS[FAMILY(wf)];if(!S||!steps)return"standard";return steps<=S.preview?"preview":steps>=S.final?"final":"standard"}
+
+/* ---------- layers: More options / Expert stay open or closed as the user left them ---------- */
+$$("details[data-keep]").forEach(d=>{const k="goon.open."+d.dataset.keep;d.open=localStorage.getItem(k)==="1";d.addEventListener("toggle",()=>localStorage.setItem(k,d.open?"1":"0"))});
+/* base model families: a LoRA only works on the family it was trained for (kit/studio/loras.py) */
+const BASE=wf=>{const w=(wf||"").toLowerCase();return /illu|pony/.test(w)?"sdxl":/anima/.test(w)?"anima":/krea/.test(w)?"krea2":/h3vid/.test(w)?"h3video":/h3img/.test(w)?"h3image":/qwen/.test(w)?"qwen":/wan/.test(w)?"wan":null};
+function tplGroup(t){const w=t.workflow||"";return t.mine?"My templates":/illu/.test(w)?"Anime - Illustrious (bring a LoRA)":/anima2_lora/.test(w)?"Anime - character LoRAs":/anima/.test(w)?"Anime - Pink Alchemy":/krea|h3img/.test(w)?"Photoreal":"Other"}
+function fillGrouped(sel,entries,order){const g={};for(const [k,v] of entries)(g[tplGroup(v)]=g[tplGroup(v)]||[]).push([k,v]);
+  for(const name of order.concat(Object.keys(g).filter(n=>!order.includes(n)))){if(!g[name])continue;const og=document.createElement("optgroup");og.label=name;
+    for(const [k,v] of g[name])og.appendChild(new Option(v.label||k,k));sel.appendChild(og)}}
 
 /* ---------- tabs ---------- */
 function show(panel){
   $$("nav button[data-p]").forEach(b=>b.classList.toggle("on",b.dataset.p===panel));
   $$(".panel").forEach(p=>p.classList.toggle("on",p.id===panel));
+  if(panel==="scene"&&!SC.story)loadScenes();
   if(panel==="gallery")loadGallery();if(panel==="trash")loadTrash();if(panel==="rounds")loadRounds();
   if(location.hash.slice(1)!==panel)history.replaceState(null,"",panel==="create"?location.pathname:"#"+panel);
 }
@@ -336,7 +446,12 @@ window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if($("#
 async function init(){
   STATE=await api("/api/state");
   const t=$("#template");
-  for(const [k,v] of Object.entries(STATE.templates||{}))if(!/h3vid/.test(v.workflow||""))t.add(new Option(v.label||k,k));
+  fillGrouped(t,Object.entries(STATE.templates||{}).filter(([k,v])=>!/h3vid/.test(v.workflow||"")),["My templates","Photoreal","Anime - Pink Alchemy","Anime - character LoRAs","Anime - Illustrious (bring a LoRA)","Other"]);
+  const wfs=STATE.workflows||[];
+  $("#workflow").add(new Option("as the recipe",""));for(const w of wfs)if(!/h3vid|wan|relayvsr|bgremove/.test(w))$("#workflow").add(new Option(w,w));
+  $("#vworkflow").add(new Option("from the mode",""));for(const w of wfs)if(/h3vid/.test(w))$("#vworkflow").add(new Option(w,w));
+  for(const w of wfs)if(!/h3vid|wan|relayvsr|bgremove|hires|i2i|edit|ref/.test(w))$("#scStillWf").add(new Option(w,w));
+  $("#workflow").onchange=()=>{onWf();};$("#vworkflow").onchange=()=>{vneeds();drawLoras("v")};
   t.value=[...t.options].some(o=>o.value===STATE.default_template)?STATE.default_template:(t.options[0]||{}).value;
   t.onchange=fillTemplate;
   const b=$("#body");b.add(new Option("as the template","none"));for(const k of Object.keys(STATE.bodies||{}))if(k!=="none")b.add(new Option(k,k));
@@ -352,10 +467,13 @@ async function init(){
   ["#vwidth","#vheight","#vlength"].forEach(s=>$(s).oninput=veta);
   $("#quality").onchange=()=>{const S=STEPS[FAMILY(curWf())];if(S)$("#steps").value=S[$("#quality").value];eta()};
   $("#steps").oninput=()=>{$("#quality").value=qualityFor(curWf(),+$("#steps").value);eta()};
-  ["#character","#scene","#prompt","#negative","#body","#framing","#cock"].forEach(s=>$(s).addEventListener("input",preview));
+  ["#character","#scene","#prompt","#negative","#body","#framing","#cock","#style"].forEach(s=>$(s).addEventListener("input",preview));
+  $("#character").addEventListener("input",()=>chipState("c"));
+  document.addEventListener("input",e=>{if(e.target.matches&&e.target.matches('#scBlocks textarea[data-b="character"]'))chipState("s")});
   $("#count").oninput=eta;
   for(const k of Object.keys(SLOTS))drawSlot(k);
-  fillTemplate();fillVideo();
+  await loadLoras();
+  fillTemplate();fillVideo();loadScenes();
   engine();setInterval(engine,8000);setInterval(pollJobs,1500);
   await getHist();showRecent();
   const h=location.hash.slice(1);if(h&&$("#"+h)&&$("#"+h).classList.contains("panel"))show(h);
@@ -364,11 +482,22 @@ async function init(){
 function fillTemplate(){
   const t=tplOf($("#template").value);
   $("#character").value=t.character||"";$("#scene").value=t.scene||"";$("#prompt").value=t.prompt||"";$("#negative").value=t.negative||"";
+  $("#style").value=t.style||"";$("#workflow").value="";PICK.c=(t.extra_loras||[]).map(x=>Object.assign({},x));
+  RECIPE=t.lora&&!/h3vid/.test(t.workflow||"")?{name:t.lora,strength:t.strength??1,off:false}:null;
+  $("#myDel").hidden=!t.mine;$("#myName").value=t.mine?(t.label||""):"";
   for(const k of ["width","height","steps","cfg"])$("#"+k).value=t[k]!=null?t[k]:"";
   $("#body").value="none";if(t.framing&&STATE.framings[t.framing])$("#framing").value=t.framing;
   const fam=FAMILY(t.workflow);$("#quality").disabled=!STEPS[fam];$("#quality").value=qualityFor(t.workflow,t.steps);
   $("#tplAbout").textContent=t.about||(t.workflow?"workflow: "+t.workflow:"");
-  showNeeds("#needs",{template:$("#template").value});showMem("#mem",{template:$("#template").value});
+  onWf();
+}
+function onWf(){
+  const t=tplOf($("#template").value),wf=curWf();
+  $("#styleBox").hidden=!/\{style\}/.test($("#prompt").value)&&!t.style;
+  const fam=FAMILY(wf);$("#quality").disabled=!STEPS[fam];
+  $("#tplAbout").textContent=(t.about||(wf?"workflow: "+wf:""))+($("#workflow").value?"  (workflow changed in Expert)":"");
+  const b={template:$("#template").value};if($("#workflow").value)b.workflow=$("#workflow").value;
+  showNeeds("#needs",b);showMem("#mem",b);drawLoras("c");
   preview();eta();
 }
 let pvT=0;
@@ -408,11 +537,11 @@ async function uploadFile(k,file){
     const up=await api("/api/upload",{data});setSlot(k,up.path,"/img/"+encodeURI(up.file))}
   catch(e){alert("Could not add the picture: "+e.message)}
 }
-async function picker(k){
+async function picker(k,cb){
   PKK=k;await getHist();const l=HIST.filter(r=>!r.trashed&&!isVid(r.file)).slice(0,200);
-  $("#pkTitle").textContent="Pick a picture for "+SLOTNAME[k];
+  $("#pkTitle").textContent="Pick a picture for "+(SLOTNAME[k]||k);
   const g=$("#pkList");g.innerHTML=l.length?l.map(r=>tile(r)).join(""):'<div class="empty">Nothing to pick yet.</div>';
-  g.querySelectorAll(".thumb").forEach(t=>t.onclick=()=>{setSlot(k,pathOf(t.dataset.f),"/img/"+encodeURI(t.dataset.f));closePicker()});
+  g.querySelectorAll(".thumb").forEach(t=>t.onclick=()=>{if(cb)cb(t.dataset.f);else setSlot(k,pathOf(t.dataset.f),"/img/"+encodeURI(t.dataset.f));closePicker()});
   $("#pk").classList.add("on");
 }
 function closePicker(){$("#pk").classList.remove("on")}
@@ -437,6 +566,10 @@ function jobBody(){
   for(const k of ["width","height","steps","cfg"]){const v=num("#"+k);if(v!==undefined)b[k]=v}
   const seed=num("#seed");if(seed!==undefined)b.seed=seed;
   if(SLOTS.ref)b.image=SLOTS.ref.path;
+  if(!$("#styleBox").hidden)b.style=$("#style").value;
+  if($("#workflow").value)b.workflow=$("#workflow").value;
+  if(PICK.c.length)b.extra_loras=PICK.c.map(x=>({name:x.name,strength:x.strength}));
+  if(RECIPE)b.strength=RECIPE.off?0:RECIPE.strength;  // the template's own LoRA; 0 = the general version
   return b;
 }
 $("#gogen").onclick=async()=>{
@@ -446,11 +579,111 @@ $("#gogen").onclick=async()=>{
   setTimeout(()=>$("#gogen").disabled=false,800);
 };
 
+$("#mySave").onclick=async()=>{
+  const name=$("#myName").value.trim();if(!name){alert("Give the template a name first.");return}
+  const cur=tplOf($("#template").value),b=jobBody(),t={label:name,about:"My template, from "+(cur.label||$("#template").value),workflow:curWf()};
+  for(const k of ["prompt","character","scene","negative","style","width","height","steps","cfg","body","framing","cock","extra_loras"])if(b[k]!==undefined&&b[k]!==""&&b[k]!=="none")t[k]=b[k];
+  for(const k of ["lora","strength","late","series","params","unet","sampler","sched","nsfw_lora","nsfw_strength"])if(cur[k]!==undefined)t[k]=cur[k];
+  if(RECIPE&&t.lora)t.strength=RECIPE.off?0:RECIPE.strength;
+  try{const r=await api("/api/mytemplate",{id:cur.mine?$("#template").value:name,template:t});STATE=Object.assign(STATE,await api("/api/state"));
+    const sel=$("#template");sel.innerHTML="";fillGrouped(sel,Object.entries(STATE.templates||{}).filter(([k,v])=>!/h3vid/.test(v.workflow||"")),["My templates","Photoreal","Anime - Pink Alchemy","Anime - character LoRAs","Anime - Illustrious (bring a LoRA)","Other"]);
+    sel.value=r.id;fillTemplate();$("#mySave").textContent="Saved ✓";setTimeout(()=>$("#mySave").textContent="Save",1500)}catch(e){alert(e.message)}};
+$("#myDel").onclick=async()=>{const id=$("#template").value;if(!confirm("Delete your template \""+(tplOf(id).label||id)+"\"?"))return;
+  try{await api("/api/mytemplate",{id,delete:true});location.reload()}catch(e){alert(e.message)}};
+
+/* ---------- LoRAs: the picker and the picked lists (c = Create, v = Video, s = Scene keyframes) ---------- */
+let LORAS={private:[],store:[],families:{}},LPK=null;const PICK={c:[],v:[],s:[]};
+async function loadLoras(){try{LORAS=await api("/api/loras")}catch(e){}}
+const loraInfo=n=>LORAS.private.concat(LORAS.store).find(x=>x.name===n)||{name:n,label:n,base:null};
+const famName=f=>f?((LORAS.families||{})[f]||f):"base unknown";
+function wfFor(k){return k==="c"?curWf():k==="v"?($("#vworkflow").value||VWF||videoWorkflow()):(($("#scStillWf")||{}).value||"")}
+/* the template's own LoRA (a "lora" field baked into its workflow): shown in the list like a picked one;
+   removing it runs the template at strength 0 = the general version of the template */
+let RECIPE=null;
+/* trigger words: each LoRA's blocks (identity, outfits...) as chips that toggle the word in the prompt */
+function trigBlocks(L){const t=L.trigger;let bl=Array.isArray(t)?t:(t?[t]:[]);
+  if(!bl.length&&(L.tags||[]).length)return [{words:L.tags,from:"trained on"}];
+  return bl.map(b=>({words:String(b).split(",").map(w=>w.trim()).filter(Boolean)}))}
+const trigField=k=>k==="c"?$("#character"):k==="s"?document.querySelector('#scBlocks textarea[data-b="character"]'):null;
+const tokNorm=w=>w.trim().replace(/^\((.*?)(:[\d.]+)?\)$/,"$1").replace(/\\/g,"").toLowerCase();
+const toks=s=>(s||"").split(",").map(x=>x.trim()).filter(Boolean);
+function hasWord(k,w){const f=trigField(k);return !!f&&toks(f.value).some(t=>tokNorm(t)===tokNorm(w))}
+function toggleWord(k,w,own){const f=trigField(k);if(!f)return;let t=toks(f.value);
+  if(t.some(x=>tokNorm(x)===tokNorm(w)))t=t.filter(x=>tokNorm(x)!==tokNorm(w));
+  else{// after this LoRA's last word already in the prompt, else first
+    const ownN=new Set((own||[]).map(tokNorm));let at=-1;t.forEach((x,i)=>{if(ownN.has(tokNorm(x)))at=i});t.splice(at+1,0,w)}
+  f.value=t.join(", ");chipState(k);if(k==="c")preview()}
+function setWords(k,words,on,own){const f=trigField(k);if(!f)return;let t=toks(f.value);const n=new Set(words.map(tokNorm));
+  t=t.filter(x=>!n.has(tokNorm(x)));
+  if(on){// after this LoRA's last word already in the prompt (an outfit after her identity), else first
+    const ownN=new Set((own||[]).map(tokNorm));let at=-1;t.forEach((x,i)=>{if(ownN.has(tokNorm(x)))at=i});t.splice(at+1,0,...words)}
+  f.value=t.join(", ");chipState(k);if(k==="c")preview()}
+function chipsHtml(L){return trigBlocks(L).map((b,bi)=>`<div class="chips" data-b="${bi}">${b.from?`<span class="hint">${b.from}:</span> `:""}${b.words.map(w=>`<span class="chip" data-w="${esc(w)}" title="click: add or remove it in Character">${esc(w)}</span>`).join("")}${b.words.length>1?`<button class="s lnk" data-all="${bi}" title="add or remove the whole block">all</button>`:""}</div>`).join("")}
+function chipState(k){const box=$("#loras-"+k);if(!box)return;box.querySelectorAll(".chip[data-w]").forEach(c=>c.classList.toggle("on",hasWord(k,c.dataset.w)))}
+function wireChips(k,row,L){if(!row)return;const own=trigBlocks(L).flatMap(b=>b.words);
+  row.querySelectorAll(".chip[data-w]").forEach(c=>c.onclick=()=>toggleWord(k,c.dataset.w,own));
+  row.querySelectorAll("[data-all]").forEach(b=>b.onclick=()=>{const w=trigBlocks(L)[+b.dataset.all].words;setWords(k,w,!w.every(x=>hasWord(k,x)),own)})}
+function loraRow(k,L,strength,fam,extra){const bad=L.base&&fam&&L.base!==fam;
+  return `<div class="lrow"><span class="nm">${extra||""}${L.private?"&#128274; ":""}${esc(L.label||L.name)}${bad?`<br><span class="warn">trained for ${esc(famName(L.base))}, this recipe is ${esc(famName(fam))}: it will do nothing or break the picture</span>`:""}${!L.base?`<br><span class="hint">base model unknown - check it matches (${esc(famName(fam))})</span>`:""}</span>
+    <input type="number" step="0.05" value="${strength}" title="strength">
+    <button class="s" data-x title="remove">&#10005;</button>${k!=="v"?`<div class="tw">${chipsHtml(L)}</div>`:""}</div>`}
+function drawLoras(k){
+  const box=$("#loras-"+k);if(!box)return;const fam=BASE(wfFor(k));
+  const rec=k==="c"&&RECIPE?RECIPE:null,recL=rec?Object.assign({},loraInfo(rec.name),{label:loraInfo(rec.name).label||rec.name}):null;
+  box.innerHTML=(rec?(rec.off?`<div class="lrow"><span class="nm hint">the template's LoRA (${esc(rec.name)}) is off: this is the general version - add your own below</span><button class="s" data-back>put it back</button></div>`
+      :`<div data-rec>${loraRow(k,recL,rec.strength,fam,'<span class="pill">template</span> ')}</div>`):"")+
+    PICK[k].map((x,i)=>`<div data-i="${i}">${loraRow(k,loraInfo(x.name),x.strength??1,fam)}</div>`).join("")+
+    `<div class="row" style="margin-top:6px"><button class="s" style="flex:0 0 auto" data-add>+ Add a LoRA</button><span class="hint">${PICK[k].length||rec?"click a word to add or remove it in "+(k==="s"?"the character block":"Character"):"none: the recipe's own only"}</span></div>`;
+  box.querySelectorAll("[data-i]").forEach(el=>{const i=+el.dataset.i,L=loraInfo(PICK[k][i].name);
+    el.querySelector("input").oninput=e=>{PICK[k][i].strength=+e.target.value;if(k==="c")preview()};
+    el.querySelector("[data-x]").onclick=()=>{setWords(k,trigBlocks(L).flatMap(b=>b.words),false);PICK[k].splice(i,1);drawLoras(k);if(k==="c")preview()};
+    wireChips(k,el,L)});
+  const r=box.querySelector("[data-rec]");
+  if(r){r.querySelector("input").oninput=e=>{RECIPE.strength=+e.target.value;preview()};
+    r.querySelector("[data-x]").onclick=()=>{RECIPE.off=true;setWords(k,trigBlocks(recL).flatMap(b=>b.words),false);drawLoras(k);preview()};
+    wireChips(k,r,recL)}
+  const bk=box.querySelector("[data-back]");if(bk)bk.onclick=()=>{RECIPE.off=false;drawLoras(k);preview()};
+  box.querySelector("[data-add]").onclick=()=>openLoraPicker(k);
+  chipState(k);
+  if(k==="c")$("#loraSum").innerHTML=(PICK.c.length||(rec&&!rec.off))?"LoRAs: "+(rec&&!rec.off?[esc(rec.name)+" "+rec.strength+" (template)"]:[]).concat(PICK.c.map(x=>esc(loraInfo(x.name).label||x.name)+" "+(x.strength??1))).join(", ")+' <a href="#" onclick="openMore();return false">change</a>':(rec&&rec.off?"General version: the template's LoRA is off":"");
+}
+function openMore(){const d=document.querySelector('details[data-keep="more"]');d.open=true;d.scrollIntoView({behavior:"smooth"})}
+function addTrigger(k,trig){const bl=trigBlocks({trigger:trig});if(bl.length)setWords(k,bl[0].words,true)}
+function openLoraPicker(k){LPK=k;$("#lpQ").value="";$("#lpAll").checked=false;drawLoraPicker();$("#lp").classList.add("on");$("#lpQ").focus()}
+function closeLoraPicker(){$("#lp").classList.remove("on")}
+$("#lp").onclick=e=>{if(e.target.id==="lp")closeLoraPicker()};
+$("#lpQ").oninput=drawLoraPicker;$("#lpAll").onchange=drawLoraPicker;
+function drawLoraPicker(){
+  const k=LPK,fam=BASE(wfFor(k)),q=$("#lpQ").value.toLowerCase().trim(),all=$("#lpAll").checked||!fam;
+  const st=LORAS.private_status;
+  $("#lpHint").innerHTML=`Recipe base: <b>${esc(famName(fam))}</b>${all?"":" (showing LoRAs for it, and the ones whose base is unknown)"}.
+    Your own LoRAs: drop <code>.safetensors</code> files in <code>${esc(LORAS.private_dir||"my\\private\\loras")}</code> (private: only this page lists them), then
+    <a href="#" id="lpRe">refresh</a>.${st&&st!=="ok"?`<br><span class="warn">${esc(st)}</span>`:""}`;
+  $("#lpRe").onclick=async e=>{e.preventDefault();await loadLoras();drawLoraPicker()};
+  const have=new Set(PICK[k].map(x=>x.name));
+  const list=LORAS.private.concat(LORAS.store).filter(L=>(all||!L.base||L.base===fam)&&(!q||[L.name,L.trigger,L.about,L.title,(L.tags||[]).join(" ")].join(" ").toLowerCase().includes(q)));
+  $("#lpList").innerHTML=list.length?list.map((L,i)=>`<div class="lpi ${have.has(L.name)?"off":""}" data-n="${esc(L.name)}"><div class="top">
+      <b>${L.private?"&#128274; ":""}${esc(L.label)}</b><span class="pill">${esc(famName(L.base))}</span>${L.mb?`<span class="hint">${L.mb} MB</span>`:""}
+      <button class="s" style="margin-left:auto" data-pick ${have.has(L.name)?"disabled":""}>${have.has(L.name)?"added":"Add"}</button></div>
+      ${L.trigger?`<div class="hint">trigger: <b>${esc(L.trigger)}</b></div>`:""}${L.about?`<div class="hint">${esc(L.about.slice(0,220))}</div>`:""}
+      ${(L.tags||[]).length?`<div class="hint">trained on: ${(L.tags||[]).map(t=>`<span class="chip" data-tag="${esc(t)}" title="use as the trigger">${esc(t)}</span>`).join("")}</div>`:""}
+      ${L.private?`<details><summary>my note on it (base, trigger, strength)</summary><div class="row" style="margin-top:4px">
+        <select data-f="base"><option value="">base: ${L.base_from==="file"&&L.base?"from the file ("+esc(famName(L.base))+")":"unknown"}</option>${Object.entries(LORAS.families||{}).map(([f,n])=>`<option value="${f}" ${L.base_from==="note"&&L.base===f?"selected":""}>${esc(n)}</option>`).join("")}</select>
+        <input type="text" data-f="trigger" placeholder="trigger words" value="${esc(L.trigger)}"><input type="number" step="0.05" data-f="strength" placeholder="strength" value="${L.strength??""}" style="flex:0 0 90px"></div>
+        <input type="text" data-f="about" placeholder="what it is for (only you see this)" value="${esc(L.about)}" style="margin-top:4px"><button class="s" data-save style="margin-top:4px">Save note</button></details>`:""}
+    </div>`).join(""):`<div class="empty">No LoRA ${q?"matches":"for this base model"}${all?"":" - tick <b>show every base model</b>"}.</div>`;
+  $("#lpList").querySelectorAll(".lpi").forEach(el=>{const L=list.find(x=>x.name===el.dataset.n);
+    el.querySelector("[data-pick]").onclick=()=>{PICK[k].push({name:L.name,strength:L.strength??(L.private?1:0.8)});drawLoras(k);if(k==="c"){addTrigger(k,L.trigger);preview()}if(k==="s")addTrigger(k,L.trigger);closeLoraPicker()};
+    el.querySelectorAll("[data-tag]").forEach(c=>c.onclick=()=>{const i=el.querySelector('[data-f="trigger"]');if(i){i.value=i.value?i.value+", "+c.dataset.tag:c.dataset.tag;i.closest("details").open=true}});
+    const sv=el.querySelector("[data-save]");if(sv)sv.onclick=async()=>{const b={name:L.name};el.querySelectorAll("[data-f]").forEach(f=>b[f.dataset.f]=f.type==="number"?(f.value===""?null:+f.value):f.value);
+      try{await api("/api/loranote",b);await loadLoras();drawLoraPicker();drawLoras(k)}catch(e){alert(e.message)}}});
+}
+
 let VWF="";   // the template's workflow when it needs a variant the mode dropdown does not model (lora2)
 function fillVideo(){
   const t=(STATE.video_templates||{})[$("#vtpl").value]||{};
   $("#vprompt").value=t.prompt||"";$("#vnegative").value=t.negative||"";
-  VWF=t.workflow||"";
+  VWF=t.workflow||"";$("#vworkflow").value="";$("#vAbout").textContent=t.about||"";
   if(t.lora)$("#vlora").value=t.lora;
   if(t.strength!=null)$("#vstrength").value=t.strength;
   const wf=t.workflow||"wf_h3vid_i2v.json";
@@ -462,7 +695,7 @@ function fillVideo(){
 function videoMode(){
   const m=$("#vmode").value;
   $("#v1box").hidden=m==="t2v";$("#v2box").hidden=m!=="fl";$("#v3box").hidden=m!=="ref2va";$("#lorarow").hidden=m!=="i2v_lora";veta();
-  vneeds();
+  vneeds();drawLoras("v");
 }
 function setVsize(w,h,l){const k=`${w}x${h}x${l}`;$("#vwidth").value=w;$("#vheight").value=h;$("#vlength").value=l;
   $("#vsize").value=[...$("#vsize").options].some(o=>o.value===k)?k:"custom";$("#vcustom").hidden=$("#vsize").value!=="custom";veta()}
@@ -475,37 +708,39 @@ function veta(){
   $("#veta").innerHTML=`Video is slow: ${t} per clip on an 8 GB card${n>1?`, ${n} clips in a row`:""}; the first one after starting takes 30-60 s more.`+
     (w*h<=512*768?"<br>Draft first. <b>Like a clip?</b> Open it and press <b>Make it in Final</b>: the same script and seed at 768x1152.":"");
 }
-function vneeds(){const m=$("#vmode").value,b={template:$("#vtpl").value,workflow:VWF||videoWorkflow()};
+function vneeds(){const m=$("#vmode").value,b={template:$("#vtpl").value,workflow:$("#vworkflow").value||VWF||videoWorkflow()};
   if(m==="i2v_lora")b.nsfw_lora=$("#vlora").value;showNeeds("#vneeds",b);showMem("#vmem",{template:b.template,workflow:b.workflow})}
 function videoWorkflow(){const m=$("#vmode").value;
   return m==="i2v_lora"?"wf_h3vid_i2v_lora.json":m==="fl"?"wf_h3vid_i2v_fl.json":m==="ref2va"?"wf_h3vid_ref2va6.json":m==="t2v"?"wf_h3vid_t2v_lora.json":"wf_h3vid_i2v.json"}
 $("#govideo").onclick=async()=>{
   const m=$("#vmode").value;
   if(!$("#vprompt").value.trim()){alert("Write the clip's script first.");return}
-  const b={template:$("#vtpl").value,cock:$("#vcock").value,workflow:VWF||videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
+  const b={template:$("#vtpl").value,cock:$("#vcock").value,workflow:$("#vworkflow").value||VWF||videoWorkflow(),prompt:$("#vprompt").value,negative:$("#vnegative").value,
     width:+$("#vwidth").value,height:+$("#vheight").value,length:+$("#vlength").value,count:+$("#vcount").value||1,anime_timing:$("#vtiming").value,breasts:$("#vbreasts").value,dynamics:$("#vdynamics").value};
   const seed=num("#vseed");if(seed!==undefined)b.seed=seed;
   if(m!=="t2v"){if(!SLOTS.v1){alert("Pick a keyframe first.");return}b.image=SLOTS.v1.path}
   if(m==="fl"){if(!SLOTS.v2){alert("First + last needs a last frame.");return}b.last=SLOTS.v2.path}
   if(m==="ref2va"){if(!SLOTS.v3){alert("Two references needs a second reference.");return}b.image1=SLOTS.v3.path}
   if(m==="i2v_lora"){b.nsfw_lora=$("#vlora").value;b.nsfw_strength=+$("#vstrength").value}
+  if(PICK.v.length)b.extra_loras=PICK.v.map(x=>({name:x.name,strength:x.strength}));
   $("#govideo").disabled=true;
   try{await api("/api/generate",b);showWorking()}catch(e){alert(e.message)}
   setTimeout(()=>$("#govideo").disabled=false,800);
 };
 
 /* ---------- jobs ---------- */
-function jobName(j){const t=j.job.template&&tplOf(j.job.template);return t&&t.label?t.label:(j.job.workflow||j.job.template||"").replace(/^wf_|\.json$/g,"")}
+function jobName(j){if(j.label)return j.label+(j.step?" · "+j.step:"");const t=j.job.template&&tplOf(j.job.template);return t&&t.label?t.label:(j.job.workflow||j.job.template||"").replace(/^wf_|\.json$/g,"")}
 async function pollJobs(){
   let js;try{js=await api("/api/jobs")}catch(e){return}
   const now=Date.now()/1000;
   const act=js.filter(j=>["queued","running"].includes(j.status)||(j.status==="error"&&now-j.finished_at<600)||(j.status==="cancelled"&&now-j.finished_at<8));
   const live=js.filter(j=>["queued","running"].includes(j.status)).length;
   $("#busy").hidden=!live;$("#busy").innerHTML=`&#9632; Stop (${live} in progress)`;
-  const h=act.map(j=>`<div class="job"><span class="dot ${j.status}"></span><span>${j.status==="running"?"working… "+Math.round(now-(j.started_at||now))+" s":j.status==="queued"?"waiting":j.status==="cancelled"?"stopped":"<b>problem:</b> "+esc(j.error)}</span><span class="hint">${esc(jobName(j))} · seed ${esc(j.job.seed)}</span>${["queued","running"].includes(j.status)?`<button class="s stop" onclick="stopJob('${j.id}')" title="Stop this one">&#10005; Stop</button>`:""}</div>${j.note&&["queued","running"].includes(j.status)?`<div class="mem">${esc(j.note)}</div>`:""}`).join("");
+  const h=act.map(j=>`<div class="job"><span class="dot ${j.status}"></span><span>${j.status==="running"?"working… "+Math.round(now-(j.started_at||now))+" s":j.status==="queued"?"waiting":j.status==="cancelled"?"stopped":"<b>problem:</b> "+esc(j.error)}</span><span class="hint">${esc(jobName(j))}${j.job.seed!=null?" · seed "+esc(j.job.seed):""}</span>${["queued","running"].includes(j.status)?`<button class="s stop" onclick="stopJob('${j.id}')" title="Stop this one">&#10005; Stop</button>`:""}</div>${j.note&&["queued","running"].includes(j.status)?`<div class="mem">${esc(j.note)}</div>`:""}`).join("");
   $$(".jobsCard").forEach(c=>{c.style.display=act.length?"block":"none";c.querySelector(".jobs").innerHTML=h});
   let fresh=false;for(const j of js)if(j.status==="done"&&!seenDone.has(j.id)){seenDone.add(j.id);fresh=true}
-  if(fresh){await getHist();refreshViews()}
+  if(fresh){await getHist();refreshViews();if(SC.mine&&js.some(j=>j.job.scene===SC.id))scRefresh()}
+  if(SC.mine){const a=js.find(j=>j.job.scene===SC.id&&j.status==="running");const n=a&&a.note||"";if(n!==SCNOTE){SCNOTE=n;if(n)scRefresh()}}
 }
 function showWorking(){$$(".jobsCard").forEach(c=>{c.style.display="block";if(!c.querySelector(".job"))c.querySelector(".jobs").innerHTML='<div class="job"><span class="dot running"></span><span>starting…</span></div>'});pollJobs()}
 async function stopJob(id){try{await api("/api/cancel",id?{id}:{})}catch(e){alert(e.message)}pollJobs()}
@@ -597,13 +832,13 @@ function openLb(r){
   const j=job||{};
   $("#lbInfo").textContent=[r.template&&"template: "+r.template,(r.workflow||j.workflow)&&"workflow: "+(r.workflow||j.workflow),
     r.width&&`size: ${r.width}x${r.height}${r.length?"  frames: "+r.length:""}`,`seed: ${r.seed??"?"}${r.steps?"  steps: "+r.steps:""}${r.secs?"  "+r.secs+" s to make":""}`,
-    j.image&&"from: "+(relOf(j.image)||j.image),j.last&&"last frame: "+(relOf(j.last)||j.last),j.nsfw_lora&&`LoRA: ${j.nsfw_lora} ${j.nsfw_strength??""}`,
+    j.image&&"from: "+(relOf(j.image)||j.image),j.last&&"last frame: "+(relOf(j.last)||j.last),j.nsfw_lora&&`LoRA: ${j.nsfw_lora} ${j.nsfw_strength??""}`,(j.extra_loras||[]).length&&"added LoRAs: "+j.extra_loras.map(x=>x.name+" "+(x.strength??1)).join(", "),
     r.time&&"made: "+r.time.replace("T"," "),"",r.prompt||"",r.negative?"\nNOT: "+r.negative:""].filter(x=>x!==undefined&&x!==null&&x!==false).join("\n");
   $("#lb").classList.add("on");
 }
 function closeLb(){$("#lb").classList.remove("on");$("#lbVid").pause()}
 $("#lb").onclick=e=>{if(e.target.id==="lb")closeLb()};
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(e.shiftKey){stopJob();return}closeLb();closePicker()}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(e.shiftKey){stopJob();return}closeLb();closePicker();closeLoraPicker()}});
 $$("#lb .rates button").forEach(b=>b.onclick=async()=>{const r=b.dataset.r===LBREC.rating?null:b.dataset.r;
   try{await api("/api/rate",{file:LBREC.file,rating:r||"none",note:""})}catch(e){alert(e.message);return}
   LBREC.rating=r;$$("#lb .rates button").forEach(x=>x.classList.toggle("on",x.dataset.r===r));await getHist();refreshViews()});
@@ -618,14 +853,19 @@ $("#lbReuse").onclick=()=>{const r=LBREC,j=r.job||{template:r.template};closeLb(
     $("#vbreasts").value=j.breasts||"template";
     $("#vdynamics").value=j.dynamics||"template";
     $("#vtiming").value=j.anime_timing||((STATE.video_templates||{})[j.template]||{}).anime_timing||"off";
-    if(j.width&&j.height&&j.length)setVsize(j.width,j.height,j.length);$("#vseed").value=r.seed??"";videoMode();return show("video")}
+    if(j.width&&j.height&&j.length)setVsize(j.width,j.height,j.length);$("#vseed").value=r.seed??"";
+    PICK.v=(j.extra_loras||[]).map(x=>Object.assign({},x));videoMode();return show("video")}
+  if(j.scene){closeLb();return show("scene")}
   if(j.template&&[...$("#template").options].some(o=>o.value===j.template)){$("#template").value=j.template;fillTemplate()}
   for(const k of ["character","scene","prompt","negative"])if(j[k]!=null)$("#"+k).value=j[k];
   if(j.body)$("#body").value=j.body;if(j.framing)$("#framing").value=j.framing;
   for(const k of ["width","height","steps","cfg"])if(j[k]!=null)$("#"+k).value=j[k];
   $("#quality").value=qualityFor(curWf(),+$("#steps").value);
   SLOTS.ref=null;drawSlot("ref");slotFromPath("ref",j.image);
-  $("#seed").value=r.seed??"";preview();eta();show("create")};
+  if(j.style!=null)$("#style").value=j.style;if(j.workflow&&j.workflow!==tplOf(j.template).workflow)$("#workflow").value=j.workflow;
+  PICK.c=(j.extra_loras||[]).map(x=>Object.assign({},x));
+  if(RECIPE&&j.strength!=null){RECIPE.off=+j.strength===0;if(!RECIPE.off)RECIPE.strength=+j.strength}
+  $("#seed").value=r.seed??"";onWf();show("create")};
 $("#lbVar").onclick=async()=>{const r=LBREC,j=Object.assign({},r.job);delete j.seed;j.count=isVid(r.file)?2:4;
   try{await api("/api/generate",j);closeLb();showWorking()}catch(e){alert(e.message)}};
 $("#lbFinal").onclick=async()=>{const r=LBREC,j=Object.assign({},r.job,{seed:r.seed,count:1});
@@ -639,6 +879,142 @@ $("#lbRef").onclick=()=>{setSlot("ref",pathOf(LBREC.file),"/img/"+encodeURI(LBRE
 $("#lbOpen").onclick=()=>window.open("/img/"+encodeURI(LBREC.file),"_blank");
 $("#lbShare").onclick=async()=>{const pub=!LBREC.public;await libAct("/api/visibility",[LBREC.file],{public:pub});LBREC.public=pub;openLb(LBREC)};
 $("#lbTrash").onclick=async()=>{const f=LBREC.file;closeLb();await libAct("/api/trash",[f])};
+
+/* ---------- Scene: a multi-shot video as a list of shots (kit/studio/scenes.py, docs/STORY.md) ---------- */
+let SC={id:null,story:null,state:{made:{},takes:{}},mine:false},SCLIST=null,SCNOTE="";
+const clone=o=>JSON.parse(JSON.stringify(o));
+async function loadScenes(){
+  try{SCLIST=await api("/api/scenes")}catch(e){return}
+  const sel=$("#scOpen"),keep=sel.value;sel.innerHTML="";
+  const og=(label,items)=>{if(!items.length)return;const g=document.createElement("optgroup");g.label=label;items.forEach(([v,t])=>g.appendChild(new Option(t,v)));sel.appendChild(g)};
+  og("My scenes",SCLIST.mine.map(m=>["mine:"+m.id,`${m.id} (${m.shots} shots)`]));
+  og("Starters - the approved stories, opened as your own copy",SCLIST.starters.flatMap(s=>[["kit:"+s.id,`${s.id} (${s.shots} shots)`]].concat(s.variants.map(v=>["kit:"+s.id+":"+v,`${s.id}, variant ${v}`]))));
+  og("New",[["blank","a new scene from nothing (Illustrious keyframes + H3 clips)"]]);
+  if([...sel.options].some(o=>o.value===keep))sel.value=keep;
+  if(!SC.story&&SCLIST.mine.length)sel.value="mine:"+SCLIST.mine[0].id;
+}
+$("#scLoad").onclick=async()=>{const v=$("#scOpen").value;if(!v)return;
+  if(SC.story&&SC.dirty&&!confirm("Open another scene? Unsaved changes to this one are lost."))return;
+  try{if(v==="blank"){SC={id:null,story:clone(SCLIST.blank),state:{made:{},takes:{}},mine:false}}
+    else{const r=await api("/api/scene/load",{source:v});SC={id:r.id||null,story:r.story,state:r.state,mine:r.mine}}
+    $("#scName").value=SC.id||SC.story.name||"";scDraw()}catch(e){alert(e.message)}};
+async function scRefresh(){if(!SC.mine)return;try{const r=await api("/api/scene/load",{source:"mine:"+SC.id});SC.state=r.state;scDrawResults()}catch(e){}}
+function scDraw(){
+  const S=SC.story;SC.dirty=false;
+  $("#scAbout").textContent=(S.about||"")+(SC.mine?"":"  - not saved yet: Save (or any Make button) keeps it as your own scene.");
+  $("#scDel").hidden=!SC.mine;
+  const B=S.blocks||{};
+  $("#scBlocks").innerHTML=Object.keys(B).map(k=>`<label class="h">{${esc(k)}} <small>${/^script_/.test(k)?"clip script prose":"keyframe tags"}</small></label><textarea data-b="${esc(k)}" rows="2">${esc(B[k])}</textarea>`).join("");
+  const st=S.still||{},cl=S.clip||{};
+  if(![...$("#scStillWf").options].some(o=>o.value===st.workflow)&&st.workflow)$("#scStillWf").add(new Option(st.workflow,st.workflow));
+  $("#scStillWf").value=st.workflow||"wf_illu.json";$("#scStillW").value=st.width||"";$("#scStillH").value=st.height||"";$("#scStillNeg").value=st.negative||"";
+  $("#scStillLora").innerHTML=st.lora?`The keyframe workflow's own LoRA: <b>${esc(st.lora)}</b> ${st.strength??""}`:"";
+  PICK.s=(st.extra_loras||[]).map(x=>Object.assign({},x));drawLoras("s");
+  $("#scClipW").value=cl.width||"";$("#scClipH").value=cl.height||"";$("#scSeed").value=S.seed||"";
+  $("#scShots").innerHTML=S.shots.map((sh,i)=>scShotHtml(sh,i)).join("");
+  scBindShots();scDrawResults();
+  $$("#scene input, #scene textarea, #scene select").forEach(el=>{if(el.id!=="scOpen")el.addEventListener("input",()=>SC.dirty=true)});
+}
+const TIMING={off:"as generated",on2:"anime on 2s",on3:"anime on 3s",smooth:"smooth (RIFE)"};
+function scShotHtml(sh,i){
+  const S=SC.story,prev=S.shots.slice(0,i).map(x=>x.id);
+  const start=sh.key_image?"pic":sh.start_from?(sh.extend?"ext:":"last:")+sh.start_from:"own";
+  const vt=Object.entries(STATE.video_templates||{});
+  return `<div class="card shot" data-i="${i}">
+   <div class="head"><b>Shot ${i+1}</b><input type="text" data-f="id" value="${esc(sh.id)}" title="shot id">
+     <label class="hint" style="flex:0 0 auto">seconds</label><input type="number" step="0.1" data-f="seconds" value="${sh.seconds??5}">
+     <select data-f="timing">${Object.entries(TIMING).map(([k,v])=>`<option value="${k}" ${(sh.timing||"off")===k?"selected":""}>${v}</option>`).join("")}</select>
+     <span class="tools"><button class="s" data-a="up" title="move up" ${i?"":"disabled"}>&#8593;</button><button class="s" data-a="down" title="move down" ${i<S.shots.length-1?"":"disabled"}>&#8595;</button>
+     <button class="s" data-a="dup" title="duplicate">&#10697;</button><button class="s danger" data-a="del" title="remove">&#10005;</button></span></div>
+   <div class="row" style="margin-top:6px">
+     <div><label class="h">Starts from</label><select data-f="start">
+       <option value="own" ${start==="own"?"selected":""}>its own keyframe (a new still)</option>
+       ${prev.map(p=>`<option value="ext:${esc(p)}" ${start==="ext:"+p?"selected":""}>continues shot ${esc(p)} (extend: keeps the look and size)</option><option value="last:${esc(p)}" ${start==="last:"+p?"selected":""}>the last frame of shot ${esc(p)}</option>`).join("")}
+       <option value="pic" ${start==="pic"?"selected":""}>a picture of mine</option></select></div>
+     <div><label class="h">Clip recipe <small>its workflow and act LoRA</small></label><select data-f="template">
+       ${vt.map(([k,v])=>`<option value="${esc(k)}" ${sh.template===k?"selected":""}>${esc(v.label||k)}</option>`).join("")}</select></div>
+   </div>
+   <div data-show="pic" ${start==="pic"?"":"hidden"} class="hint" style="margin-top:6px">keyframe: <b>${esc(sh.key_image||"none")}</b> <button class="s" data-a="pick">pick one</button></div>
+   <div data-show="own" ${start==="own"?"":"hidden"}><label class="h">Keyframe tags <small>{style}, {character} ... are filled from Cast and look</small></label><textarea data-f="still" rows="3">${esc(sh.still||"")}</textarea></div>
+   <label class="h">Clip script <small>one action; say how it starts from the keyframe's pose</small></label><textarea data-f="script" rows="5">${esc(sh.script||"")}</textarea>
+   ${sh.clip_file?`<div class="hint" style="margin-top:6px">Uses a finished clip: <b>${esc(sh.clip_file)}</b>${sh.clip_range?" frames "+sh.clip_range.join("-"):""} <button class="s" data-a="own">Make my own</button></div>`:""}
+   <div class="res" data-res></div>
+   <div class="row" style="margin-top:8px">
+     ${start==="own"?`<button class="s" data-a="key" style="flex:0 0 auto">&#9654; Keyframe</button>`:""}
+     <button class="s" data-a="clip" style="flex:0 0 auto" ${sh.clip_file?"disabled":""}>&#9654; Clip</button>
+     <label class="hint" style="flex:0 0 auto"><input type="checkbox" data-a="reseed" checked> new seed each time</label>
+   </div></div>`;
+}
+function scBindShots(){
+  $$("#scShots .shot").forEach(card=>{const i=+card.dataset.i;
+    card.querySelector('[data-f="start"]').onchange=e=>{scCollect();const v=e.target.value,sh=SC.story.shots[i];
+      delete sh.start_from;delete sh.extend;if(v!=="pic")delete sh.key_image;
+      if(v.startsWith("ext:")){sh.start_from=v.slice(4);sh.extend=22}else if(v.startsWith("last:"))sh.start_from=v.slice(5);
+      else if(v==="pic"&&!sh.key_image){scDrawKeep();return scPickKey(i)}
+      scDrawKeep()};
+    card.querySelectorAll("[data-a]").forEach(b=>{const a=b.dataset.a;if(a==="reseed")return;b.onclick=()=>scShotAct(i,a,card)});
+  });
+}
+function scDrawKeep(){const y=window.scrollY;$("#scShots").innerHTML=SC.story.shots.map((sh,i)=>scShotHtml(sh,i)).join("");scBindShots();scDrawResults();window.scrollTo(0,y);SC.dirty=true}
+function scPickKey(i){picker("shot "+SC.story.shots[i].id+"'s keyframe",rel=>{SC.story.shots[i].key_image=rel;delete SC.story.shots[i].start_from;delete SC.story.shots[i].extend;scDrawKeep()})}
+async function scShotAct(i,a,card){
+  scCollect();const S=SC.story,sh=S.shots[i];
+  if(a==="up"||a==="down"){const j=a==="up"?i-1:i+1;[S.shots[i],S.shots[j]]=[S.shots[j],S.shots[i]];return scDrawKeep()}
+  if(a==="del"){if(!confirm("Remove shot "+sh.id+"?"))return;S.shots.splice(i,1);S.shots.forEach(x=>{if(x.start_from===sh.id){delete x.start_from;delete x.extend}});return scDrawKeep()}
+  if(a==="dup"){const c=clone(sh);c.id=scNewId();delete c.clip_file;delete c.clip_range;delete c.seed;S.shots.splice(i+1,0,c);return scDrawKeep()}
+  if(a==="pick")return scPickKey(i);
+  if(a==="own"){delete sh.clip_file;delete sh.clip_range;return scDrawKeep()}
+  if(a==="key"||a==="clip"){const reseed=card.querySelector('[data-a="reseed"]').checked;
+    await scRun({what:a==="key"?"keys":"clips",only:[sh.id],redo:true,reseed})}
+}
+function scNewId(){const ids=new Set(SC.story.shots.map(s=>s.id));let n=SC.story.shots.length+1;while(ids.has("s"+n))n++;return "s"+n}
+$("#scAddShot").onclick=()=>{if(!SC.story)return;scCollect();const S=SC.story,last=S.shots[S.shots.length-1];
+  const sh={id:scNewId(),seconds:5,timing:"off",template:last?last.template:"anime_ll_headgrab_push",still:last?last.still:"{style}, {character}, {setting}",
+    script:last?last.script:""};if(last){sh.start_from=last.id;sh.extend=22}S.shots.push(sh);scDrawKeep()};
+$("#scAddBlock").onclick=()=>{const k=$("#scNewBlock").value.trim().replace(/\W+/g,"_");if(!k||!SC.story)return;scCollect();SC.story.blocks=SC.story.blocks||{};if(!(k in SC.story.blocks))SC.story.blocks[k]="";$("#scNewBlock").value="";scDraw();SC.dirty=true};
+$("#scStillWf").onchange=()=>drawLoras("s");
+function scCollect(){
+  const S=SC.story;if(!S)return;
+  S.blocks={};$$("#scBlocks textarea").forEach(t=>S.blocks[t.dataset.b]=t.value);
+  S.still=Object.assign({},S.still||{},{workflow:$("#scStillWf").value,negative:$("#scStillNeg").value});
+  for(const [k,el] of [["width","#scStillW"],["height","#scStillH"]]){const v=+$(el).value;if(v)S.still[k]=v}
+  if(PICK.s.length)S.still.extra_loras=PICK.s.map(x=>({name:x.name,strength:x.strength}));else delete S.still.extra_loras;
+  S.clip=Object.assign({},S.clip||{});for(const [k,el] of [["width","#scClipW"],["height","#scClipH"]]){const v=+$(el).value;if(v)S.clip[k]=v}
+  if(+$("#scSeed").value)S.seed=+$("#scSeed").value;
+  $$("#scShots .shot").forEach(card=>{const sh=S.shots[+card.dataset.i];
+    card.querySelectorAll("[data-f]").forEach(el=>{const f=el.dataset.f;if(f==="start")return;sh[f]=el.type==="number"?+el.value:el.value})});
+}
+async function scSave(){
+  scCollect();const name=$("#scName").value.trim()||SC.story.name;
+  if(!SC.mine&&SCLIST.mine.some(m=>m.id===name.toLowerCase().replace(/[^a-z0-9_]+/g,"_"))&&!confirm(`You already have a scene called ${name}. Replace it with this one?`))throw new Error("not saved");
+  const r=await api("/api/scene/save",{id:name,story:SC.story});SC.id=r.id;SC.mine=true;SC.state=r.state;SC.dirty=false;$("#scName").value=r.id;
+  $("#scDel").hidden=false;$("#scAbout").textContent=SC.story.about||"";await loadScenes();$("#scOpen").value="mine:"+r.id;return r;
+}
+$("#scSave").onclick=async()=>{try{await scSave();$("#scSave").textContent="Saved ✓";setTimeout(()=>$("#scSave").textContent="Save",1500)}catch(e){if(e.message!=="not saved")alert(e.message)}};
+$("#scDel").onclick=async()=>{if(!SC.mine||!confirm(`Delete your scene ${SC.id}? Its clips stay in My pictures.`))return;
+  try{await api("/api/scene/delete",{id:SC.id});SC={id:null,story:null,state:{made:{},takes:{}},mine:false};$("#scShots").innerHTML="";await loadScenes()}catch(e){alert(e.message)}};
+async function scRun(b){if(!SC.story)return;
+  try{await scSave();await api("/api/scene/render",Object.assign({id:SC.id},b));showWorking()}catch(e){if(e.message!=="not saved")alert(e.message)}}
+$("#scAll").onclick=()=>scRun({what:"all"});
+$("#scKeys").onclick=()=>scRun({what:"keys"});
+$("#scCut").onclick=async()=>{if(!SC.story)return;try{await scSave();await api("/api/scene/cut",{id:SC.id});showWorking()}catch(e){if(e.message!=="not saved")alert(e.message)}};
+function scMedia(rel,label,name){if(!rel)return"";const v=isVid(rel),takes=(SC.state.takes||{})[name]||[];
+  return `<div class="pic">${v?`<video src="/img/${encodeURI(rel)}" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause()" data-open="${esc(rel)}"></video>`:`<img src="/img/${encodeURI(rel)}" alt="" data-open="${esc(rel)}">`}
+    <div class="hint">${esc(label)}${takes.length>1?` · <select data-take="${esc(name)}" style="width:auto;padding:1px 4px;font-size:12px">${takes.map((t,i)=>`<option value="${esc(t)}" ${t===rel?"selected":""}>take ${i+1}</option>`).join("")}</select>`:""}</div></div>`}
+function scDrawResults(){
+  if(!SC.story)return;const M=(SC.state||{}).made||{};let miss=0,secs=0;
+  $$("#scShots .shot").forEach(card=>{const sh=SC.story.shots[+card.dataset.i];if(!sh)return;
+    const key=sh.key_image||M[sh.id+"_key"],clips=Object.keys(M).filter(n=>n.startsWith(sh.id+"_c")).sort().map(n=>[n,M[n]]);
+    if(sh.clip_file)clips.splice(0,clips.length,[sh.id+"_c0",sh.clip_file]);
+    const own=!sh.start_from&&!sh.key_image;if(own&&!key){miss++;secs+=30}if(!clips.length){miss++;secs+=Math.round(330*(sh.seconds||5)/5)}
+    card.querySelector("[data-res]").innerHTML=(own||sh.key_image?(key?scMedia(key,"keyframe",sh.id+"_key"):'<div class="pic"><div class="empty" style="padding:20px 4px">no keyframe yet</div></div>'):"")+
+      (clips.length?clips.map(([n,f],k)=>scMedia(f,clips.length>1?"clip "+(k+1):"clip",n)).join(""):'<div class="pic"><div class="empty" style="padding:20px 4px">no clip yet</div></div>');
+  });
+  $$("#scShots [data-open]").forEach(el=>el.onclick=()=>{const r=HIST.find(x=>x.file===el.dataset.open);openLb(r||{file:el.dataset.open})});
+  $$("#scShots [data-take]").forEach(el=>el.onchange=async()=>{try{const r=await api("/api/scene/pick",{id:SC.id,name:el.dataset.take,file:el.value});SC.state=r.state;scDrawResults()}catch(e){alert(e.message)}});
+  $("#scEta").textContent=miss?`${miss} thing${miss>1?"s":""} still to make: about ${Math.max(1,Math.round(secs/60))} min on an 8 GB card (a 5 s clip takes ~5-6 min at 1152x768).`:"Every shot is made: press Cut the scene.";
+  const cut=(SC.state||{}).cut;$("#scCutBox").innerHTML=cut?`<b>Latest cut</b><video src="/img/${encodeURI(cut)}" controls playsinline style="width:100%;border-radius:8px;margin-top:6px"></video><div class="hint">${esc(cut)}</div>`:"";
+}
 
 init().catch(e=>{document.body.insertAdjacentHTML("afterbegin",`<p style="color:#c94a4a;padding:10px">Could not load the Studio: ${esc(e.message)}</p>`)});
 </script>

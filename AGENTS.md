@@ -61,9 +61,9 @@ AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go
 
 1. **Confirm the folder**: the session's workspace is the Studio repo. Read the README and this
    file first. **Everything runs on this one PC.** The engine is the ComfyUI you install here, at
-   127.0.0.1:8188; every tool defaults to it (`--box local`). Names like ampere, lame, maximus,
-   bunker, cutestation or nixlab in the docs are the author's own machines (measurements and
-   author-only notes): never look for them, scan the network or ssh anywhere on a user's install.
+   127.0.0.1:8188; every tool defaults to it (`--box local`). Machine names in the docs
+   (cutestation, a 3080) are where the author measured things: never look for other machines,
+   scan the network or ssh anywhere on a user's install.
 1b. **Account**: DSH Desktop is signed in with the user's DeepSeek account and runs on their
    credits - there is **no API key** to handle. If a model call fails with an auth or balance
    error, send them to Settings â†’ Account and platform.deepseek.com billing; never ask for a key.
@@ -125,6 +125,29 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 
 ## 2a. The page
 
+Every tab starts simple and drills down: the recipe, the few fields that matter and the Make
+button are always shown; **More options** (LoRAs, body, framing, reference, seed) and **Expert**
+(prompt template, {style} block, size/steps/cfg, workflow override, full prompt, **Save as my
+template** -> `my/presets.json`, marked "My templates") fold away and stay as the user left them.
+
+- **LoRAs on any recipe** (`kit/studio/loras.py`): a picker lists the store's LoRAs (base and trigger
+  from `kit/models.json` `base`/`trigger`, else the file header) and the user's **private LoRAs**:
+  `.safetensors` files dropped in `my/private/loras/`, seen by the engine as `private/<name>` through
+  a junction `<models_dir>/loras/private` that the page makes at start (local engine only). The page
+  filters by the recipe's base family, warns on a mismatch, reads the file's training tags as
+  trigger suggestions and keeps the user's note (base, trigger, strength) in
+  `my/private/loras/_studio.json`. The job carries `extra_loras: [{name, strength}]`; `core.run`
+  chains them after the workflow's own LoRAs (LoraLoader with CLIP on checkpoint graphs, model-only
+  elsewhere). Agents never list `my/private/loras/` (it is private), and `modelstore.disk_files`
+  skips the link. `wf_illu.json` + template `illu_any_lora` = plain Illustrious for any SDXL LoRA.
+- **Scene** tab (`kit/studio/scenes.py`): manual multi-shot videos on the story format and the same
+  renderer as `run_story.py` (`story.render`). Open a starter (a `kit/stories/` story, plus the
+  variants it lists in `page_variants`), a blank scene, or one of the user's scenes
+  (`my/private/scenes/<id>.json` + `<id>.made.json` with every take). One card per shot: starts from
+  its own keyframe / extends shot X / last frame of shot X / a picture; keyframe tags, script,
+  seconds, cadence; per-shot Keyframe and Clip buttons (new seed each take, earlier takes
+  selectable), Make everything missing, Cut. Renders go to `<data_dir>/studio/scenes/<id>/` as the
+  user's private pictures.
 - **Generate**: template, body type, framing, character/scene/prompt/negative, **quality**
   (Preview / Standard / Final = the measured 4/6/8 or 12/20/30 steps), size/steps/cfg, seed/count,
   reference picture, a live "what the model reads" preview and a time estimate. The reference slot
@@ -149,11 +172,15 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
 
 `AGENTS.local.md` is git-ignored and only applies when the author of the repo is the one working
 (the user who made the reference clips). It points at `~/Documents/uwu` and the gold-standard
-clips, at the author's nix-lab copy for general generation findings, and at the **infrastructure
-notes** (how to reach ampere, lame, maximus and bunker from this machine, and the fish/ssh
-quirks). **Do not commit it, do not copy its contents into tracked docs, and do not read the
+clips, and at the **infrastructure
+notes** (how to reach the author's lab machines, and the fish/ssh quirks); the engines
+themselves are in the git-ignored `tools/boxes.local.json` (`--box` names, `tools/localboxes.py`). **Do not commit it, do not copy its contents into tracked docs, and do not read the
 reference clips for other users.** If the file is missing, this is not an author session: use
 only the public recipes.
+
+This repo is the source of the image and video generation knowledge, together with
+`../lovelive-studio` (read only from here): other projects point at these two, not the other way
+round, so never go looking elsewhere for generation findings.
 
 ## 4. Models and workflows
 
@@ -287,8 +314,8 @@ Foley pass or a dedicated audio tool is the likely answer.
 1. Put jobs in `jobs/<round>.jsonl` (one JSON object per line, `name`, `prompt`, `seed`, ...).
 2. Run the batch: `python tools/lab.py --wf wf_...json --jobs jobs/<round>.jsonl --box local --sub gl/<round> --out gens/<round>`.
    **On the user's own machine the box is always `local`** (127.0.0.1:8188, the ComfyUI that
-   `kit\start.ps1` runs). `ampere` (10.0.10.240) and `lame` (10.0.10.56) only exist on the author's
-   home network for experiments - never assume them, never go looking for them on a normal install.
+   `kit\start.ps1` runs). Other `--box` names come only from the git-ignored
+   `tools/boxes.local.json` of an author session - never assume them, never go looking for them.
    Every recipe in `docs/` must be runnable on `local` with 8 GB, which is the target; the boxes
    are just faster ways to try a variant. `tools/lab.py` cleans only its own outputs afterwards,
    swaps model names for the quantization the engine has, and skips (with the download link) any

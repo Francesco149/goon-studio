@@ -52,15 +52,41 @@ function Stop-Ours {
 if ($Stop) { Stop-Ours; Write-Host "stopped"; exit 0 }
 if ($RestartEngine) {
     Get-CimInstance Win32_Process -Filter "Name = 'python.exe'" |
-        Where-Object { $_.ExecutablePath -eq $Py -and $_.CommandLine -like "*main.py*" } |
+        Where-Object { $_.ExecutablePath -eq $Py -and $_.CommandLine -like "*main.py*" -and $_.CommandLine -notlike "*--port 8189*" } |
         ForEach-Object { try { Stop-Process -Id $_.ProcessId -Force } catch {} }
     $t0 = Get-Date
-    while ((Up "$($S.comfy_url)/system_stats") -and ((Get-Date) - $t0).TotalSeconds -lt 15) { Start-Sleep -Milliseconds 300 }
+    while ((Up "http://127.0.0.1:8188/system_stats") -and ((Get-Date) - $t0).TotalSeconds -lt 15) { Start-Sleep -Milliseconds 300 }
 }
 
-if (-not (Up "$($S.comfy_url)/system_stats")) {
+# The engine is always the ComfyUI on this PC (127.0.0.1; the port from comfy_url, default 8188).
+$Url = "http://127.0.0.1:8188"
+if ("$($S.comfy_url)" -match '^https?://(127\.0\.0\.1|localhost)(:\d+)?/?$') { $Url = "$($S.comfy_url)".TrimEnd("/") }
+$Port = if ($Url -match ':(\d+)$') { $Matches[1] } else { "8188" }
+
+if (-not (Up "$Url/system_stats")) {
+    # an engine that holds the port but does not answer (hung, or still loading after a crash) blocks
+    # a new one: give it 20 s, then stop that process only (not every python.exe)
+    $hold = Get-NetTCPConnection -State Listen -LocalPort $Port -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($hold) {
+        Write-Host "port $Port is taken by a process that does not answer; waiting 20 s ..."
+        $t0 = Get-Date
+        while (-not (Up "$Url/system_stats") -and ((Get-Date) - $t0).TotalSeconds -lt 20) { Start-Sleep -Seconds 2 }
+        if (-not (Up "$Url/system_stats")) {
+            $p = Get-CimInstance Win32_Process -Filter "ProcessId = $($hold.OwningProcess)"
+            if ($p -and $p.Name -eq "python.exe" -and $p.CommandLine -like "*main.py*") {
+                Write-Host "stopping the stuck engine (pid $($p.ProcessId))" -ForegroundColor Yellow
+                Stop-Process -Id $p.ProcessId -Force; Start-Sleep -Seconds 2
+            } else {
+                Write-Host "port $Port is used by $($p.Name) (pid $($hold.OwningProcess)), not a ComfyUI: close it or change comfy_url" -ForegroundColor Red
+                exit 3
+            }
+        }
+    }
+}
+
+if (-not (Up "$Url/system_stats")) {
     if (-not (Test-Path $Py)) { Write-Host "python not found: $Py (set engine_dir or python in my\settings.json)" -ForegroundColor Red; exit 2 }
-    $cargs = @("-s", "ComfyUI\main.py", "--windows-standalone-build", "--listen", "127.0.0.1", "--port", "8188",
+    $cargs = @("-s", "ComfyUI\main.py", "--windows-standalone-build", "--listen", "127.0.0.1", "--port", $Port,
                "--output-directory", (Join-Path $Data "outputs"), "--input-directory", (Join-Path $Data "inputs"),
                "--disable-auto-launch", "--preview-method", "none")
     # extra_flags is one string in settings.json; split it so ComfyUI gets separate arguments
@@ -69,22 +95,37 @@ if (-not (Up "$($S.comfy_url)/system_stats")) {
     Write-Host "starting ComfyUI ..."
     Launch $Py $cargs $Engine (Join-Path $Logs "comfyui.log") (Join-Path $Logs "comfyui.err.log")
     $t0 = Get-Date
-    while (-not (Up "$($S.comfy_url)/system_stats")) {
-        if (((Get-Date) - $t0).TotalSeconds -gt 240) { Write-Host "ComfyUI did not start; see gallery\logs" -ForegroundColor Red; exit 3 }
+    while (-not (Up "$Url/system_stats")) {
+        if (((Get-Date) - $t0).TotalSeconds -gt 240) {
+            Write-Host "ComfyUI did not start in 4 minutes. Last lines of gallery\logs\comfyui.err.log:" -ForegroundColor Red
+            Get-Content (Join-Path $Logs "comfyui.err.log") -Tail 15 -ErrorAction SilentlyContinue
+            exit 3
+        }
         Start-Sleep -Seconds 2
     }
 }
-
-$env:GOON_STUDIO_PORT = "8191"
-if (-not (Up "http://127.0.0.1:8191/api/state")) {
+# the page is started through WMI and does not inherit this shell's environment: pass the engine on
+# its command line. A page left running from an earlier start that cannot reach the engine is
+# restarted so it picks up this one.
+function Page-Up { try { return (Invoke-RestMethod -TimeoutSec 3 "http://127.0.0.1:8191/api/state") } catch { return $null } }
+$st = Page-Up
+if ($st -and -not $st.comfy_up -and (Up "$Url/system_stats")) {
+    Write-Host "the running page talks to an engine that is gone: restarting the page"
+    Get-CimInstance Win32_Process -Filter "Name = 'python.exe'" |
+        Where-Object { $_.CommandLine -like "*kit\studio\server.py*" -and $_.CommandLine -notlike "*8291*" } |
+        ForEach-Object { try { Stop-Process -Id $_.ProcessId -Force } catch {} }
+    Start-Sleep -Seconds 1
+    $st = $null
+}
+if (-not $st) {
     $server = Join-Path $Repo "kit\studio\server.py"
     Write-Host "starting the Studio page ..."
-    Launch $Py @($server) (Join-Path $Repo "kit\studio") (Join-Path $Logs "studio.log") (Join-Path $Logs "studio.err.log")
+    Launch $Py @($server, "--engine", $Url, "--port", "8191") (Join-Path $Repo "kit\studio") (Join-Path $Logs "studio.log") (Join-Path $Logs "studio.err.log")
     $t0 = Get-Date
     while (-not (Up "http://127.0.0.1:8191/api/state")) {
-        if (((Get-Date) - $t0).TotalSeconds -gt 30) { Write-Host "the page did not start; see gallery\logs" -ForegroundColor Red; exit 4 }
+        if (((Get-Date) - $t0).TotalSeconds -gt 30) { Write-Host "the page did not start; see gallery\logs\studio.err.log" -ForegroundColor Red; exit 4 }
         Start-Sleep -Milliseconds 400
     }
 }
-Write-Host "Goon Studio: http://127.0.0.1:8191"
+Write-Host "Goon Studio: http://127.0.0.1:8191  (engine $Url)"
 if (-not $NoBrowser) { Start-Process "http://127.0.0.1:8191" }

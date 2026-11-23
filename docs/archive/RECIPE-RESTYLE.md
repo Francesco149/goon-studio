@@ -10,7 +10,7 @@ frame with the anime checkpoint.
 ## Pipeline
 
 ```
-1  photoreal clip        H3 FL2VA + Pika 6-step, i2v, 768x1152, 124 f        (~145 s on ampere)
+1  photoreal clip        H3 FL2VA + Pika 6-step, i2v, 768x1152, 124 f        (~145 s on a 3080)
                          use the no-LoRA POV blowjob recipe (v3a)
 2  frames                ffmpeg -i clip.mp4 -fps_mode passthrough -start_number 0 f%03d.png
 3  restyle each frame    Pink Alchemy Anima v2.9, img2img, denoise 0.40-0.45,

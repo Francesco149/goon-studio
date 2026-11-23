@@ -10,9 +10,8 @@ rules on it. Keep this file current: it is the memory of which LoRA did what.
 
 **Rig.** Every entry here has to run on the target machine: **one 8 GB GPU, 16 GB RAM, the local
 ComfyUI that `kit\start.ps1` starts** (`--box local`). The numbers below are measured on
-cutestation (RTX 5060 8 GB) with `--use-ck-attention --fast fp16_accumulation`. The author's lab
-boxes (ampere 10.0.10.240, lame 10.0.10.56) exist only for experiments on the author's network and
-are not part of any recipe a user gets.
+cutestation (RTX 5060 8 GB) with `--use-ck-attention --fast fp16_accumulation`. Numbers from a
+bigger card are marked as such; they are not part of any recipe a user gets.
 
 | LoRA | what for | base | strength | status |
 |---|---|---|---|---|
@@ -31,6 +30,7 @@ are not part of any recipe a user gets.
 | `konosuba-aqua-s2-anima-lora-nochekaiser.safetensors` | Aqua (KonoSuba), same s2 for Anima | Anima (Pink) | 1.0 | a108: identity good, eyes drift teal, ignores framing (odd low angles); not used |
 | `UzakiHanaXL.safetensors` | Uzaki Hana design study (Civitai 589043 / 657667), trigger `uzaki hana` + the page's outfit blocks | Pony V6 XL (`ponyDiffusionV6XL_v6`, `wf_illu_lora.json` with `ckpt` swapped, clip skip 2, Euler a 25 steps cfg 7, `score_9, score_8_up, score_7_up, score_6_up, source_anime`) | 0.9 | a124: identity 10/10 (bob, fang, the raglan "sugoi dekai" shirt - text garbled), bunny outfit clean; lap pillow sofa/on-top read right, the bed staging puts his cock too high. a125: the flat block barely thins its lines - owner: trained on fanart, thick lineart persists; **dropped** for `uzaki_il_v2` (removed from the registry; the file stays in the store until deleted by hand) |
 | `uzaki_il_v2.safetensors` | Uzaki Hana design study (Civitai 1410199 / 1620490, v2.0), trigger `uzaki` + `an anime girl` and the page's tags | Illustrious (WAI v17) | 0.8-1.0 | a127 (no style block): reads like an anime screencap (thin lines, light cel shading), identity 12/12, 0.8 = 1.0; lap pillow on top clean on both seeds, sofa seed 127001 puts his cock out by his knees; owner: all solid, keep the stock look. a128 clips (a105 lap pillow recipe, style line "keeps the look of the first frame", no flat words): `a128/uzc_sofa_128001`, `uzc_ontop_128001` - identity and look hold for 124 frames; on top keeps a white drip at the nipple from the keyframe. **approved** 2026-11-23 (owner: both clips clean) - the Uzaki Hana LoRA to use |
+| `dragon-ilulu-s2-illustriousxl-lora-nochekaiser.safetensors` | Ilulu (Miss Kobayashi's Dragon Maid) design study (nochekaiser, Civitai 1464409 / 1656218 "anime s2"); **read the Ilulu section below first** | Illustrious (WAI v17) | 1.0 | a129 (stock look, trigger block as given): identity 8/8 in both outfits; lap pillow on top clean on both seeds, sofa 129002 puts his cock by his knees; owner picks on top + sofa 129001 for clips. a130 clips (a128 recipe): `a130/ilc_sofa_130001`, `ilc_ontop_130001` - identity and look hold for 124 frames, stroke reads; the "now and then a tiny thread" saliva line grows into a steady drip from his mouth in the second half of both; awaiting owner |
 | `style/xuer_thickpaint_il_v3.safetensors` | style: Xu Er thick paint, trigger `XUER guangying` | Illustrious (WAI v17) | 0.6-0.85 | a119 (Gemma): ornate 2.5D, but turns the smirk into a cat-mouth and shrinks the horns; not used |
 | `style/illustrious_style_painterly_v1.1.safetensors` | style: painterly, `painterly, impasto, brushstroke, chiaroscuro` | Illustrious (WAI v17) | 0.6-0.9 | a119: closest to base design, small change (darker, moodier); not used |
 | `style/retro_scifi_artstyle_illustriousXL-000021.safetensors` | style: retro sci-fi 90s, `retro_artstyle, retro, cyberpunk` | Illustrious (WAI v17) | 0.6-0.85 | a119: most distinct (90s cel, mech suit), horns go small/crown-like; not used |
@@ -42,7 +42,7 @@ Design study (adult, "mature female"). The linked LoRA (nochekaiser, Civitai 133
 3047525 "anime s4") exists only for **Illustrious**, so the repo gained an Illustrious stack:
 `checkpoints/WAI-Nsfw-Illustrious-17.safetensors` (Civitai 827184 v17) and
 `workflows/wf_illu_lora.json` (LoRA on model + CLIP, clip skip 2, Euler a, 28 steps, cfg 6;
-~9 s/still on ampere). Side by side: duongve13112002's Anima LoRA (Civitai 2790541, version
+~9 s/still on a 3080). Side by side: duongve13112002's Anima LoRA (Civitai 2790541, version
 3144656, trigger `emilia (re:zero)`) and plain Anima as a control. Trigger words: the s4 page's two
 blocks (identity: `rezero emilia, emilia (re:zero), ... x hair ornament, crown braid, pointy ears,
 purple eyes ...`; outfit: `cape, white cape, purple dress, purple bodysuit ...`).
@@ -227,7 +227,7 @@ as Lanzhu; the LoRA adds nothing measurable.
 
 ### Anime LoRAs on the dev box without a record
 
-`aqours2016_r32-*`, `chu2013_r32-*` and `anima_ref_adapter_v2_r64` are on the author's ampere box
+`aqours2016_r32-*`, `chu2013_r32-*` and `anima_ref_adapter_v2_r64` are on the author's lab machine
 only. Provenance and verdict were never written down. Do not use them in a recipe or copy them to
 a user's machine until they have an entry here.
 
@@ -276,9 +276,18 @@ draws the acts natively and the Verite skin is plastic. Kept for a fallback only
 6. Record the entry here: source URL/model id/version, hash, strength, trigger words, the prompt
    shape, the templates, the measured numbers, the verdict and the defects. Then add the line to
    the table at the top.
-7. If the owner approves it, add the templates to `kit/presets.json` with `lora` + `strength`
-   (the page fills them from the template; there is no image-side LoRA dropdown), and restart the
-   page once.
+7. Put its trigger words in its `kit/models.json` entry as `"trigger": ["identity block", "outfit
+   block", ...]` (one string per block, comma-separated words). The page shows each block as a row of
+   clickable chips under the LoRA (Create tab > More options > LoRAs): a click adds or removes that
+   word in Character, "all" toggles the block, and a chip is lit while its word is in the prompt.
+   Without a `trigger` the chips come from the file header's training tags.
+8. If the owner approves it, add the templates to `kit/presets.json` with `lora` + `strength` and
+   the template's chosen words in `character`. The page lists the template's LoRA first in LoRAs
+   (marked "template", its words lit); removing it runs the template at strength 0 = **the general
+   version of that template**, so the user can bring their own LoRA (store or `my/private/loras`)
+   on the same prompt and graph. Any LoRA can also be added to any template from the picker
+   (`extra_loras`, injected by `kit/studio/loras.py`). A scene template meant for any character
+   goes on `wf_illu.json` with a neutral character (e.g. `illu_lap_sofa`, `illu_lap_ontop`).
 
 **Owner verdict (a100):** Anima + `anima_Emilia_2-30` is spot on for art style and identity - the
 Emilia LoRA to use. Illustrious + nochekaiser s4 is solid but slightly off; keep it as an alternative.
@@ -299,4 +308,26 @@ looks none/flat x outfit/nude x seeds 108001/108002.
 - **Anima, no LoRA:** the base knows Aqua; owner: goes generic art style on the outfit shots.
 - In the scene keyframes (a109k) the Illustrious `saliva, (clear saliva)` tags drew an opaque white blob at the lips
   (reads as cum): leave them out of the keyframe, the H3 script's clear-saliva line gives a clear thread.
+
+## Ilulu (Miss Kobayashi's Dragon Maid), round a129 (2026-11-23)
+
+**Reference first: `gallery/refs/characters/ilulu_scale_official.png`** (official anime screenshot, local only -
+`gallery/` is git-ignored). It shows her canon scale next to Tohru (adult) and Kanna (a child): Ilulu stands at
+about Tohru's shoulder, far taller than Kanna, with an adult figure - **a petite young woman, not a child-sized
+character.** An agent once refused her on a wrong memory of a smaller depiction; look at this picture before
+judging her. Same rules as every design study (`CLAUDE.md`): never frame her as a minor, keep `mature female`
+(it is in the trigger block), and check every render - drop any that reads childlike (scale next to him in a wide
+shot is the thing to watch: a129 sofa 129002 made her look small).
+
+Source: nochekaiser "anime s2", Civitai 1464409 / 1656218, sha256 `DB00413D...C59108B`, dim 32, 1000 images.
+Trigger blocks (owner's txt = the page's trainedWords):
+
+```
+ilulu, ilulu (maidragon), curled horns, horns, long hair, multicolored hair, purple hair, red eyes, red hair,
+slit pupils, mature female, breasts, anime screencap
+```
+outfits: `black shirt, long shirt, black thighhighs, collarbone, shirt, short sleeves, thighhighs, wide sleeves,
+zettai ryouiki` / `shirt, short sleeves, apron, blue shirt, black apron, pants`.
+
+Method = Uzaki's (a127/a128): WAI v17, stock look, no style block, LoRA 1.0 (`tools/rounds/mk_a129.py`).
 

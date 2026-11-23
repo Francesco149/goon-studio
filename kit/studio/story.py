@@ -25,8 +25,10 @@ single-frame chain; owner (a107): unnoticeable for 2-3 hops, so keep a chain to 
   expand(story)          -> the round's jobs, in order (keyframes before their clips)
   assemble(story, files, out) -> the cut: shots trimmed to `seconds`, re-timed, joined with hard
                             cuts, the clips' own audio kept in sync
+  render(story, rnd, made, ...) -> run the jobs through core.run (tools/rounds/run_story.py and the
+                            page's Scene tab); clip_files(story, made) -> the cut's input
 """
-import json, os, re, sys
+import json, os, re, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -266,3 +268,84 @@ def assemble(story, files_by_shot, out, tmpdir):
             for p in as_.encode():
                 o.mux(p)
     return {"frames": len(V), "seconds": len(V) / fps}
+
+
+# ---- rendering (shared by tools/rounds/run_story.py and the page's Scene tab) -----------------
+LINKS = ("image_from", "image_last_from", "video_from", "image_path", "restore_from", "restore_path", "restore_prompt")
+
+
+def render(story, rnd, made, by="agent", only=None, keys_only=False, clips_only=False, redo=False,
+           say=print, record=None, stop=lambda: False, on_job=None):
+    """Render a story's jobs in order. made {job name: file under data_dir} is updated in place (and
+    passed to record(name, file, job) after each job); a job already in made is skipped unless redo.
+    only: shot ids; keys_only / clips_only: just the keyframes / just the clips. Returns True when
+    every selected job is made, False when one failed (say() has the reason) or stop() said so."""
+    import core
+    data = core.settings().get("data_dir", core.GALLERY)
+    outdir = os.path.join(data, rnd)
+    os.makedirs(outdir, exist_ok=True)
+    for sh in story["shots"]:  # a clip_file shot can be a start_from source (an extension of an existing clip)
+        if sh.get("clip_file"):
+            made["%s_c0" % sh["id"]] = sh["clip_file"]
+    for j in expand(story):
+        sid = j["name"].rsplit("_", 1)[0]
+        is_key = j["name"].endswith("_key")
+        if (only and sid not in only) or (keys_only and not is_key) or (clips_only and is_key):
+            continue
+        if j["name"] in made and not redo:
+            continue
+        if stop():
+            say("stopped")
+            return False
+        try:
+            job = {k: v for k, v in j.items() if k not in LINKS}
+            job["round"] = rnd
+            if j.get("image_path"):
+                job["image"] = os.path.join(data, j["image_path"])
+            if j.get("image_from"):
+                job["image"] = os.path.join(data, made[j["image_from"]])
+            if j.get("video_from"):  # an extension: the previous clip itself, its last ctx_len frames
+                job["image"] = os.path.join(data, made[j["video_from"]])
+                import av
+                with av.open(job["image"]) as c:
+                    job["ctx_start"] = max(0, sum(1 for _ in c.decode(video=0)) - j["ctx_len"])
+            if j.get("image_last_from"):
+                png = os.path.join(outdir, "%s_last.png" % j["image_last_from"])
+                job["image"] = last_frame(os.path.join(data, made[j["image_last_from"]]), png)
+                ref = os.path.join(data, j["restore_path"]) if j.get("restore_path") else (
+                    os.path.join(data, made[j["restore_from"]]) if j.get("restore_from") in made else None)
+                if ref:  # chained frames thicken the line art hop by hop: redraw the start frame clean
+                    w, h = job.get("width", 1152), job.get("height", 768)
+                    r = core.run({"workflow": "wf_h3img_2ref.json", "image1": job["image"], "image2": ref, "prompt": j.get("restore_prompt") or RESTORE,
+                                  "width": w, "height": h, "seed": 1, "round": rnd, "name": "%s_start" % j["name"],
+                                  "anime_timing": "off"}, by=by)
+                    job["image"] = os.path.join(data, r["files"][0])
+                    say("%s: start frame restored from %s" % (j["name"], os.path.basename(ref)))
+        except KeyError as e:
+            say("%s: needs %s first (make that shot's keyframe/clip before this one)" % (j["name"], e))
+            return False
+        if on_job:
+            on_job(j["name"])
+        t0 = time.time()
+        try:
+            rec = core.run(job, by=by)
+        except Exception as e:
+            say("%s: FAILED after %.0fs: %s" % (j["name"], time.time() - t0, e))
+            return False
+        made[j["name"]] = rec["files"][0]
+        if record:
+            record(j["name"], rec["files"][0], job)
+        say("%s: ok %.0fs %s" % (j["name"], time.time() - t0, rec["files"]))
+    return True
+
+
+def clip_files(story, made, data):
+    """{shot id: [clip paths]} for assemble(): the clips that are made, clip_file shots as they are."""
+    files = {}
+    for j in expand(story):
+        if "_c" in j["name"] and j["name"] in made:
+            files.setdefault(j["name"].rsplit("_", 1)[0], []).append(os.path.join(data, made[j["name"]]))
+    for sh in story["shots"]:
+        if sh.get("clip_file"):
+            files[sh["id"]] = [os.path.join(data, sh["clip_file"])]
+    return files

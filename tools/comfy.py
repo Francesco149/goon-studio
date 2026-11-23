@@ -2,7 +2,7 @@
 """comfy.py — drive a ComfyUI engine (stdlib only).
 
 Defaults to this machine's engine (127.0.0.1:8188, the one kit/start.ps1 runs). COMFY_URL or
---box picks another; ampere/lame are the author's lab machines and do not exist on a normal install.
+--box picks another engine from the git-ignored tools/boxes.local.json (none on a normal install).
 
   comfy.py run workflows/h3_t2v.json -p prompt="..." -p seed=7 -o out/ --log results.jsonl
   tools/comfy.py upload persona/mia/ref.png          # into ComfyUI's input/ (images, audio, video)
@@ -31,8 +31,9 @@ import urllib.parse
 import urllib.request
 import uuid
 
-BOXES = {"local": "http://127.0.0.1:8188",
-         "lame": "http://10.0.10.56:8188", "ampere": "http://10.0.10.240:8188"}  # author-only
+import localboxes  # noqa: E402
+BOXES = {"local": "http://127.0.0.1:8188"}
+BOXES.update({k: v["url"] for k, v in localboxes.load().items()})
 BASE = os.environ.get("COMFY_URL", BOXES["local"])
 PH = re.compile(r"\{\{(\w+)\}\}")
 

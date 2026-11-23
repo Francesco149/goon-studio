@@ -82,7 +82,7 @@ the line-art drift (round a107, below).
 
 ## Round a101: `emilia_meadow` (2026-11-22)
 
-Keyframes on ampere in ~17 s each, clips 60-155 s each (13 jobs, ~20 min), the cut in ~20 s:
+Keyframes on a 3080 in ~17 s each, clips 60-155 s each (13 jobs, ~20 min), the cut in ~20 s:
 `gallery/a101/emilia_meadow_cut.mp4` (25.33 s; the ref is 25.35 s). Sheets: `analysis/a101_keys.jpg`
 (keyframes next to the ref's contact sheet), `a101_cut.jpg`, `a101_seams.jpg`.
 
@@ -230,9 +230,9 @@ the flattest look with the Nijigasaki series tag, a hotel room at night. 6 shots
 ## Round a106: `lanzhu_night` (2026-11-23)
 
 Tease angles (beloved), the newjersey blowjob arc, front cowgirl with a breast grab and the switch to her
-taking over, a legs-grabbed missionary - 13 shots, Lanzhu, flattest look, on ampere. Act LoRA for the sex
-shots: `HMNSFW_AIO_V2` (HearmemanAI, Civitai 2834417, no trigger words; on ampere, not yet in the registry).
-`Minimax3_BoobPhysics_v1` on ampere is a 15-byte "Entry not found" file (a failed download) - the real one is
+taking over, a legs-grabbed missionary - 13 shots, Lanzhu, flattest look, on a 3080. Act LoRA for the sex
+shots: `HMNSFW_AIO_V2` (HearmemanAI, Civitai 2834417, no trigger words, on the author's lab machine, not yet in the registry).
+`Minimax3_BoobPhysics_v1` on the lab machine is a 15-byte "Entry not found" file (a failed download) - the real one is
 Civitai version 3245935.
 - **Chained clips degrade** (owner): each `start_from` hop starts from a frame H3 already redrew, and the line
   art thickens hop by hop (b3 slightly, b4 clearly). New shot key `restore: "<shot id>"`: the start frame of a
@@ -267,11 +267,11 @@ Local bench engine, b3 of `lanzhu_night` (template `anime_ll_headgrab_push`, see
 `tools/rounds/linemeter.py` (now: frame 0, mean of frames 8-23, mean of the last 24; w90/w60 = dark-line run width at
 luma 90/60, Y = mean luma). Renders `gallery/a107/`, jobs `jobs/a107_*.jsonl`.
 
-- **Where it happens:** not gradually. A clip started from one frame jumps in frames 1-8 (b3 on ampere 2.17 -> 2.62 by
+- **Where it happens:** not gradually. A clip started from one frame jumps in frames 1-8 (b3 on a 3080 2.17 -> 2.62 by
   frame 2) and then holds. Fresh keyframes jump less (b4 2.24 -> 2.43), chained frames more; each hop compounds.
 - **The VAE is biased:** encode->decode of a still with the H3 video VAE, no sampling: luma 182 -> 179 -> 177 -> 175 ->
   173 over 4 roundtrips, line width 2.20 -> 2.51. Every clip's frame 0 is that roundtrip. The int8 and fp16 VAE decode
-  the same latent to identical tone (ampere's old frisbee test), so it is the VAE, not the quantization.
+  the same latent to identical tone (the 3080's old frisbee test), so it is the VAE, not the quantization.
 - **Tone pre-compensation** (`2x - roundtrip(x)` on the start frame): frame 0 keeps its tone (182.5 vs 182.1); steady
   width 2.30 vs 2.41 one hop. Small help, mostly tone.
 - **Extension instead of chaining** (shot key `"extend": 22`; underneath `core.extend_graph`: `image` = previous mp4,

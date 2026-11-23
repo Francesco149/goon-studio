@@ -72,19 +72,19 @@ timing is the lever.
 ## The pipeline
 
 ```
-1  keyframe   H3-Image, plain English, explicit anatomy, at the video's aspect      ampere, 17-27 s
-2  video      H3 FL2VA + Pika 6-step, i2v from that keyframe (or t2v)               ampere, 55 s / 5 s
+1  keyframe   H3-Image, plain English, explicit anatomy, at the video's aspect      3080, 17-27 s
+2  video      H3 FL2VA + Pika 6-step, i2v from that keyframe (or t2v)               3080, 55 s / 5 s
 3  check      tools/strip.py on the clip: rim, seal, stroke count, strand, sound
 4  censor     optional, post: ffmpeg crop + pixelize + overlay, -c:a copy
 5  upscale    optional: RelayVSR x2 keeps the audio
 ```
 
-Two boxes: **ampere** is the main one (2.5-3x faster, every model). **cutestation** does the same
+Two boxes: **the 3080** is the main one (2.5-3x faster, every model). **cutestation** does the same
 work at about a third of the speed and only one clip at a time, which is fine for the final take.
 
 ## The keyframe prompt (H3-Image)
 
-Photo, POV, mid-blowjob - `p01/p1_h3img_photo`, 896x1344, 6 steps, cfg 1.0, 17 s on ampere:
+Photo, POV, mid-blowjob - `p01/p1_h3img_photo`, 896x1344, 6 steps, cfg 1.0, 17 s on a 3080:
 
 ```
 Photorealistic first-person POV photo, taken by a man lying on his back looking down his own body
@@ -151,7 +151,7 @@ Rules that came out of the rounds:
 
 | model | explicit anatomy | note |
 |---|---|---|
-| **H3-Image** (int8, 6 steps) | yes, correct and detailed, photo and anime | the keyframe workhorse; 17-27 s on ampere |
+| **H3-Image** (int8, 6 steps) | yes, correct and detailed, photo and anime | the keyframe workhorse; 17-27 s on a 3080 |
 | Qwen-Image-2.1 | yes, the most detailed anatomy of the four | the body arrangement is less clean |
 | Anima Aesthetic | yes, stylised: soft head, no clear rim | good for the anime look, weak on arrangement |
 | Krea 2 Turbo | **no** - dropped the genitals entirely, made a softcore pose | unusable for this |
@@ -162,7 +162,7 @@ Rules that came out of the rounds:
   every later prompt. The history entry is already written, so `POST /interrupt` clears it safely;
   `tools/lab.py` does that automatically when it sees a completed prompt still in the running list.
 - A batch of images on cutestation after a video model has been resident is slow (model swap plus
-  8 GB VRAM); run one clip at a time there and use ampere for iteration.
+  8 GB VRAM); run one clip at a time there and use the 3080 for iteration.
 - ComfyUI's `/upload/image` rejects a hand-rolled urllib multipart body (HTTP 400); `curl -F`
   works.
 - Sizes must be multiples of 32. A 2:3 keyframe wants 768x1152 for the clip (884 736 px, 720p-ish).

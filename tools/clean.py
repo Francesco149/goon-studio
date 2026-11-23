@@ -29,15 +29,18 @@ def _local():
     return "http://127.0.0.1:8188", s.get("data_dir") or os.path.join(repo, "gallery")
 
 
-# `local` is the only box on a normal install; ampere/lame are the author's lab machines.
+# `local` (this PC) is the only box on a normal install; more engines only come from the
+# git-ignored tools/boxes.local.json (tools/localboxes.py)
+import localboxes  # noqa: E402
 BOXES = {
     # url, root, output dir name, input dir name, path separator
     "local": _local() + ("outputs", "inputs", os.sep),
-    "ampere": ("http://10.0.10.240:8188", "/data/comfyui", "output", "input", "/"),
-    "lame": ("http://10.0.10.56:8188", "/lamedata/comfyui", "output", "input", "/"),
 }
-SSH = {"ampere": ["ssh", "-o", "BatchMode=yes", "root@10.0.10.240"],
-       "lame": ["ssh", "-o", "BatchMode=yes", "root@10.0.10.56"]}
+SSH = {}
+for _k, _v in localboxes.load().items():
+    BOXES[_k] = (_v["url"], _v.get("root", ""), "output", "input", "/")
+    if _v.get("ssh"):
+        SSH[_k] = list(_v["ssh"])
 
 
 def http(base, path, data=None, timeout=60):

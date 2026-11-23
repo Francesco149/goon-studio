@@ -192,7 +192,7 @@ Method (`--mode repair`): pass 1 = the normal clip; its own frames 24/48/72/96/l
 anchors (poses the motion already passes through, so nothing is forced); each anchor gets an
 H3-Image two-picture edit (Picture 1 = the frame, Picture 2 = the keyframe; fixed instruction:
 "keep everything exactly, only redraw his penis like Picture 2"); pass 2 = same job and seed with
-the repaired anchors pinned at their own indices. ~150 s + 5 x 35 s + 185 s on ampere.
+the repaired anchors pinned at their own indices. ~150 s + 5 x 35 s + 185 s on a 3080.
 
 Tested on two known-bad clips (`jobs/a98_reanchor.jsonl`, `analysis/a98_*`):
 
@@ -268,7 +268,7 @@ bursts. The mode depends on the keyframe and the script, and it is not the style
 `k2_phys` and `k9_phys` have the same "2D anime ... TV-anime style" opener and land in different
 modes.
 
-Round a99 (`tools/rounds/mk_a99.py`, `jobs/a99_smooth.jsonl` + `a99b_smooth.jsonl`, ampere,
+Round a99 (`tools/rounds/mk_a99.py`, `jobs/a99_smooth.jsonl` + `a99b_smooth.jsonl`, 3080,
 anime timing off), same keyframes + seeds as known on-2s clips:
 - `phys`: the TV opener + a micro-motion paragraph ("breasts are soft and heavy: they bounce on every
   stroke, wobble and keep rippling for a moment after each one before they settle, the near breast

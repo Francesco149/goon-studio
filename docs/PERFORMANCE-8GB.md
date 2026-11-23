@@ -109,7 +109,7 @@ very little.
 | first+last (`wf_h3vid_i2v_fl.json`), 512x768 85 f, 6 steps | **122.9 s** (about 10% over plain i2v; the second image adds a VAE encode) |
 | t2v (`wf_h3vid_t2v.json`), 512x768 85 f, 6 steps | **109.3 s** (same as i2v; no keyframe encode) |
 | Qwen edit (`wf_qwen21_edit1.json`), 1024x1024, 12 steps | **55.7 s** cold (reference encode + model load; a 25-step edit is ~70 s) |
-| Ref2VA (`wf_h3vid_ref2va6.json`) | the Ref2VA transformer is not on cutestation; same attention class as FL2VA, so budget the i2v range and test it on ampere/24 GB |
+| Ref2VA (`wf_h3vid_ref2va6.json`) | the Ref2VA transformer is not on cutestation; same attention class as FL2VA, so budget the i2v range and test it on a 24 GB card |
 | Wan 2.1/2.2 | not installed and not viable on 16 GB (see `CUM-VIDEO.md`) |
 | Anima i2i restyle | closed by owner verdict; not re-benchmarked |
 | Krea Verite | superseded; its int8 UNet is not on cutestation |
