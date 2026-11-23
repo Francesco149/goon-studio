@@ -85,7 +85,10 @@ pulls that show's own look.
   `gallery/a106k/suck_lips_10620{1,2,3}_00001_.png` (owner: "exactly the suction face I want"). The tags, added to
   the usual BJ keyframe: `fellatio, (penis in mouth:1.2), (protruding lips:1.3), (lips stretched along the shaft:1.2),
   sealed lips, (sucking:1.2), (hollow cheeks:1.0), (looking at viewer:1.2), blush, saliva, (clear saliva:1.1)`.
-  `(vacuum fellatio:0.6/0.9)` gave a weaker version; drawing the lips in with an H3-Image edit was too exaggerated.
+  `(vacuum fellatio:0.6/0.9)` gave a weaker version. **Never edit the mouth with H3-Image**: drawing the lips in on a
+  keyframe (a106k) and repairing a chained start frame toward the suction keyframe (`b2_chain_lips`) both came out
+  overly exaggerated (owner). The lip shape only comes from an unedited keyframe made with these tags, or Ref2VA
+  referencing one.
   Script side: "Her lips stay softly sealed around the shaft and are drawn a little forward along it as she pulls
   back, her cheeks drawn in slightly by the suction." Start sucking shots from such a keyframe (`key_image`).
 - **Dominant BJ keyframe** (owner): `gallery/a106/b2_key_00001_.png` - eyes closed, her hand resting on his leg; "makes it hotter".

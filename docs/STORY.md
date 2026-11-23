@@ -250,3 +250,4 @@ Civitai version 3245935.
   (owner) - so `b2_chain_lips`: the same chain, with the start frame's mouth first redrawn toward the suction
   keyframe (`restore_image` + `restore_prompt`): lips with volume, sealed ring kept through the clip, the shaft long
   and consistent (it came in correct from b1t). New shot keys `restore_image`, `restore_prompt`.
+  Owner on `b2_chain_lips`: does not work - overly exaggerated lips (the second mouth edit to fail that way).
