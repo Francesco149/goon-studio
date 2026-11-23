@@ -242,6 +242,40 @@
      "still": "{style}, {character}, (open bathrobe:1.1), (bare breasts:1.1), {partner}, pov, from above, lying on stomach, between legs, (ass up:1.1), her hips raised behind her, (kissing penis:1.2), lips on the side of the shaft, sideways, (looking at viewer:1.2), (smile:1.2), blush, penis, (long penis:1.1), (thick penis:1.1), uncensored, {setting}"
     }
    }
+  },
+  "m_golden": {
+   "_note": "a106 mouth test (owner: BJ mouths less expressive than the best BJ scenes)",
+   "shots": {
+    "b2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs, her hips raised behind her, with his cock in her mouth and her eyes closed. She slides her mouth up until only the head stays between her lips, purses her lips tight around it and sucks with a small wet pop, then slides down again until her lips reach the middle of the shaft, a steady rhythm. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft. Her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. After a few strokes she opens her eyes and looks up into the camera, keeping the eye contact as she sucks. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, soft wet suction with a small pop at the top, her nose breathing.\n\nnon_diegetic_music: N/A"
+    }
+   }
+  },
+  "m_phases": {
+   "_note": "a106 mouth test (owner: BJ mouths less expressive than the best BJ scenes)",
+   "shots": {
+    "b2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs, her hips raised behind her, with his cock in her mouth and her eyes closed. On the way up her lips cling to the shaft and stretch along it in a soft pout, then slip over the rim with a small wet pop and close softly around the head; on the way down her lips relax and glide down the shaft, her cheeks drawing in. Each stroke her mouth changes shape - pouting, sealing, gliding - and her blush deepens. After a few strokes she opens her eyes and looks up into the camera, keeping the eye contact as she sucks. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, soft wet suction with a small pop at the top, her nose breathing.\n\nnon_diegetic_music: N/A"
+    }
+   }
+  },
+  "m_micro": {
+   "_note": "a106 mouth test (owner: BJ mouths less expressive than the best BJ scenes)",
+   "shots": {
+    "b2": {
+     "script": "integrated_multimodal_description: [Shot 1] {script_style} POV from above: {script_character} lies on her stomach between the man's legs, her hips raised behind her, with his cock in her mouth and her eyes closed. She slides her mouth up until only the head stays between her lips, purses her lips tight around it and sucks with a small wet pop, then slides down again until her lips reach the middle of the shaft, a steady rhythm. On every stroke her cheeks hollow and pull in as she sucks, and her lips purse around the shaft. Her expression changes slightly - her eyebrows lift, her lashes flutter, her blush deepens, the corner of her mouth curls. Between strokes she smiles around the shaft, licks her lips once, and gives a small happy hum. After a few strokes she opens her eyes and looks up into the camera, keeping the eye contact as she sucks. A thin, clear, see-through thread of saliva, colourless like water and visible only by a small white glint, runs slowly down from the corner of her mouth. His cock stays long and thick; its head is the same tan skin tone as the shaft. The camera does not move.\n\noverall_soundscape: close-miked Foley, loud and present, over the quiet hum of a hotel room at night, no music and no speech: a slow, soft wet suction with a small pop at the top, her nose breathing.\n\nnon_diegetic_music: N/A"
+    }
+   }
+  },
+  "m_lora": {
+   "_note": "a106 mouth test: blowjob LoRA 0.85",
+   "shots": {
+    "b2": {
+     "clip_job": {
+      "nsfw_strength": 0.85
+     }
+    }
+   }
   }
  }
 }
