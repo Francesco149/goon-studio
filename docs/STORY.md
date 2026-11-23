@@ -244,3 +244,9 @@ Civitai version 3245935.
   cowgirl: c4 perfect (she leads, hands on his chest), c2 least rigid (squats on her legs), c1 rigid (no driver for
   the bounce) - `cut: false` keeps c1 out of the edit, the sex part opens on c2. b1 tip tease + kiss: nice; variants
   `b1_under` (tongue behind the tip) and `b1_side` (lips sliding along the side of the shaft).
+- **b2 anchoring tests** (rounds `a106_b2_*`): `b2_r2va` (Ref2VA, suction keyframe + penis reference) - owner: pretty
+  good, more dynamic if the male reciprocated -> `b2_r2va2` adds his hips meeting her strokes (still calm in the
+  sampled frames). `b2_chain` (start from b1t's last frame): b1t's last frame had a flat, paper-like mouth
+  (owner) - so `b2_chain_lips`: the same chain, with the start frame's mouth first redrawn toward the suction
+  keyframe (`restore_image` + `restore_prompt`): lips with volume, sealed ring kept through the clip, the shaft long
+  and consistent (it came in correct from b1t). New shot keys `restore_image`, `restore_prompt`.
