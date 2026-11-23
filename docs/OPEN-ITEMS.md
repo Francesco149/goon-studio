@@ -39,6 +39,21 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
   smoke/steam - reseed; give him his own colours against tag bleed; get a LoRA's trigger words first
   (AGENTS.md 4a); vague feedback -> offer the closest current templates (AGENTS.md 6a).
 
+## Session 2026-11-23 handoff (lanzhu_night, a106)
+
+- Owner: the golden standard is still `emilia_meadow` (a103 flatter) and `lanzhu_hotel` (a104); `lanzhu_night`
+  (a106, 51.5 s) is solid after the fixes, with good new poses (over-him tease, tip lick / tip suck, the suction face,
+  tongue show, front cowgirl c4, the missionary) but went less smoothly. Recipes and lessons: `docs/SCENES.md`.
+- **Investigate first: line-art thickening.** It only showed up in this part. Measured (`tools/rounds/linemeter.py`,
+  dark-line run width first -> last frame): the night BJ chain b2->b5 1.99 -> 3.25 (each 124-frame clip +0.3-0.4,
+  `restore` made it worse), hotel a104 s4 2.56 -> 3.06 inside one clip, but Emilia a103 flat (s3 3.27 -> 3.29 and its
+  49-frame continuation 3.27 -> 3.29). Leads: lighting (dark warm-lamp night vs bright daylight - the meter also counts
+  dark backgrounds, compare like with like), motion amount (fast strokes, close-ups), chain depth and clip length
+  (124-frame hops vs Emilia's 49-frame continuations), the `restore` edits, the Lanzhu LoRA vs the Emilia LoRA.
+  Test on one shot by changing one variable at a time.
+- Act LoRAs on ampere not yet in the registry: `HMNSFW_AIO_V2` (sex positions, used for cowgirl/missionary);
+  `Minimax3_BoobPhysics_v1` there is a 15-byte failed download (real file: Civitai version 3245935).
+
 ## Open items, in the owner's order
 
 1. **Cum physics (next).** Recurring: the amount that lands and splashes is far too much for one

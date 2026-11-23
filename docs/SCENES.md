@@ -13,7 +13,8 @@ Gens are under `<data_dir>/<round>/` (the agent's gallery, `gallery/<round>/` he
 | arc | shots | story | status |
 |---|---|---|---|
 | **Meadow arc** - tease, act, intimacy, climax freeze, afterglow | back tease -> 3/4 BJ close-up (gaze him -> camera) -> POV headpat -> profile oral climax + freeze -> low-angle afterglow | `emilia_meadow` (a103 flatter cut) | owner: good |
-| **Sweet paizuri arc** - same opening, paizuri build to a smiling climax | back tease -> 3/4 BJ (gaze shift) -> paizuri slow -> paizuri fast -> paizuri climax + freeze -> smiling afterglow | `lanzhu_hotel` (a104) | testing |
+| **Sweet paizuri arc** - same opening, paizuri build to a smiling climax | back tease -> 3/4 BJ (gaze shift) -> paizuri slow -> paizuri fast -> paizuri climax -> smiling afterglow | `lanzhu_hotel` (a104) | **owner: with the meadow arc, the golden standard** |
+| **Sweet night** - tease, newjersey BJ arc, cowgirl, missionary | over-him tease -> tip lick -> tip suck -> suck (eyes closed -> eye contact) -> speed-up -> faster (fresh keyframe) -> cum in her mouth, pull off (cheek-puff keyframe) -> tongue show -> cowgirl (squat, his speed-up, her hands on his chest) -> missionary | `lanzhu_night` (a106) | owner: solid after fixes, less smooth than the two above; good new poses |
 
 Pacing that works (from `emillia.mp4`, measured in `docs/STORY.md`): 5-6 shots in ~25 s, 3-6 s each;
 alternate slow (on 3s, ~8 drawings/s) and fast (on 1s, 24/s) shots; a long freeze (~1.2 s) on the
@@ -102,8 +103,8 @@ pulls that show's own look.
 - **Cheek puff = cum in her mouth** (idea, owner): `gallery/a106k/suck_v06_106202_00001_.png` - a slight cheek puff
   with the shaft in her mouth; a good first frame for an oral climax that fills her mouth, then she pulls out and it
   drips.
-- **Every H3 pass thickens the line art** (a106, measured: dark-line width +0.3-0.4 px per 124-frame clip whatever the
-  prompt; a neutral style line without drawing words barely helps). Chains compound it: keep chains to one hop, start
+- **H3 passes can thicken the line art** (a106, measured with `tools/rounds/linemeter.py`: +0.3-0.4 px per 124-frame clip in
+  the night BJ chain whatever the prompt - but not everywhere: Emilia a103's chains stay flat, see OPEN-ITEMS; a neutral style line without drawing words barely helps). Chains compound it: keep chains to one hop, start
   later beats from fresh keyframes (a cut on a change of pace or angle), and do not `restore` - the H3-Image redraw
   starts thicker than the frame it replaces (b3: 2.36 vs 2.18), so restored chains degrade faster (b5).
 - **Chaining from the exact last frame** (`start_from`) is the default - it is the only seamless continuation
