@@ -251,3 +251,9 @@ Civitai version 3245935.
   keyframe (`restore_image` + `restore_prompt`): lips with volume, sealed ring kept through the clip, the shaft long
   and consistent (it came in correct from b1t). New shot keys `restore_image`, `restore_prompt`.
   Owner on `b2_chain_lips`: does not work - overly exaggerated lips (the second mouth edit to fail that way).
+- **Line thickening, measured** (`quality.py`-style meter: dark-line run width, first vs last frame): every H3 clip adds
+  ~+0.35 px; the style wording is not the cause (`b3_neutral`, no drawing/line/anime words: +0.32 vs +0.36); `restore`
+  made it worse (its start frame 2.36 vs the raw 2.18). Chain b2->b3->b4->b5 went 1.99 -> 3.25 and b5 degraded badly
+  (owner). Fix: one hop (b3 from b2), fresh keyframes for b4 (`suck_lips_106202`, 2.24 -> 2.28) and b5 (the cheek-puff
+  frame `suck_v06_106202`: cum fills her mouth, she pulls off, a drip; 1.89 -> 1.95). b1t/b2 now the plain-mouth-line
+  takes (`a106_b1t_simple`, `a106_b2_s2`: owner "ever so slightly better").

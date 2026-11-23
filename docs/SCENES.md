@@ -102,10 +102,13 @@ pulls that show's own look.
 - **Cheek puff = cum in her mouth** (idea, owner): `gallery/a106k/suck_v06_106202_00001_.png` - a slight cheek puff
   with the shaft in her mouth; a good first frame for an oral climax that fills her mouth, then she pulls out and it
   drips.
+- **Every H3 pass thickens the line art** (a106, measured: dark-line width +0.3-0.4 px per 124-frame clip whatever the
+  prompt; a neutral style line without drawing words barely helps). Chains compound it: keep chains to one hop, start
+  later beats from fresh keyframes (a cut on a change of pace or angle), and do not `restore` - the H3-Image redraw
+  starts thicker than the frame it replaces (b3: 2.36 vs 2.18), so restored chains degrade faster (b5).
 - **Chaining from the exact last frame** (`start_from`) is the default - it is the only seamless continuation
   (`lanzhu_hotel` s5 was clean) - but check every hop for degradation (line art thickening, colours drifting,
-  anatomy softening; `lanzhu_night` b3/b4 got thicker lines). Only where a chain degrades, add `restore:
-  "<shot id>"` to redraw the start frame in that keyframe's style first.
+  anatomy softening; `lanzhu_night` b3/b4 got thicker lines). `restore` was tried for this and made it worse (above).
 - Bigger climaxes: never more pulses (faster twitching, a93c/a104); three pulses, vary where they land.
 - Micro-motion (jiggle, follow-through, breathing): Video tab **Dynamics** (`dynamics_video`).
 - A gaze shift inside one clip works when it is slow ("looks up into his eyes ..., then slowly turns
