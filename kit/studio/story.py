@@ -11,11 +11,16 @@ A story file (kit/stories/*.json):
                                script_style, script_character, script_partner, script_setting
                                (H3 script prose); used as {name} placeholders in the shots
   seed                       - base seed; shot i uses seed + i unless the shot sets one
-  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from, restore, restore_image, restore_prompt, clip_file, clip_range, continues, cut,
+  shots [{id, seconds, still, script, template, still_job {...}, clip_job {...}, key_image, start_from, extend, restore, restore_image, restore_prompt, clip_file, clip_range, continues, cut,
           timing: "off"|"on2"|"on3"|"smooth", hold: [{"at": s, "frames": n}], seed}]
 
 Long shots: a clip is at most `max_len` frames; a longer shot continues with more clips, each
 starting from the last frame of the one before (`seg_len` frames), the same script.
+
+extend: N (17k+5, use 22) - a `start_from` shot and a long shot's later clips continue the previous clip
+as an extension instead of from its last frame: its last N frames are anchored at frame 0 (core.extend_graph),
+the clip is N-5 frames longer and the cut drops the N repeated frames. Half the line-art drift of a
+single-frame chain; owner (a107): unnoticeable for 2-3 hops, so keep a chain to 3 and hard-cut after.
 
   expand(story)          -> the round's jobs, in order (keyframes before their clips)
   assemble(story, files, out) -> the cut: shots trimmed to `seconds`, re-timed, joined with hard
@@ -104,12 +109,15 @@ def expand(story):
         script = fill(sh["script"], B)
         for k, n in enumerate(segments(story, sh)):
             clip = dict(story.get("clip", {}))
-            for x in ("fps", "max_len", "seg_len"):
+            for x in ("fps", "max_len", "seg_len", "extend"):
                 clip.pop(x, None)
             clip.update(sh.get("clip_job", {}))
             clip.update(name="%s_c%d" % (sid, k), template=sh.get("template", clip.get("template")), seed=seed,
                         prompt=script, length=n, anime_timing="off")
-            if k == 0 and prev:
+            ext = sh.get("extend")
+            if ext and (prev if k == 0 else True):
+                clip.update(video_from=prev if k == 0 else "%s_c%d" % (sid, k - 1), ctx_len=ext, length=n + ext - 5)
+            elif k == 0 and prev:
                 clip["image_last_from"] = prev
                 if sh.get("restore_image"):  # or redraw it toward a given picture with a given instruction
                     clip["restore_path"] = sh["restore_image"]
@@ -190,6 +198,8 @@ def _shot(story, sh, files, tmpdir):
         # a continuation repeats the frame it starts from: start_from, or "continues" (key_image = the
         # previous shot's last frame)
         drop = 1 if (k or sh.get("start_from") or sh.get("continues")) else 0
+        if sh.get("extend") and (k or sh.get("start_from")):
+            drop = sh["extend"]  # an extension repeats the previous clip's last `extend` frames
         frames += fr[drop:]
         if au is not None:
             arate, layout = ar, lay

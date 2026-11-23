@@ -53,6 +53,9 @@ A shot longer than one clip continues: the next clip starts from the **last fram
 before (`seg_len`, 49 frames by default) with the same script, and the cut drops the repeated
 frame. Clip lengths snap to the page's 49 / 81 / 124. The same mechanism makes a shot of any
 length; how long it stays coherent is open (a101 tests one 49-frame continuation per long shot).
+With `"extend": 22` on the shot, continuations (and a `start_from` start) are extensions instead: the previous
+clip's last 22 frames are anchored, the clip is 17 frames longer and the cut drops the 22 repeated frames - half
+the line-art drift (round a107, below).
 
 ### What keeps the shots consistent
 
@@ -257,3 +260,29 @@ Civitai version 3245935.
   (owner). Fix: one hop (b3 from b2), fresh keyframes for b4 (`suck_lips_106202`, 2.24 -> 2.28) and b5 (the cheek-puff
   frame `suck_v06_106202`: cum fills her mouth, she pulls off, a drip; 1.89 -> 1.95). b1t/b2 now the plain-mouth-line
   takes (`a106_b1t_simple`, `a106_b2_s2`: owner "ever so slightly better").
+
+## Round a107: line thickening and how to continue a clip without it (2026-11-23)
+
+Local bench engine, b3 of `lanzhu_night` (template `anime_ll_headgrab_push`, seed 106007) from b2's end; meter
+`tools/rounds/linemeter.py` (now: frame 0, mean of frames 8-23, mean of the last 24; w90/w60 = dark-line run width at
+luma 90/60, Y = mean luma). Renders `gallery/a107/`, jobs `jobs/a107_*.jsonl`.
+
+- **Where it happens:** not gradually. A clip started from one frame jumps in frames 1-8 (b3 on ampere 2.17 -> 2.62 by
+  frame 2) and then holds. Fresh keyframes jump less (b4 2.24 -> 2.43), chained frames more; each hop compounds.
+- **The VAE is biased:** encode->decode of a still with the H3 video VAE, no sampling: luma 182 -> 179 -> 177 -> 175 ->
+  173 over 4 roundtrips, line width 2.20 -> 2.51. Every clip's frame 0 is that roundtrip. The int8 and fp16 VAE decode
+  the same latent to identical tone (ampere's old frisbee test), so it is the VAE, not the quantization.
+- **Tone pre-compensation** (`2x - roundtrip(x)` on the start frame): frame 0 keeps its tone (182.5 vs 182.1); steady
+  width 2.30 vs 2.41 one hop. Small help, mostly tone.
+- **Extension instead of chaining** (shot key `"extend": 22`; underneath `core.extend_graph`: `image` = previous mp4,
+  `ctx_start`/`ctx_len` = its last 22 frames anchored at frame 0 with `MiniMaxH3AddGuide`): overlap reproduces the tail (mean abs diff ~4/255),
+  continues with real motion, and the line art holds: one hop 2.27 (single frame 2.42), two hops 2.42 (single frame
+  2.69); compensated context 2.40. Halves the drift, does not stop it. ~2x render time locally (more condition rows).
+  Drop the first `ctx_len` frames of each extension when cutting.
+- **Anima re-ink** (`wf_anima2_lora_i2i.json`, Lanzhu LoRA, denoise 0.2-0.4) of the chain frame: same line width as the
+  input and the picture changes (eyes, saliva, blush) - a pop at the cut. Not a continuity tool.
+- Owner: solid; unnoticeable up to the second extension hop, the single-frame hop 2 is noticeable.
+- Rule now: continue a beat by **extension** (`"extend": 22` on the `start_from` shot; a long shot's later clips extend
+  too; the clip is 17 frames longer and the cut drops the 22 repeated frames), keep it to 2-3 hops, start new beats from fresh
+  keyframes; never `restore`. `kit/studio/core.py` no longer pulls a LoadVideo input preview as an output.
+

@@ -60,12 +60,17 @@ def main():
                 continue
             if j["name"] in made and not redo:
                 continue  # made by an earlier run of this round (--redo renders it again)
-            job = {k: v for k, v in j.items() if k not in ("image_from", "image_last_from", "image_path", "restore_from", "restore_path", "restore_prompt")}
+            job = {k: v for k, v in j.items() if k not in ("image_from", "image_last_from", "video_from", "image_path", "restore_from", "restore_path", "restore_prompt")}
             job["round"] = rnd
             if j.get("image_path"):
                 job["image"] = os.path.join(data, j["image_path"])
             if j.get("image_from"):
                 job["image"] = os.path.join(data, made[j["image_from"]])
+            if j.get("video_from"):  # an extension: the previous clip itself, its last ctx_len frames
+                job["image"] = os.path.join(data, made[j["video_from"]])
+                import av
+                with av.open(job["image"]) as c:
+                    job["ctx_start"] = max(0, sum(1 for _ in c.decode(video=0)) - j["ctx_len"])
             if j.get("image_last_from"):
                 png = os.path.join(outdir, "%s_last.png" % j["image_last_from"])
                 job["image"] = ST.last_frame(os.path.join(data, made[j["image_last_from"]]), png)

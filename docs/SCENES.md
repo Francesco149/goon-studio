@@ -107,6 +107,8 @@ pulls that show's own look.
   the night BJ chain whatever the prompt - but not everywhere: Emilia a103's chains stay flat, see OPEN-ITEMS; a neutral style line without drawing words barely helps). Chains compound it: keep chains to one hop, start
   later beats from fresh keyframes (a cut on a change of pace or angle), and do not `restore` - the H3-Image redraw
   starts thicker than the frame it replaces (b3: 2.36 vs 2.18), so restored chains degrade faster (b5).
+- **Continue a beat by extension, not one frame** (a107, owner: solid): shot key `"extend": 22` next to `start_from`
+  anchors the previous clip's last 22 frames - seamless and half the line thickening of a single-frame chain (`docs/STORY.md` "Round a107").
 - **Chaining from the exact last frame** (`start_from`) is the default - it is the only seamless continuation
   (`lanzhu_hotel` s5 was clean) - but check every hop for degradation (line art thickening, colours drifting,
   anatomy softening; `lanzhu_night` b3/b4 got thicker lines). `restore` was tried for this and made it worse (above).

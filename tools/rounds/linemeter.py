@@ -1,19 +1,26 @@
-# linemeter.py - line-art drift per clip (a106): dark-pixel share, mean dark-line run width, sharpness; first vs last frame.
-# Usage: python_embeded\python.exe -I tools/rounds/linemeter.py clip.mp4 [...]. Dark backgrounds inflate "ink" - compare like with like.
-# per clip: ink share (dark pixels), mean dark-line run width, sharpness (Laplacian), first vs last frame
+# linemeter.py - line-art drift per clip (a106/a107): dark-line run width at luma 90 and 60, and mean luma, for
+# frame 0, the mean of frames 8-23 and the mean of the last 24 frames (the jump happens in the first ~8 frames).
+# Usage: python_embeded\python.exe -I tools/rounds/linemeter.py clip.mp4[@skip] [...]; @22 skips an extension's context.
+# Dark backgrounds inflate the widths - compare like with like (same shot, same start).
 import sys, av, numpy as np
-def m(im):
-    g = np.asarray(im.convert('L'), dtype=np.float32)
-    ink = (g < 90).mean() * 100
-    lap = np.abs(4 * g[1:-1, 1:-1] - g[:-2, 1:-1] - g[2:, 1:-1] - g[1:-1, :-2] - g[1:-1, 2:]).mean()
+
+
+def width(g, thr=90):
     runs = []
-    for row in (g < 90)[::6]:
-        r = 0
-        for v in row:
-            if v: r += 1
-            elif r: runs.append(r); r = 0
-    return ink, np.mean([x for x in runs if x < 30]) if runs else 0, lap
-for p in sys.argv[1:]:
-    fr = [f.to_image() for f in av.open(p).decode(video=0)]
-    a, b = m(fr[0]), m(fr[-1])
-    print('%-34s first ink %5.2f line %4.2f sharp %5.2f | last ink %5.2f line %4.2f sharp %5.2f' % ((p.split('/')[-1],) + a + b))
+    for row in (g < thr)[::4]:
+        d = np.diff(np.concatenate([[0], row.astype(np.int8), [0]]))
+        runs += list(np.where(d == -1)[0] - np.where(d == 1)[0])
+    runs = [r for r in runs if r < 30]
+    return np.mean(runs) if runs else 0
+
+
+def stats(g):
+    return width(g), width(g, 60), g.mean()
+
+
+for a in sys.argv[1:]:
+    p, _, skip = a.partition('@')
+    fr = [np.asarray(f.to_image().convert('L'), dtype=np.float32) for f in av.open(p).decode(video=0)][int(skip or 0):]
+    mean = lambda ix: np.mean([stats(fr[i]) for i in ix], axis=0)
+    r = [stats(fr[0]), mean(range(8, min(24, len(fr)))), mean(range(max(0, len(fr) - 24), len(fr)))]
+    print('%-40s n=%3d ' % (p[-40:], len(fr)) + ' | '.join('w90 %.2f w60 %.2f Y %.0f' % tuple(x) for x in r))

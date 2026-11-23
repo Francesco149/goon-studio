@@ -44,13 +44,17 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 - Owner: the golden standard is still `emilia_meadow` (a103 flatter) and `lanzhu_hotel` (a104); `lanzhu_night`
   (a106, 51.5 s) is solid after the fixes, with good new poses (over-him tease, tip lick / tip suck, the suction face,
   tongue show, front cowgirl c4, the missionary) but went less smoothly. Recipes and lessons: `docs/SCENES.md`.
-- **Investigate first: line-art thickening.** It only showed up in this part. Measured (`tools/rounds/linemeter.py`,
-  dark-line run width first -> last frame): the night BJ chain b2->b5 1.99 -> 3.25 (each 124-frame clip +0.3-0.4,
-  `restore` made it worse), hotel a104 s4 2.56 -> 3.06 inside one clip, but Emilia a103 flat (s3 3.27 -> 3.29 and its
-  49-frame continuation 3.27 -> 3.29). Leads: lighting (dark warm-lamp night vs bright daylight - the meter also counts
-  dark backgrounds, compare like with like), motion amount (fast strokes, close-ups), chain depth and clip length
-  (124-frame hops vs Emilia's 49-frame continuations), the `restore` edits, the Lanzhu LoRA vs the Emilia LoRA.
-  Test on one shot by changing one variable at a time.
+- **Line-art thickening: investigated (round a107, 2026-11-23; details `docs/STORY.md` "Round a107").** Not a
+  wording or LoRA problem. Two causes: (1) the H3 video VAE darkens every encode->decode by ~2.5 levels and thickens
+  lines a little (measured with no generation; int8 and fp16 decode identically, so not the quantization - the fp16
+  file would not help); (2) a clip started from ONE frame re-renders the lines in its first ~8 frames ~+0.2 px heavier,
+  then holds, so each hop compounds. **Fix: extend instead of chain** - story shot key `"extend": 22` (or a job's
+  `ctx_len`/`ctx_start` with the previous mp4 as `image`; `core.extend_graph` works on any i2v workflow) anchors the
+  previous clip's last 22 frames (`MiniMaxH3AddGuide`, 17k+5 frames) at frame 0; the cut drops them. Same start, 2 hops: single-frame 2.20 -> 2.69, extension 2.20 -> 2.42 (half the drift), seamless overlap,
+  real motion. Pre-compensating the VAE tone helps a little (2.40); Anima re-ink of the frame changes the picture (pops).
+  **Owner verdict:** solid - the extension chain is unnoticeable up to the second hop (`x3_ext22`), the single-frame
+  hop 2 (`x4_hop2`) is noticeable; scenes will not chain more than ~4 clips without a hard cut. Open: 39-frame context,
+  a second scene/seed.
 - Act LoRAs on ampere not yet in the registry: `HMNSFW_AIO_V2` (sex positions, used for cowgirl/missionary);
   `Minimax3_BoobPhysics_v1` there is a 15-byte failed download (real file: Civitai version 3245935).
 

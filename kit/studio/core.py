@@ -291,7 +291,7 @@ def outputs_of(hist):
     for _n, out in (hist.get("outputs") or {}).items():
         for key in ("images", "gifs", "videos"):
             for it in out.get(key, []) or []:
-                if isinstance(it, dict) and "filename" in it and it.get("type", "output") != "temp":
+                if isinstance(it, dict) and "filename" in it and it.get("type", "output") not in ("temp", "input"):
                     yield it
 
 
@@ -352,6 +352,32 @@ def model_file_field(name, s=None):
     return name.replace("/", "\\") if local_windows(s) else name
 
 
+def extend_graph(graph, ctx_start, ctx_len):
+    """turn an i2v graph into an extension (round a107): `image` is the previous clip (mp4); its
+    ctx_len frames from ctx_start (17k+5: 5, 22, 39) are anchored at frame 0 with MiniMaxH3AddGuide,
+    their first frame is also the i2v first frame. The output repeats those frames: drop ctx_len when
+    cutting. Continues with half the line-art drift of a single-frame chain (docs/STORY.md a107)."""
+    i2v = next((k for k, v in graph.items() if v.get("class_type") == "MiniMaxH3ImageToVideo"), None)
+    if not i2v:
+        raise ValueError("extend needs an image-to-video workflow (MiniMaxH3ImageToVideo)")
+    load = graph[i2v]["inputs"]["first_frame"][0]  # the first frame's LoadImage, through any resize nodes
+    while graph[load]["class_type"] != "LoadImage":
+        load = graph[load]["inputs"]["image"][0]
+    video = graph[load]["inputs"]["image"]
+    graph[load] = {"class_type": "ImageFromBatch", "inputs": {"image": ["x_comp", 0], "batch_index": ctx_start, "length": 1}}
+    graph["x_video"] = {"class_type": "LoadVideo", "inputs": {"file": video}}
+    graph["x_comp"] = {"class_type": "GetVideoComponents", "inputs": {"video": ["x_video", 0]}}
+    graph["x_ctx"] = {"class_type": "ImageFromBatch", "inputs": {"image": ["x_comp", 0], "batch_index": ctx_start, "length": ctx_len}}
+    for v in graph.values():  # everything that used the i2v conditioning now gets the guided one
+        for name, src in v["inputs"].items():
+            if src == [i2v, 0]:
+                v["inputs"][name] = ["x_guide", 0]
+    n = graph[i2v]["inputs"]
+    graph["x_guide"] = {"class_type": "MiniMaxH3AddGuide", "inputs": {"positive": [i2v, 0], "vae": n["vae"], "latent": [i2v, 1],
+                                                                        "image": ["x_ctx", 0], "frame_idx": 0}}
+    return graph
+
+
 def run(job, by="me", on_queued=None, on_note=None):
     s = settings()
     P = presets()
@@ -385,6 +411,8 @@ def run(job, by="me", on_queued=None, on_note=None):
     if job.get("last"):
         fields["last"] = upload_input(job["last"], s)
     graph = subst(graph, fields)
+    if job.get("ctx_len"):
+        graph = extend_graph(graph, int(job.get("ctx_start", 0)), int(job["ctx_len"]))
     # same model in the quantization this engine has; a missing file stops here with where to get it
     modelstore.resolve_graph(graph, s)
     miss = modelstore.graph_missing(graph, s)
