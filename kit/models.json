@@ -243,6 +243,35 @@
    "page": "https://civitai.com/models/1336055?modelVersionId=3047525",
    "login": true
   },
+  "loras/style/RealisticAnimeIXL_v2.safetensors": {
+   "what": "Illustrious style LoRA: Citron 'Real Anime IXL' (semi-real glossy anime); triggers 'bokeh, luminescent background'",
+   "gb": 0.22,
+   "url": "https://civitai.com/api/download/models/1169083",
+   "page": "https://civitai.com/models/362745?modelVersionId=1169083",
+   "login": true
+  },
+  "loras/style/illustrious_style_painterly_v1.1.safetensors": {
+   "what": "Illustrious style LoRA: painterly (impasto, impressionism, chiaroscuro); triggers 'painterly, impasto, brushstroke, chiaroscuro'",
+   "gb": 0.19,
+   "url": "https://civitai.com/api/download/models/1676714",
+   "page": "https://civitai.com/models/1478417?modelVersionId=1676714",
+   "login": true
+  },
+  "loras/style/retro_scifi_artstyle_illustriousXL-000021.safetensors": {
+   "what": "Illustrious style LoRA: retro sci-fi 90s anime; triggers 'retro_artstyle, retro, cyberpunk', 0.7-1.0 (start 0.8)",
+   "gb": 0.22,
+   "url": "https://civitai.com/api/download/models/1021743",
+   "page": "https://civitai.com/models/912942?modelVersionId=1021743",
+   "login": true
+  },
+  "loras/style/xuer_thickpaint_il_v3.safetensors": {
+   "what": "Illustrious style LoRA: Xu Er thick paint / light & texture (2.5D painterly, 'less AI'); trigger 'XUER guangying', 0.8-0.9",
+   "gb": 0.65,
+   "url": "https://civitai.com/api/download/models/1278054",
+   "page": "https://civitai.com/models/768917?modelVersionId=1278054",
+   "login": true,
+   "note": "Published as '绪儿 厚涂构图光影质感增强V3.safetensors'. Author: DPM++ 2M = thicker paint, Euler a = clearer 2.5D anime."
+  },
   "text_encoders/p-h3-image_text_encoder_int8_convrot.safetensors": {
    "what": "P-H3 4B text encoder - the light H3-Image encoder for 16 GB RAM",
    "gb": 5.12,

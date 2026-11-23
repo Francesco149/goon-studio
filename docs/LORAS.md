@@ -29,6 +29,10 @@ are not part of any recipe a user gets.
 | `anima_Emilia_2-30.safetensors` | Emilia (Re:Zero) design study, stills | Anima (Pink Alchemy v2.9) | 1.0 | **approved** 2026-11-22: art style and identity spot on |
 | `konosuba-aqua-s2-illustriousxl-lora-nochekaiser.safetensors` | Aqua (KonoSuba) design study, stills | Illustrious (WAI v17) | 1.0 | **owner pick** a108: best identity, reads flat; story `aqua_evening` |
 | `konosuba-aqua-s2-anima-lora-nochekaiser.safetensors` | Aqua (KonoSuba), same s2 for Anima | Anima (Pink) | 1.0 | a108: identity good, eyes drift teal, ignores framing (odd low angles); not used |
+| `style/xuer_thickpaint_il_v3.safetensors` | style: Xu Er thick paint, trigger `XUER guangying` | Illustrious (WAI v17) | 0.6-0.85 | a119 (Gemma): ornate 2.5D, but turns the smirk into a cat-mouth and shrinks the horns; not used |
+| `style/illustrious_style_painterly_v1.1.safetensors` | style: painterly, `painterly, impasto, brushstroke, chiaroscuro` | Illustrious (WAI v17) | 0.6-0.9 | a119: closest to base design, small change (darker, moodier); not used |
+| `style/retro_scifi_artstyle_illustriousXL-000021.safetensors` | style: retro sci-fi 90s, `retro_artstyle, retro, cyberpunk` | Illustrious (WAI v17) | 0.6-0.85 | a119: most distinct (90s cel, mech suit), horns go small/crown-like; not used |
+| `style/RealisticAnimeIXL_v2.safetensors` | style: Citron Real Anime, `bokeh, luminescent background` | Illustrious (WAI v17) | 0.6-0.9 | a119: semi-real glossy, big curved horns on both seeds, but pink hair/tint drift; not used |
 
 ## Emilia (Re:Zero), round a100 (2026-11-22)
 

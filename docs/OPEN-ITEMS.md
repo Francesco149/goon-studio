@@ -88,6 +88,17 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 - Act LoRAs on ampere not yet in the registry: `HMNSFW_AIO_V2` (sex positions, used for cowgirl/missionary);
   `Minimax3_BoobPhysics_v1` there is a 15-byte failed download (real file: Civitai version 3245935).
 
+## Session 2026-11-23 (OC design lock: Gemma, a114-a117)
+
+- New method doc `docs/OC.md` (design an OC as tags -> stack side-by-side -> find unstable traits on head
+  crops -> lock expression -> save block -> LoRA from curated gens). First OC: **Gemma** (cyber succubus),
+  block `kit/presets.json` character `gemma`, Illustrious / WAI v17 (owner pick over Anima).
+- Canon picture `gallery/a117/gm_lock_114001_00001_.png`; art style = base WAI (a118 artist tags and a119
+  style LoRAs tried, owner: none beats it).
+- Locked: cold face, pink gem drop earrings, outfit (8/8). **Open: horn shape** (canon = a114 seed 114002,
+  upward crescent) holds ~2/3 by prompt; plan is a varied dataset round + curation, then an SDXL LoRA
+  (no training tooling in the repo yet).
+
 ## Open items, in the owner's order
 
 1. **Cum physics (next).** Recurring: the amount that lands and splashes is far too much for one
