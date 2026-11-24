@@ -20,7 +20,7 @@ Endpoints:
   GET  /api/scenes      scene starters (kit/stories) and the user's scenes; POST /api/scene/* (scenes.py)
   GET  /img/<path>      a picture in the gallery
 """
-import base64, json, mimetypes, os, queue, threading, time, traceback, urllib.parse
+import base64, json, mimetypes, os, queue, re, threading, time, traceback, urllib.parse
 import sys
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
@@ -107,12 +107,48 @@ class H(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
-    def file(self, path):
+    def file(self, path, cache=False):
+        """Send a file, streamed, with HTTP Range support: video tags ask for byte ranges (to play,
+        seek and read the first frame) and abort a reply that ignores them."""
         if not os.path.isfile(path):
             return self.send(404, {"error": "not found"})
         ctype = mimetypes.guess_type(path)[0] or "application/octet-stream"
-        with open(path, "rb") as f:
-            self.send(200, f.read(), ctype)
+        size = os.path.getsize(path)
+        start, end = 0, size - 1
+        m = re.match(r"bytes=(\d*)-(\d*)$", (self.headers.get("Range") or "").strip())
+        if m and (m.group(1) or m.group(2)):
+            if m.group(1):
+                start = int(m.group(1))
+                end = min(int(m.group(2)), size - 1) if m.group(2) else size - 1
+            else:   # the last N bytes
+                start = max(0, size - int(m.group(2)))
+            if start >= size or start > end:
+                self.send_response(416)
+                self.send_header("Content-Range", "bytes */%d" % size)
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
+        self.send_response(206 if m and (m.group(1) or m.group(2)) else 200)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Content-Length", str(end - start + 1))
+        if m and (m.group(1) or m.group(2)):
+            self.send_header("Content-Range", "bytes %d-%d/%d" % (start, end, size))
+        # gallery files never change under the same name: let the browser keep them
+        self.send_header("Cache-Control", "private, max-age=86400" if cache else "no-store")
+        self.end_headers()
+        left = end - start + 1
+        try:
+            with open(path, "rb") as f:
+                f.seek(start)
+                while left > 0:
+                    chunk = f.read(min(1 << 20, left))
+                    if not chunk:
+                        break
+                    self.wfile.write(chunk)
+                    left -= len(chunk)
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+            pass   # the browser cancelled (seeking, scrolled away): normal for video
 
     def body(self):
         n = int(self.headers.get("Content-Length") or 0)
@@ -158,7 +194,7 @@ class H(BaseHTTPRequestHandler):
                         out.append(r)
                 return self.send(200, list(reversed(out)))
             if p.startswith("/img/"):
-                return self.file(safe_join(core.settings().get("data_dir", core.GALLERY), p[5:]))
+                return self.file(safe_join(core.settings().get("data_dir", core.GALLERY), p[5:]), cache=True)
             if p.startswith("/docs/"):
                 return self.file(safe_join(os.path.join(core.ROOT, "docs"), p[6:]))
             return self.send(404, {"error": "not found"})
