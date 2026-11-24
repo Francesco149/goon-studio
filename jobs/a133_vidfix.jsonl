@@ -1,0 +1,3 @@
+{"name": "anatomy_lora", "template": "pov_blowjob_anatomy", "seed": 133001, "width": 512, "height": 768, "length": 49, "image": "gallery/a132/prone_bj_16101_00001_.png", "_note": "the recipe's own LoRA (Male Anatomy) now reaches the graph"}
+{"name": "no_lora", "template": "pov_blowjob_anatomy", "seed": 133001, "width": 512, "height": 768, "length": 49, "nsfw_lora": "", "image": "gallery/a132/prone_bj_16101_00001_.png", "_note": "LoRA workflow with no LoRA: the loader is bypassed"}
+{"name": "none_lora", "template": "pov_blowjob_anatomy", "seed": 133002, "width": 512, "height": 768, "length": 49, "nsfw_lora": "none", "image": "gallery/a132/prone_bj_16101_00001_.png"}

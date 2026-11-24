@@ -37,12 +37,13 @@ new = {
     "egirl_missionary": dict(nsfw, label="Photoreal e-girl - missionary POV from above (Krea NSFW v10; a132b, owner-approved)",
         about="Round a132b: NSFW v10, 2/2 seeds clean penetration, legs spread, looking up at the camera; check the hands (her hand holds her thigh beside his).",
         prompt="Photorealistic candid photo. Missionary sex, POV from above. {character} She lies naked on her back on the bed, her legs spread and bent around a man kneeling between them, his erect cock inside her pussy. Her breasts rest heavy on her chest, her hair spread around her face on the pillow. She looks up at the camera, lips parted, flushed, eyes half-lidded. His hands hold her thighs. " + SKIN + " " + LED),
-    "egirl_doggy": dict(nsfw, label="Photoreal e-girl - doggy from behind (Krea NSFW v10; a132c, candidate)",
+    "egirl_doggy": dict(nsfw, label="Photoreal e-girl - doggy from behind (Krea NSFW v10; a132c, owner-approved)",
         about="Round a132c: NSFW v10, 3/3 seeds on all fours from behind and above, clean penetration, looking back. The camera placement ('behind and above her, looking down along her arched back') and 'her chest lowered to the sheets' fixed a132/a132b (riding poses).",
         prompt="Photorealistic candid photo. Doggy style sex, seen from behind. {character} She is on all fours on the bed, her knees apart on the mattress, her chest lowered to the sheets and her ass raised. The camera is behind and above her, looking down along her arched back: her round ass and wide hips fill the foreground, a man's hands grip her hips, his erect cock is inside her pussy from behind. She looks back over her shoulder at the camera, mouth open, flushed cheeks, her twin tails spilling over the sheets. " + SKIN + " " + LED),
 }
 for k in ("egirl_paizuri", "egirl_prone_bj", "egirl_cowgirl", "egirl_revcowgirl", "egirl_missionary"):
     new[k]["about"] += " Owner (2026-11-24): approved; the light mosaic the Verite chain sometimes draws is acceptable."
+new["egirl_doggy"]["about"] += " Owner (2026-11-24): approved."
 new["egirl_missionary"]["about"] += " Seed 16202 changed her face (the one reject); re-roll when the face drifts."
 for k, v in new.items():
     T[k] = v

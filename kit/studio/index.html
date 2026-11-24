@@ -473,7 +473,7 @@ async function init(){
   if(STATE.default_cock_video&&(STATE.cocks||{})[STATE.default_cock_video])$("#vcock").value=STATE.default_cock_video;
   for(const [k,v] of Object.entries(STATE.breasts_video||{template:{label:"as the template"}}))$("#vbreasts").add(new Option(v.label||k,k));
   for(const [k,v] of Object.entries(STATE.dynamics_video||{template:{label:"as the template"}}))$("#vdynamics").add(new Option(v.label||k,k));
-  for(const [k,v] of Object.entries(STATE.loras||{}))$("#vlora").add(new Option(k,v||k));
+  for(const [k,v] of Object.entries(STATE.loras||{}))$("#vlora").add(new Option(k,v||""));
   const vt=$("#vtpl");for(const [k,v] of Object.entries(STATE.video_templates||{}))vt.add(new Option(v.label||k,k));
   vt.value=STATE.default_video&&(STATE.video_templates||{})[STATE.default_video]?STATE.default_video:(vt.options[0]||{}).value;
   vt.onchange=fillVideo;$("#vlora").addEventListener("change",vneeds);$("#vmode").onchange=()=>{VWF="";videoMode()};$("#vsize").onchange=vsize;
@@ -697,7 +697,8 @@ function fillVideo(){
   const t=(STATE.video_templates||{})[$("#vtpl").value]||{};
   $("#vprompt").value=t.prompt||"";$("#vnegative").value=t.negative||"";
   VWF=t.workflow||"";$("#vworkflow").value="";$("#vAbout").textContent=t.about||"";
-  if(t.lora)$("#vlora").value=t.lora;
+  // the recipe's own LoRA may not be in the act-LoRA list (e.g. Male Anatomy): add it so it is really sent
+  if(t.lora){if(![...$("#vlora").options].some(o=>o.value===t.lora))$("#vlora").add(new Option(t.lora.split("/").pop().replace(/\.safetensors$/,""),t.lora));$("#vlora").value=t.lora}
   if(t.strength!=null)$("#vstrength").value=t.strength;
   const wf=t.workflow||"wf_h3vid_i2v.json";
   $("#vmode").value=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";

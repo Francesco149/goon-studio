@@ -385,6 +385,28 @@ def model_file_field(name, s=None):
     return name.replace("/", "\\") if local_windows(s) else name
 
 
+def drop_empty_loras(graph):
+    """Bypass LoRA loaders whose LoRA is empty or "none" (the page's "no act LoRA" on a LoRA
+    workflow): their consumers read the loader's own model/clip inputs instead."""
+    for nid in [k for k, v in graph.items() if isinstance(v, dict)]:
+        n = graph[nid]
+        if not str(n.get("class_type", "")).startswith("LoraLoader"):
+            continue
+        name = str(n.get("inputs", {}).get("lora_name", "")).strip()
+        if name and name.lower() != "none":
+            continue
+        ins = n["inputs"]
+        outs = {0: ins.get("model"), 1: ins.get("clip")}
+        for other in graph.values():
+            if not isinstance(other, dict):
+                continue
+            for k, v in list(other.get("inputs", {}).items()):
+                if isinstance(v, list) and len(v) == 2 and str(v[0]) == str(nid) and outs.get(v[1]) is not None:
+                    other["inputs"][k] = outs[v[1]]
+        del graph[nid]
+    return graph
+
+
 def extend_graph(graph, ctx_start, ctx_len):
     """turn an i2v graph into an extension (round a107): `image` is the previous clip (mp4); its
     ctx_len frames from ctx_start (17k+5: 5, 22, 39) are anchored at frame 0 with MiniMaxH3AddGuide,
@@ -444,6 +466,7 @@ def run(job, by="me", on_queued=None, on_note=None):
     if job.get("last"):
         fields["last"] = upload_input(job["last"], s)
     graph = subst(graph, fields)
+    drop_empty_loras(graph)
     if job.get("ctx_len"):
         graph = extend_graph(graph, int(job.get("ctx_start", 0)), int(job["ctx_len"]))
     # LoRAs picked on the page (the store's or the user's private ones), after the template's own
