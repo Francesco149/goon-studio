@@ -15,6 +15,7 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 | anime cum shot | `anime_ll_cumshot` (a93b `hb_oneside`) | "the most natural one yet"; keyframe `gens/a30/n1_handjob_b`, seed 93001 |
 | photoreal cum shot | `cumshot_medium` (a93 `pm_base`) | "the best default for this shot"; `p1_pose`, seed 970; `cumshot_high` = extreme preset |
 | photoreal cum shot, in a scene | `cumshot_medium` seed 970 on a keyframe of the scene's own girl (a111 r5, `a111k/r5_111503`, her tongue touching the tip) | owner: "solid", the pose is as good as `p1_pose`; use it whenever the cum shot follows other beats (keeps her identity) |
+| photoreal poses (a132, 2026-11-24) | `egirl_paizuri`, `egirl_prone_bj` (Verite chain); `egirl_cowgirl`, `egirl_revcowgirl`, `egirl_missionary` (NSFW v10) | owner: all approved but missionary seed 16202 (face drift); light mosaic acceptable; doggy still open (`docs/EGIRL.md` "Poses") |
 | photoreal facial still | `egirl_facial_tongue` / `egirl_facial_tongue_over` (a94) | tongue out: "good angle, expression and splash pattern"; overcooked = thinner translucent semen |
 | anime paizuri | still `anime_ll_fz_paizuri_notongue` -> clip `anime_ll_paizuri` (a92) | "solid, right penis type"; no saliva yet |
 | anime h-game motion (smooth, jiggly) | `anime_lz_hgame_paizuri` on keyframe `gallery/a99/hgk_pz_wide_hg_99002`, seed 99101 (a99i) | h-game keyframe = H3 on 1s; no fold, closed smile; owner: "the recipe to force this style" |
@@ -22,6 +23,18 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 | lap pillow + nursing handjob (sweet) | `docs/SCENES.md` row; clips `a105/lapv2_ontop`, `lapv2_bed`, `lapv5_sofa_105101` | owner: a winning recipe |
 | Emilia character | Anima + `anima_Emilia_2-30` (a100) | art style and identity spot on; Illustrious + nochekaiser s4 = usable alternative |
 | anime stills | `anime_pov` (retracted), `anime_pov_foreskin`, `anime_pov_mosaic` | style + nudity locks, round a86 |
+
+## Session 2026-11-24 handoff (16 GB pass, Favorites, photoreal poses)
+
+- **Favorites tab** on the page; `tools/favorites.py add <round>/<file> --label ...` whenever the owner
+  approves a gen (143 earlier approvals + the a132 poses are starred).
+- **16 GB pass** (`docs/PERFORMANCE-16GB.md`): 16 GB is roomier, not faster; the 16 GB profile keeps an
+  8 GB card's headroom (`setup.ps1 -Profile16`); only Krea + Verite keyframes (-23%) and H3 video (-9%)
+  gain from the whole card. Never `--highvram` or `--disable-dynamic-vram`.
+- **Headless Linux** (`kit/linux/setup.sh`, `docs/HEADLESS-LINUX.md`): only when a user asks for it.
+- **Photoreal poses** (a132): paizuri, prone BJ, cowgirl, reverse cowgirl, missionary approved
+  (`docs/EGIRL.md` "Poses"). Awaiting the owner: **doggy** (`egirl_doggy`, a132c). Open: a handjob template (1/2 seeds), a face reference
+  set for a possible LoRA (the list is in `docs/EGIRL.md`).
 
 ## Session 2026-11-22 handoff (stories, recipe index)
 

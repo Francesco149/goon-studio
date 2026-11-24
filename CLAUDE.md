@@ -77,7 +77,11 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
   last frame), list the shot plan back in one line per shot, and render it with the story workflow
   above rather than trying to fit everything into a single generation.
 - The app's templates and approved prompt blocks: `kit/presets.json`; the user's own presets:
-  `my/presets.json`.
+  `my/presets.json`. When the owner approves a gen, also star it: `python tools/favorites.py add
+  <round>/<file> --label "..."` (the page's Favorites tab; AGENTS.md 2a).
+- 16 GB+ VRAM at setup: offer the 16 GB profile once (it keeps an 8 GB card's headroom; the whole card
+  is only 10-25% faster for photoreal keyframes and H3 video, `docs/PERFORMANCE-16GB.md`). A headless Linux server (`docs/HEADLESS-LINUX.md`) only when the
+  user asks for one.
 - Vague feedback ("make it better", "not quite"): read what templates and options exist now, offer
   the 2-4 closest fits in one line each (what it would look like), and offer to tune a custom style
   into a new template. Short, one question; AGENTS.md section 6a.

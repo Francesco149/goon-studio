@@ -95,7 +95,7 @@ def exec_seconds(hist):
 
 
 class Sampler(threading.Thread):
-    """Poll nvidia-smi and system memory until stopped."""
+    """Poll nvidia-smi (or, on Linux with an AMD card, sysfs) and system memory until stopped."""
 
     def __init__(self, interval=0.4):
         super().__init__(daemon=True)
@@ -106,8 +106,37 @@ class Sampler(threading.Thread):
         self.min_free_ram = None
         self.min_free_commit = None
 
+    @staticmethod
+    def amd_card():
+        """Linux/AMD: the sysfs device of the card with the most VRAM (a second, smaller card may sit
+        beside it), or None."""
+        import glob
+        best = None
+        for d in glob.glob("/sys/class/drm/card*/device"):
+            try:
+                tot = int(open(os.path.join(d, "mem_info_vram_total")).read())
+            except (OSError, ValueError):
+                continue
+            if not best or tot > best[0]:
+                best = (tot, d)
+        return best and best[1]
+
     def run(self):
+        amd = self.amd_card() if sys.platform.startswith("linux") else None
         while not self.stop.is_set():
+            if amd:
+                try:
+                    used = int(open(os.path.join(amd, "mem_info_vram_used")).read()) // (1 << 20)
+                    busy = int(open(os.path.join(amd, "gpu_busy_percent")).read())
+                    self.peak_vram = max(self.peak_vram, used)
+                    self.peak_gpu = max(self.peak_gpu, busy)
+                    m = dict(l.split(":", 1) for l in open("/proc/meminfo"))
+                    free_gb = int(m["MemAvailable"].split()[0]) / (1 << 20)
+                    self.min_free_ram = free_gb if self.min_free_ram is None else min(self.min_free_ram, free_gb)
+                except Exception:
+                    pass
+                self.stop.wait(self.interval)
+                continue
             try:
                 out = subprocess.run(
                     ["nvidia-smi", "--query-gpu=memory.used,utilization.gpu",

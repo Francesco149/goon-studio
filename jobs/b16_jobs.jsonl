@@ -1,0 +1,9 @@
+{"name": "krea_bj", "template": "egirl_bj_pov", "seed": 86003, "_note": "golden photoreal keyframe recipe, 896x1344 8 steps"}
+{"name": "krea_bj_1024", "template": "egirl_bj_pov", "seed": 86003, "width": 1024, "height": 1536, "_note": "16 GB: a bigger frame"}
+{"name": "krea_nsfw", "template": "egirl", "seed": 5, "_note": "NSFW v10 nvfp4 (emulated on ROCm), 6 steps"}
+{"name": "anima", "template": "anime_pov", "seed": 7}
+{"name": "illu", "template": "illu_pov_bj", "seed": 7}
+{"name": "h3img", "template": "h3_image", "seed": 7}
+{"name": "h3vid_draft", "template": "pov_blowjob_anatomy", "seed": 970, "width": 512, "height": 768, "length": 85, "image": "gallery/a86/verite_base_s3_00001_.png"}
+{"name": "h3vid_draft_w4a8", "template": "pov_blowjob_anatomy", "seed": 970, "width": 512, "height": 768, "length": 85, "unet": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors", "image": "gallery/a86/verite_base_s3_00001_.png"}
+{"name": "h3vid_final", "template": "pov_blowjob_anatomy", "seed": 970, "image": "gallery/a86/verite_base_s3_00001_.png"}

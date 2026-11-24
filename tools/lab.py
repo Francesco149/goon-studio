@@ -118,7 +118,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--wf", required=True)
     ap.add_argument("--jobs", required=True)
-    ap.add_argument("--box", default="local", choices=sorted(BOXES))
+    ap.add_argument("--box", default=localboxes.default_name(), choices=sorted(BOXES))
     ap.add_argument("--sub", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--only", default=None, help="comma list of job names to run")

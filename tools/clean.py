@@ -39,7 +39,7 @@ BOXES = {
 }
 SSH = {}
 for _k, _v in localboxes.load().items():
-    BOXES[_k] = (_v["url"], _v.get("root", ""), "output", "input", "/")
+    BOXES[_k] = (_v["url"], _v.get("root", ""), _v.get("outputs", "output"), _v.get("inputs", "input"), "/")
     if _v.get("ssh"):
         SSH[_k] = list(_v["ssh"])
 

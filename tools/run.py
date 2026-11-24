@@ -29,7 +29,7 @@ def main():
     import localboxes
     boxes = {"local": localboxes.local_url()}
     boxes.update({k: v["url"] for k, v in localboxes.load().items()})
-    ap.add_argument("--box", default="local", choices=sorted(boxes))
+    ap.add_argument("--box", default=localboxes.default_name(), choices=sorted(boxes))
     ap.add_argument("--sub", required=True, help="ComfyUI subfolder prefix, e.g. gl/g01")
     ap.add_argument("--out", required=True)
     ap.add_argument("--log", default=None)

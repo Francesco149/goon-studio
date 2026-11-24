@@ -6,13 +6,15 @@
 #                                               installed next to this repo; else the pinned build is installed)
 #   ... -GalleryDir <folder>   where pictures go (default: the repo's gallery\ folder)
 #   ... -NoShortcut  -NoStart  -StopOther / -KeepOther (passed to start.ps1: another app's engine is running)
+#   ... -Profile16   the 16 GB profile (docs/PERFORMANCE-16GB.md; only on a 16 GB+ card and on the user's yes): the
+#                    engine keeps an 8 GB card's headroom (--reserve-vram), the rest of the card stays free; -Profile8 undoes it
 #
 # Big files live in -DataDir: downloads\, engine\ (unless shared), models\ (the model store). Models are fetched
 # afterwards, template by template: kit\py.cmd tools\models\store.py fetch <template> (AGENTS.md section 1a).
 # Exit codes: 0 ok, 10 driver too old, 11 no data folder / not enough space, 12 no NVIDIA GPU, 13 download or unpack
 # failed, 14 the engine did not start, 5 another app's engine is running (ask the user, rerun with -StopOther/-KeepOther).
 param([string]$DataDir, [string]$EngineDir, [string]$GalleryDir, [switch]$Check, [switch]$NoShortcut, [switch]$NoStart,
-      [switch]$StopOther, [switch]$KeepOther)
+      [switch]$StopOther, [switch]$KeepOther, [switch]$Profile16, [switch]$Profile8)
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 $Repo = Split-Path -Parent $PSScriptRoot
@@ -59,6 +61,9 @@ if ($smi) {
 Say ("GPU: {0} | VRAM: {1} GB | driver {2} | compute {3} | RAM: {4} GB" -f $gpu, $vram, $driver, $cc, $ram)
 foreach ($v in (Get-Volume | Where-Object { $_.DriveLetter -and $_.DriveType -eq "Fixed" -and $_.Size -gt 0 })) {
     Say ("drive {0}: {1} GB free of {2} GB" -f $v.DriveLetter, [math]::Round($v.SizeRemaining / 1GB), [math]::Round($v.Size / 1GB))
+}
+if ($vram -and [double]$vram -ge 15.5 -and -not $Profile16) {
+    Say "16 GB+ card: the 16 GB profile is available (docs/PERFORMANCE-16GB.md); offer it to the user, rerun with -Profile16 on a yes"
 }
 if (-not $gpu) { Fail 12 "no NVIDIA graphics card found (or its driver is missing). Goon Studio needs an NVIDIA GPU with 8 GB." }
 $Build = if ($cc -and [double]$cc -lt 7.5) { "pascal" } else { "modern" }
@@ -126,6 +131,15 @@ $settings = [ordered]@{
     extra_flags = $flags
     gpu = $gpu; vram_gb = $vram; ram_gb = $ram; engine_build = $Build
 }
+# the 16 GB profile: same speed as the whole card on most jobs, so the engine keeps an 8 GB card's headroom
+# (--reserve-vram = VRAM - 7.5 GB) and the rest stays free for other apps (docs/PERFORMANCE-16GB.md)
+$perf = if ($Profile16) { "16gb" } elseif ($Profile8) { "8gb" } elseif ($S -and $S.perf_profile) { "$($S.perf_profile)" } else { "8gb" }
+$settings["perf_profile"] = $perf
+$base = ("$($settings['extra_flags'])" -replace '--reserve-vram\s+\S+', '').Trim() -replace '\s+', ' '
+if ($perf -eq "16gb" -and $vram) {
+    $settings["extra_flags"] = ("{0} --reserve-vram {1}" -f $base, [math]::Round([double]$vram - 7.5, 1)).Trim()
+    Say ("16 GB profile on: the engine keeps an 8 GB card's headroom ({0})" -f $settings["extra_flags"])
+} elseif ($Profile8) { $settings["extra_flags"] = $base }
 [IO.File]::WriteAllText($SettingsPath, ($settings | ConvertTo-Json), (New-Object Text.UTF8Encoding($false)))
 Say ("settings saved: " + $SettingsPath)
 

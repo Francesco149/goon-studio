@@ -7,6 +7,7 @@ Endpoints:
   GET  /api/history     every picture with rating/public/trashed
   POST /api/rate        {file, rating, note}
   POST /api/visibility  {files, public}
+  POST /api/favorite    {files, fav, labels?} -> the Favorites tab (my/favorites.json, private ones in my/private/)
   POST /api/trash       {files};  /api/restore {files};  /api/delete {files}
   POST /api/upload      {data: "data:image/...;base64,..."} -> gallery/uploads/<file>
   POST /api/lastframe   {file: clip} -> its last frame as a picture (to chain the next clip)
@@ -26,7 +27,9 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # start.ps1 passes --engine (the engine it started or found; WMI-started processes do not inherit its
 # environment) and --port; tests use GOON_COMFY_URL / GOON_STUDIO_PORT the same way
-for _flag, _env in (("--engine", "GOON_COMFY_URL"), ("--port", "GOON_STUDIO_PORT"), ("--sandbox", "GOON_STUDIO_SANDBOX")):
+# --host 0.0.0.0: serve the page on the LAN (a headless server, docs/HEADLESS-LINUX.md); default this PC only
+for _flag, _env in (("--engine", "GOON_COMFY_URL"), ("--port", "GOON_STUDIO_PORT"), ("--sandbox", "GOON_STUDIO_SANDBOX"),
+                    ("--host", "GOON_STUDIO_HOST")):
     if _flag in sys.argv[1:-1]:
         os.environ[_env] = sys.argv[sys.argv.index(_flag) + 1]
 # Only the user's own page (8191) shows their pictures. Any other port is a test page and always runs
@@ -244,6 +247,8 @@ class H(BaseHTTPRequestHandler):
                 with open(dst, "wb") as f:
                     f.write(raw)
                 return self.send(200, {"file": rel, "path": dst})
+            if p == "/api/favorite":
+                return self.send(200, {"changed": core.set_favorite(b.get("files") or [], bool(b.get("fav")), b.get("labels"))})
             if p == "/api/visibility":
                 return self.send(200, {"changed": core.set_public(b.get("files") or [], bool(b.get("public")))})
             if p in ("/api/trash", "/api/restore"):
@@ -282,8 +287,9 @@ def main():
     except Exception as ex:  # never keep the page from starting
         PRIVATE_LORAS["status"] = "could not link the private folder: %s" % ex
     threading.Thread(target=worker, daemon=True).start()
-    srv = ThreadingHTTPServer(("127.0.0.1", PORT), H)
-    print("Goon Studio on http://127.0.0.1:%d" % PORT, flush=True)
+    host = os.environ.get("GOON_STUDIO_HOST", "127.0.0.1")
+    srv = ThreadingHTTPServer((host, PORT), H)
+    print("Goon Studio on http://%s:%d" % (host, PORT), flush=True)
     srv.serve_forever()
 
 

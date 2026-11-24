@@ -17,6 +17,40 @@ breasts, proportions comparable to the anime curvy type, not a caricature. This 
 stack that hit it, and it is a different model from the earlier photoreal chain
 (Krea 2 Turbo + `Verite_realism`).
 
+## Poses (rounds a132-a132c, 2026-11-24, on the 16 GB engine)
+
+New acts beyond the blowjob/facial set, in the Verite caption shape (act first, `{character}`, him,
+hands, setting, `Candid amateur phone photo.` last). **Owner verdict (2026-11-24): all approved except
+`a132b/missionary_nsfw_16202` (her face changed); the light mosaic where it appeared is acceptable.**
+Templates (`tools/rounds/mk_a132.py`), all starred as favorites:
+
+| act | template | model | result |
+|---|---|---|---|
+| paizuri POV | `egirl_paizuri` | Krea 2 + Verite | 4/4 seeds a clean titjob, eyes to camera |
+| blowjob lying on her stomach | `egirl_prone_bj` | Krea 2 + Verite | 2/2 once her body is "stretched out behind her" with the feet raised; without that she kneels (a132) |
+| cowgirl, POV from below | `egirl_cowgirl` | Krea NSFW v10 | 2/2 clean penetration |
+| reverse cowgirl | `egirl_revcowgirl` | Krea NSFW v10 | 2/2, her ass and hips filling the frame |
+| missionary, POV from above | `egirl_missionary` | Krea NSFW v10 | 2/2 clean; watch the hands (hers beside his on the thigh) |
+| handjob POV | - | Krea 2 + Verite | 1/2 (the other seed licks the tip); no template yet |
+| doggy from behind | `egirl_doggy` (candidate) | Krea NSFW v10 | a132c: 3/3 on all fours from behind and above, clean; a132/a132b drew riding poses until the camera was placed "behind and above her, looking down along her arched back" and "her chest lowered to the sheets" |
+
+Lessons:
+- **Penetration: Krea NSFW v10 draws it clean** (6/6). Krea 2 + Verite bakes a light JAV-style mosaic
+  onto the penetrating shaft on most seeds (a132 cowgirl/missionary 16101, all three a132b doggy
+  seeds); the owner accepts that light mosaic, so either chain is fine, NSFW v10 when it must be clean. Oral and breast acts stay on the Verite chain (seal and faces).
+- **Veins:** "a natural shaft with smooth skin and faint veins under it" calms the vine-like cords
+  (a132b paizuri vs a132); not gone on every seed.
+- Name the body's whole layout when the act is not kneeling ("lies flat on her stomach ... her body
+  stretched out behind her ... her bare feet raised"); naming only the act keeps the kneeling default.
+
+## Her face: the reference set
+
+If her face ever needs a golden standard (a character LoRA, an identity check), use the earlier golden
+gens (`gens/e3/p1_bust_natural`, `p3_mirror`, `gens/e1/e1e_bj_pov`, `gallery/a86/verite_base_s*`, the
+a111 `egirl_night` keyframes) **plus the close-ups of the a132 poses**: `prone_bj`/`prone2`, `paizuri`/
+`paizuri_smooth`, `handjob`, `tease_kneel`. In the shots where her face is small (cowgirl, reverse
+cowgirl, missionary, doggy) the features drift slightly: acceptable in a gen, not for a reference set.
+
 ## The model
 
 | | |

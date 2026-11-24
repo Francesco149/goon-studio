@@ -300,7 +300,8 @@ def pick(folder, name, have):
 
 
 def suggest(folder, name, reg=None):
-    """Which registry file to fetch for a missing name: an 8 GB variant of the same model first."""
+    """Which registry file to fetch for a missing name: an 8 GB variant of the same model first (also on
+    16 GB cards: the w4a8 files fit there and beat INT8, docs/PERFORMANCE-16GB.md)."""
     reg = registry() if reg is None else reg
     same = [(k.split("/", 1)[1], e) for k, e in reg.items()
             if k.split("/", 1)[0] == folder and stem(k.split("/", 1)[1]) == stem(name)]

@@ -30,6 +30,11 @@ def main():
     args = [a for a in args if a not in ("--cut-only", "--keys-only", "--redo")]
     if "--engine" in opt:
         os.environ["GOON_COMFY_URL"] = opt["--engine"]
+    else:
+        sys.path.append(os.path.join(ROOT, "tools"))   # after kit/studio: tools/headroom.py is another module
+        import localboxes
+        if localboxes.default_url():   # tools/boxes.local.json "_default" (author setups only)
+            os.environ["GOON_COMFY_URL"] = localboxes.default_url()
     story_path, rnd = args
     import core, story as ST
     S = ST.load(story_path, opt.get("--variant"))

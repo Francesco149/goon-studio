@@ -34,7 +34,7 @@ import uuid
 import localboxes  # noqa: E402
 BOXES = {"local": localboxes.local_url()}
 BOXES.update({k: v["url"] for k, v in localboxes.load().items()})
-BASE = os.environ.get("COMFY_URL", BOXES["local"])
+BASE = os.environ.get("COMFY_URL", BOXES[localboxes.default_name()])
 PH = re.compile(r"\{\{(\w+)\}\}")
 
 

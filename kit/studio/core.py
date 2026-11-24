@@ -29,6 +29,8 @@ FEED = os.path.join(MY, "feedback.jsonl")
 PHIST = os.path.join(PRIVATE, "history.jsonl")    # the user's own pictures (private unless made public)
 PFEED = os.path.join(PRIVATE, "feedback.jsonl")
 LIB = os.path.join(MY, "library.json")
+FAVS = os.path.join(MY, "favorites.json")         # favorites the agent may see (its gens, shared ones)
+PFAVS = os.path.join(PRIVATE, "favorites.json")   # favorites among the user's private pictures
 # GOON_STUDIO_SANDBOX=<dir>: a test page (port 8291) with its own history, library, private folder and
 # gallery under <dir>, so testing the page never shows or touches the user's private pictures.
 # my/settings.json (engine, models) and kit/ are still the real ones.
@@ -36,8 +38,8 @@ SANDBOX = os.environ.get("GOON_STUDIO_SANDBOX")
 if SANDBOX:
     MY = os.path.join(SANDBOX, "my")
     PRIVATE = os.path.join(MY, "private")
-    HIST, FEED, LIB = (os.path.join(MY, n) for n in ("history.jsonl", "feedback.jsonl", "library.json"))
-    PHIST, PFEED = (os.path.join(PRIVATE, n) for n in ("history.jsonl", "feedback.jsonl"))
+    HIST, FEED, LIB, FAVS = (os.path.join(MY, n) for n in ("history.jsonl", "feedback.jsonl", "library.json", "favorites.json"))
+    PHIST, PFEED, PFAVS = (os.path.join(PRIVATE, n) for n in ("history.jsonl", "feedback.jsonl", "favorites.json"))
 WLOCK = threading.RLock()
 PH = re.compile(r"\{\{(\w+)\}\}")
 
@@ -590,6 +592,49 @@ def feedback_path(rel):
     return PFEED
 
 
+def _write_json(path, d):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(d, f, indent=1, ensure_ascii=False)
+    os.replace(tmp, path)
+
+
+def favorites(private=True):
+    """{file: {time, label?}}: the user's favorites (the Favorites tab). Favorites among private
+    pictures live in my/private/favorites.json, the rest (agent gens, shared pictures) in
+    my/favorites.json, where an agent may read and add to them (tools/favorites.py)."""
+    out = dict((load_json(FAVS, {}) or {}).get("files", {}))
+    if private:
+        out.update((load_json(PFAVS, {}) or {}).get("files", {}))
+    return out
+
+
+def set_favorite(files, fav, labels=None):
+    """Mark (fav=True) or unmark pictures/clips as favorites; labels: {file: label} for files that
+    have no history record (a story cut, an older round)."""
+    labels = labels or {}
+    with WLOCK:
+        shared, private = load_json(FAVS, {}) or {}, load_json(PFAVS, {}) or {}
+        n = 0
+        for f in files:
+            dest = private if feedback_path(f) == PFEED else shared
+            other = shared if dest is private else private
+            other.setdefault("files", {}).pop(f, None)
+            if fav:
+                e = dest.setdefault("files", {}).get(f) or {"time": time.time()}
+                if labels.get(f):
+                    e["label"] = labels[f]
+                dest["files"][f] = e
+            else:
+                dest.setdefault("files", {}).pop(f, None)
+            n += 1
+        _write_json(FAVS, shared)
+        if private.get("files") or os.path.exists(PFAVS):
+            _write_json(PFAVS, private)
+    return n
+
+
 def ratings():
     """{file: (rating, note)}; the latest rating and the latest non-empty note win.
     rating "none" clears it."""
@@ -658,5 +703,27 @@ def all_records(scope="all"):
                         "workflow": rec.get("workflow"), "width": rec.get("width"), "height": rec.get("height"),
                         "steps": rec.get("steps"), "length": rec.get("length"), "secs": rec.get("secs"),
                         "job": rec.get("job"), "public": public, "trashed": f in lib["trash"]})
+    favs = favorites(private=scope != "public")
+    shared = set((load_json(FAVS, {}) or {}).get("files", {}))
+    seen = set()
+    for r in out:
+        r["fav"] = r["file"] in favs
+        seen.add(r["file"])
+    # favorites with no history record (story cuts, older rounds): only the agent-visible ones, and
+    # only files that are still there
+    base = settings().get("data_dir", GALLERY)
+    for f, e in favs.items():
+        if f in seen or f not in shared or scope == "private":
+            continue
+        if not os.path.isfile(os.path.join(base, f.replace("/", os.sep))):
+            continue
+        rt, nt = rate.get(f, (None, None))
+        out.append({"file": f, "time": time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(e.get("time") or 0)),
+                    "by": "agent", "label": e.get("label"), "rating": rt, "note": nt, "public": True,
+                    "trashed": f in lib["trash"], "fav": True})
+    for r in out:
+        if r.get("fav"):
+            r["fav_time"] = (favs.get(r["file"]) or {}).get("time")
+            r.setdefault("label", (favs.get(r["file"]) or {}).get("label"))
     out.sort(key=lambda r: r.get("time") or "", reverse=True)
     return out

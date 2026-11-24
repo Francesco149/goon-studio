@@ -6,8 +6,10 @@ tools/boxes.local.json is git-ignored and exists only where someone set up more 
 
   {"name": {"url": "http://host:8188", "root": "/path/to/comfyui", "ssh": ["ssh", "user@host"]}}
 
-root: the ComfyUI folder on that machine (output/ and input/ under it); ssh: optional, for
-tools/clean.py. Nothing here is needed on a normal install.
+root: the ComfyUI folder on that machine (output/ and input/ under it, or the names in "outputs" /
+"inputs" when the engine writes elsewhere, e.g. a Studio's gallery/outputs); ssh: optional, for
+tools/clean.py. "_default": "<name>" makes that box the tools' default instead of `local` (the round
+runners' engine too, when no --engine is given). Nothing here is needed on a normal install.
 """
 import json, os
 
@@ -34,6 +36,23 @@ def local_url(s=None):
     if u in ("http://127.0.0.1:8188", "http://localhost:8188"):
         return DEFAULT_URL   # an install from before the split; kit/start.ps1 rewrites it
     return u if re.match(r"^https?://(127\.0\.0\.1|localhost)(:\d+)?$", u) else DEFAULT_URL
+
+
+def default_name():
+    """The box the tools use when none is given: boxes.local.json "_default" when it names a box
+    there, else `local`."""
+    try:
+        with open(PATH, encoding="utf-8-sig") as f:
+            name = (json.load(f) or {}).get("_default")
+    except (OSError, ValueError, AttributeError):
+        return "local"
+    return name if name in load() else "local"
+
+
+def default_url():
+    """The default box's engine URL when it is not this PC (None for `local`)."""
+    name = default_name()
+    return None if name == "local" else load()[name]["url"]
 
 
 def load():

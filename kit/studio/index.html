@@ -51,6 +51,7 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--mute)}
 .thumb img,.thumb video{width:100%;display:block;aspect-ratio:2/3;object-fit:cover;background:#000}
 .thumb .tag{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.55);color:#fff;border-radius:6px;padding:1px 6px;font-size:12px}
 .thumb .rate{position:absolute;right:6px;top:6px;font-size:18px}
+.thumb .star{position:absolute;right:6px;bottom:6px;font-size:16px;color:#ffd54a;text-shadow:0 0 3px #000}
 .thumb .vis{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.55);color:#fff;border-radius:6px;padding:1px 6px;font-size:12px}
 .thumb .chk{position:absolute;right:6px;bottom:6px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.9);border:2px solid var(--accent);color:var(--accent);font-weight:700;display:none;align-items:center;justify-content:center}
 .selecting .thumb .chk{display:flex}
@@ -115,6 +116,7 @@ button.lnk{padding:0 6px;font-size:12px;margin-left:2px}
     <button data-p="video">Video</button>
     <button data-p="scene">Scene</button>
     <button data-p="gallery">My pictures</button>
+    <button data-p="favs">&#9733; Favorites</button>
     <button data-p="rounds">Rounds</button>
     <button data-p="trash" id="trashtab">Trash</button>
     <button onclick="window.open('/docs/ANIME.md','_blank')">Guide</button>
@@ -327,6 +329,16 @@ button.lnk{padding:0 6px;font-size:12px;margin-left:2px}
   <div class="thumbs" id="gal"></div>
 </section>
 
+<section id="favs" class="panel">
+  <div class="row" style="margin-bottom:8px;max-width:900px">
+    <select id="ffilter"><option value="all">Every favorite</option><option value="cut">Scene cuts</option>
+      <option value="video">Clips</option><option value="still">Pictures</option></select>
+    <input type="text" id="fsearch" placeholder="search the labels, prompts and templates">
+  </div>
+  <p class="hint" style="margin-top:0">&#9733; Press <b>&#9734; Favorite</b> on any picture or clip to keep it here. Private pictures stay private when you favorite them.</p>
+  <div class="thumbs" id="favList"></div>
+</section>
+
 <section id="rounds" class="panel"><div id="roundList"></div></section>
 
 <section id="trash" class="panel">
@@ -351,6 +363,7 @@ button.lnk{padding:0 6px;font-size:12px;margin-left:2px}
       <button class="s" data-r="love" title="Love it">&#10084;&#65039;</button><button class="s" data-r="good" title="Good">&#128077;</button>
       <button class="s" data-r="meh" title="So-so">&#128528;</button><button class="s" data-r="bad" title="Not this">&#128078;</button>
     </div>
+    <button class="s" id="lbFav" style="margin-bottom:6px"></button>
     <div id="lbVis" class="hint" style="margin:6px 0"></div>
     <textarea id="lbNote"></textarea>
     <button class="s" id="lbSave" style="margin-top:6px">Save note</button>
@@ -436,7 +449,7 @@ function show(panel){
   $$("nav button[data-p]").forEach(b=>b.classList.toggle("on",b.dataset.p===panel));
   $$(".panel").forEach(p=>p.classList.toggle("on",p.id===panel));
   if(panel==="scene"&&!SC.story)loadScenes();
-  if(panel==="gallery")loadGallery();if(panel==="trash")loadTrash();if(panel==="rounds")loadRounds();
+  if(panel==="gallery")loadGallery();if(panel==="trash")loadTrash();if(panel==="rounds")loadRounds();if(panel==="favs")loadFavs();
   if(location.hash.slice(1)!==panel)history.replaceState(null,"",panel==="create"?location.pathname:"#"+panel);
 }
 $$("nav button[data-p]").forEach(b=>b.onclick=()=>show(b.dataset.p));
@@ -749,7 +762,7 @@ async function stopJob(id){try{await api("/api/cancel",id?{id}:{})}catch(e){aler
 function tile(r,label){const v=isVid(r.file);
   return `<div class="thumb" data-f="${esc(r.file)}">${v?`<video muted loop playsinline preload="metadata" src="/img/${encodeURI(r.file)}#t=0.5" onmouseenter="this.play()" onmouseleave="this.pause()"></video>`:`<img loading="lazy" src="/img/${encodeURI(r.file)}" alt="">`}`+
     (label||v?`<span class="tag">${esc(label||"▶ video")}</span>`:"")+(r.rating?`<span class="rate">${RATE[r.rating]||""}</span>`:"")+
-    (r.by==="me"?(r.public?'<span class="vis" title="Shared: the agent can see this one">&#128065; shared</span>':'<span class="vis" title="Private: the agent can\'t see it">&#128274;</span>'):"")+
+    (r.fav?'<span class="star" title="Favorite">&#9733;</span>':"")+(r.by==="me"?(r.public?'<span class="vis" title="Shared: the agent can see this one">&#128065; shared</span>':'<span class="vis" title="Private: the agent can\'t see it">&#128274;</span>'):"")+
     '<span class="chk">✓</span></div>'}
 const live=r=>!r.trashed;
 async function getHist(){HIST=await api("/api/history?scope=all");const n=HIST.filter(r=>r.trashed).length;$("#trashtab").textContent=n?`Trash (${n})`:"Trash";return HIST}
@@ -759,7 +772,7 @@ function showRecent(){
   $("#recent").innerHTML=imgs.length?imgs.map(r=>tile(r)).join(""):'<div class="empty">Your pictures will show up here.</div>';bind($("#recent"),imgs);
   $("#recentv").innerHTML=vids.length?vids.map(r=>tile(r)).join(""):'<div class="empty">Your clips will show up here.</div>';bind($("#recentv"),vids);
 }
-function refreshViews(){showRecent();if($("#gallery").classList.contains("on"))renderGallery();if($("#trash").classList.contains("on"))renderTrash()}
+function refreshViews(){showRecent();if($("#gallery").classList.contains("on"))renderGallery();if($("#favs").classList.contains("on"))renderFavs();if($("#trash").classList.contains("on"))renderTrash()}
 
 /* gallery and trash: Select, click toggles, Shift+click selects a range */
 const GF={all:()=>true,fav:r=>r.rating==="love"||r.rating==="good",private:r=>r.by==="me"&&!r.public,shared:r=>r.by==="me"&&r.public,agent:r=>r.by&&r.by!=="me",video:r=>isVid(r.file)};
@@ -797,6 +810,16 @@ async function delForever(files){if(!files.length)return;
 $("#tdelete").onclick=()=>delForever([...SEL.trash.set]);
 $("#tempty").onclick=()=>delForever(SEL.trash.list.map(r=>r.file));
 
+/* favorites: newest favorite first; cuts are clips whose name says so */
+const isCut=r=>isVid(r.file)&&/(^|[_\/-])cut[^\/]*\.(mp4|webm)$/i.test(r.file);
+const FF={all:()=>true,cut:isCut,video:r=>isVid(r.file)&&!isCut(r),still:r=>!isVid(r.file)};
+async function loadFavs(){await getHist();renderFavs()}
+function renderFavs(){const f=FF[$("#ffilter").value]||FF.all,q=$("#fsearch").value.toLowerCase().trim();
+  const l=HIST.filter(r=>r.fav&&live(r)&&f(r)&&(!q||((r.label||"")+" "+(r.prompt||"")+" "+(r.template||"")+" "+r.file).toLowerCase().includes(q)))
+    .sort((a,b)=>(b.fav_time||0)-(a.fav_time||0));
+  $("#favList").innerHTML=l.length?l.map(r=>tile(r,r.label||(isCut(r)?"✂ cut":""))).join(""):'<div class="empty">No favorites yet: open a picture or clip and press &#9734; Favorite.</div>';bind($("#favList"),l)}
+$("#ffilter").onchange=renderFavs;$("#fsearch").oninput=renderFavs;
+
 /* rounds: the agent's test batches; the note box goes to the agent */
 async function loadRounds(){
   let rs=[];try{rs=await api("/api/rounds")}catch(e){}await getHist();const byF=Object.fromEntries(HIST.map(r=>[r.file,r]));
@@ -820,6 +843,7 @@ function openLb(r){
   if(v){$("#lbVid").src="/img/"+encodeURI(r.file);$("#lbVid").play().catch(()=>{})}else{$("#lbVid").pause();$("#lbVid").removeAttribute("src");$("#lbImg").src="/img/"+encodeURI(r.file)}
   $("#lbTitle").textContent=r.label||(r.template&&tplOf(r.template).label)||r.template||(v?"clip":"picture");
   $$("#lb .rates button").forEach(b=>b.classList.toggle("on",b.dataset.r===r.rating));
+  $("#lbFav").innerHTML=r.fav?"&#9733; Favorite":"&#9734; Favorite";$("#lbFav").classList.toggle("on",!!r.fav);
   $("#lbVis").innerHTML=mine?(r.public?"&#128065; <b>Shared with the agent</b>: it can see this and its prompt.":"&#128274; <b>Private</b>: the agent can't see this or its prompt."):r.by?"Made by the agent.":"";
   $("#lbNote").value=r.note||"";$("#lbNote").placeholder=mine&&!r.public?"Your note (private, like the picture)":"What works and what doesn't? (the agent reads this)";
   $("#lbShare").hidden=!mine;$("#lbShare").innerHTML=r.public?"&#128274; Make it private again":"&#128065; Share with the agent";$("#lbTrash").hidden=!!r.trashed;
@@ -878,6 +902,8 @@ $("#lbKey").onclick=async()=>{const r=LBREC;
 $("#lbRef").onclick=()=>{setSlot("ref",pathOf(LBREC.file),"/img/"+encodeURI(LBREC.file));closeLb();show("create")};
 $("#lbOpen").onclick=()=>window.open("/img/"+encodeURI(LBREC.file),"_blank");
 $("#lbShare").onclick=async()=>{const pub=!LBREC.public;await libAct("/api/visibility",[LBREC.file],{public:pub});LBREC.public=pub;openLb(LBREC)};
+$("#lbFav").onclick=async()=>{const fav=!LBREC.fav,labels=LBREC.label?{[LBREC.file]:LBREC.label}:undefined;
+  await libAct("/api/favorite",[LBREC.file],{fav,labels});LBREC.fav=fav;LBREC.fav_time=Date.now()/1000;openLb(LBREC)};
 $("#lbTrash").onclick=async()=>{const f=LBREC.file;closeLb();await libAct("/api/trash",[f])};
 
 /* ---------- Scene: a multi-shot video as a list of shots (kit/studio/scenes.py, docs/STORY.md) ---------- */

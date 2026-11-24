@@ -79,6 +79,13 @@ AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go
    (GTX 10-series such as the 1070, compute capability 6.x) cannot run the current CUDA 13 stack
    or the quantized models; follow "GTX 1070 8 GB" in `docs/PERFORMANCE-8GB.md` (older PyTorch,
    Anima/Pink first, measure before promising anything) instead of the steps below as written.
+   **16 GB VRAM or more:** offer the 16 GB profile (`docs/PERFORMANCE-16GB.md`; `kit\setup.ps1
+   -Profile16`) in one line: the engine keeps an 8 GB card's headroom so the rest of the card stays
+   free for games, a browser with video or a second app (measured: most jobs are no faster with the
+   whole card; photoreal keyframes and H3 video are 10-25% faster with it, at the cost of that
+   headroom). Apply it only on a yes; the 8 GB defaults stay otherwise.
+   **Headless Linux** (`kit/linux/setup.sh`, `docs/HEADLESS-LINUX.md`) is only for a user who asks
+   to run the Studio on a headless server; never offer it in this flow.
 3. **Ask which drive** for the engine and the models (25 GB to start, about 70 GB with the video
    models; an SSD): offer 2-3 drives with their free space (`powershell -ExecutionPolicy Bypass
    -File kit\setup.ps1 -Check` lists them, the GPU and the driver) and let the user choose.
@@ -190,6 +197,13 @@ template** -> `my/presets.json`, marked "My templates") fold away and stay as th
   Select with Shift+click ranges, share/lock, trash. The lightbox has rating (click again to
   clear), a note (private notes stay in `my/private/`), Use these settings, variations, **Make it
   in Final** (same seed), Use as keyframe / reference, share toggle, trash.
+- **Favorites**: everything the user starred (the lightbox's **Favorite** button), newest first,
+  filter cuts / clips / pictures. Favorites among private pictures are kept in
+  `my/private/favorites.json` (private); the rest in `my/favorites.json`, which the agent may read
+  and add to: **when the owner approves a gen** ("good", "keeper", a golden template), add it with
+  `python tools/favorites.py add <round>/<file> --label "..."` in the same step as the doc that
+  records the verdict (`--gens` copies an older `gens/` file into the gallery first). Files with no
+  history record (story cuts) still show, with their label.
 - **Trash**: select, restore, delete forever, empty. **Rounds**: `my/rounds/*.json` (items are
   file strings or `{file, label}`, optional `question`); the user's round notes go to
   `my/feedback.jsonl` for the agent.
@@ -409,7 +423,8 @@ light 4B encoder for H3-Image) with a warning and the apps to close. Before a he
 and tell the user what to close; never close their apps yourself. Details in
 `docs/PERFORMANCE-8GB.md`, "Automatic low-memory mode".
 
-The **8 GB optimization pass is done** (2026-11-20): measured peak VRAM, per-workflow flags,
+The **16 GB pass** (2026-11-24, a 16 GB 7800 XT on Linux/ROCm; `docs/PERFORMANCE-16GB.md`) is the
+opt-in profile for 16 GB+ cards (section 1a step 2). The **8 GB optimization pass is done** (2026-11-20): measured peak VRAM, per-workflow flags,
 preview/standard/final step counts, the H3 4B text encoder, RelayVSR x2, and a speculative GTX
 1070 section are in `docs/PERFORMANCE-8GB.md`. The measured launch pair is
 `--use-ck-attention --fast fp16_accumulation`; 4 steps is a preview, 6 the standard, 8 the final
