@@ -243,7 +243,8 @@ class H(BaseHTTPRequestHandler):
                 pl["text"] = headroom.summary(pl)
                 return self.send(200, pl)
             if p == "/api/preview":
-                return self.send(200, {"prompt": core.build_prompt(b), "negative": core.build_fields(b).get("negative", "")})
+                f = core.build_fields(b)
+                return self.send(200, {"prompt": f["prompt"], "negative": f.get("negative", ""), "late": f.get("late", "")})
             if p == "/api/loranote":
                 loras.save_note(b["name"], b)
                 return self.send(200, {"ok": True})

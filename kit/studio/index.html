@@ -106,6 +106,7 @@ button.lnk{padding:0 6px;font-size:12px;margin-left:2px}
 .shot .res .pic .hint{font-size:12px}
 .shot .tools{margin-left:auto;display:flex;gap:4px}.shot .tools button{padding:2px 8px}
 .round h3{margin:0 0 4px}
+.parts{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:4px}.parts label{display:flex;gap:6px;align-items:center;font-size:13px}
 </style>
 </head>
 <body>
@@ -168,6 +169,8 @@ button.lnk{padding:0 6px;font-size:12px;margin-left:2px}
       <div id="styleBox"><label class="h">Style <small>the {style} block of this recipe</small></label><textarea id="style"></textarea></div>
       <label class="h">Prompt template <small>{character}, {scene} and {style} are filled in</small></label><textarea id="prompt" rows="6"></textarea>
       <label class="h">Things to avoid (negative)</label><textarea id="negative"></textarea>
+      <div id="partsBox"><label class="h">Recipe parts <small>what the recipe adds that is not in the fields above; untick to leave it out</small></label><div id="parts" class="parts"></div></div>
+      <button class="s" id="clearAll" style="margin-top:6px">Empty everything (blank prompt, no recipe parts)</button>
       <label class="h">Workflow <small>the ComfyUI graph; "as the recipe" unless you know you want another</small></label><select id="workflow"></select>
       <details id="pvBox" open><summary>What the model reads (full prompt)</summary><div class="mono" id="preview"></div></details>
       <label class="h">Save as my template <small>everything above, under a name of yours (my\presets.json)</small></label>
@@ -244,6 +247,8 @@ button.lnk{padding:0 6px;font-size:12px;margin-left:2px}
     </details>
     <details class="lvl" data-keep="vexpert"><summary>Expert <small>negative / soundscape, workflow</small></summary>
       <label class="h">Soundscape / negative <small>appended if set</small></label><textarea id="vnegative"></textarea>
+      <div id="vpartsBox"><label class="h">Recipe parts <small>what the recipe adds that is not in the fields above; untick to leave it out</small></label><div id="vparts" class="parts"></div></div>
+      <button class="s" id="vclearAll" style="margin-top:6px">Empty everything (blank script, no recipe parts)</button>
       <label class="h">Workflow <small>"from the mode" unless you know you want another</small></label><select id="vworkflow"></select>
     </details>
     <div id="vmem"></div>
@@ -439,7 +444,7 @@ function qualityFor(wf,steps){const S=STEPS[FAMILY(wf)];if(!S||!steps)return"sta
 $$("details[data-keep]").forEach(d=>{const k="goon.open."+d.dataset.keep;d.open=localStorage.getItem(k)==="1";d.addEventListener("toggle",()=>localStorage.setItem(k,d.open?"1":"0"))});
 /* base model families: a LoRA only works on the family it was trained for (kit/studio/loras.py) */
 const BASE=wf=>{const w=(wf||"").toLowerCase();return /illu|pony/.test(w)?"sdxl":/anima/.test(w)?"anima":/krea/.test(w)?"krea2":/h3vid/.test(w)?"h3video":/h3img/.test(w)?"h3image":/qwen/.test(w)?"qwen":/wan/.test(w)?"wan":null};
-function tplGroup(t){const w=t.workflow||"";return t.mine?"My templates":/illu/.test(w)?"Anime - Illustrious (bring a LoRA)":/anima2_lora/.test(w)?"Anime - character LoRAs":/anima/.test(w)?"Anime - Pink Alchemy":/krea|h3img/.test(w)?"Photoreal":"Other"}
+function tplGroup(t){const w=t.workflow||"";return t.blank?"Start from nothing":t.mine?"My templates":/illu/.test(w)?"Anime - Illustrious (bring a LoRA)":/anima2_lora/.test(w)?"Anime - character LoRAs":/anima/.test(w)?"Anime - Pink Alchemy":/krea|h3img/.test(w)?"Photoreal":"Other"}
 function fillGrouped(sel,entries,order){const g={};for(const [k,v] of entries)(g[tplGroup(v)]=g[tplGroup(v)]||[]).push([k,v]);
   for(const name of order.concat(Object.keys(g).filter(n=>!order.includes(n)))){if(!g[name])continue;const og=document.createElement("optgroup");og.label=name;
     for(const [k,v] of g[name])og.appendChild(new Option(v.label||k,k));sel.appendChild(og)}}
@@ -459,7 +464,7 @@ window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if($("#
 async function init(){
   STATE=await api("/api/state");
   const t=$("#template");
-  fillGrouped(t,Object.entries(STATE.templates||{}).filter(([k,v])=>!/h3vid/.test(v.workflow||"")),["My templates","Photoreal","Anime - Pink Alchemy","Anime - character LoRAs","Anime - Illustrious (bring a LoRA)","Other"]);
+  fillGrouped(t,Object.entries(STATE.templates||{}).filter(([k,v])=>!/h3vid/.test(v.workflow||"")),["Start from nothing","My templates","Photoreal","Anime - Pink Alchemy","Anime - character LoRAs","Anime - Illustrious (bring a LoRA)","Other"]);
   const wfs=STATE.workflows||[];
   $("#workflow").add(new Option("as the recipe",""));for(const w of wfs)if(!/h3vid|wan|relayvsr|bgremove/.test(w))$("#workflow").add(new Option(w,w));
   $("#vworkflow").add(new Option("from the mode",""));for(const w of wfs)if(/h3vid/.test(w))$("#vworkflow").add(new Option(w,w));
@@ -492,6 +497,16 @@ async function init(){
   const h=location.hash.slice(1);if(h&&$("#"+h)&&$("#"+h).classList.contains("panel"))show(h);
 }
 
+/* recipe parts the fields don't show (core.PARTS): ticked = keep */
+function partsOf(t,video){const w=t.workflow||"",p=[];
+  if(t.late)p.push(["late","Signature / late style block"+(t.late==="signature"?" (series name for the last steps)":"")]);
+  if(t.lora||t.nsfw_lora)p.push(["lora",video?"The recipe's act LoRA ("+String(t.lora||t.nsfw_lora).split("/").pop().replace(/\.safetensors$/,"")+")":"The recipe's LoRA"]);
+  if(t.motion_lora||t.motion_strength!=null||/lora2|lora3|_g5|_g11/.test(w))p.push(["motion","Motion booster LoRA"]);
+  if(t.params||t.unet||t.sampler||t.sched||t.denoise!=null)p.push(["model","Model settings (model file, sampler, denoise)"]);
+  return p}
+function drawParts(el,t,video){const p=partsOf(t,video);$(el).innerHTML=p.length?p.map(([k,l])=>`<label><input type="checkbox" data-part="${k}" checked> ${esc(l)}</label>`).join(""):'<span class="hint">none: everything this recipe adds is in the fields above</span>';
+  $(el).querySelectorAll("input").forEach(i=>i.onchange=()=>{if(!video){if(i.dataset.part==="lora"&&RECIPE){RECIPE.off=!i.checked;drawLoras("c")}preview()}})}
+const partsOff=el=>[...$(el).querySelectorAll("input[data-part]")].filter(i=>!i.checked).map(i=>i.dataset.part);
 function fillTemplate(){
   const t=tplOf($("#template").value);
   $("#character").value=t.character||"";$("#scene").value=t.scene||"";$("#prompt").value=t.prompt||"";$("#negative").value=t.negative||"";
@@ -502,8 +517,15 @@ function fillTemplate(){
   $("#body").value="none";if(t.framing&&STATE.framings[t.framing])$("#framing").value=t.framing;
   const fam=FAMILY(t.workflow);$("#quality").disabled=!STEPS[fam];$("#quality").value=qualityFor(t.workflow,t.steps);
   $("#tplAbout").textContent=t.about||(t.workflow?"workflow: "+t.workflow:"");
+  drawParts("#parts",t,false);
   onWf();
 }
+$("#clearAll").onclick=()=>{for(const k of ["character","scene","style","prompt","negative"])$("#"+k).value="";
+  $("#body").value="none";$("#framing").value="portrait";$("#cock").value="template";PICK.c=[];
+  $$("#parts input[data-part]").forEach(i=>i.checked=false);if(RECIPE)RECIPE.off=true;drawLoras("c");onWf()};
+$("#vclearAll").onclick=()=>{$("#vprompt").value="";$("#vnegative").value="";
+  for(const s of ["#vcock","#vbreasts","#vdynamics"])$(s).value="template";$("#vtiming").value="off";PICK.v=[];
+  $$("#vparts input[data-part]").forEach(i=>i.checked=false);drawLoras("v");veta()};
 function onWf(){
   const t=tplOf($("#template").value),wf=curWf();
   $("#styleBox").hidden=!/\{style\}/.test($("#prompt").value)&&!t.style;
@@ -514,7 +536,7 @@ function onWf(){
   preview();eta();
 }
 let pvT=0;
-function preview(){clearTimeout(pvT);pvT=setTimeout(async()=>{try{const r=await api("/api/preview",jobBody());$("#preview").textContent=r.prompt+(r.negative?"\n\nNOT: "+r.negative:"")}catch(e){$("#preview").textContent="(could not build the prompt: "+e.message+")"}},300)}
+function preview(){clearTimeout(pvT);pvT=setTimeout(async()=>{try{const r=await api("/api/preview",jobBody());$("#preview").textContent=(r.prompt||"(empty prompt)")+(r.late?"\n\nLATE STEPS: "+r.late:"")+(r.negative?"\n\nNOT: "+r.negative:"")}catch(e){$("#preview").textContent="(could not build the prompt: "+e.message+")"}},300)}
 function eta(){
   const fam=FAMILY(curWf()),st=+$("#steps").value||(STEPS[fam]||{}).standard,n=Math.max(1,+$("#count").value||1);
   const s=(SECS[fam]||{})[st];const q=$("#quality").value;
@@ -579,10 +601,11 @@ function jobBody(){
   for(const k of ["width","height","steps","cfg"]){const v=num("#"+k);if(v!==undefined)b[k]=v}
   const seed=num("#seed");if(seed!==undefined)b.seed=seed;
   if(SLOTS.ref)b.image=SLOTS.ref.path;
-  if(!$("#styleBox").hidden)b.style=$("#style").value;
+  b.style=$("#style").value;   // always: an emptied style block stays empty
+  const off=partsOff("#parts");if(off.length)b.off=off;
   if($("#workflow").value)b.workflow=$("#workflow").value;
   if(PICK.c.length)b.extra_loras=PICK.c.map(x=>({name:x.name,strength:x.strength}));
-  if(RECIPE)b.strength=RECIPE.off?0:RECIPE.strength;  // the template's own LoRA; 0 = the general version
+  if(RECIPE&&!(b.off||[]).includes("lora"))b.strength=RECIPE.off?0:RECIPE.strength;  // the template's own LoRA; 0 = the general version
   return b;
 }
 $("#gogen").onclick=async()=>{
@@ -596,10 +619,11 @@ $("#mySave").onclick=async()=>{
   const name=$("#myName").value.trim();if(!name){alert("Give the template a name first.");return}
   const cur=tplOf($("#template").value),b=jobBody(),t={label:name,about:"My template, from "+(cur.label||$("#template").value),workflow:curWf()};
   for(const k of ["prompt","character","scene","negative","style","width","height","steps","cfg","body","framing","cock","extra_loras"])if(b[k]!==undefined&&b[k]!==""&&b[k]!=="none")t[k]=b[k];
-  for(const k of ["lora","strength","late","series","params","unet","sampler","sched","nsfw_lora","nsfw_strength"])if(cur[k]!==undefined)t[k]=cur[k];
+  const SK={late:["late","series"],lora:["lora","strength","nsfw_lora","nsfw_strength"],model:["params","unet","sampler","sched","denoise"]},skip=(b.off||[]).flatMap(p=>SK[p]||[]);
+  for(const k of ["lora","strength","late","series","params","unet","sampler","sched","nsfw_lora","nsfw_strength"])if(cur[k]!==undefined&&!skip.includes(k))t[k]=cur[k];
   if(RECIPE&&t.lora)t.strength=RECIPE.off?0:RECIPE.strength;
   try{const r=await api("/api/mytemplate",{id:cur.mine?$("#template").value:name,template:t});STATE=Object.assign(STATE,await api("/api/state"));
-    const sel=$("#template");sel.innerHTML="";fillGrouped(sel,Object.entries(STATE.templates||{}).filter(([k,v])=>!/h3vid/.test(v.workflow||"")),["My templates","Photoreal","Anime - Pink Alchemy","Anime - character LoRAs","Anime - Illustrious (bring a LoRA)","Other"]);
+    const sel=$("#template");sel.innerHTML="";fillGrouped(sel,Object.entries(STATE.templates||{}).filter(([k,v])=>!/h3vid/.test(v.workflow||"")),["Start from nothing","My templates","Photoreal","Anime - Pink Alchemy","Anime - character LoRAs","Anime - Illustrious (bring a LoRA)","Other"]);
     sel.value=r.id;fillTemplate();$("#mySave").textContent="Saved ✓";setTimeout(()=>$("#mySave").textContent="Save",1500)}catch(e){alert(e.message)}};
 $("#myDel").onclick=async()=>{const id=$("#template").value;if(!confirm("Delete your template \""+(tplOf(id).label||id)+"\"?"))return;
   try{await api("/api/mytemplate",{id,delete:true});location.reload()}catch(e){alert(e.message)}};
@@ -704,6 +728,7 @@ function fillVideo(){
   $("#vmode").value=wf.includes("i2v_lora")?"i2v_lora":wf.includes("i2v_fl")?"fl":wf.includes("ref2va")?"ref2va":wf.includes("t2v")?"t2v":"i2v";
   $("#vtiming").value=t.anime_timing||"off";
   if(t.width&&t.height&&t.length)setVsize(t.width,t.height,t.length);
+  drawParts("#vparts",t,true);
   videoMode();
 }
 function videoMode(){
@@ -737,6 +762,8 @@ $("#govideo").onclick=async()=>{
   if(m==="ref2va"){if(!SLOTS.v3){alert("Two references needs a second reference.");return}b.image1=SLOTS.v3.path}
   if(m==="i2v_lora"){b.nsfw_lora=$("#vlora").value;b.nsfw_strength=+$("#vstrength").value}
   if(PICK.v.length)b.extra_loras=PICK.v.map(x=>({name:x.name,strength:x.strength}));
+  const off=partsOff("#vparts");if(off.length)b.off=off;
+  if(off.includes("lora")&&m==="i2v_lora")b.nsfw_lora="";
   $("#govideo").disabled=true;
   try{await api("/api/generate",b);showWorking()}catch(e){alert(e.message)}
   setTimeout(()=>$("#govideo").disabled=false,800);

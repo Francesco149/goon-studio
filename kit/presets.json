@@ -2,6 +2,15 @@
   "_note": "Goon Studio presets: templates (workflow + size + prompt shape), characters and scenes. The user's own templates go in my/presets.json and are merged on top. cocks: penis types - tags for tag-style (anime) still prompts, prose for prose stills and video scripts, so a clip keeps the keyframe's anatomy.",
   "negative": "",
   "templates": {
+    "blank": {
+      "label": "Blank - an empty prompt, nothing added (pick the workflow under Expert)",
+      "blank": true,
+      "workflow": "wf_krea2_nsfw_8gb.json",
+      "prompt": "",
+      "character": "",
+      "scene": "",
+      "about": "Nothing from a recipe: what you type in Expert -> Prompt is the whole prompt. The workflow (model) is Krea NSFW until you pick another under Expert; size and steps are the workflow's."
+    },
     "egirl": {
       "label": "Photoreal e-girl - portrait (6 steps; 4 preview / 8 final)",
       "workflow": "wf_krea2_nsfw_8gb.json",
@@ -1120,6 +1129,16 @@
   },
   "default_video": "pov_blowjob",
   "video_templates": {
+    "blank": {
+      "label": "Blank - an empty script, nothing added",
+      "blank": true,
+      "workflow": "wf_h3vid_i2v.json",
+      "prompt": "",
+      "width": 512,
+      "height": 768,
+      "length": 85,
+      "about": "Nothing from a recipe: the script you write is all the clip gets. Pick a mode (act LoRA, first + last, t2v) and LoRAs as you like."
+    },
     "pov_blowjob": {
       "label": "POV blowjob - physics wording, no LoRA (fallback 1)",
       "workflow": "wf_h3vid_i2v.json",

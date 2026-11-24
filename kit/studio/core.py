@@ -152,15 +152,37 @@ def template(P, tid):
     return P.get("templates", {}).get(tid or "") or P.get("video_templates", {}).get(tid or "") or {}
 
 
+# parts of a template the page's Expert section can switch off (job["off"]): the template keys each
+# one drops. An emptied text field is already honoured as empty (see pick()).
+PARTS = {"late": ("late", "series"), "lora": ("lora", "strength", "nsfw_lora", "nsfw_strength"),
+         "motion": ("motion_lora", "motion_strength"), "model": ("params", "unet", "sampler", "sched", "denoise"),
+         "negative": ("negative",), "timing": ("anime_timing",)}
+
+
+def job_template(P, job):
+    """The job's template minus the parts the user switched off."""
+    t = dict(template(P, job.get("template")))
+    for part in job.get("off") or []:
+        for k in PARTS.get(part, ()):
+            t.pop(k, None)
+    return t
+
+
+def pick(job, t, key, default=""):
+    """A text field: the job's own value whenever the job has the key (an emptied field stays empty),
+    else the template's."""
+    return job[key] if key in job and job[key] is not None else t.get(key, default)
+
+
 def build_prompt(job):
     P = presets()
-    t = template(P, job.get("template")) or None
+    t = job_template(P, job)
     fields = {
-        "character": clean(job.get("character") or (t or {}).get("character", "")),
-        "scene": clean(job.get("scene") or (t or {}).get("scene", "")),
-        "style": job.get("style") or (t or {}).get("style", ""),
+        "character": clean(pick(job, t, "character")),
+        "scene": clean(pick(job, t, "scene")),
+        "style": pick(job, t, "style"),
     }
-    base = job.get("prompt") or (t or {}).get("prompt", "")
+    base = pick(job, t, "prompt")
     body = P.get("bodies", {}).get(job.get("body") or "none", "")
     frame = P.get("framings", {}).get(job.get("framing") or "portrait", "")
     if body:
@@ -233,7 +255,7 @@ def build_late_prompt(prompt, series=None):
 
 def build_fields(job):
     P = presets()
-    t = template(P, job.get("template"))
+    t = job_template(P, job)
     fields = dict(t.get("params") or {})
     # everything a template pins down reaches the workflow: size, steps, the model, the LoRAs and
     # the motion booster (a video recipe names its act LoRA "lora"/"strength")
@@ -246,8 +268,16 @@ def build_fields(job):
         if "strength" in t:
             fields["nsfw_strength"] = t["strength"]
     for k, v in job.items():
-        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing", "breasts", "dynamics", "extra_loras"):
+        if k not in ("template", "count", "round", "name", "image", "prompt", "negative", "character", "scene", "cock", "anime_timing", "breasts", "dynamics", "extra_loras", "off"):
             fields[k] = v
+    # a switched-off LoRA must not come back as the workflow's own default: empty = the loader is bypassed
+    off = set(job.get("off") or [])
+    if "lora" in off:
+        for k in ("lora", "nsfw_lora"):
+            if not job.get(k):
+                fields[k] = ""
+    if "motion" in off and not job.get("motion_lora"):
+        fields["motion_lora"] = ""
     fields["prompt"] = build_prompt(job)
     late = t.get("late")
     if late == "signature":
@@ -256,7 +286,7 @@ def build_fields(job):
         late = clean(fill_tags(late, fields))
     if late:
         fields["late"] = late
-    neg = job.get("negative") or t.get("negative") or P.get("negative", "")
+    neg = pick(job, t, "negative", P.get("negative", "")) if "negative" not in off else (job.get("negative") or "")
     fields["negative"] = clean(neg)
     if not fields.get("seed"):
         fields["seed"] = random.randint(1, 2**31 - 2)
@@ -436,7 +466,7 @@ def extend_graph(graph, ctx_start, ctx_len):
 def run(job, by="me", on_queued=None, on_note=None):
     s = settings()
     P = presets()
-    t = template(P, job.get("template"))
+    t = job_template(P, job)
     wf = job.get("workflow") or t.get("workflow") or "wf_krea2_nsfw.json"
     graph, defaults = load_workflow(wf)
     fields = dict(defaults)

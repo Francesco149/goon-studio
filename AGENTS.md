@@ -162,6 +162,10 @@ Every tab starts simple and drills down: the recipe, the few fields that matter 
 button are always shown; **More options** (LoRAs, body, framing, reference, seed) and **Expert**
 (prompt template, {style} block, size/steps/cfg, workflow override, full prompt, **Save as my
 template** -> `my/presets.json`, marked "My templates") fold away and stay as the user left them.
+Expert also lists the **recipe parts** the fields don't show (late/signature block, the recipe's LoRA,
+the motion booster, model settings; `core.PARTS`, sent as `off`) with a tick each, and **Empty
+everything**; an emptied text field stays empty (never refilled from the template). The **Blank**
+templates (first in both dropdowns, `tools/rounds/mk_blank.py`) start from nothing.
 
 - **LoRAs on any recipe** (`kit/studio/loras.py`): a picker lists the store's LoRAs (base and trigger
   from `kit/models.json` `base`/`trigger`, else the file header) and the user's **private LoRAs**:

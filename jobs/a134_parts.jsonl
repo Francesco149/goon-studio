@@ -1,0 +1,2 @@
+{"name": "blank_krea", "template": "blank", "seed": 134001, "prompt": "Photorealistic candid photo of a red apple on a wooden kitchen table, morning light.", "character": "", "scene": "", "_note": "the blank template: the prompt is all the model gets"}
+{"name": "lz_parts_off", "template": "anime_lz_pov", "seed": 134001, "off": ["late", "lora"], "_note": "a LoRA recipe with the late block and its LoRA switched off"}
