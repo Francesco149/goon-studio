@@ -4,7 +4,7 @@
 Unlike tools/lab.py this is for measurement, not for keeping a gallery round: it keeps the
 renders, appends one JSON line per job to <out>/_bench.jsonl, and samples nvidia-smi while the
 job runs. Use it against the benchmark ComfyUI on port 8189 (tools/experiments/bench_engine.ps1)
-so the user's 8188 engine is not restarted.
+so the user's engine (8187) is not restarted.
 
   python tools/experiments/bench.py --wf wf_anima2.json --jobs jobs/bench_anima.jsonl \
       --port 8189 --sub gl/bench/anima_base --out gens/bench/anima_base --repeat 2

@@ -162,10 +162,14 @@ def plan(workflow, fields=None, s=None, procs=None):
     procs = processes() if (local and procs is None) else (procs or [])
     eng = engine_stats(s)
     need = job_gb(workflow, fields, s)
-    ours = sum(p[1] for p in procs if p[2] and (not s.get("engine_dir") or
-                                                 os.path.normcase(s["engine_dir"]) in os.path.normcase(p[3])))
-    others_engines = [p for p in procs if p[2] and s.get("engine_dir") and
-                      os.path.normcase(s["engine_dir"]) not in os.path.normcase(p[3])]
+    # engines are told apart by port: Love Live Studio may run the same python.exe (one shared ComfyUI folder)
+    port = (re.search(r":(\d+)/?$", s.get("comfy_url", "")) or [None, "8188"])[1]
+
+    def _port(cl):
+        m = re.search(r"--port\s+\"?(\d+)", cl or "")
+        return m.group(1) if m else "8188"
+    ours = sum(p[1] for p in procs if p[2] and _port(p[4]) == port)
+    others_engines = [p for p in procs if p[2] and _port(p[4]) != port]
     out = {"profile": "ok", "workflow": workflow, "unload": False, "warnings": [], "close": [],
            "need_gb": round(need, 1), "local": local}
     out.update({k: round(v, 1) for k, v in mem.items()})
@@ -194,7 +198,7 @@ def plan(workflow, fields=None, s=None, procs=None):
                                    "a fixed 32-48 GB pagefile stops it for good (docs/PERFORMANCE-8GB.md).")
     if others_engines:
         out["warnings"].append("Another ComfyUI engine is running (%.1f GB): stop it if you are not using it "
-                               "(the other studio's kit\\start.ps1 -Stop)." % sum(p[1] for p in others_engines))
+                               "(python tools/engines.py lists it; --stop <pid> after asking)." % sum(p[1] for p in others_engines))
     gp = gpu_by_pid() if vr else {}
     if gp:
         engine_pids = {p[5] for p in procs if p[2]}

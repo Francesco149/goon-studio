@@ -1,0 +1,35 @@
+{
+ "_note": "The pinned ComfyUI build, the same one Love Live Studio installs (its kit/manifest.json). kit/setup.ps1 reads this.",
+ "engine": {
+  "version": "v0.45.0",
+  "builds": {
+   "modern": {
+    "for": "NVIDIA RTX 20/30/40/50 series and GTX 16 series (compute capability 7.5 or newer)",
+    "url": "https://github.com/Comfy-Org/ComfyUI/releases/download/v0.45.0/ComfyUI_windows_portable_nvidia.7z",
+    "file": "ComfyUI_windows_portable_nvidia_v0.45.0.7z",
+    "size": 2071479423,
+    "torch": "2.14.1+cu130, Python 3.13",
+    "min_driver": 580.0,
+    "sha256": "60c12e8c7af778047ad0413722dd3dc0f6ca773a41cbf5cb229ee9bc92c44a6f"
+   },
+   "pascal": {
+    "for": "NVIDIA GTX 10 series and older (compute capability below 7.5), e.g. GTX 1070",
+    "url": "https://github.com/Comfy-Org/ComfyUI/releases/download/v0.45.0/ComfyUI_windows_portable_nvidia_cu126.7z",
+    "file": "ComfyUI_windows_portable_nvidia_cu126_v0.45.0.7z",
+    "size": 1962803660,
+    "torch": "2.14.1+cu126, Python 3.12 (PyTorch 2.14 is the last release that supports Pascal; never upgrade torch here)",
+    "min_driver": 560.76,
+    "note": "NVIDIA driver branch 580 is the last one for GTX 10 series; 580.x is fine.",
+    "sha256": "e7d1be2bd81deec3f46a89e29b8c6826f45c05609f29d6681d7876f687d69d29"
+   }
+  }
+ },
+ "tools": {
+  "7zr": {
+   "for": "unpacking the engine when Windows' own tar cannot (Windows 10's tar has no LZMA support)",
+   "url": "https://github.com/ip7z/7zip/releases/download/26.05/7zr.exe",
+   "size": 602624,
+   "sha256": "9bf582b894dfa665f852d7e9112b02290a1c303c2d95a21fcdc41ffcb03143b7"
+  }
+ }
+}

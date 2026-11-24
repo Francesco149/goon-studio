@@ -274,8 +274,10 @@ What this means:
   gives a commit limit of about 48 GB on 16 GB RAM. It costs disk space only; with DynamicVRAM it
   is not used as slow "swap" for active weights. This is a user step: the agent must not change
   system settings.
-- **One ComfyUI engine at a time.** Stop the other studio's engine (`kit\start.ps1 -Stop` in that
-  repo) before an H3 session, or point both apps at the same `comfy_url`.
+- **One ComfyUI engine at a time.** The two studios default to different engines (this one 8187,
+  Love Live Studio 8188) so each keeps its own output folder; `kit\start.ps1` notices the other
+  app's engine and offers to stop it (`python tools/engines.py` lists them). Do not point both apps
+  at one `comfy_url`: the engine writes pictures into the outputs of the app that started it.
 - **Close or restart the engine after a video session** if you go back to browsing heavily:
   `kit\start.ps1 -RestartEngine` releases the 15-20 GB of commit an idle engine holds.
 - **Browser**: hardware acceleration can stay on. VRAM is handled; a 4K video tab costs a few

@@ -188,7 +188,7 @@ details are in `docs/ANIME.md`, `docs/FACIAL.md`, `docs/CUM-VIDEO.md`, `docs/EGI
 
 ## How the rounds in this session were run (reuse it)
 
-- **Engine:** the Studio uses the engine on this PC (8188, the user's). For experiments start the
+- **Engine:** the Studio uses the engine on this PC (8187, the user's; Love Live Studio's is 8188). For experiments start the
   bench engine: `powershell -File tools\experiments\bench_engine.ps1 -Action start
   -Flags "--use-ck-attention --fast fp16_accumulation"` (port 8189; `-Action stop` after) and set
   `GOON_COMFY_URL=http://127.0.0.1:8189` for any tool (`modelstore`, `headroom`, `store.py`).

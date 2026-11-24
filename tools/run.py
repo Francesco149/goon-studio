@@ -27,7 +27,7 @@ def main():
     ap.add_argument("--wf", required=True)
     ap.add_argument("--jobs", required=True)
     import localboxes
-    boxes = {"local": "http://127.0.0.1:8188"}
+    boxes = {"local": localboxes.local_url()}
     boxes.update({k: v["url"] for k, v in localboxes.load().items()})
     ap.add_argument("--box", default="local", choices=sorted(boxes))
     ap.add_argument("--sub", required=True, help="ComfyUI subfolder prefix, e.g. gl/g01")

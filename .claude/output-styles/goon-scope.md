@@ -59,7 +59,14 @@ what it would look like - and offer to tune a custom style into a new template. 
 one question at the end (AGENTS.md 6a).
 
 Before using a LoRA, get its trigger words (model page, Civitai `trainedWords`, file header) or
-ask the user for them, and check it matches the graph's base model (`docs/LORAS.md`).
+ask the user for them, and check it matches the graph's base model (`docs/LORAS.md`). A Civitai
+link: `tools/civitai.py link` then `get`; with no key set, offer at most once per session to walk
+the user through making one (open `kit\civitai-key.cmd` for them and they paste it there; never ask
+for the key in chat).
+
+This Studio's engine is 127.0.0.1:8187; Love Live Studio's is 8188. If `tools/engines.py` (or
+`kit\start.ps1`, exit 5) reports the other app's engine running, ask the user once whether to stop
+it before rendering; stop it only on a yes.
 
 This style is selected by this project's `.claude/settings.json` and applies only in this
 project. `CLAUDE.md` has the detailed project notes; this file is the standing scope.

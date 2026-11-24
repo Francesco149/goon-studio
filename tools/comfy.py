@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """comfy.py — drive a ComfyUI engine (stdlib only).
 
-Defaults to this machine's engine (127.0.0.1:8188, the one kit/start.ps1 runs). COMFY_URL or
+Defaults to this machine's engine (127.0.0.1:8187 or comfy_url, the one kit/start.ps1 runs). COMFY_URL or
 --box picks another engine from the git-ignored tools/boxes.local.json (none on a normal install).
 
   comfy.py run workflows/h3_t2v.json -p prompt="..." -p seed=7 -o out/ --log results.jsonl
@@ -32,7 +32,7 @@ import urllib.request
 import uuid
 
 import localboxes  # noqa: E402
-BOXES = {"local": "http://127.0.0.1:8188"}
+BOXES = {"local": localboxes.local_url()}
 BOXES.update({k: v["url"] for k, v in localboxes.load().items()})
 BASE = os.environ.get("COMFY_URL", BOXES["local"])
 PH = re.compile(r"\{\{(\w+)\}\}")
@@ -202,7 +202,7 @@ def run(args):
 def main():
     global BASE
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--box", choices=sorted(BOXES), help="default: COMFY_URL, else local (127.0.0.1:8188)")
+    ap.add_argument("--box", choices=sorted(BOXES), help="default: COMFY_URL, else local (the engine kit/start.ps1 runs)")
     sub = ap.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run")
     r.add_argument("workflow")

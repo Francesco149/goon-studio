@@ -61,6 +61,10 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
   usable by hand: every file it loads has a source in the registry. A LoRA the user wants used:
   find its trigger words (model page, Civitai `trainedWords`, file header) or ask for them, and
   check its base model, before rendering (`docs/LORAS.md` checklist).
+- A Civitai link: `python tools/civitai.py link <url>` (base, triggers, file), then `get <url>`
+  into the store. No key set: offer **at most once per session** to walk the user through making
+  one, then open `kit\civitai-key.cmd` for them (`Start-Process`); they paste the key in that
+  window. Never ask for the key in chat (AGENTS.md section 4c).
 - Jobs: `jobs/<round>.jsonl`; renders: `gens/<round>/`; sheets and studies: `analysis/`; neutral
   work: `sfw/<round>/`; the page's own gallery stays in the app.
 - Longer animations (several shots, chained clips, per-shot cadence): stories in `kit/stories/`,
@@ -83,10 +87,16 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
   history, gallery and private folder under `%TEMP%\goon-studio-sandbox`, or `--sandbox <dir>`), so a
   test page never shows private gens:
   `python kit\studio\server.py --engine http://127.0.0.1:8189 --port 8291`.
-- `kit\start.ps1` always uses the engine on this PC (127.0.0.1, port from `comfy_url`), stops only
-  a ComfyUI that holds the port without answering, and passes the engine to the page with `--engine`.
-- `kit\start.ps1 -Stop` kills every python.exe from the engine folder, including an engine another
-  app may be using. Say so before running it.
+- Setup on a new PC: `kit\setup.ps1 -DataDir <drive folder>` (AGENTS.md 1a); without a Python install run
+  repo scripts as `kit\py.cmd tools\...` (the engine's Python).
+- `kit\start.ps1` always uses the engine on this PC (127.0.0.1, port from `comfy_url`, default
+  8187; Love Live Studio keeps 8188), stops only a ComfyUI that holds the port without answering,
+  and passes the engine to the page with `--engine`. `-Stop` stops only this Studio's page and
+  engine (not the other app's, not the bench).
+- The other studio's engine running is a conflict (shared GPU/RAM, wrong output folder): check with
+  `python tools/engines.py` before rendering; if it reports one, ask the user once whether to stop
+  it, and only then `--stop <pid>`. `kit\start.ps1` run by an agent exits 5 in that case: ask, then
+  rerun with `-StopOther` or `-KeepOther` (AGENTS.md section 2).
 - Never tell the user the generated sound is fine (`AGENTS.md` 4b).
 - Check the fine details for artifacts and anatomy before calling a generation fine, and keep a
   generation that failed in your opinion - the user may disagree.
@@ -94,7 +104,7 @@ presets, jobs, the content docs, the agent's own work and the refs - is open to 
 ## Practical notes
 
 - Hardware target: one 8 GB GPU, 16 GB RAM, everything on the user's own PC (`--box local`,
-  127.0.0.1:8188); older cards such as a GTX 1070 are covered in `docs/PERFORMANCE-8GB.md`. The
+  127.0.0.1:8187); older cards such as a GTX 1070 are covered in `docs/PERFORMANCE-8GB.md`. The
   failure mode on a desktop is Windows commit charge, not VRAM. The Studio and every tool use the
   engine on this PC; the author's lab machines are named only in `AGENTS.local.md` and the
   git-ignored `tools/boxes.local.json` (author sessions); never look for them on another install.

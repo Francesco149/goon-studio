@@ -1,5 +1,5 @@
 # bench_engine.ps1 - start/stop a private ComfyUI on :8189 for the 8 GB optimization pass.
-# Leaves the user's engine on :8188 alone. All paths are explicit so nothing in my/settings.json
+# Leaves the user's engine on :8187 (and Love Live Studio's on :8188) alone. All paths are explicit so nothing in my/settings.json
 # changes.
 #
 #   powershell -File tools\experiments\bench_engine.ps1 -Action start

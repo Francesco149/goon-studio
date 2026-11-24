@@ -103,7 +103,13 @@ Steam, Discord...).
 Each template needs some model files. If one is missing, the page says so under the template:
 which file, a download link, and the exact folder to save it in. Save it under exactly the name
 shown, then close and reopen Goon Studio. [`docs/MODELS.md`](docs/MODELS.md) lists every
-template's files. A few files are on Civitai, which needs a free account to download.
+template's files. A few files are on Civitai, which needs a free account and an API key to
+download: paste a Civitai link to your agent and it offers to walk you through making the key
+once, then opens a small window where you paste it (never paste the key in the chat).
+
+Goon Studio and Love Live Studio can live on the same PC: their engines use different ports (8187
+and 8188), and if the other one's engine is running when you start this one, the launcher asks
+whether to stop it - one 8 GB card holds one engine at a time.
 
 If you download a LoRA or a model yourself and want to try it, just tell your agent where it is. It
 moves it into the models folder, notes where it came from, and tests it.

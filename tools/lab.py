@@ -26,16 +26,17 @@ import headroom  # noqa: E402  (memory check before a batch)
 
 
 def _local():
-    """The engine kit/start.ps1 runs on this machine: always 127.0.0.1:8188, with ComfyUI's
-    output/input folders at <data_dir>/outputs and <data_dir>/inputs (data_dir from my/settings.json,
-    default <repo>/gallery). Not comfy_url: that may point the page at another engine."""
+    """The engine kit/start.ps1 runs on this machine (127.0.0.1, port from a local comfy_url, default
+    8187), with ComfyUI's output/input folders at <data_dir>/outputs and <data_dir>/inputs (data_dir
+    from my/settings.json, default <repo>/gallery)."""
     repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     try:
         with open(os.path.join(repo, "my", "settings.json"), encoding="utf-8-sig") as f:
             s = json.load(f)
     except (OSError, ValueError):
         s = {}
-    return "http://127.0.0.1:8188", s.get("data_dir") or os.path.join(repo, "gallery")
+    import localboxes
+    return localboxes.local_url(s), s.get("data_dir") or os.path.join(repo, "gallery")
 
 
 # `local` (this PC) is the default and the only box on a normal install; more engines only come
@@ -172,6 +173,14 @@ def main():
             log("memory: %s would fit better; rerun with --wf %s if the comparison allows it" % (plan["workflow"], plan["workflow"]), fh)
     if plan["unload"]:
         log("memory: unloading the engine's cached models first: %s" % ("ok" if headroom.unload(engine_s) else "failed"), fh)
+    if a.box == "local":
+        # another app's engine (Love Live Studio on 8188) holds GPU and RAM: say so, never stop it here
+        try:
+            import engines
+            for e in engines.others():
+                log("WARNING: " + engines.warn_line(e), fh)
+        except Exception:
+            pass
 
     for job in jobs:
         job = dict(job)

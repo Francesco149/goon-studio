@@ -56,18 +56,27 @@ if not tiles:
     sys.exit("nothing to show")
 
 tw = a.thumb
-th = int(tw * 1.5)
+th = int(tw * 1.5)          # the tallest a thumbnail may be (portrait 2:3)
 lab = 30
 cols = a.cols
-rows = (len(tiles) + cols - 1) // cols
-out = Image.new("RGB", (cols * tw, rows * (th + lab)), (18, 18, 18))
-dr = ImageDraw.Draw(out)
 f = font(15)
-for i, (path, name) in enumerate(tiles):
+ims = []
+for path, name in tiles:
     im = Image.open(path).convert("RGB")
     im.thumbnail((tw - 6, th - 6), Image.Resampling.LANCZOS)
-    x, y = (i % cols) * tw, (i // cols) * (th + lab)
-    out.paste(im, (x + (tw - im.width) // 2, y + (th - im.height) // 2))
-    dr.text((x + 4, y + th + 6), name[:52], fill=(235, 235, 235), font=f)
+    ims.append((im, name))
+# each row is as tall as its tallest picture: wide pictures (landscape, 3-frame strips) no longer
+# leave a portrait-sized gap under them
+rows = [ims[i:i + cols] for i in range(0, len(ims), cols)]
+heights = [max(im.height for im, _ in r) + 6 for r in rows]
+out = Image.new("RGB", (cols * tw, sum(heights) + lab * len(rows)), (18, 18, 18))
+dr = ImageDraw.Draw(out)
+y = 0
+for r, rh in zip(rows, heights):
+    for c, (im, name) in enumerate(r):
+        x = c * tw
+        out.paste(im, (x + (tw - im.width) // 2, y + (rh - im.height) // 2))
+        dr.text((x + 4, y + rh + 6), name[:52], fill=(235, 235, 235), font=f)
+    y += rh + lab
 out.save(a.out, quality=90)
 print(a.out, out.size, len(tiles), "tiles")

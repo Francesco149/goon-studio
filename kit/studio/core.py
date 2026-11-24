@@ -52,7 +52,7 @@ def load_json(path, default=None):
 
 def settings():
     s = load_json(os.path.join(ROOT, "my", "settings.json"), {}) or {}
-    s.setdefault("comfy_url", "http://127.0.0.1:8188")
+    s.setdefault("comfy_url", "http://127.0.0.1:8187")   # Love Live Studio keeps 8188
     s.setdefault("data_dir", GALLERY)
     if SANDBOX:
         s["data_dir"] = os.path.join(SANDBOX, "gallery")

@@ -61,9 +61,12 @@ AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go
 
 1. **Confirm the folder**: the session's workspace is the Studio repo. Read the README and this
    file first. **Everything runs on this one PC.** The engine is the ComfyUI you install here, at
-   127.0.0.1:8188; every tool defaults to it (`--box local`). Machine names in the docs
-   (cutestation, a 3080) are where the author measured things: never look for other machines,
-   scan the network or ssh anywhere on a user's install.
+   127.0.0.1:8187 (Love Live Studio, if installed, keeps 8188); every tool defaults to it
+   (`--box local`). Machines named in the docs (a 3080, a 7800 XT) are where the author measured
+   things: never look for other machines, scan the network or ssh anywhere on a user's install.
+   **Python:** a fresh PC has none (`python` opens the Microsoft Store). Run every repo script with
+   the engine's Python once setup has run: `kit\py.cmd tools\models\store.py check anime_pov` -
+   wherever this guide says `python tools/...`, use `kit\py.cmd tools\...` if `python` is missing.
 1b. **Account**: DSH Desktop is signed in with the user's DeepSeek account and runs on their
    credits - there is **no API key** to handle. If a model call fails with an auth or balance
    error, send them to Settings â†’ Account and platform.deepseek.com billing; never ask for a key.
@@ -76,20 +79,35 @@ AGENTS.md; I'm not technical". Do the whole thing for them, explaining as you go
    (GTX 10-series such as the 1070, compute capability 6.x) cannot run the current CUDA 13 stack
    or the quantized models; follow "GTX 1070 8 GB" in `docs/PERFORMANCE-8GB.md` (older PyTorch,
    Anima/Pink first, measure before promising anything) instead of the steps below as written.
-3. **Ask which drive** for the models and the gallery (they can be large), then create
-   `my/settings.json` from `my/settings.example.json` with `engine_dir`, `data_dir`, `comfy_url`
-   and **`models_dir`** (the one model store, section 4a - e.g. `D:\GoonStudio\models`).
-4. **Install ComfyUI** (portable Windows build) if it is not already there, then point it at the
-   store: `python tools/models/store.py wire`. Start it hidden and check `/system_stats`.
+3. **Ask which drive** for the engine and the models (25 GB to start, about 70 GB with the video
+   models; an SSD): offer 2-3 drives with their free space (`powershell -ExecutionPolicy Bypass
+   -File kit\setup.ps1 -Check` lists them, the GPU and the driver) and let the user choose.
+4. **Install**: `powershell -ExecutionPolicy Bypass -File kit\setup.ps1 -DataDir "<their choice>"`
+   (run it in the background, it can take a while). It installs the pinned ComfyUI build and the
+   Microsoft runtime (Windows may ask for permission once: tell the user to click Yes), writes
+   `my/settings.json` (engine on 127.0.0.1:8187, `models_dir` = `<DataDir>\models`, pictures in the
+   repo's `gallery\` unless `-GalleryDir`), wires the engine to the store, makes the **Goon Studio**
+   desktop icon and starts engine and page. Exit codes: 10 driver too old (walk them through the
+   NVIDIA driver update), 11 no drive / too little space, 12 no NVIDIA card, 13 download failed (run
+   again), 14 the engine did not start (`<gallery>\logs\comfyui.err.log`), 5 another app's engine
+   is running (ask once, rerun with `-StopOther` or `-KeepOther`). Safe to run again.
+   **Love Live Studio already on this PC** (a `lovelive-studio` folder next to this one): setup
+   reuses its engine folder by itself - no second engine download, no add-ons; it changes nothing
+   in that folder. The two apps run separate engines from one folder (8188 and 8187), each with its
+   own picture folder and database; `kit\start.ps1` re-adds this Studio's models if Love Live's
+   setup rewrote the engine's model paths. If Love Live's data folder is ever moved, rerun this
+   setup with `-EngineDir <its new engine folder>`. The user wants **both** set up: Love Live first
+   (its `CLAUDE.md`; its setup installs the pinned engine), then this one, which reuses it. If this
+   one came first, Love Live installs its own engine copy (about 4 GB more); both still work.
 5. **Download the models template by template** (stop when disk or time runs out; each step is
    usable): `python tools/models/store.py fetch anime_lz_pov anime_pov` (anime, ~10 GB) ->
    `fetch egirl` (photoreal) -> `fetch video_pov cumshot_medium` (H3 video, the big one) -> the
    other templates (`check --all` lists what is still missing). The registry picks the **8 GB
    variants** (w4a8 transformers; the `int8_convrot` ones are for bigger cards). Files marked
-   `login` are on Civitai, which needs the user's free account: ask them to download those in
-   their browser, then `adopt` the file (section 4a), or to save their own Civitai API key in
-   `my/.civitai-token` themselves - never ask for the key in chat.
-6. **Test**: start the page (`kit\start.ps1`), make one `anime_pov` still and show it. If H3 is
+   `login` are on Civitai, which needs the user's free account and API key: offer once to walk
+   them through the key (section 4c), or ask them to download those in their browser and `adopt`
+   the file (section 4a) - never ask for the key in chat.
+6. **Test**: the page is running (setup started it; later the desktop icon or `kit\start.ps1`), make one `anime_pov` still and show it. If H3 is
    installed, make a short video (49 frames, 512x768) as a smoke test. Never claim the sound is
    good (section 4b).
 7. **Write down** what was installed and where in `my/INSTALL.md` (git-ignored) and set the
@@ -121,7 +139,15 @@ folder per source with a local `INDEX.md`. The author's own clips live outside t
   `../lovelive-studio/my/private/`.
 - Never write NSFW prompts, pictures or notes into `../lovelive-studio`. If a run needs an SFW
   reference, copy the file into this repo's `gallery/refs/` and use that copy.
-- The two apps use different ports: Love Live Studio 8190, this one 8191.
+- The two apps use different ports: pages Love Live Studio 8190, this one 8191; engines Love Live
+  Studio 8188, this one 8187 (`comfy_url`). They may share one ComfyUI folder, but an engine writes
+  pictures into the outputs of the app that started it, and one 8 GB GPU / 16 GB RAM holds one
+  engine at a time.
+- **The other studio's engine running is a conflict.** Before rendering in a session, run
+  `python tools/engines.py` (exit 5 and a line per engine when another app's runs; `tools/lab.py`
+  warns too). Then ask the user once whether to stop it - it ends that app's running jobs - and
+  only on a yes run `python tools/engines.py --stop <pid>`. `kit\start.ps1` asks the same at the
+  console; run by an agent it exits 5 instead: ask, then rerun with `-StopOther` or `-KeepOther`.
 
 ## 2a. The page
 
@@ -261,6 +287,28 @@ to the action. The owner's reference for good SFX is the opalu clips (author-onl
 **never tell the user the sound is fine**. Treat the model audio as a scratch track; a separate
 Foley pass or a dedicated audio tool is the likely answer.
 
+## 4c. Civitai links
+
+When the user pastes a Civitai link (`civitai.com` or the `civitai.red` mirror; a model page, a
+`?modelVersionId=` link or an `/api/download/models/<v>` link) and wants the model used:
+
+1. `python tools/civitai.py link <url>`: name, version, **base model**, **trigger words**, file,
+   page, and whether a Civitai key is set. No key is needed for this. Check the base model matches
+   the graph and note the triggers (LoRA checklist in `docs/LORAS.md`).
+2. `python tools/civitai.py get <url>` (`--folder`, `--sub h3nsfw`, `--name` when needed): downloads
+   into the model store and registers it in `kit/models.json` with its page, download link and
+   triggers. It needs the user's key; without one it prints the setup steps and exits 3.
+3. **No key** (`python tools/civitai.py key --status` exits 1): offer **at most once per session**,
+   in plain words ("Civitai needs a free account and a key to download - want me to walk you
+   through it? Two minutes."). On a yes: they sign in at civitai.com (or make a free account), open
+   https://civitai.com/user/account -> "API Keys" -> "Add API key", name it "studio", copy it. Then
+   **you open the key window for them**: `Start-Process "<repo>\kit\civitai-key.cmd"`; they paste
+   the key there and press Enter (hidden prompt, checked against Civitai, saved to the git-ignored
+   `my/.civitai-token`). Never ask for the key in chat, never type it for them; if they paste it in
+   the chat anyway, don't use or repeat it - tell them to make a new one on Civitai and use the
+   window. If they decline, or already declined this session, do not bring it up again: ask them
+   to download the file in their browser and `adopt` it (section 4a).
+
 ## 5. Canon (owner-approved, 2026-11-20)
 
 - **All characters are fictional adults.** Anime body types can be petite; every character is an
@@ -313,7 +361,7 @@ Foley pass or a dedicated audio tool is the likely answer.
 
 1. Put jobs in `jobs/<round>.jsonl` (one JSON object per line, `name`, `prompt`, `seed`, ...).
 2. Run the batch: `python tools/lab.py --wf wf_...json --jobs jobs/<round>.jsonl --box local --sub gl/<round> --out gens/<round>`.
-   **On the user's own machine the box is always `local`** (127.0.0.1:8188, the ComfyUI that
+   **On the user's own machine the box is always `local`** (127.0.0.1:8187, the ComfyUI that
    `kit\start.ps1` runs). Other `--box` names come only from the git-ignored
    `tools/boxes.local.json` of an author session - never assume them, never go looking for them.
    Every recipe in `docs/` must be runnable on `local` with 8 GB, which is the target; the boxes

@@ -49,7 +49,7 @@ def load_json(path, default=None):
 
 def settings():
     s = load_json(os.path.join(ROOT, "my", "settings.json"), {}) or {}
-    s.setdefault("comfy_url", "http://127.0.0.1:8188")
+    s.setdefault("comfy_url", "http://127.0.0.1:8187")
     if os.environ.get("GOON_COMFY_URL"):          # a bench engine (tests), never the user's setting
         s["comfy_url"] = os.environ["GOON_COMFY_URL"]
     return s
